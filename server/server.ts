@@ -20,6 +20,8 @@ app.set('view engine', 'handlebars')
 app.engine('handlebars', hbs.engine)
 
 // Middleware
+import { authEpilogue, authAdmin, checkAdminLogin } from './authentication'
+
 import cors from './middleware/cors'
 const bodyParser = require('body-parser')
 app.use(cors)
@@ -36,21 +38,26 @@ import Admin from './models/Admin'
 import Card from './models/Card'
 import Course from './models/Course'
 
-// Hello World!
-const STARTUP_MESSAGE = `
-Server started ${(new Date()).toLocaleString()}
-
-http://localhost:${PORT}
-`
-
 // Public Routes
 app.get('/', (req, res) => {
-  res.send('<pre>' + STARTUP_MESSAGE)
+  res.send(`<pre>Server started ${(new Date()).toLocaleString()}\n\nhttp://localhost:${PORT}`)
 })
 
-app.get('/login', (req, res) => {
+app.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
+
+// Admin Routes
+app.get('/admin', checkAdminLogin, (req, res) => {
+  res.send('Authed as admin')
+})
+
+app.get('/admin/login', (req, res) => {
   res.render('login')
 })
+
+app.post('/admin/login', authAdmin, (req, res) => res.redirect('/admin'))
 
 
 // Admin REST API
@@ -65,21 +72,12 @@ Object.keys(restApis).forEach(k => {
     model,
     endpoints: ['/api/' + k, '/api/' + k + '/:id']
   })
-  // resource.all.auth(authEpilogue)
+  resource.all.auth(authEpilogue)
 })
-
-const cardResource = epilogue.resource({
-  model: Card,
-  endpoints: ['/api/card', '/api/card/:id']
-})
-
-// adminResource.all.auth(authEpilogue)
-
-
 
 // Start server
 connection.sync().then(() => {
   app.listen(PORT)
-  console.log(STARTUP_MESSAGE)
+  console.log(`<pre>Server started ${(new Date()).toLocaleString()}\n\nhttp://localhost:${PORT}`)
 })
 
