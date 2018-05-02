@@ -7,12 +7,18 @@ run:
 install:
 	npm install
 
+db:
+	# ./node_modules/.bin/ts-node src/server/reset-database.ts --config
+	node src/server/reset-database.js
+
+
 dev:
-	./node_modules/.bin/ts-node src/server/server.ts &
+	# ./node_modules/.bin/nodemon &
 	npm run dev
 
 server:
-	./node_modules/.bin/ts-node src/server/server.ts
+	# ./node_modules/.bin/nodemon src/server/server.ts
+	node src/server/server.js
 
 lint:
 	npm run lint
