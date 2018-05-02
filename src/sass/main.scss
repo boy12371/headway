@@ -1,9 +1,11 @@
-@import "~bootstrap/scss/bootstrap.scss";
-
-html, body, #app-main {
-    height: 100%;
+@font-face {
+  font-family: system;
+  font-style: normal;
+  font-weight: 300;
+  src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
 }
 
-.content {
-  margin-top: 50px;
+body {
+  font-family: "system";
+  font-weight: 500;
 }
