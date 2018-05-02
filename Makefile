@@ -13,8 +13,8 @@ db:
 
 
 dev:
-	# ./node_modules/.bin/nodemon &
-	npm run dev
+	./node_modules/.bin/nodemon &
+	# npm run dev
 
 server:
 	# ./node_modules/.bin/nodemon src/server/server.ts

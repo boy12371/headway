@@ -5,34 +5,34 @@ const DefinePlugin = require('webpack/lib/DefinePlugin')
 const env = require('../environment/dev.env')
 
 webpackConfig.module.rules = [...webpackConfig.module.rules,
-  {
-    test: /\.scss$/,
-    use: [{
-      loader: 'style-loader'
-    },
-    {
-      loader: 'css-loader'
-    },
-    {
-      loader: 'sass-loader'
-    }
-    ]
+{
+  test: /\.scss$/,
+  use: [{
+    loader: 'style-loader'
   },
   {
-    test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
-    loader: 'file-loader'
+    loader: 'css-loader'
+  },
+  {
+    loader: 'sass-loader'
   }
+  ]
+},
+{
+  test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
+  loader: 'file-loader'
+}
 ]
 
 webpackConfig.plugins = [...webpackConfig.plugins,
-  new HtmlWebpackPlugin({
-    inject: true,
-    template: helpers.root('/src/index.html'),
-    favicon: helpers.root('/src/favicon.ico')
-  }),
-  new DefinePlugin({
-    'process.env': env
-  })
+new HtmlWebpackPlugin({
+  inject: true,
+  template: helpers.root('/src/index.html'),
+  favicon: helpers.root('/src/favicon.ico')
+}),
+new DefinePlugin({
+  'process.env': env
+})
 ]
 
 webpackConfig.devServer = {
