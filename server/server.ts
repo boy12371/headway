@@ -65,3 +65,4 @@ connection.sync().then(() => {
     app.listen(PORT)
     console.log(STARTUP_MESSAGE)
 })
+

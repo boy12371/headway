@@ -13,12 +13,12 @@ db:
 
 
 dev:
-	./node_modules/.bin/nodemon &
-	# npm run dev
+	# ./node_modules/.bin/nodemon &
+	npm run dev
 
 server:
-	# ./node_modules/.bin/nodemon src/server/server.ts
-	node src/server/server.js
+	./node_modules/.bin/nodemon
+	# node src/server/server.js
 
 lint:
 	npm run lint
@@ -37,4 +37,4 @@ component:
 	cp src/components/base.ts src/components/$(name)/$(name).ts
 	echo "export * from './$(name)'" > src/components/$(name)/index.ts
 
-.PHONY: dev test
+.PHONY: dev test server
