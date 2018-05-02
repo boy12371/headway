@@ -20,7 +20,7 @@ app.set('view engine', 'handlebars')
 app.engine('handlebars', hbs.engine)
 
 // Middleware
-import { authEpilogue, authAdmin, checkAdminLogin } from './authentication'
+import { authEpilogue, authAdmin, checkAdminLogin, checkstudentLogin, authStudent } from './authentication'
 import { cors } from './middleware'
 import * as bodyParser from 'body-parser'
 
@@ -48,6 +48,17 @@ app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
 })
+
+// Student Routes
+app.get('/student', checkstudentLogin, (req, res) => {
+  res.send('Authed as student')
+})
+
+app.get('/student/login', (req, res) => {
+  res.render('login')
+})
+
+app.post('/student/login', authStudent, (req, res) => res.redirect('/student'))
 
 // Admin Routes
 app.get('/admin', checkAdminLogin, (req, res) => {

@@ -28,12 +28,12 @@ passport.use('student-local', new LocalStrategy({ usernameField: 'email' }, (ema
     }
     const hash = bcrypt.hashSync(password, student.salt)
     if (student.password !== hash) {
-      console.log('bad password')
+      // console.log('bad password')
       return done(null, false)
     }
     student.lastLoggedIn = new Date()
     student.save()
-    console.log('authed as student:', student.name, 'at', student.lastLoggedIn)
+    // console.log('authed as student:', student.name, 'at', student.lastLoggedIn)
     return done(null, student.toJSON())
   })
 }))
