@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../connection')
+import Sequelize from 'sequelize'
+import connection from '../connection'
 
-const Card = sequelize.define('card', {
+const Card = connection.define('card', {
     name: Sequelize.STRING,
     content: Sequelize.STRING,
     evidence_task: Sequelize.STRING,
@@ -9,4 +9,4 @@ const Card = sequelize.define('card', {
     media: Sequelize.STRING, // freeform JSON
 })
 
-module.exports = Card
+export default Card

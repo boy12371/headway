@@ -1,3 +1,1 @@
-module.exports = {
-    Admin: require('./Admin')
-}
+export * from './Admin'

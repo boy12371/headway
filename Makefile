@@ -8,17 +8,13 @@ install:
 	npm install
 
 db:
-	# ./node_modules/.bin/ts-node src/server/reset-database.ts --config
-	node src/server/reset-database.js
-
+	./node_modules/.bin/ts-node server/reset-database.ts
 
 dev:
-	# ./node_modules/.bin/nodemon &
 	npm run dev
 
 server:
 	./node_modules/.bin/nodemon
-	# node src/server/server.js
 
 lint:
 	npm run lint

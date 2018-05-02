@@ -1,13 +1,15 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../connection')
+import Sequelize from 'sequelize'
+import connection from '../connection'
 
-const Course = sequelize.define('course', {
+const Course = connection.define('course', {
     name: Sequelize.STRING,
 })
 
-const Unit = require('./Unit')
+import Unit from './Unit'
 
 // Course:Unit is a n:n relationship because Unit can be shared among Courses
 Course.hasMany(Unit)
 
-module.exports = Course
+export default Course
+
+export { }

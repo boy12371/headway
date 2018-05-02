@@ -1,12 +1,12 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../connection')
+import Sequelize from 'sequelize'
+import connection from '../connection'
 
-const Unit = sequelize.define('unit', {
+const Unit = connection.define('unit', {
     name: Sequelize.STRING,
 })
 
-const Card = require('./Card')
+import Card from './Card'
 
 Unit.hasMany(Card) // needs order, too
 
-module.exports = Unit
+export default Unit

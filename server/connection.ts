@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const parse = require('parse-database-url')
+import Sequelize from 'sequelize'
+import parse from 'parse-database-url'
 
 const url = process.env.CLEARDB_DATABASE_URL
 
@@ -11,9 +11,7 @@ const config = url ? parse(url) : {
 }
 const { user, password, database, host } = config
 
-// console.log(config)
-
-module.exports = new Sequelize(database, user, password, {
+const connection = new Sequelize(database, user, password, {
     host,
     dialect: 'mysql',
     pool: {
@@ -25,3 +23,5 @@ module.exports = new Sequelize(database, user, password, {
     logging: false,
     operatorsAliases: false,
 })
+
+export default connection

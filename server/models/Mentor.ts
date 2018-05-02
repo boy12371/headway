@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../connection')
+import Sequelize from 'sequelize'
+import connection from '../connection'
 
-const Mentor = sequelize.define('mentor', {
+const Mentor = connection.define('mentor', {
     first_name: Sequelize.STRING,
     last_name: Sequelize.STRING,
     email: Sequelize.STRING,
@@ -9,4 +9,4 @@ const Mentor = sequelize.define('mentor', {
     salt: Sequelize.STRING,
 })
 
-module.exports = Mentor
+export default Mentor

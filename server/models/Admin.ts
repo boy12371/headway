@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const connection = require('../connection')
+import Sequelize from 'sequelize'
+import connection from '../connection'
 
 const Admin = connection.define('admin', {
     username: Sequelize.STRING,
@@ -7,4 +7,4 @@ const Admin = connection.define('admin', {
     salt: Sequelize.STRING,
 })
 
-module.exports = Admin
+export default Admin

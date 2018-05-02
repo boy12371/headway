@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../connection')
+import Sequelize from 'sequelize'
+import connection from '../connection'
 
-const Activity = sequelize.define('activity', {
+const Activity = connection.define('activity', {
     evidence_proof: Sequelize.STRING, // File
     completed: Sequelize.DATE,
 })
@@ -12,4 +12,4 @@ const Card = require('./Card')
 Activity.hasOne(Student)
 Activity.hasOne(Card)
 
-module.exports = Activity
+export default Activity
