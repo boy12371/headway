@@ -1,5 +1,5 @@
 // Dependencies
-import path from 'path'
+import * as path from 'path'
 import * as express from 'express'
 import * as exphbs from 'express-handlebars'
 import * as passport from 'passport'
@@ -21,10 +21,11 @@ app.engine('handlebars', hbs.engine)
 
 // Middleware
 import { authEpilogue, authAdmin, checkAdminLogin } from './authentication'
+import { cors } from './middleware'
+import * as bodyParser from 'body-parser'
 
-import cors from './middleware/cors'
-const bodyParser = require('body-parser')
 app.use(cors)
+app.use('/', express.static(path.resolve('./dist')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(require('express-session')({ secret: 'I hate cats', resave: false, saveUninitialized: false }))
@@ -39,7 +40,7 @@ import Card from './models/Card'
 import Course from './models/Course'
 
 // Public Routes
-app.get('/', (req, res) => {
+app.get('/status', (req, res) => {
   res.send(`<pre>Server started ${(new Date()).toLocaleString()}\n\nhttp://localhost:${PORT}`)
 })
 

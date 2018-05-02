@@ -1,3 +1,1 @@
-export default {
-    cors: require('./cors'),
-}
+export * from './cors'
