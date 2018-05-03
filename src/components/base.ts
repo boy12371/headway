@@ -1,6 +1,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-// import './my-component.scss'
+import './my-component.scss'
 
 @Component({
     template: require('./my-component.html'),

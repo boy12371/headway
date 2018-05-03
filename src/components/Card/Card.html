@@ -1,0 +1,7 @@
+<div class="Card">
+  <h3 class="flat">{{ title }}</h3>
+  <p class="flat"><small>{{ subTitle }}</small></p>
+  <div class="Card__body" v-if="$slots.body">
+    <slot name="body"></slot>
+  </div>
+</div>

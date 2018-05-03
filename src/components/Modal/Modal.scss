@@ -1,0 +1,29 @@
+.Modal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+}
+
+.Modal__content {
+  position: relative;
+}
+
+.Modal__close {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.Modal:target,
+.Modal--active {
+  display: flex;
+}
