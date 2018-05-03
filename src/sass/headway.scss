@@ -56,20 +56,38 @@ h4 {
   padding: 0rem 2rem;
   background-color: #3bb78f;
   background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
+  font-family: inherit;
   color: #fff;
-  font-size: 1rem;
   text-decoration: none;
   border-radius: 0.25rem;
   box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 0.125rem 0.25rem rgba(0,0,0,0.25);
-  font-weight: 400;
   opacity: 0.9;
-  font-size: 15px;
+  border: 0;
+  font-size: 0.9375rem;
   font-weight: 500;
   transition: opacity 200ms ease;
+  text-align: center;
+}
+
+.btn--block {
+  display: block;
+  width: 100%;
+}
+
+.btn:focus {
+  outline: 0;
 }
 
 .btn:hover {
   opacity: 1;
+}
+
+.form__group {
+  margin-bottom: 0.75rem;
+}
+
+.form__footer {
+  padding-top: 0.75rem;
 }
 
 .input {

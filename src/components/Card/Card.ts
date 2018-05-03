@@ -7,7 +7,8 @@ import './Card.scss'
     name: 'Card',
     components: {}
 })
+
 export class Card extends Vue {
-  @Prop() title:string
-  @Prop() subTitle:string
+  @Prop() title: string
+  @Prop() subTitle: string
 }

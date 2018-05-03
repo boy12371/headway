@@ -1,11 +1,12 @@
 .Card {
   background: #fff;
+  border-radius: 4px;
   padding: 1.5rem;
   box-shadow: 0 5px 10px rgba(0,0,0,0.25);
 }
 
 .Card__body {
-  padding-top: 1.5rem;
-  margin-top: 1.5rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
   border-top: 1px solid #ddd;
 }

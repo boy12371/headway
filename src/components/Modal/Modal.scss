@@ -1,5 +1,5 @@
 .Modal {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -8,22 +8,27 @@
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.8);
+  padding: 1.5rem;
 }
 
 .Modal__content {
   position: relative;
+  flex: 1;
+  max-width: 18.75rem; // 300
+  transition: all 300ms ease;
 }
 
-.Modal__close {
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  font-size: 20px;
-  color: #fff;
-  text-decoration: none;
+// Transitions 
+
+.Modal-enter {
+  opacity: 0;
 }
 
-.Modal:target,
-.Modal--active {
-  display: flex;
+.Modal-leave-active {
+  opacity: 0;
+}
+
+.Modal-enter .Modal__content,
+.Modal-leave-active .Modal__content {
+  transform: scale(1.1);
 }

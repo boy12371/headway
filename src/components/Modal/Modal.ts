@@ -1,11 +1,25 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-import './modal.scss'
+import { Card } from '../Card'
+
+import './Modal.scss'
 
 @Component({
-    template: require('./modal.html'),
+    template: require('./Modal.html'),
     name: 'modal',
-    components: {}
+    components: {
+      Card
+    }
 })
+
 export class Modal extends Vue {
+
+  emitClose() {
+    this.$emit('close');
+  }
+
+  stopEmitClose(e) {
+    e.stopPropagation();
+  }
+
 }

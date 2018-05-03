@@ -14,5 +14,5 @@ import './styleguide.scss'
 })
 
 export class StyleguideComponent extends Vue {
-
+  showModal =  false
 }
