@@ -26,6 +26,7 @@ import * as bodyParser from 'body-parser'
 
 app.use(cors)
 app.use('/', express.static(path.resolve('./dist')))
+app.use('/app', express.static(path.resolve('./dist')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(require('express-session')({ secret: 'I hate cats', resave: false, saveUninitialized: false }))
@@ -38,6 +39,7 @@ epilogue.initialize({ app, sequelize: connection })
 import Admin from './models/Admin'
 import Card from './models/Card'
 import Course from './models/Course'
+
 
 // Public Routes
 app.get('/status', (req, res) => {
