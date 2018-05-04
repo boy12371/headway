@@ -1,0 +1,16 @@
+$green: #0BAB64;
+
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+
+@mixin width($sizeValue: 1.6) {
+  width: ($sizeValue * 10) + px;
+  width: $sizeValue + rem;
+}
+
+@mixin height($sizeValue: 1.6) {
+  height: ($sizeValue * 10) + px;
+  height: $sizeValue + rem;
+}

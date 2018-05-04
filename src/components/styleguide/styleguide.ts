@@ -2,6 +2,7 @@ import { Component, Vue } from 'vue-property-decorator'
 
 import { Card } from '../Card'
 import { Modal } from '../Modal'
+import { Header } from '../Header'
 
 import './styleguide.scss'
 
@@ -9,7 +10,8 @@ import './styleguide.scss'
   template: require('./styleguide.html'),
   components: {
     Card,
-    Modal
+    Modal,
+    Header
   }
 })
 

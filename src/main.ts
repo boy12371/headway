@@ -2,6 +2,8 @@ import Vue from 'vue'
 import { makeHot, reload } from './util/hot-reload'
 import { createRouter } from './router'
 
+import Icon from 'vue-awesome'
+
 import './sass/headway.scss'
 
 // tslint:disable-next-line:no-unused-expression
@@ -11,3 +13,5 @@ new Vue({
   components: {
   }
 })
+
+Vue.component('icon', Icon)

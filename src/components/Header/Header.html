@@ -1,0 +1,11 @@
+<header class="Header">
+  <div class="Logo">
+    <div class="Logo__icon">H</div>
+    Headway
+  </div>
+  <a href="#" v-if="!authed" class="btn btn--small Header__btn">Sign in</a>
+  <div class="User" v-if="authed">
+    <div class="User__avatar">J</div>
+    <Icon name="chevron-down" />
+  </div>
+</header>
