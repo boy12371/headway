@@ -39,9 +39,21 @@ epilogue.initialize({ app, sequelize: connection })
 import Admin from './models/Admin'
 import Card from './models/Card'
 import Course from './models/Course'
-
+import Unit from './models/Unit'
+import Student from './models/Student'
 
 // Public Routes
+app.get('/courses', (req, res) => {
+  Course.findAll({ include: [Unit, Student] }).then((courses) => {
+    const data = courses.map(course => ({
+      name: course.name,
+      units: course.units.map(unit => unit.name),
+      students: course.students.map(student => student.email),
+    }))
+    res.send(data)
+  })
+})
+
 app.get('/status', (req, res) => {
   res.send(`<pre>Server started ${(new Date()).toLocaleString()}\n\nhttp://localhost:${PORT}`)
 })
