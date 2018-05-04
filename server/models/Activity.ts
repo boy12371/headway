@@ -1,15 +1,19 @@
-import { Table, Column, Model, HasMany } from 'sequelize-typescript';
+import { Table, Column, Model, HasMany, ForeignKey } from 'sequelize-typescript';
+import Student from './Student';
+import Card from './Card';
 
 @Table
 class Activity extends Model<Activity> {
-  evidence_proof: string // File
-  completed: Date
+  @Column evidence_proof: string // File
+  @Column completed: Date
+
+  @ForeignKey(() => Card)
+  @Column
+  cardId: number
+
+  @ForeignKey(() => Student)
+  @Column
+  studentId: number
 }
-
-// const Student = require('./Student')
-// const Card = require('./Card')
-
-// Activity.hasOne(Student)
-// Activity.hasOne(Card)
 
 export default Activity

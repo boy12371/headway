@@ -1,5 +1,7 @@
-import { Table, Column, Model, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import Unit from './Unit';
+import { Table, Column, Model, HasMany, ForeignKey, BelongsTo, BelongsToMany } from 'sequelize-typescript';
+import Unit from './Unit'
+import Activity from './Activity'
+import Student from './Student'
 
 @Table
 class Card extends Model<Card> {
@@ -15,6 +17,14 @@ class Card extends Model<Card> {
 
   @BelongsTo(() => Unit)
   unit: Unit
+
+  @BelongsToMany(() => Student, {
+    through: {
+      model: () => Activity,
+      unique: false,
+    },
+  })
+  activityStudents: Student[]
 }
 
 export default Card

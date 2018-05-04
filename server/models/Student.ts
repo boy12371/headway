@@ -2,6 +2,8 @@ import { Table, Column, Model, HasMany, BelongsToMany } from 'sequelize-typescri
 
 import Course from './Course'
 import CourseStudent from './CourseStudent';
+import Card from './Card';
+import Activity from './Activity';
 
 @Table
 class Student extends Model<Student> {
@@ -20,6 +22,17 @@ class Student extends Model<Student> {
     },
   })
   courses: Course[]
+
+  // @HasMany(() => Activity)
+  // activities: Activity[]
+
+  @BelongsToMany(() => Card, {
+    through: {
+      model: () => Activity,
+      unique: false,
+    },
+  })
+  cardActivities: Card[]
 }
 
 export default Student

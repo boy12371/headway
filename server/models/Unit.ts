@@ -18,7 +18,4 @@ class Unit extends Model<Unit> {
   course: Course
 }
 
-// import Card from './Card'
-// Unit.hasMany(Card) // needs order, too
-
 export default Unit
