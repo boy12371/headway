@@ -104,6 +104,6 @@ Object.keys(restApis).forEach(k => {
 // Start server
 connection.sync().then(() => {
   app.listen(PORT)
-  console.log(`<pre>Server started ${(new Date()).toLocaleString()}\n\nhttp://localhost:${PORT}`)
+  console.log(`headway started @ ${(new Date()).toLocaleString()}\nhttp://localhost:${PORT}\n`)
 })
 
