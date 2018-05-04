@@ -8,12 +8,14 @@
   <h2>Large heading</h2>
   <h3>Regular heading</h3>
   <p>Ipsum nihil sunt nemo eaque veniam lorem. Ipsa ducimus iusto dolorum repellat minima. Architecto eum consectetur sint deleniti explicabo molestiae nemo nihil rerum repellat! Aperiam ex obcaecati architecto odio amet.</p>
+  <h1>Buttons</h1>
   <p>
     <a class="btn" href="#">Button</a>
   </p>
   <p>
     <a class="btn btn--block" href="#">Block Button</a>
   </p>
+  <h1>Form elements</h1>
   <div>
     <div class="form__group">
       <label class="label" for="input">Label example</label>
@@ -24,11 +26,13 @@
       <textarea class="input"></textarea>
     </div>
   </div>
+  <h1>Cards</h1>
   <Card title="Card" sub-title="The smaller copy below">
   </Card>
   <Card title="Card with body" sub-title="The smaller copy below">
     <div slot="body">Some extra shit</div>
   </Card>
+  <h1>Modal</h1>
   <p>
     <button class="btn" @click="showModal = true">Show modal</button>
   </p>
@@ -51,4 +55,6 @@
       </Card>
     </Modal>
   </transition>
+  <h1>Menu</h1>
+  <Menu :items="menuExample"></Menu>
 </div>
