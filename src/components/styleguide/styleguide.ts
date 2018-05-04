@@ -4,6 +4,7 @@ import { Card } from '../Card'
 import { Modal } from '../Modal'
 import { Header } from '../Header'
 import { Menu } from '../Menu'
+import { ProgressBar } from '../ProgressBar'
 
 import './styleguide.scss'
 
@@ -13,7 +14,8 @@ import './styleguide.scss'
     Card,
     Modal,
     Header,
-    Menu
+    Menu,
+    ProgressBar
   }
 })
 

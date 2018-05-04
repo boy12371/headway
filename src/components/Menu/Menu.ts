@@ -4,12 +4,10 @@ import './Menu.scss'
 
 @Component({
   template: require('./Menu.html'),
-  name: 'Menu',
-  props: ['items'],
-  components: {}
+  name: 'Menu'
 })
 export class Menu extends Vue {
-  // @Prop() items: array
+  @Prop() items: any[]
   linkClass(active) {
     return {
       'Menu__link': true,

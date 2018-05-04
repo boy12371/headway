@@ -1,0 +1,29 @@
+@import "../../sass/variables.scss";
+
+.ProgressBar {
+  position: relative;
+  height: 24px;
+  width: 100%;
+  background: #111;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+@keyframes loadProgress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.ProgressBar__bar {
+  position: absolute;
+  background: $green;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform: translateX(-100%);
+  animation: loadProgress 375ms ease-out forwards;
+}
