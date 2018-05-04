@@ -64,7 +64,7 @@ h4 {
   box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 0.125rem 0.25rem rgba(0,0,0,0.25);
   opacity: 0.9;
   border: 0;
-  font-size: 0.9375rem;
+  font-size: 0.825rem;
   font-weight: 500;
   transition: opacity 200ms ease;
   text-align: center;
@@ -80,6 +80,13 @@ h4 {
   height: 30px;
   line-height: 30px;
   padding: 0 1rem;
+}
+
+.btn--standard {
+  background: #fefefe;
+  color: $green;
+  border: 1px solid #ddd;
+  line-height: 35px;
 }
 
 .btn:focus {

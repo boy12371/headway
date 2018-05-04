@@ -1,0 +1,14 @@
+<div class="Quiz__question">
+  <label class="label">Question {{ count }}</label>
+  <input type="text" autofocus @focus.native="$event.target.select()" v-model="question" class="input" placeholder="Question">
+  <div class="Quiz__answers">
+    <label class="label">Answers</label>
+    <QuizAnswer
+      v-for="(answer, aIndex) in answers"
+      key="aIndex"
+      :answer="answer.text" 
+      :correct="answer.correct"
+    />
+    <div class="input Quiz__add-answer" @click="$emit('addAnswer')">Add another answer</div>
+  </div>
+</div>

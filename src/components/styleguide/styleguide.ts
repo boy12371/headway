@@ -5,6 +5,7 @@ import { Modal } from '../Modal'
 import { Header } from '../Header'
 import { Menu } from '../Menu'
 import { ProgressBar } from '../ProgressBar'
+import { Quiz } from '../Quiz'
 
 import './styleguide.scss'
 
@@ -15,7 +16,8 @@ import './styleguide.scss'
     Modal,
     Header,
     Menu,
-    ProgressBar
+    ProgressBar,
+    Quiz
   }
 })
 
@@ -39,4 +41,5 @@ export class StyleguideComponent extends Vue {
       active: false
     }
   ]
+
 }
