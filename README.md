@@ -57,3 +57,14 @@ Requires Student Auth:
 ```
 GET /student
 ```
+
+## Dev on Windows
+
+Might need to run some commands slightly differently. You'll figure it out.
+
+```
+npm install
+make dev
+node_modules\.bin\ts-node.cmd server\reset-database.ts
+node_modules\.bin\ts-node.cmd server\server.ts
+```
