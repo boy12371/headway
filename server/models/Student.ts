@@ -1,6 +1,7 @@
-import { Table, Column, Model, HasMany } from 'sequelize-typescript'
+import { Table, Column, Model, HasMany, BelongsToMany } from 'sequelize-typescript'
 
 import Course from './Course'
+import CourseStudent from './CourseStudent';
 
 @Table
 class Student extends Model<Student> {
@@ -12,8 +13,13 @@ class Student extends Model<Student> {
   @Column salt: string
   @Column lastLoggedIn: Date
 
-  // @HasMany(() => Course)
-  // courses: Course[]
+  @BelongsToMany(() => Course, {
+    through: {
+      model: () => CourseStudent,
+      unique: false,
+    },
+  })
+  courses: Course[]
 }
 
 export default Student

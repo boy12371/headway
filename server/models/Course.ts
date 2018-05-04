@@ -1,11 +1,22 @@
-import { Table, Column, Model, HasMany } from 'sequelize-typescript';
+import { Table, Column, Model, HasMany, ForeignKey, BelongsTo, BelongsToMany } from 'sequelize-typescript';
+import Student from './Student';
+import Unit from './Unit';
+import CourseStudent from './CourseStudent';
 
 @Table
 class Course extends Model<Course> {
   @Column name: string
-}
 
-// import Unit from './Unit'
-// Course.hasMany(Unit) // Course:Unit is a n:n relationship because Unit can be shared among Courses
+  @HasMany(() => Unit)
+  units: Unit[]
+
+  @BelongsToMany(() => Student, {
+    through: {
+      model: () => CourseStudent,
+      unique: false,
+    },
+  })
+  students: Student[]
+}
 
 export default Course
