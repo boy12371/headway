@@ -1,6 +1,8 @@
 $green: #0BAB64;
 $blue: #4699ff;
 
+$radius: 0.25rem;
+
 @mixin font-size($sizeValue: 1.6) {
   font-size: ($sizeValue * 10) + px;
   font-size: $sizeValue + rem;

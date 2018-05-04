@@ -10,6 +10,7 @@
   padding: 0 1rem;
   display: flex;
   align-items: center;
+  border-radius: $radius;
 }
 
 .ProgressBar__text {
@@ -32,7 +33,7 @@
 
 .ProgressBar__bar {
   position: absolute;
-  background: $green;
+  background: linear-gradient(#0ebd6f, $green);
   top: 0;
   left: 0;
   height: 100%;
