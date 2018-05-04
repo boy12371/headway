@@ -36,10 +36,10 @@ connection.sync({ force: true }).then(() => {
     createAdmin('j', 'p'),
     createStudent('student', 'password'),
     Card.create({
-      name: 'Best card ever'
+      name: 'Mowing a lawn'
     }),
     Course.create({
-      name: 'Best course ever'
+      name: 'Turf Maintenance'
     }),
   ]).then(() => {
     connection.close()

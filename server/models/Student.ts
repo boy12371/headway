@@ -1,21 +1,19 @@
-import Sequelize from 'sequelize'
-import connection from '../connection'
+import { Table, Column, Model, HasMany } from 'sequelize-typescript'
 
-export interface IStudent {
-    id: Number
-    first_name: String
-    last_name: String
-    email: String
-    password: String
-    salt: String
+import Course from './Course'
+
+@Table
+class Student extends Model<Student> {
+
+  @Column first_name: string
+  @Column last_name: string
+  @Column email: string
+  @Column password: string
+  @Column salt: string
+  @Column lastLoggedIn: Date
+
+  // @HasMany(() => Course)
+  // courses: Course[]
 }
-
-const Student = connection.define('student', {
-    first_name: Sequelize.STRING,
-    last_name: Sequelize.STRING,
-    email: Sequelize.STRING,
-    password: Sequelize.STRING,
-    salt: Sequelize.STRING,
-})
 
 export default Student

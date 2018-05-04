@@ -1,12 +1,11 @@
-import Sequelize from 'sequelize'
-import connection from '../connection'
+import { Table, Column, Model, HasMany } from 'sequelize-typescript';
 
-const Unit = connection.define('unit', {
-    name: Sequelize.STRING,
-})
+@Table
+class Unit extends Model<Unit> {
+  @Column name: string
+}
 
-import Card from './Card'
-
-Unit.hasMany(Card) // needs order, too
+// import Card from './Card'
+// Unit.hasMany(Card) // needs order, too
 
 export default Unit

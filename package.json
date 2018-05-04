@@ -31,6 +31,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^4.37.6",
+    "sequelize-typescript": "^0.6.4",
     "ts-node": "^6.0.2",
     "vue": "~2.5.13",
     "vue-class-component": "~6.1.2",

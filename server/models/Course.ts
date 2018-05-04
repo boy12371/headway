@@ -1,15 +1,11 @@
-import Sequelize from 'sequelize'
-import connection from '../connection'
+import { Table, Column, Model, HasMany } from 'sequelize-typescript';
 
-const Course = connection.define('course', {
-    name: Sequelize.STRING,
-})
+@Table
+class Course extends Model<Course> {
+  @Column name: string
+}
 
-import Unit from './Unit'
-
-// Course:Unit is a n:n relationship because Unit can be shared among Courses
-Course.hasMany(Unit)
+// import Unit from './Unit'
+// Course.hasMany(Unit) // Course:Unit is a n:n relationship because Unit can be shared among Courses
 
 export default Course
-
-export { }

@@ -1,12 +1,12 @@
-import Sequelize from 'sequelize'
-import connection from '../connection'
+import { Table, Column, Model, HasMany } from 'sequelize-typescript';
 
-const Card = connection.define('card', {
-    name: Sequelize.STRING,
-    content: Sequelize.STRING,
-    evidence_task: Sequelize.STRING,
-    quiz: Sequelize.STRING, // freeform JSON
-    media: Sequelize.STRING, // freeform JSON
-})
+@Table
+class Card extends Model<Card> {
+  @Column name: string
+  @Column content: string
+  @Column evidence_task: string
+  @Column quiz: string
+  @Column media: string
+}
 
 export default Card

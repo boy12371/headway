@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize'
+import { Sequelize } from 'sequelize-typescript'
 import parse from 'parse-database-url'
 
 const url = process.env.CLEARDB_DATABASE_URL
@@ -11,8 +11,11 @@ const config = url ? parse(url) : {
 }
 const { user, password, database, host } = config
 
-const connection = new Sequelize(database, user, password, {
+const connection = new Sequelize({
+    database,
     host,
+    username: user,
+    password,
     dialect: 'mysql',
     pool: {
         max: 5,
@@ -20,8 +23,9 @@ const connection = new Sequelize(database, user, password, {
         acquire: 30000,
         idle: 10000
     },
-    logging: false,
     operatorsAliases: false,
+    modelPaths: [__dirname + '/models/*.ts'],
+    logging: false,
 })
 
 export default connection

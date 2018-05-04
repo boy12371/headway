@@ -1,15 +1,15 @@
-import Sequelize from 'sequelize'
-import connection from '../connection'
+import { Table, Column, Model, HasMany } from 'sequelize-typescript';
 
-const Activity = connection.define('activity', {
-    evidence_proof: Sequelize.STRING, // File
-    completed: Sequelize.DATE,
-})
+@Table
+class Activity extends Model<Activity> {
+  evidence_proof: string // File
+  completed: Date
+}
 
-const Student = require('./Student')
-const Card = require('./Card')
+// const Student = require('./Student')
+// const Card = require('./Card')
 
-Activity.hasOne(Student)
-Activity.hasOne(Card)
+// Activity.hasOne(Student)
+// Activity.hasOne(Card)
 
 export default Activity

@@ -1,12 +1,12 @@
-import Sequelize from 'sequelize'
-import connection from '../connection'
+import { Table, Column, Model, HasMany } from 'sequelize-typescript';
 
-const Mentor = connection.define('mentor', {
-    first_name: Sequelize.STRING,
-    last_name: Sequelize.STRING,
-    email: Sequelize.STRING,
-    password: Sequelize.STRING,
-    salt: Sequelize.STRING,
-})
+@Table
+class Mentor extends Model<Mentor> {
+  @Column first_name: string
+  @Column last_name: string
+  @Column email: string
+  @Column password: string
+  @Column salt: string
+}
 
 export default Mentor

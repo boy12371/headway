@@ -1,10 +1,10 @@
-import Sequelize from 'sequelize'
-import connection from '../connection'
+import { Table, Column, Model, HasMany } from 'sequelize-typescript';
 
-const Admin = connection.define('admin', {
-    username: Sequelize.STRING,
-    password: Sequelize.STRING,
-    salt: Sequelize.STRING,
-})
+@Table
+class Admin extends Model<Admin> {
+  @Column username: string
+  @Column password: string
+  @Column salt: string
+}
 
 export default Admin
