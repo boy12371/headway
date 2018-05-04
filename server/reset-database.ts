@@ -8,6 +8,10 @@ import * as bcrypt from 'bcrypt'
 import Student from './models/Student';
 import Unit from './models/Unit';
 import CourseStudent from './models/CourseStudent';
+import Activity from './models/Activity';
+
+const admins = require('../data/admins.json')
+const students = require('../data/students.json')
 
 const saltRounds = 10
 
@@ -21,10 +25,13 @@ const createAdmin = (username, plainTextPassword) => {
   })
 }
 
-const createStudent = (email, plainTextPassword) => {
+const createStudent = (student) => {
+  const {email, first_name, last_name} = student
   const salt = bcrypt.genSaltSync(saltRounds)
-  const password = bcrypt.hashSync(plainTextPassword, salt)
+  const password = bcrypt.hashSync(student.password, salt)
   Student.create({
+    first_name,
+    last_name,
     email,
     password,
     salt,
@@ -38,16 +45,12 @@ const done = () => {
 
 connection.sync({ force: true }).then(() => {
   Promise.all([
-    createAdmin('root', 'Dcubed!!'),
-    createAdmin('s', 'p'),
-    createAdmin('j', 'p'),
-    createStudent('student1', 'password'),
-    createStudent('student2', 'password'),
-    createStudent('student3', 'password'),
+    ...admins.map(admin => createAdmin(admin.username, admin.password)),
+    ...students.map(student => createStudent(student)),
     Course.create({ name: 'Turf Maintenance' }),
     Course.create({ name: 'Pool Maintenance' }),
     Unit.create({ name: 'Ploughing the field', courseId: 1, }),
-    Card.create({ name: 'Mowing a lawn', unitId: 1 }),
+    Card.create({ name: 'Mowing a lawn', unitId: 1, evidence_task: 'Mow a lawn' }),
   ]).then(() => {
 
     Promise.all([
@@ -56,12 +59,24 @@ connection.sync({ force: true }).then(() => {
       CourseStudent.create({ courseId: 1, studentId: 3, }),
       CourseStudent.create({ courseId: 2, studentId: 3, }),
       CourseStudent.create({ courseId: 2, studentId: 2, }),
+      Activity.create({ studentId: 1, cardId: 1, evidence_proof: 'I mowed a lawn', })
     ])
-      .then(done) // main
+      .then(main)
+      // .then(done)
   })
 })
 
 const main = () => {
+  Student.findAll({ include: [Card] }).then(students => {
+    students.forEach(student => {
+      student.cardActivities.forEach(card => {
+        const json = card.toJSON()
+        console.log(`Card "${card.name}" evidence_task: "${card.evidence_task}"`)
+        console.log(`Student ${student.email} provided evidence: "${json.Activity.evidence_proof}"`)
+      })
+    })
+  })
+
   Course.findAll({ include: [Unit, Student] }).then((courses) => {
     courses.forEach(course => {
       course.units.forEach(unit => {
@@ -89,5 +104,4 @@ const main = () => {
       })
     })
   })
-
 }
