@@ -15,11 +15,11 @@ import './Modal.scss'
 export class Modal extends Vue {
 
   emitClose() {
-    this.$emit('close');
+    this.$emit('close')
   }
 
   stopEmitClose(e) {
-    e.stopPropagation();
+    e.stopPropagation()
   }
 
 }

@@ -1,17 +1,18 @@
-<div>
-  <h1>Dashboard</h1>
-
-  <div class="nav">
+<div class="landing text-centered">
+  <div class="flex flex--stacked" style="margin: 200px auto; width: 400px">
+    <h2>Front-end</h2>
     <router-link class="btn" to="/styleguide">Style Guide</router-link>
-
+    <router-link class="btn" to="/dashboard">Admin Dashboard</router-link>
+    <br>
+    <h2>Auth</h2>
     <a class="btn" href="http://localhost:5000/status">Server Status</a>
-
     <a class="btn" href="http://localhost:5000/admin/login">Admin Login</a>
     <a class="btn" href="http://localhost:5000/student/login">Student Login</a>
     <a class="btn" href="http://localhost:5000/user">Current User Details</a>
 
     <br>
 
+    <h2>API</h2>
     <a class="btn" href="http://localhost:5000/api/course">Course REST API</a>
     <a class="btn" href="http://localhost:5000/api/card">Card REST API</a>
     <a class="btn" href="http://localhost:5000/api/student">Student REST API</a>
