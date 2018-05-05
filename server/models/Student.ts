@@ -40,6 +40,11 @@ class Student extends Model<Student> {
     },
   })
   cardActivities: Card[]
+
+  displayName() {
+    const name = [this.first_name, this.last_name].join(' ').trim()
+    return name + (this.email ? ` <${this.email}>` : '')
+  }
 }
 
 export default Student
