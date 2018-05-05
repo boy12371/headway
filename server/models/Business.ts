@@ -1,15 +1,33 @@
-import { Table, Column, Model, HasMany, BelongsToMany } from 'sequelize-typescript'
+import { Table, Column, Model, HasMany, BelongsToMany, ForeignKey, BelongsTo } from 'sequelize-typescript'
+import Admin from './Admin'
+import BusinessCourse from './BusinessCourse'
+import BusinessStudent from './BusinessStudent'
+import Course from './Course'
+import CourseStudent from './CourseStudent'
 import Mentor from './Mentor'
 import Student from './Student'
-import CourseStudent from './CourseStudent'
-import BusinessStudent from './BusinessStudent'
 
 @Table
 class Business extends Model<Business> {
   @Column name: string
 
+  @ForeignKey(() => Admin)
+  @Column
+  adminId: number
+
+  @BelongsTo(() => Admin)
+  admin: Admin
+
   @HasMany(() => Mentor)
   mentors: Mentor[]
+
+  @BelongsToMany(() => Course, {
+    through: {
+      model: () => BusinessCourse,
+      unique: false,
+    },
+  })
+  courses: Course[]
 
   @BelongsToMany(() => Student, {
     through: {

@@ -1,8 +1,13 @@
-import {authAdmin} from './authentication';
-import Student from './models/Student';
-import Card from './models/Card';
-import Unit from './models/Unit';
-import Course from './models/Course';
+import connection from './connection'
+
+// Models
+import Business from './models/Business'
+import Card from './models/Card'
+import Course from './models/Course'
+import Mentor from './models/Mentor'
+import Student from './models/Student'
+import Unit from './models/Unit'
+import Admin from './models/Admin';
 
 const DIVIDER = '------------------------'
 
@@ -17,18 +22,21 @@ const studentActivity = () => {
       student.cardActivities.forEach(card => {
         const json = card.toJSON()
         console.log(`- Card "${card.name}" evidence_task: "${card.evidence_task}"`)
-        console.log(`- Student ${student.email} provided evidence: "${json.Activity.evidence_proof}"`)
+        console.log(`- Student ${student.displayName()} provided evidence: "${json.Activity.evidence_proof}"`)
       })
     })
   })
 }
 
 const studentEnrolment = () => {
-  return Student.findAll({ include: [Course] }).then(students => {
+  return Student.findAll({ include: [Course, Business] }).then(students => {
     printHeading('Student Enrolment')
     students.forEach(student => {
+      student.businesses.forEach(business => {
+        console.log('- Student', student.displayName(), 'is employed by', business.name)
+      })
       student.courses.forEach(course => {
-        console.log('- Student', student.email, 'is enrolled in', course.name)
+        console.log('- Student', student.displayName(), 'is enrolled in', course.name)
       })
     })
   })
@@ -44,7 +52,7 @@ const courseSummary = () => {
       })
       console.log('\nStudents:')
       course.students.forEach(student => {
-        console.log('-', student.email)
+        console.log('-', student.displayName())
       })
       console.log('')
     })
@@ -65,38 +73,45 @@ const unitSummary = () => {
 }
 
 const businessSummary = () => {
-  return Business.findAll({include: [Mentor, Student]}).then(businesses => {
+  return Business.findAll({ include: [Mentor, Student, Admin, Course] }).then(businesses => {
     printHeading('Business Summary')
     businesses.forEach(business => {
-      console.log(business.name, 'Mentors:')
-      business.mentors.forEach(mentor => {
-        console.log('-', mentor.first_name)
-      })
-      console.log('\n', business.name, 'Students:')
-      business.students.forEach(student => {
-        console.log('-', student.first_name)
-      })
+      console.log('Business', business.name, 'belongs to admin:', (business.admin.name || business.admin.username))
+
+      if (business.mentors.length) {
+        console.log('Mentors:')
+        business.mentors.forEach(mentor => {
+          console.log('-', mentor.first_name)
+        })
+      }
+      if (business.students.length) {
+        console.log('Students:')
+        business.students.forEach(student => {
+          console.log('-', student.displayName())
+        })
+      }
+      if (business.courses.length) {
+        console.log('Courses:')
+        business.courses.forEach(course => {
+          console.log('-', course.name)
+        })
+      }
     })
   })
 }
 
-const report = () => {
-  return Promise.all([
-    businessSummary(),
-    // studentActivity(),
-    // studentEnrolment(),
-    // courseSummary(),
-    // unitSummary(),
-  ])
+const report = async () => {
+  await studentActivity()
+  await studentEnrolment()
+  await courseSummary()
+  await unitSummary()
+  await businessSummary()
 }
 
 export default report
 
-import connection from './connection'
-import Business from './models/Business';
-import Mentor from './models/Mentor';
 if (process.argv.pop() === '-run') {
   connection.sync().then(() => {
-    report().then(() => connection.close())
+    report() // .then(() => connection.close())
   })
 }
