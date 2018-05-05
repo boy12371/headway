@@ -4,10 +4,18 @@ import Unit from './Unit'
 import CourseStudent from './CourseStudent'
 import Business from './Business'
 import BusinessCourse from './BusinessCourse'
+import Admin from './Admin';
 
 @Table
 class Course extends Model<Course> {
   @Column name: string
+
+  @ForeignKey(() => Admin)
+  @Column
+  adminId: number
+
+  @BelongsTo(() => Admin)
+  admin: Admin
 
   @HasMany(() => Unit)
   units: Unit[]

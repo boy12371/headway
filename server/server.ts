@@ -20,7 +20,7 @@ app.set('view engine', 'handlebars')
 app.engine('handlebars', hbs.engine)
 
 // Middleware
-import { authEpilogue, authAdmin, checkAdminLogin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, } from './authentication'
+import { authEpilogue, authAdmin, checkAdminLogin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, checkAdminPermission, } from './authentication'
 import { cors } from './middleware'
 import * as bodyParser from 'body-parser'
 
@@ -75,8 +75,19 @@ app.get('/student', checkStudentLogin, (req, res) => {
   res.send('Authed as student')
 })
 
+
 app.get('/student/login', (req, res) => {
   res.render('login')
+})
+
+app.post('/student/login', authStudent, (req, res) => {
+  res.redirect('/student')
+})
+
+app.get('/student/courses', checkStudentLogin, (req, res) => {
+  Student.findById(req.user.student.id, { include: [Course] }).then(student => {
+    res.send(student.courses)
+  })
 })
 
 app.get('/student/course/:courseId', checkStudentEnrolled, (req, res) => {
@@ -85,7 +96,6 @@ app.get('/student/course/:courseId', checkStudentEnrolled, (req, res) => {
   })
 })
 
-app.post('/student/login', authStudent, (req, res) => res.redirect('/student'))
 
 // Mentor Routes
 app.get('/mentor', checkMentorLogin, (req, res) => {
@@ -96,7 +106,9 @@ app.get('/mentor/login', (req, res) => {
   res.render('login')
 })
 
-app.post('/mentor/login', authMentor, (req, res) => res.redirect('/mentor'))
+app.post('/mentor/login', authMentor, (req, res) => {
+  res.redirect('/mentor')
+})
 
 // Admin Routes
 app.get('/admin', checkAdminLogin, (req, res) => {
@@ -107,8 +119,21 @@ app.get('/admin/login', (req, res) => {
   res.render('login')
 })
 
-app.post('/admin/login', authAdmin, (req, res) => res.redirect('/admin'))
+app.post('/admin/login', authAdmin, (req, res) => {
+  res.redirect('/admin')
+})
 
+app.get('/admin/courses', checkAdminLogin, (req, res) => {
+  Admin.findById(req.user.admin.id, { include: [Course] }).then(admin => {
+    res.send(admin.courses)
+  })
+})
+
+app.get('/admin/course/:courseId', checkAdminLogin, checkAdminPermission, (req, res) => {
+  Course.findById(req.params.courseId).then(course => {
+    res.send(`Admin ${req.user.admin.name} owns ${course.name}`)
+  })
+})
 
 // Admin REST API
 const restApis = {
@@ -132,4 +157,3 @@ connection.sync().then(() => {
   app.listen(PORT)
   console.log(`headway started @ ${(new Date()).toLocaleString()}\nhttp://localhost:${PORT}\n`)
 })
-

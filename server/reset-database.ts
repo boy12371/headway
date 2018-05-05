@@ -26,8 +26,8 @@ const done = () => {
 }
 
 const main = async () => {
-  await Course.create({ name: 'Turf Maintenance' })
-  await Course.create({ name: 'Pool Maintenance' })
+  await Course.create({ name: 'Turf Maintenance', adminId: 1 })
+  await Course.create({ name: 'Pool Maintenance', adminId: 2 })
   await Unit.create({ name: 'Ploughing the field', courseId: 1, })
   await Business​​.create({ name: 'Green Options', adminId: 1 })
   await Business​​.create({ name: 'DCUBED', adminId: 2 })

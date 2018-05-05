@@ -121,6 +121,20 @@ export const checkStudentEnrolled = (req, res, next) => {
   })
 }
 
+export const checkAdminPermission = (req, res, next) => {
+  const { courseId } = req.params
+  if (!req.user) {
+    return res.status(401).send({ message: 'Unauthorized' })
+  }
+  Admin.findById(req.user.admin.id, {include: [Course]}).then(admin => {
+    const ids = admin.courses.map(course => course.id)
+    if (ids.indexOf(parseInt(courseId)) === -1) {
+        return res.status(401).send({ message: 'Unauthorized' })
+    }
+    next()
+  })
+}
+
 export const authEpilogue = (req, res, context) => {
   return new Promise((resolve, reject) => {
     if (!req.isAuthenticated || !req.isAuthenticated() || !req.user.admin) {
