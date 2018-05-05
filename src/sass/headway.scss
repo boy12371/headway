@@ -61,7 +61,8 @@ h4 {
   color: #fff;
   text-decoration: none;
   border-radius: $radius;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 0.125rem 0.25rem rgba(0,0,0,0.25);
+  text-shadow: $textShadow;
+  box-shadow: $boxShadow;
   opacity: 0.9;
   border: 0;
   font-size: 0.825rem;
