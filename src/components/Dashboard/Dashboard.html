@@ -2,23 +2,8 @@
   <Header></Header>
   <div class="Dashboard__content">
     <div class="Dashboard__sidebar">
-      <h2>Your courses</h2>
+      <h4>Your courses</h4>
       <Menu :items="courseMenu"></Menu>
-      <div v-for="course in courses" hidden>
-        <h2>{{course.name}}</h2>
-        <h3>Units</h3>
-        <ul>
-          <li v-for="unit in course.units">
-            {{unit}}
-          </li>
-        </ul>
-        <h3>Students</h3>
-        <ul>
-          <li v-for="student in course.students">
-            {{student}}
-          </li>
-        </ul>
-      </div>
     </div>
     <div class="Dashboard__main">
       <Students :students="students"></Students>
