@@ -58,6 +58,10 @@ app.get('/status', (req, res) => {
   res.send(`<pre>Server started ${(new Date()).toLocaleString()}\n\nhttp://localhost:${PORT}`)
 })
 
+app.get('/user', (req, res) => {
+  res.send(req.user)
+})
+
 app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
