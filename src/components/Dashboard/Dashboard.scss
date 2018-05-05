@@ -19,10 +19,15 @@
 }
 
 @media(min-width:1024px) {
+
+  .Dashboard__main {
+    padding: 2rem;
+  }
+
   .Dashboard__sidebar {
     display: block;
     width: 20rem;
-    padding: 1rem;
+    padding: 2rem;
     background: #f2f2f2;
   }
 }

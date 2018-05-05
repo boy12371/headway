@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  background: linear-gradient(315deg, #535aac 0%, #647dee 74%);
+  background: linear-gradient(315deg, $blue 0%, #1b3f6b 74%);
   padding: 0 1.5rem;
 }
 
@@ -13,6 +13,10 @@
   background: rgba(0,0,0,0.1);
   box-shadow: none;
   user-select: none;
+}
+
+.Header__action {
+  margin-right: 1rem;
 }
 
 .User__avatar {
@@ -43,7 +47,7 @@
 
 .Logo__icon {
   background: #fff;
-  color: #535aac;
+  color: $green;
   margin-right: 0.5rem;
   width: 1rem;
   height: 1rem;
@@ -53,4 +57,10 @@
   font-size: 0.75rem;
   padding-left: 0.0625rem;
   box-shadow: 0 0.0625rem 0.0625rem rgba(0,0,0,0.1);
+}
+
+@media(min-width: 1024px) {
+  .Header {
+    padding: 0 2rem;
+  }
 }

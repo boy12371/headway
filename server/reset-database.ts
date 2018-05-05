@@ -37,11 +37,11 @@ const main = async () => {
   await BusinessStudent.create({ businessId: 1, studentId: 1, })
   await BusinessStudent.create({ businessId: 1, studentId: 2, })
   await BusinessCourse​​.create({ businessId: 1, courseId: 1, })
-  await CourseStudent.create({ courseId: 1, studentId: 1, })
-  await CourseStudent.create({ courseId: 1, studentId: 2, })
-  await CourseStudent.create({ courseId: 1, studentId: 3, })
-  await CourseStudent.create({ courseId: 2, studentId: 3, })
-  await CourseStudent.create({ courseId: 2, studentId: 2, })
+  await CourseStudent.create({ courseId: 1, studentId: 1, assigned: Date.now() })
+  await CourseStudent.create({ courseId: 1, studentId: 2, assigned: Date.now() })
+  await CourseStudent.create({ courseId: 1, studentId: 3, assigned: Date.now() })
+  await CourseStudent.create({ courseId: 2, studentId: 3, assigned: Date.now() })
+  await CourseStudent.create({ courseId: 2, studentId: 2, assigned: Date.now() })
   await Activity.create({ studentId: 1, cardId: 1, evidence_proof: 'I mowed a lawn', })
 }
 

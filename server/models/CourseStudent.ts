@@ -6,6 +6,7 @@ import Student from './Student'
 class CourseStudent extends Model<CourseStudent> {
 
   @Column code: string
+  @Column assigned: Date
 
   @ForeignKey(() => Course)
   @Column

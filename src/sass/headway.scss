@@ -28,6 +28,10 @@ body {
   color: #333;
 }
 
+.ghosted {
+  opacity: 0.5;
+}
+
 h1,
 h2,
 h3,
@@ -58,31 +62,6 @@ h4 {
 
 .text-centered {
   text-align: center;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex--stacked {
-  flex-direction: column;
-}
-
-.flex--aligned {
-  align-items: center;
-}
-
-.flex--centered {
-  justify-content: center;
-}
-
-.flex--spaced {
-  justify-content: space-between;
-}
-
-.flex--guts {
-  justify-content: center;
-  align-items: center;
 }
 
 .container {
@@ -185,3 +164,29 @@ textarea.input {
   margin: 0;
   padding: 0.5rem 0;
 }
+
+.flex {
+  display: flex;
+}
+
+.flex--stacked {
+  flex-direction: column;
+}
+
+.flex--aligned {
+  align-items: center;
+}
+
+.flex--centered {
+  justify-content: center;
+}
+
+.flex--spaced {
+  justify-content: space-between;
+}
+
+.flex--guts {
+  justify-content: center;
+  align-items: center;
+}
+

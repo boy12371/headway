@@ -46,6 +46,7 @@ import Activity from './models/Activity'
 // Public Routes
 app.get('/courses', (req, res) => {
   Course.findAll({ include: [Unit, Student] }).then((courses) => {
+    console.log(courses);
     const data = courses.map(course => ({
       name: course.name,
       units: course.units.map(unit => unit.name),
