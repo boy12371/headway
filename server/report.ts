@@ -65,12 +65,16 @@ const unitSummary = () => {
 }
 
 const businessSummary = () => {
-  return Business.findAll({include: [Mentor]}).then(businesses => {
+  return Business.findAll({include: [Mentor, Student]}).then(businesses => {
     printHeading('Business Summary')
     businesses.forEach(business => {
-      console.log(business.name, 'Mentors:\n')
+      console.log(business.name, 'Mentors:')
       business.mentors.forEach(mentor => {
         console.log('-', mentor.first_name)
+      })
+      console.log('\n', business.name, 'Students:')
+      business.students.forEach(student => {
+        console.log('-', student.first_name)
       })
     })
   })
@@ -79,10 +83,10 @@ const businessSummary = () => {
 const report = () => {
   return Promise.all([
     businessSummary(),
-    studentActivity(),
-    studentEnrolment(),
-    courseSummary(),
-    unitSummary(),
+    // studentActivity(),
+    // studentEnrolment(),
+    // courseSummary(),
+    // unitSummary(),
   ])
 }
 

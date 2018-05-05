@@ -13,6 +13,7 @@ import CourseStudent from './models/CourseStudent'
 import Student from './models/Student'
 import Unit from './models/Unit'
 import Mentor from './models/Mentor';
+import BusinessStudent from './models/BusinessStudent';
 
 // Data
 const admins = require('../data/admins.json')
@@ -63,6 +64,7 @@ connection.sync({ force: true }).then(() => {
       Mentor.create({ first_name: 'Confucius', businessId: 1 }),
       Mentor.create({ first_name: 'Buddha', businessId: 1 }),
       Mentor.create({ first_name: 'Jesus', businessId: 1 }),
+      BusinessStudent.create({ businessId: 1, studentId: 1, }),
       CourseStudent.create({ courseId: 1, studentId: 1, }),
       CourseStudent.create({ courseId: 1, studentId: 2, }),
       CourseStudent.create({ courseId: 1, studentId: 3, }),

@@ -4,6 +4,8 @@ import Course from './Course'
 import CourseStudent from './CourseStudent'
 import Card from './Card'
 import Activity from './Activity'
+import Business from './Business'
+import BusinessStudent from './BusinessStudent'
 
 @Table
 class Student extends Model<Student> {
@@ -23,8 +25,13 @@ class Student extends Model<Student> {
   })
   courses: Course[]
 
-  // @HasMany(() => Activity)
-  // activities: Activity[]
+  @BelongsToMany(() => Business, {
+    through: {
+      model: () => BusinessStudent,
+      unique: false,
+    },
+  })
+  businesses: Business[]
 
   @BelongsToMany(() => Card, {
     through: {
