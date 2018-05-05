@@ -1,22 +1,27 @@
 <div id="dashboard" class="Dashboard">
   <Header></Header>
-  <div class="Dashboard__content flex flex--guts">
-    <div v-for="course in courses">
-      <h2>{{course.name}}</h2>
-      <h3>Units</h3>
-      <ul>
-        <li v-for="unit in course.units">
-          {{unit}}
-        </li>
-      </ul>
-      <h3>Students</h3>
-      <ul>
-        <li v-for="student in course.students">
-          {{student}}
-        </li>
-      </ul>
+  <div class="Dashboard__content">
+    <div class="Dashboard__sidebar">
+      <h2>Your courses</h2>
+      <div v-for="course in courses" hidden>
+        <h2>{{course.name}}</h2>
+        <h3>Units</h3>
+        <ul>
+          <li v-for="unit in course.units">
+            {{unit}}
+          </li>
+        </ul>
+        <h3>Students</h3>
+        <ul>
+          <li v-for="student in course.students">
+            {{student}}
+          </li>
+        </ul>
+      </div>
     </div>
-    <Students :students="students"></Students>
+    <div class="Dashboard__main">
+      <Students :students="students"></Students>
+    </div>
   </div>
   <AddCourse v-show="showCourseModal" @close="showCourseModal = false"></AddCourse>
   <AddStudent v-show="showStudentModal" @close="showStudentModal = false"></AddStudent>

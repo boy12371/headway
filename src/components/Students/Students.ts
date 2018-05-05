@@ -1,6 +1,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import { Card } from '../Card'
+import { ProgressBar } from '../ProgressBar'
 
 import './Students.scss'
 
@@ -8,7 +9,8 @@ import './Students.scss'
   template: require('./Students.html'),
   name: 'Students',
   components: {
-    Card
+    Card,
+    ProgressBar
   }
 })
 

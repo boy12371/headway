@@ -1,4 +1,5 @@
 export const state = {
-    authed: false,
-    courses: [],
+  authed: false,
+  courses: [],
+  students: [],
 }

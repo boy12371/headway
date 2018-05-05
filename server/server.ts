@@ -57,10 +57,11 @@ app.get('/courses', (req, res) => {
 
 // Public Routes
 app.get('/students', (req, res) => {
-  Student.findAll().then((students) => {
+  Student.findAll({ include: [Course] }).then((students) => {
     const data = students.map(student => ({
       name: student.first_name + " " + student.last_name,
-      email: student.email
+      email: student.email,
+      courses: student.courses,
     }))
     res.send(data)
   })

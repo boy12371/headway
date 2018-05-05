@@ -7,8 +7,8 @@ import { state } from './state'
 import { mutations } from './mutations'
 
 const store = new Vuex.Store({
-    state,
-    mutations,
+  state,
+  mutations,
 })
 
 export default store

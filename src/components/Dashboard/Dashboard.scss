@@ -7,4 +7,16 @@
 .Dashboard__content {
   flex: 1;
   padding: 1rem;
+  display: flex;
+}
+
+.Dashboard__main {
+  flex: 1;
+}
+
+@media(min-width:1024px) {
+  .Dashboard__sidebar {
+    display: block;
+    width: 420px;
+  }
 }
