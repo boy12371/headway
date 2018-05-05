@@ -4,8 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
-  background: linear-gradient(#0ebd6f, $green);
+  height: 4rem;
+  background: linear-gradient(315deg, #535aac 0%, #647dee 74%);
   padding: 0 1.5rem;
 }
 
@@ -17,9 +17,9 @@
 
 .User__avatar {
   display: block;
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
   text-align: center;
   font-size: 0.75rem;
   background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.4));
@@ -35,21 +35,22 @@
   line-height: 1;
   color: #fff;
   text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 0.75rem;
+  letter-spacing: 0.0625rem;
   user-select: none;
   text-shadow: $textShadow;
 }
 
 .Logo__icon {
   background: #fff;
-  color: darken($green, 5);
+  color: #535aac;
   margin-right: 0.5rem;
   width: 1rem;
   height: 1rem;
-  line-height: 17px;
+  line-height: 1.0625rem;
   text-align: center;
-  border-radius: 1px;
+  border-radius: 0.0625rem;
   font-size: 0.75rem;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  padding-left: 0.0625rem;
+  box-shadow: 0 0.0625rem 0.0625rem rgba(0,0,0,0.1);
 }

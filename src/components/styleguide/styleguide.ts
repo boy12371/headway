@@ -3,7 +3,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { Card } from '../Card'
 import { Modal } from '../Modal'
 import { Header } from '../Header'
-import { Menu } from '../Menu'
+import { CourseMenu } from '../CourseMenu'
 import { ProgressBar } from '../ProgressBar'
 import { Quiz } from '../Quiz'
 
@@ -15,7 +15,7 @@ import './styleguide.scss'
     Card,
     Modal,
     Header,
-    Menu,
+    CourseMenu,
     ProgressBar,
     Quiz
   }

@@ -9,7 +9,7 @@ const studentService = new StudentService()
 
 import { Header } from '../Header'
 import { Onboard } from '../Onboard'
-import { Menu } from '../Menu'
+import { CourseMenu } from '../CourseMenu'
 import { AddCourse } from '../AddCourse'
 import { AddStudent } from '../AddStudent'
 import { Students } from '../Students'
@@ -26,7 +26,7 @@ import store from '../../store'
     AddCourse,
     AddStudent,
     Students,
-    Menu,
+    CourseMenu,
   }
 })
 export class Dashboard extends Vue {
@@ -41,6 +41,7 @@ export class Dashboard extends Vue {
     const menu = this.courses.map((course, index) => ({
       text: course.name,
       link: '/dashboard/course/' + index,
+      totalUnits: course.units.length,
     }))
     return menu
   }

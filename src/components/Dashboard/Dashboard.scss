@@ -6,18 +6,23 @@
 
 .Dashboard__content {
   flex: 1;
-  padding: 1rem;
   display: flex;
 }
 
 .Dashboard__main {
   flex: 1;
+  padding: 1rem;
+}
+
+.Dashboard__sidebar {
+  display: none;
 }
 
 @media(min-width:1024px) {
   .Dashboard__sidebar {
     display: block;
     width: 20rem;
-    padding-right: 2rem;
+    padding: 1rem;
+    background: #f2f2f2;
   }
 }
