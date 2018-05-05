@@ -10,6 +10,9 @@ install:
 db:
 	./node_modules/.bin/ts-node server/reset-database.ts
 
+report:
+	./node_modules/.bin/ts-node server/report.ts -run
+
 dev:
 	npm run dev
 

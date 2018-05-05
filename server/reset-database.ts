@@ -1,15 +1,18 @@
+import * as bcrypt from 'bcrypt'
+
+import connection from './connection'
+import report from './report'
+
+// Models
+import Activity from './models/Activity'
 import Admin from './models/Admin'
 import Card from './models/Card'
 import Course from './models/Course'
+import CourseStudent from './models/CourseStudent'
+import Student from './models/Student'
+import Unit from './models/Unit'
 
-import connection from './connection'
-
-import * as bcrypt from 'bcrypt'
-import Student from './models/Student';
-import Unit from './models/Unit';
-import CourseStudent from './models/CourseStudent';
-import Activity from './models/Activity';
-
+// Data
 const admins = require('../data/admins.json')
 const students = require('../data/students.json')
 
@@ -61,47 +64,7 @@ connection.sync({ force: true }).then(() => {
       CourseStudent.create({ courseId: 2, studentId: 2, }),
       Activity.create({ studentId: 1, cardId: 1, evidence_proof: 'I mowed a lawn', })
     ])
-      .then(main)
-      // .then(done)
+      // .then(report)
+      .then(done)
   })
 })
-
-const main = () => {
-  Student.findAll({ include: [Card] }).then(students => {
-    students.forEach(student => {
-      student.cardActivities.forEach(card => {
-        const json = card.toJSON()
-        console.log(`Card "${card.name}" evidence_task: "${card.evidence_task}"`)
-        console.log(`Student ${student.email} provided evidence: "${json.Activity.evidence_proof}"`)
-      })
-    })
-  })
-
-  Course.findAll({ include: [Unit, Student] }).then((courses) => {
-    courses.forEach(course => {
-      course.units.forEach(unit => {
-        console.log(course.name, 'has unit:', unit.name)
-      })
-      course.students.forEach(student => {
-        console.log(course.name, 'has student:', student.email)
-      })
-    })
-  })
-
-  Student.findAll({ include: [Course] }).then(students => {
-    students.forEach(student => {
-      student.courses.forEach(course => {
-        console.log(student.email, 'is enrolled in', course.name)
-      })
-    })
-  })
-
-  Unit.findAll({ include: [Course, Card] }).then(units => {
-    units.forEach(unit => {
-      console.log(unit.name, 'belongs to', unit.course.name)
-      unit.cards.forEach(card => {
-        console.log('Unit', unit.name, 'contains card', card.name)
-      })
-    })
-  })
-}
