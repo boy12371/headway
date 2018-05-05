@@ -20,7 +20,7 @@ app.set('view engine', 'handlebars')
 app.engine('handlebars', hbs.engine)
 
 // Middleware
-import { authEpilogue, authAdmin, checkAdminLogin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, } from './authentication'
+import { authEpilogue, authAdmin, checkAdminLogin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, } from './authentication'
 import { cors } from './middleware'
 import * as bodyParser from 'body-parser'
 
@@ -77,6 +77,12 @@ app.get('/student', checkStudentLogin, (req, res) => {
 
 app.get('/student/login', (req, res) => {
   res.render('login')
+})
+
+app.get('/student/course/:courseId', checkStudentEnrolled, (req, res) => {
+  Course.findById(req.params.courseId).then(course => {
+    res.send(`Student ${req.user.student.displayName()} enrolled in course ${course.name}`)
+  })
 })
 
 app.post('/student/login', authStudent, (req, res) => res.redirect('/student'))

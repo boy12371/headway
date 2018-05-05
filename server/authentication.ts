@@ -6,6 +6,7 @@ const LocalStrategy = require('passport-local').Strategy
 import Admin from './models/Admin'
 import Student from './models/Student'
 import Mentor from './models/Mentor'
+import Course from './models/Course';
 
 passport.use('admin-local', new LocalStrategy((username, password, done) => {
   return Admin.findOne({ where: { username } }).then(admin => {
@@ -108,15 +109,15 @@ export const checkMentorLogin = (req, res, next) => {
 
 export const checkStudentEnrolled = (req, res, next) => {
   const { courseId } = req.params
-  Student.findById(req.user.student.id).then((student: Model<Student>) => {
-    // https://github.com/RobinBuschmann/sequelize-typescript#model-association
-    // student.getCourses().then(courses => {
-    //     const courseIds = courses.map(course => parseInt(course.id))
-    //     if (courseIds.indexOf(parseInt(courseId)) === -1) {
-    //         return res.status(401).send({ message: 'Unauthorized' })
-    //     }
-    //     next()
-    // })
+  if (!req.user) {
+    return res.status(401).send({ message: 'Unauthorized' })
+  }
+  Student.findById(req.user.student.id, {include: [Course]}).then(student => {
+    const ids = student.courses.map(course => course.id)
+    if (ids.indexOf(parseInt(courseId)) === -1) {
+        return res.status(401).send({ message: 'Unauthorized' })
+    }
+    next()
   })
 }
 
