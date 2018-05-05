@@ -41,6 +41,7 @@ import Card from './models/Card'
 import Course from './models/Course'
 import Unit from './models/Unit'
 import Student from './models/Student'
+import Activity from './models/Activity';
 
 // Public Routes
 app.get('/courses', (req, res) => {
@@ -93,8 +94,10 @@ app.post('/admin/login', authAdmin, (req, res) => res.redirect('/admin'))
 // Admin REST API
 const restApis = {
   'admin': Admin,
+  'activity': Activity,
   'card': Card,
   'course': Course,
+  'student': Student,
 }
 Object.keys(restApis).forEach(k => {
   const model = restApis[k]
