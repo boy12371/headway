@@ -5,12 +5,14 @@ import report from './report'
 
 // Models
 import Activity from './models/Activity'
+import Business from './models/Business'
 import Admin from './models/Admin'
 import Card from './models/Card'
 import Course from './models/Course'
 import CourseStudent from './models/CourseStudent'
 import Student from './models/Student'
 import Unit from './models/Unit'
+import Mentor from './models/Mentor';
 
 // Data
 const admins = require('../data/admins.json')
@@ -54,9 +56,13 @@ connection.sync({ force: true }).then(() => {
     Course.create({ name: 'Pool Maintenance' }),
     Unit.create({ name: 'Ploughing the field', courseId: 1, }),
     Card.create({ name: 'Mowing a lawn', unitId: 1, evidence_task: 'Mow a lawn' }),
+    Business​​.create({ name: 'DCUBED' }),
   ]).then(() => {
 
     Promise.all([
+      Mentor.create({ first_name: 'Confucius', businessId: 1 }),
+      Mentor.create({ first_name: 'Buddha', businessId: 1 }),
+      Mentor.create({ first_name: 'Jesus', businessId: 1 }),
       CourseStudent.create({ courseId: 1, studentId: 1, }),
       CourseStudent.create({ courseId: 1, studentId: 2, }),
       CourseStudent.create({ courseId: 1, studentId: 3, }),

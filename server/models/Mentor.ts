@@ -1,4 +1,5 @@
-import { Table, Column, Model, HasMany } from 'sequelize-typescript';
+import { Table, Column, Model, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript'
+import Business from './Business'
 
 @Table
 class Mentor extends Model<Mentor> {
@@ -7,6 +8,13 @@ class Mentor extends Model<Mentor> {
   @Column email: string
   @Column password: string
   @Column salt: string
+
+  @ForeignKey(() => Business)
+  @Column
+  businessId: number
+
+  @BelongsTo(() => Business)
+  business: Business
 }
 
 export default Mentor

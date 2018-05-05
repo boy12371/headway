@@ -64,8 +64,21 @@ const unitSummary = () => {
   })
 }
 
+const businessSummary = () => {
+  return Business.findAll({include: [Mentor]}).then(businesses => {
+    printHeading('Business Summary')
+    businesses.forEach(business => {
+      console.log(business.name, 'Mentors:\n')
+      business.mentors.forEach(mentor => {
+        console.log('-', mentor.first_name)
+      })
+    })
+  })
+}
+
 const report = () => {
   return Promise.all([
+    businessSummary(),
     studentActivity(),
     studentEnrolment(),
     courseSummary(),
@@ -76,6 +89,8 @@ const report = () => {
 export default report
 
 import connection from './connection'
+import Business from './models/Business';
+import Mentor from './models/Mentor';
 if (process.argv.pop() === '-run') {
   connection.sync().then(() => {
     report().then(() => connection.close())
