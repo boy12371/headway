@@ -6,12 +6,12 @@ import Mentor from './models/Mentor';
 const saltRounds = 10
 
 export const createAdmin = (data) => {
-  const { username, name } = data
+  const { email, name } = data
   const salt = bcrypt.genSaltSync(saltRounds)
   const password = bcrypt.hashSync(data.password, salt)
   return Admin.create({
     name,
-    username,
+    email,
     password,
     salt,
   })

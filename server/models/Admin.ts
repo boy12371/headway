@@ -4,7 +4,7 @@ import Course from './Course'
 @Table
 class Admin extends Model<Admin> {
   @Column name: string
-  @Column username: string
+  @Column email: string
   @Column password: string
   @Column salt: string
   @Column userType: string = 'admin'

@@ -6,10 +6,10 @@ const LocalStrategy = require('passport-local').Strategy
 import Admin from './models/Admin'
 import Student from './models/Student'
 import Mentor from './models/Mentor'
-import Course from './models/Course';
+import Course from './models/Course'
 
-passport.use('admin-local', new LocalStrategy((username, password, done) => {
-  return Admin.findOne({ where: { username } }).then(admin => {
+passport.use('admin-local', new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+  return Admin.findOne({ where: { email } }).then(admin => {
     if (!admin) {
       return done(null, false)
     }

@@ -1,5 +1,5 @@
 [
-  { "username": "root", "password": "p", "name": "Horticulate Training" },
-  { "username": "s", "password": "p" },
-  { "username": "j", "password": "p" }
+  { "email": "root", "password": "p", "name": "Horticulate Training" },
+  { "email": "s", "password": "p" },
+  { "email": "j", "password": "p" }
 ]
