@@ -23,6 +23,10 @@ Start client dev server with `make dev` (webpack-dev-server)
 
 Create a new component with `make component name=FluxCapacitor`
 
+Lint both client and server with `make lint`
+
+Run database report with `make report`
+
 
 ## Routes
 
@@ -36,6 +40,8 @@ GET /app
 Public:
 
 ```
+GET /status
+GET /user
 GET /logout
 
 GET, POST /admin/login
