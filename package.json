@@ -37,7 +37,8 @@
     "vue-awesome": "^3.0.0",
     "vue-class-component": "~6.1.2",
     "vue-property-decorator": "~6.0.0",
-    "vue-router": "~3.0.1"
+    "vue-router": "~3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@types/node": "~9.4.0",

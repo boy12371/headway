@@ -7223,6 +7223,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-awesome@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vue-awesome/-/vue-awesome-3.0.0.tgz#0b0b37488dd4b7e4b9a269d0e9173cd5ab65ff0f"
+
 vue-class-component@^6.0.0, vue-class-component@~6.1.2:
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-6.1.2.tgz#87ac0265b0db71a3f49f10d90e4f69f9be9c2fbd"
@@ -7245,6 +7249,10 @@ vue-router@~3.0.1:
 vue@~2.5.13:
   version "2.5.16"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.16.tgz#07edb75e8412aaeed871ebafa99f4672584a0085"
+
+vuex@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.1.tgz#e761352ebe0af537d4bb755a9b9dc4be3df7efd2"
 
 watchpack@^0.2.1:
   version "0.2.9"
