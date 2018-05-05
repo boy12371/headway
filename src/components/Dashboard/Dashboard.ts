@@ -7,12 +7,16 @@ const courseService = new CourseService()
 import { StudentService } from '../../services'
 const studentService = new StudentService()
 
+import { BusinessService } from '../../services'
+const businessService = new BusinessService()
+
 import { Header } from '../Header'
 import { Onboard } from '../Onboard'
 import { CourseMenu } from '../CourseMenu'
 import { AddCourse } from '../AddCourse'
 import { AddStudent } from '../AddStudent'
 import { Students } from '../Students'
+import { Businesses } from '../Businesses'
 
 import './Dashboard.scss'
 import store from '../../store'
@@ -27,6 +31,7 @@ import store from '../../store'
     AddStudent,
     Students,
     CourseMenu,
+    Businesses,
   }
 })
 export class Dashboard extends Vue {
@@ -35,6 +40,7 @@ export class Dashboard extends Vue {
 
   @State courses
   @State students
+  @State businesses
 
   get courseMenu() {
     // TODO: Use Course ID for link
@@ -53,6 +59,10 @@ export class Dashboard extends Vue {
 
     studentService.getAll().then(students => {
       store.commit('setStudents', students)
+    })
+
+    businessService.getAll().then(businesses => {
+      store.commit('setBusinesses', businesses)
     })
   }
 

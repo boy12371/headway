@@ -37,6 +37,7 @@ epilogue.initialize({ app, sequelize: connection })
 
 // Models
 import Admin from './models/Admin'
+import Business from './models/Business'
 import Card from './models/Card'
 import Course from './models/Course'
 import Unit from './models/Unit'
@@ -64,6 +65,17 @@ app.get('/students', (req, res) => {
       email: student.email,
       courses: student.courses,
       businesses: student.courses,
+    }))
+    res.send(data)
+  })
+})
+
+// Public Routes
+app.get('/businesses', (req, res) => {
+  Business.findAll({ include: [Student]}).then((businesses) => {
+    const data = businesses.map(business => ({
+      name: business.name,
+      students: business.students,
     }))
     res.send(data)
   })

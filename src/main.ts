@@ -19,4 +19,4 @@ new Vue({
 
 Vue.component('icon', Icon)
 
-Vue.use(require('vue-moment'));
+Vue.use(require('vue-moment'))

@@ -1,6 +1,16 @@
+@import "../../sass/variables.scss";
+
 .Card {
   background: #fff;
   border-radius: 0.25rem;
   padding: 1rem;
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.Card__title {
+  color: $blue;
+}
+
+.Card__body {
+  padding-top: 0.5rem;
 }

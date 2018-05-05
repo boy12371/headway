@@ -18,16 +18,31 @@
   display: none;
 }
 
-@media(min-width:1024px) {
+@media(min-width:1200px) {
 
   .Dashboard__main {
     padding: 2rem;
+    display: flex;
+    flex: 1;
+    padding-right: 2rem
   }
 
   .Dashboard__sidebar {
-    display: block;
     width: 20rem;
+    display: block;
     padding: 2rem;
     background: #f2f2f2;
   }
+
+  .Dashboard__main .Students {
+    flex: 1;
+    padding-right: 2rem;
+    border-right: 1px solid #ddd;
+    margin-right: 2rem;
+  }
+
+  .Dashboard__main .Businesses {
+    width: 15rem;
+  }
+
 }

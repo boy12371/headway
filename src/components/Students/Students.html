@@ -1,14 +1,17 @@
 <div class="Students">
-  <h2>All Students</h2>
+  <header class="Students__header">
+    <h4 class="flat">All Students</h4>
+    <button class="btn Header__action">Add student</button>
+  </header>
   <div class="Students__wrap">
     <Card v-for="(student, sIndex) in students" :title="student.name" :key="sIndex">
       <div slot="body">
         <div v-for="(course, cIndex) in student.courses">
           <label class="label flat flex flex--spaced">
             <span>{{ course.name }}</span>
-            <span class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</span>
           </label>
-          <ProgressBar :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
+          <ProgressBar class="flat" :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
+          <p class="Students__elapsed"><small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small></p>
         </div>
       </div>
     </Card>

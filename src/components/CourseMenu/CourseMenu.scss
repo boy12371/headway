@@ -1,27 +1,28 @@
 @import "../../sass/variables.scss";
 
-.CourseMenu {
+.CourseMenu__menu {
   list-style: none;
   box-shadow: $boxShadow;
 }
 
 .CourseMenu__item {
   margin-bottom: 0.0625rem;
+  background: #fff;
 }
 
 .CourseMenu__link {
   display: block;
   padding: 1rem 1rem;
   text-decoration: none;
-  color: inherit;
-  border-left: 0.5rem solid rgba(0,0,0,0.1);
+  color: $blue;
   transition: all 200ms ease;
   font-size: 0.85rem;
   font-weight: 500;
-  background: #fff;
+  opacity: 0.75;
+  small { color: $color }
 }
 
 .CourseMenu__link--active,
 .CourseMenu__link:hover {
-  border-left-color: $blue;
+  opacity: 1;
 }
