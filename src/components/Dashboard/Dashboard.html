@@ -1,8 +1,22 @@
 <div id="dashboard" class="Dashboard">
   <Header></Header>
   <div class="Dashboard__content flex flex--guts">
-    <Onboard v-show="students.length < 1" @addCourse="showCourseModal = true" @addStudent="showStudentModal = true"></Onboard>
-    <Card v-if="students.length > 0" v-for="student in students" title="student.name"></Card>
+    <div v-for="course in courses">
+      <h2>{{course.name}}</h2>
+      <h3>Units</h3>
+      <ul>
+        <li v-for="unit in course.units">
+          {{unit}}
+        </li>
+      </ul>
+      <h3>Students</h3>
+      <ul>
+        <li v-for="student in course.students">
+          {{student}}
+        </li>
+      </ul>
+    </div>
+    <Students :students="students"></Students>
   </div>
   <AddCourse v-show="showCourseModal" @close="showCourseModal = false"></AddCourse>
   <AddStudent v-show="showStudentModal" @close="showStudentModal = false"></AddStudent>

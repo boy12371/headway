@@ -55,6 +55,17 @@ app.get('/courses', (req, res) => {
   })
 })
 
+// Public Routes
+app.get('/students', (req, res) => {
+  Student.findAll().then((students) => {
+    const data = students.map(student => ({
+      name: student.first_name + " " + student.last_name,
+      email: student.email
+    }))
+    res.send(data)
+  })
+})
+
 const SERVER_STARTUP = new Date()
 
 app.get('/status', (req, res) => {

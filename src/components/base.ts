@@ -7,5 +7,6 @@ import './my-component.scss'
   name: 'my-component',
   components: {}
 })
+
 export class MyComponent extends Vue {
 }
