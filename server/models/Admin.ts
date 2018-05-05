@@ -6,6 +6,7 @@ class Admin extends Model<Admin> {
   @Column username: string
   @Column password: string
   @Column salt: string
+  @Column userType: string = 'admin'
 }
 
 export default Admin

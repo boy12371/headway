@@ -20,7 +20,7 @@ app.set('view engine', 'handlebars')
 app.engine('handlebars', hbs.engine)
 
 // Middleware
-import { authEpilogue, authAdmin, checkAdminLogin, checkstudentLogin, authStudent } from './authentication'
+import { authEpilogue, authAdmin, checkAdminLogin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, } from './authentication'
 import { cors } from './middleware'
 import * as bodyParser from 'body-parser'
 
@@ -41,7 +41,7 @@ import Card from './models/Card'
 import Course from './models/Course'
 import Unit from './models/Unit'
 import Student from './models/Student'
-import Activity from './models/Activity';
+import Activity from './models/Activity'
 
 // Public Routes
 app.get('/courses', (req, res) => {
@@ -55,8 +55,10 @@ app.get('/courses', (req, res) => {
   })
 })
 
+const SERVER_STARTUP = new Date()
+
 app.get('/status', (req, res) => {
-  res.send(`<pre>Server started ${(new Date()).toLocaleString()}\n\nhttp://localhost:${PORT}`)
+  res.send(`<pre>Server started ${SERVER_STARTUP.toLocaleString()}\n\nhttp://localhost:${PORT}`)
 })
 
 app.get('/user', (req, res) => {
@@ -69,7 +71,7 @@ app.get('/logout', (req, res) => {
 })
 
 // Student Routes
-app.get('/student', checkstudentLogin, (req, res) => {
+app.get('/student', checkStudentLogin, (req, res) => {
   res.send('Authed as student')
 })
 
@@ -78,6 +80,17 @@ app.get('/student/login', (req, res) => {
 })
 
 app.post('/student/login', authStudent, (req, res) => res.redirect('/student'))
+
+// Mentor Routes
+app.get('/mentor', checkMentorLogin, (req, res) => {
+  res.send('Authed as mentor')
+})
+
+app.get('/mentor/login', (req, res) => {
+  res.render('login')
+})
+
+app.post('/mentor/login', authMentor, (req, res) => res.redirect('/mentor'))
 
 // Admin Routes
 app.get('/admin', checkAdminLogin, (req, res) => {
