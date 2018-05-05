@@ -1,4 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator'
+import { State, Getter, Mutation } from 'vuex-class'
 
 import { CourseService } from '../../services'
 const courseService = new CourseService()
@@ -13,6 +14,8 @@ import store from '../../store'
 })
 
 export class LandingComponent extends Vue {
+  @State courses
+
   mounted() {
     courseService.getAll().then(courses => {
       store.commit('setCourses', courses)

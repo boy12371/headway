@@ -16,5 +16,22 @@
     <a class="btn" href="http://localhost:5000/api/course">Course REST API</a>
     <a class="btn" href="http://localhost:5000/api/card">Card REST API</a>
     <a class="btn" href="http://localhost:5000/api/student">Student REST API</a>
+
+  </div>
+
+  <div v-for="course in courses">
+    <h2>{{course.name}}</h2>
+    <h3>Units</h3>
+    <ul>
+      <li v-for="unit in course.units">
+        {{unit}}
+      </li>
+    </ul>
+    <h3>Students</h3>
+    <ul>
+      <li v-for="student in course.students">
+        {{student}}
+      </li>
+    </ul>
   </div>
 </div>
