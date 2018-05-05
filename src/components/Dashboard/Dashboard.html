@@ -3,6 +3,7 @@
   <div class="Dashboard__content">
     <div class="Dashboard__sidebar">
       <h2>Your courses</h2>
+      <Menu :items="courseMenu"></Menu>
       <div v-for="course in courses" hidden>
         <h2>{{course.name}}</h2>
         <h3>Units</h3>

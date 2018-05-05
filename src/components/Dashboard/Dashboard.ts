@@ -9,6 +9,7 @@ const studentService = new StudentService()
 
 import { Header } from '../Header'
 import { Onboard } from '../Onboard'
+import { Menu } from '../Menu'
 import { AddCourse } from '../AddCourse'
 import { AddStudent } from '../AddStudent'
 import { Students } from '../Students'
@@ -25,6 +26,7 @@ import store from '../../store'
     AddCourse,
     AddStudent,
     Students,
+    Menu,
   }
 })
 export class Dashboard extends Vue {
@@ -33,6 +35,15 @@ export class Dashboard extends Vue {
 
   @State courses
   @State students
+
+  get courseMenu() {
+    // TODO: Use Course ID for link
+    const menu = this.courses.map((course, index) => ({
+      text: course.name,
+      link: '/dashboard/course/' + index,
+    }))
+    return menu
+  }
 
   mounted() {
     courseService.getAll().then(courses => {
