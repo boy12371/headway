@@ -13,7 +13,7 @@
     "clean": "rimraf dist && rimraf coverage",
     "compile": "webpack --config config/webpack.config.prod.js",
     "dev": "webpack-dev-server --config config/webpack.config.dev.js --hot --inline",
-    "lint": "tslint src/**/*.ts",
+    "lint": "tslint src/**/*.ts; tslint server/**/*.ts --fix;",
     "serve": "http-server dist/ -g -o"
   },
   "dependencies": {
