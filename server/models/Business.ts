@@ -1,4 +1,4 @@
-import { Table, Column, Model, HasMany } from 'sequelize-typescript';
+import { Table, Column, Model, HasMany } from 'sequelize-typescript'
 import Mentor from './Mentor'
 
 @Table

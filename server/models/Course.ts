@@ -1,7 +1,7 @@
-import { Table, Column, Model, HasMany, ForeignKey, BelongsTo, BelongsToMany } from 'sequelize-typescript';
-import Student from './Student';
-import Unit from './Unit';
-import CourseStudent from './CourseStudent';
+import { Table, Column, Model, HasMany, ForeignKey, BelongsTo, BelongsToMany } from 'sequelize-typescript'
+import Student from './Student'
+import Unit from './Unit'
+import CourseStudent from './CourseStudent'
 
 @Table
 class Course extends Model<Course> {

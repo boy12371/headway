@@ -1,6 +1,6 @@
-import { Table, Column, Model, HasMany, ForeignKey } from 'sequelize-typescript';
-import Student from './Student';
-import Card from './Card';
+import { Table, Column, Model, HasMany, ForeignKey } from 'sequelize-typescript'
+import Student from './Student'
+import Card from './Card'
 
 @Table
 class Activity extends Model<Activity> {

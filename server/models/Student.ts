@@ -1,9 +1,9 @@
 import { Table, Column, Model, HasMany, BelongsToMany } from 'sequelize-typescript'
 
 import Course from './Course'
-import CourseStudent from './CourseStudent';
-import Card from './Card';
-import Activity from './Activity';
+import CourseStudent from './CourseStudent'
+import Card from './Card'
+import Activity from './Activity'
 
 @Table
 class Student extends Model<Student> {
