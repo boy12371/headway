@@ -1,16 +1,5 @@
-<div class="Modal" id="modal-example" @click="emitClose">
+<div class="Modal" @click="emitClose">
   <div class="Modal__content" @click="stopEmitClose">
     <slot name="body"></slot>
   </div>
 </div>
-
-<!--
-TODO: Why can't I do this - https://vuejs.org/v2/guide/events.html#Event-Modifiers
-<div class="Modal" id="modal-example" @click="$emit('close')">
-  <div class="Modal__content" @click.stop="$emit('close')">
-    <Card>
-      <slot name="body"></slot>
-    </Card>
-  </div>
-</div>
--->
