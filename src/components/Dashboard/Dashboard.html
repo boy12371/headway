@@ -1,6 +1,6 @@
 <div id="dashboard" class="Dashboard">
   <Header
-    authed="true"
+    authed
     @inviteStudent="showStudentModal = true"
     @createBusiness="showBusinessModal = true">
   </Header>
@@ -14,5 +14,5 @@
   </div>
   <AddCourse v-show="showCourseModal" @close="showCourseModal = false"></AddCourse>
   <AddStudent v-show="showStudentModal" @close="showStudentModal = false"></AddStudent>
-  <AddBusiness v-show="showBusinessModal" @close="showBusinessModal = false"></AddStudent>
+  <AddBusiness v-show="showBusinessModal" @close="showBusinessModal = false"></AddBusiness>
 </div>
