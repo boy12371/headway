@@ -1,17 +1,19 @@
-<Modal @close="$emit('close')">
-  <Card slot="body" title="Add student">
-    <form action="" slot="body">
-      <div class="form__group">
-        <label class="label" for="student-name">Name</label>
-        <input type="text" class="input" id="student-name" autofocus>
-      </div>
-      <div class="form__group">
-        <label class="label" for="student-email">Email</label>
-        <input type="email" class="input" id="student-email">
-      </div>
-      <div class="form__footer">
-        <button class="btn btn--block">Send Invite</button>
-      </div>
-    </form>
-  </Card>
-</Modal>
+<transition name="Modal">
+  <Modal @close="$emit('close')">
+    <Card slot="body" title="Add student">
+      <form action="" slot="body">
+        <div class="form__group">
+          <label class="label" for="student-name">Name</label>
+          <input type="text" class="input" id="student-name" autofocus>
+        </div>
+        <div class="form__group">
+          <label class="label" for="student-email">Email</label>
+          <input type="email" class="input" id="student-email">
+        </div>
+        <div class="form__footer">
+          <button class="btn btn--block">Send Invite</button>
+        </div>
+      </form>
+    </Card>
+  </Modal>
+</transition>

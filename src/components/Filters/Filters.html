@@ -1,0 +1,20 @@
+<div class="Filters">
+  <h2 class="flat Filters__sorted-by">Viewing <strong>All Students</strong></h2>
+  <div class="Filters__wrap">
+    <small class="Filters__title">
+      Filter
+    </small>
+    <div class="Filters__option">
+      By Business <span class="fas fa-caret-down"></span>
+      <div class="Filters__dropdown">
+        <div class="Filters__filter" v-for="business in businesses">{{ business.name}}</div>
+      </div>
+    </div>
+    <div class="Filters__option">
+      By Course <span class="fas fa-caret-down"></span>
+      <div class="Filters__dropdown">
+        <div class="Filters__filter" v-for="course in courses">{{ course.name }}</div>
+      </div>
+    </div>
+  </div>
+</div>

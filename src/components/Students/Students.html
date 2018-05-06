@@ -1,8 +1,5 @@
 <div class="Students">
-  <header class="Students__header">
-    <h4 class="flat">All Students</h4>
-    <button class="btn Header__action">Add student</button>
-  </header>
+  <Filters></Filters>
   <div class="Students__wrap">
     <Card v-for="(student, sIndex) in students" :title="student.name" :key="sIndex">
       <div slot="body">

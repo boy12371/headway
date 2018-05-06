@@ -17,6 +17,13 @@
 
 .Header__action {
   margin-right: 1rem;
+  background: #344d75;
+}
+
+.User {
+  display: flex;
+  align-items: center;
+  color: #fff;
 }
 
 .User__avatar {
@@ -43,6 +50,8 @@
   letter-spacing: 0.0625rem;
   user-select: none;
   text-shadow: $textShadow;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .Logo__icon {

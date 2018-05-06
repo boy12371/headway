@@ -1,10 +1,12 @@
 <header class="Header">
-  <div class="Logo">
+  <router-link class="Logo" to="/">
     <div class="Logo__icon">H</div>
     Headway
-  </div>
+  </router-link>
   <a href="#" v-if="!authed" class="btn btn--small Header__btn">Sign in</a>
   <div class="flex flex--aligned" v-if="authed">
+    <button class="btn Header__action" @click="$emit('createBusiness')">Create business</button>
+    <button class="btn Header__action" @click="$emit('inviteStudent')">Invite student</button>
     <div class="User">
       <div class="User__avatar">J</div>
     </div>

@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 @import "./variables.scss";
 
+@import "./fa/fontawesome.scss";
+@import "./fa/fa-solid.scss";
+
 * {
   margin: 0;
   padding: 0;

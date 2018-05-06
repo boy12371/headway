@@ -11,5 +11,4 @@ import './Header.scss'
 
 export class Header extends Vue {
   @Prop({ default: false }) authed: boolean
-  @Prop({ default: false }) admin: boolean
 }

@@ -1,15 +1,18 @@
 <div id="dashboard" class="Dashboard">
-  <Header authed admin></Header>
+  <Header
+    authed="true"
+    @inviteStudent="showStudentModal = true"
+    @createBusiness="showBusinessModal = true">
+  </Header>
   <div class="Dashboard__content">
     <div class="Dashboard__sidebar">
-      <h4>Your courses</h4>
-      <CourseMenu :items="courseMenu"></CourseMenu>
+      <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu"></CourseMenu>
     </div>
     <div class="Dashboard__main">
-      <Students :students="students"></Students>
-      <Businesses :businesses="businesses"></Businesses>
+      <Students></Students>
     </div>
   </div>
   <AddCourse v-show="showCourseModal" @close="showCourseModal = false"></AddCourse>
   <AddStudent v-show="showStudentModal" @close="showStudentModal = false"></AddStudent>
+  <AddBusiness v-show="showBusinessModal" @close="showBusinessModal = false"></AddStudent>
 </div>

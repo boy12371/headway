@@ -18,27 +18,30 @@
   display: none;
 }
 
+.Dashboard__sidebar-title {
+  color: #fff;
+}
+
 @media(min-width:1200px) {
 
   .Dashboard__main {
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     flex: 1;
-    padding-right: 2rem
+    background: #f9f9f9;
+    padding: 1rem 2rem;
   }
 
   .Dashboard__sidebar {
     width: 20rem;
     display: block;
-    padding: 2rem;
-    background: #f2f2f2;
+    padding: 1.5rem 1rem;
+    background: #1e283c;
+    color: #fff;
   }
 
   .Dashboard__main .Students {
     flex: 1;
-    padding-right: 2rem;
-    border-right: 1px solid #ddd;
-    margin-right: 2rem;
   }
 
   .Dashboard__main .Businesses {

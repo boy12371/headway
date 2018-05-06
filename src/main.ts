@@ -2,8 +2,6 @@ import Vue from 'vue'
 import { makeHot, reload } from './util/hot-reload'
 import { createRouter } from './router'
 
-import Icon from 'vue-awesome'
-
 import './sass/headway.scss'
 
 import store from './store'
@@ -16,7 +14,5 @@ new Vue({
   components: {
   }
 })
-
-Vue.component('icon', Icon)
 
 Vue.use(require('vue-moment'))
