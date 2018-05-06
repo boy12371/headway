@@ -148,6 +148,27 @@ app.post('/admin/login', authAdmin, (req, res) => {
   res.redirect('/admin')
 })
 
+import {createAdmin} from './actions'
+import passwordGenerator from 'generate-password'
+const mailer = require('./mailer')
+const PASSWORD_OPTS = {
+  uppercase: false,
+  numbers: true,
+  excludeSimilarCharacters: true,
+}
+
+app.post('/admin/register', (req, res) => {
+  const password: string = passwordGenerator.generate(PASSWORD_OPTS)
+  createAdmin​({
+    name: req.body.name,
+    email: req.body.email,
+    password,
+  }).then(admin => {
+    console.log('Registered', admin.toJSON())
+    console.log('TODO: send mail')
+  })
+})
+
 app.get('/admin/courses', checkAdminLogin, (req, res) => {
   Admin.findById(req.user.admin.id, { include: [Course] }).then(admin => {
     res.send(admin.courses)
