@@ -44,7 +44,7 @@ class Student extends Model<Student> {
 
   displayName() {
     const name = [this.first_name, this.last_name].join(' ').trim()
-    return name + (this.email ? ` <${this.email}>` : '')
+    return name
   }
 }
 
