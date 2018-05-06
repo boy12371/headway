@@ -1,0 +1,9 @@
+Welcome {{name}},
+
+https://headway.herokuapp.com/app
+
+Your email is {{email}}
+Your password is {{password}}
+
+Regards,
+Headway
