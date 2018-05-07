@@ -1,7 +1,7 @@
 import { Table, Column, Model, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript'
 import Business from './Business'
 
-@Table
+@Table({ timestamps: true })
 export class Mentor extends Model<Mentor> {
   @Column first_name: string
   @Column last_name: string

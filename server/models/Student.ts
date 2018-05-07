@@ -7,7 +7,7 @@ import Activity from './Activity'
 import Business from './Business'
 import BusinessStudent from './BusinessStudent'
 
-@Table
+@Table({ timestamps: true })
 export class Student extends Model<Student> {
 
   @Column first_name: string

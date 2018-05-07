@@ -6,7 +6,7 @@ import Business from './Business'
 import BusinessCourse from './BusinessCourse'
 import Admin from './Admin'
 
-@Table
+@Table({ timestamps: true })
 export class Course extends Model<Course> {
   @Column name: string
 

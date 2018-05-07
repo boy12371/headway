@@ -3,7 +3,7 @@ import Unit from './Unit'
 import Activity from './Activity'
 import Student from './Student'
 
-@Table
+@Table({ timestamps: true })
 export class Card extends Model<Card> {
   @Column name: string
   @Column content: string

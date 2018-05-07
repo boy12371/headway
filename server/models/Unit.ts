@@ -2,7 +2,7 @@ import { Table, Column, Model, HasMany, ForeignKey, BelongsTo } from 'sequelize-
 import Course from './Course'
 import Card from './Card'
 
-@Table
+@Table({ timestamps: true })
 export class Unit extends Model<Unit> {
   @Column
   name: string

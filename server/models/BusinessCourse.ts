@@ -2,7 +2,7 @@ import { Table, Column, Model, HasMany, ForeignKey, BelongsTo } from 'sequelize-
 import Business from './Business'
 import Course from './Course'
 
-@Table
+@Table({ timestamps: true })
 export class BusinessCourse extends Model<BusinessCourse> {
 
   @Column code: string

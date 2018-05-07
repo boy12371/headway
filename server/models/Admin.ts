@@ -1,7 +1,7 @@
 import { Table, Column, Model, HasMany, BelongsToMany, Unique } from 'sequelize-typescript'
 import Course from './Course'
 
-@Table
+@Table({ timestamps: true })
 export class Admin extends Model<Admin> {
   @Column name: string
   @Unique @Column email: string
