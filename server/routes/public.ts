@@ -1,13 +1,6 @@
 import app from '../app'
 
-// Models
-import Admin from '../models/Admin'
-import Business from '../models/Business'
-import Card from '../models/Card'
-import Course from '../models/Course'
-import Unit from '../models/Unit'
-import Student from '../models/Student'
-import Activity from '../models/Activity'
+import { Business, Card, Course, Mentor, Student, Unit, Admin, BusinessStudent, BusinessCourse, CourseStudent, Activity } from '../models'
 
 const SERVER_STARTUP = new Date()
 

@@ -3,7 +3,7 @@ import Business from './Business'
 import Course from './Course'
 
 @Table
-class BusinessCourse extends Model<BusinessCourse> {
+export class BusinessCourse extends Model<BusinessCourse> {
 
   @Column code: string
 

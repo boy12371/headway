@@ -8,7 +8,7 @@ import Mentor from './Mentor'
 import Student from './Student'
 
 @Table
-class Business extends Model<Business> {
+export class Business extends Model<Business> {
   @Column name: string
 
   @ForeignKey(() => Admin)

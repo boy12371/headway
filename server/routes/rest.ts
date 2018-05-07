@@ -2,14 +2,8 @@ import * as epilogue from 'epilogue'
 
 import { authEpilogue } from '../authentication'
 
-// Models
-import Admin from '../models/Admin'
-import Business from '../models/Business'
-import Card from '../models/Card'
-import Course from '../models/Course'
-import Unit from '../models/Unit'
-import Student from '../models/Student'
-import Activity from '../models/Activity'
+import { Admin, Activity, Card, Course, Student } from '../models'
+
 
 // Admin REST API
 const restApis = {

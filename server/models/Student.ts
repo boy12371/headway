@@ -8,7 +8,7 @@ import Business from './Business'
 import BusinessStudent from './BusinessStudent'
 
 @Table
-class Student extends Model<Student> {
+export class Student extends Model<Student> {
 
   @Column first_name: string
   @Column last_name: string

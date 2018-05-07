@@ -1,13 +1,6 @@
 import connection from './connection'
 
-// Models
-import Business from './models/Business'
-import Card from './models/Card'
-import Course from './models/Course'
-import Mentor from './models/Mentor'
-import Student from './models/Student'
-import Unit from './models/Unit'
-import Admin from './models/Admin'
+import { Business, Card, Course, Mentor, Student, Unit, Admin } from './models'
 
 const DIVIDER = '------------------------'
 

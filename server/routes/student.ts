@@ -2,10 +2,7 @@ import app from '../app'
 
 import {checkStudentLogin, authStudent, checkStudentEnrolled } from '../authentication'
 
-
-// Models
-import Course from '../models/Course'
-import Student from '../models/Student'
+import {Course, Student} from '../models'
 
 app.get('/student', checkStudentLogin, (req, res) => {
   res.send('Authed as student')

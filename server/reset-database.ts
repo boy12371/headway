@@ -1,19 +1,7 @@
 import connection from './connection'
 import report from './report'
 
-// Models
-import Activity from './models/Activity'
-import Admin from './models/Admin'
-import Business from './models/Business'
-import BusinessCourse from './models/BusinessCourse'
-import BusinessStudent from './models/BusinessStudent'
-import Card from './models/Card'
-import Course from './models/Course'
-import CourseStudent from './models/CourseStudent'
-import Mentor from './models/Mentor'
-import Student from './models/Student'
-import Unit from './models/Unit'
-
+import { Business, Card, Course, Mentor, Student, Unit, Admin, BusinessStudent, BusinessCourse, CourseStudent, Activity } from './models'
 import { createAdmin, createStudent, createMentor } from './actions'
 
 // Data

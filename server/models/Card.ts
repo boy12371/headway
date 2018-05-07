@@ -4,7 +4,7 @@ import Activity from './Activity'
 import Student from './Student'
 
 @Table
-class Card extends Model<Card> {
+export class Card extends Model<Card> {
   @Column name: string
   @Column content: string
   @Column evidence_task: string

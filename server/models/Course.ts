@@ -7,7 +7,7 @@ import BusinessCourse from './BusinessCourse'
 import Admin from './Admin'
 
 @Table
-class Course extends Model<Course> {
+export class Course extends Model<Course> {
   @Column name: string
 
   @ForeignKey(() => Admin)

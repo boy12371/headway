@@ -2,7 +2,7 @@ import { Table, Column, Model, HasMany, BelongsToMany, Unique } from 'sequelize-
 import Course from './Course'
 
 @Table
-class Admin extends Model<Admin> {
+export class Admin extends Model<Admin> {
   @Column name: string
   @Unique @Column email: string
   @Column password: string

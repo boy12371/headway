@@ -3,7 +3,7 @@ import Course from './Course'
 import Card from './Card'
 
 @Table
-class Unit extends Model<Unit> {
+export class Unit extends Model<Unit> {
   @Column
   name: string
 

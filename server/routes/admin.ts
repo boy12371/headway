@@ -5,17 +5,10 @@ import mailer from '../mailer'
 
 import { authEpilogue, authAdmin, checkAdminLogin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, checkAdminPermission, } from '../authentication'
 import { createAdmin } from '../actions'
+import { PASSWORD_OPTS } from '../constants'
+import mail from '../mail'
 
-// Models
-import Admin from '../models/Admin'
-import Course from '../models/Course'
-import mail from '../mail';
-
-const PASSWORD_OPTS = {
-  uppercase: false,
-  numbers: true,
-  excludeSimilarCharacters: true,
-}
+import { Admin, Course, Business, Student } from '../models'
 
 app.get('/admin', checkAdminLogin, (req, res) => {
   res.send('Authed as admin')
@@ -51,9 +44,25 @@ app.post('/admin/register', (req, res) => {
       if (error) {
         console.warn(error)
       }
-      console.log(body)
     })
     res.send(admin)
+  })
+})
+
+app.post('/admin/students/invite', (req, res) => {
+  const { email, businessId } = req.body
+  Student.findOne({ where: { email }, include: [Business] }).then(student => {
+    if (!student) {
+      console.log('Create new student and link to business')
+    } else {
+      console.log('Student exists')
+      const ids = student.businesses.map(business => business.id)
+      if (!ids.indexOf(businessId)) {
+        console.log('Add to business')
+      } else {
+        console.log('Already added to business')
+      }
+    }
   })
 })
 

@@ -2,7 +2,7 @@ import { Table, Column, Model, HasMany, ForeignKey, BelongsTo } from 'sequelize-
 import Business from './Business'
 
 @Table
-class Mentor extends Model<Mentor> {
+export class Mentor extends Model<Mentor> {
   @Column first_name: string
   @Column last_name: string
   @Column email: string
