@@ -7,7 +7,7 @@ import Course from './models/Course'
 import Mentor from './models/Mentor'
 import Student from './models/Student'
 import Unit from './models/Unit'
-import Admin from './models/Admin';
+import Admin from './models/Admin'
 
 const DIVIDER = '------------------------'
 
