@@ -1,4 +1,4 @@
-import passwordGenerator from 'generate-password'
+import * as passwordGenerator from 'generate-password'
 
 import app from '../app'
 import mailer from '../mailer'
@@ -9,6 +9,7 @@ import { createAdmin } from '../actions'
 // Models
 import Admin from '../models/Admin'
 import Course from '../models/Course'
+import mail from '../mail';
 
 const PASSWORD_OPTS = {
   uppercase: false,
@@ -28,15 +29,31 @@ app.post('/admin/login', authAdmin, (req, res) => {
   res.redirect('/admin')
 })
 
+app.get('/admin/register', (req, res) => {
+  res.render('register')
+})
+
 app.post('/admin/register', (req, res) => {
   const password: string = passwordGenerator.generate(PASSWORD_OPTS)
-  createAdmin​({
+  const data = {
     name: req.body.name,
     email: req.body.email,
     password,
-  }).then(admin => {
-    console.log('Registered', admin.toJSON())
-    console.log('TODO: send mail')
+  }
+  createAdmin​(data).then(admin => {
+    mailer.messages().send({
+      to: admin.email,
+      from: mail.FROM,
+      subject: mail.welcome.subject(admin.name),
+      text: mail.welcome.text(data),
+      html: mail.welcome.html(data),
+    }, (error, body) => {
+      if (error) {
+        console.warn(error)
+      }
+      console.log(body)
+    })
+    res.send(admin)
   })
 })
 

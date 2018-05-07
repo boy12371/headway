@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt'
-import Admin from './models/Admin';
-import Student from './models/Student';
-import Mentor from './models/Mentor';
+import Admin from './models/Admin'
+import Student from './models/Student'
+import Mentor from './models/Mentor'
 
 const saltRounds = 10
 
