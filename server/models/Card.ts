@@ -1,4 +1,4 @@
-import { Table, Column, Model, HasMany, ForeignKey, BelongsTo, BelongsToMany } from 'sequelize-typescript'
+import { Table, Column, Model, HasMany, ForeignKey, BelongsTo, BelongsToMany, DataType } from 'sequelize-typescript'
 import Unit from './Unit'
 import Activity from './Activity'
 import Student from './Student'
@@ -8,8 +8,8 @@ export class Card extends Model<Card> {
   @Column name: string
   @Column content: string
   @Column evidence_task: string
-  @Column quiz: string
   @Column media: string
+  @Column(DataType.TEXT) quiz: string
 
   @ForeignKey(() => Unit)
   @Column
