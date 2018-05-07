@@ -69,7 +69,7 @@ const businessSummary = () => {
   return Business.findAll({ include: [Mentor, Student, Admin, Course] }).then(businesses => {
     printHeading('Business Summary')
     businesses.forEach(business => {
-      console.log('Business', business.name, 'belongs to admin:', (business.admin.name || business.admin.username))
+      console.log('Business', business.name, 'belongs to admin:', (business.admin.name || business.admin.name))
 
       if (business.mentors.length) {
         console.log('Mentors:')
