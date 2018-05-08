@@ -7,15 +7,7 @@ const courseService = new CourseService()
 import { BusinessService } from '../../services'
 const businessService = new BusinessService()
 
-
-import { Header } from '../Header'
-import { CourseMenu } from '../CourseMenu'
-import { AddCourse } from '../AddCourse'
-import { AddStudent } from '../AddStudent'
-import { AddBusiness } from '../AddBusiness'
-import { Students } from '../Students'
-import { Course } from '../Course'
-import { Businesses } from '../Businesses'
+import { AddStudent, AddBusiness, Students, Course, Header, Businesses, CourseMenu, AddCourse } from '../'
 
 import './Dashboard.scss'
 import store from '../../store'
