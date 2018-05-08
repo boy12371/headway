@@ -15,12 +15,18 @@ const done = () => {
 }
 
 const main = async () => {
+  await Promise.all([
+    ...admins.map(admin => createAdmin(admin)),
+    ...students.map(student => createStudent(student)),
+  ])
   await Course.create({ name: 'Sports Turf Management', adminId: 1 })
   await Course.create({ name: 'Pool Maintenance', adminId: 2 })
   await Unit.create({ name: 'Introduction', courseId: 1, })
   await Business​​.create({ name: 'Green Options', adminId: 1 })
   await Business​​.create({ name: 'DCUBED', adminId: 2 })
   await Card.create({ name: 'Welcome', unitId: 1, evidence_task: 'Demonstrate a set of clean tools', quiz: JSON.stringify(quiz) })
+  await Card.create({ name: 'Welcome2', unitId: 1 })
+  await Card.create({ name: 'Welcome3', unitId: 1 })
   await createMentor({ first_name: 'Buddha', businessId: 1, email: 'buddha@gmail.com', password: 'password' })
   await createMentor({ first_name: 'Jesus', businessId: 1, email: 'jesus@hotmail.com', password: 'password' })
   await BusinessStudent.create({ businessId: 1, studentId: 1, })
@@ -32,11 +38,10 @@ const main = async () => {
   await CourseStudent.create({ courseId: 2, studentId: 3, assigned: Date.now() })
   await CourseStudent.create({ courseId: 2, studentId: 2, assigned: Date.now() })
   await Activity.create({ studentId: 1, cardId: 1, evidence_proof: 'I mowed a lawn', })
+  await Activity.create({ studentId: 1, cardId: 2, evidence_proof: 'I mowed a lawn', })
+  done()
 }
 
 connection.sync({ force: true }).then(() => {
-  Promise.all([
-    ...admins.map(admin => createAdmin(admin)),
-    ...students.map(student => createStudent(student)),
-  ]).then(main).then(done)
+  main()
 })
