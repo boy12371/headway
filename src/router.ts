@@ -19,6 +19,11 @@ export const createRoutes: () => RouteConfig[] = () => [
     component: dashboardComponent
   },
   {
+    path: '/app',
+    name: 'app',
+    component: dashboardComponent
+  },
+  {
     path: '/c/:id',
     name: 'course',
     component: dashboardComponent
