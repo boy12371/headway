@@ -4,7 +4,7 @@ import app from '../app'
 import mailer from '../mailer'
 
 import { authEpilogue, authAdmin, checkAdminLogin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, checkAdminPermission, } from '../authentication'
-import { createAdmin } from '../actions'
+import { createAdmin, inviteStudent } from '../actions'
 import { PASSWORD_OPTS } from '../constants'
 import mail from '../mail'
 
@@ -51,18 +51,8 @@ app.post('/admin/register', (req, res) => {
 
 app.post('/admin/students/invite', (req, res) => {
   const { email, businessId } = req.body
-  Student.findOne({ where: { email }, include: [Business] }).then(student => {
-    if (!student) {
-      console.log('Create new student and link to business')
-    } else {
-      console.log('Student exists')
-      const ids = student.businesses.map(business => business.id)
-      if (!ids.indexOf(businessId)) {
-        console.log('Add to business')
-      } else {
-        console.log('Already added to business')
-      }
-    }
+  inviteStudent(email, businessId).then(businessStudent => {
+    res.send('Invite Sent')
   })
 })
 

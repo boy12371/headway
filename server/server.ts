@@ -6,12 +6,18 @@ import './routes/admin'
 import './routes/student'
 import './routes/rest'
 import './routes/mentor'
+import { PORT } from './constants'
+import { Logger } from './logger'
 
-// Constants
-const PORT = process.env.PORT || 5000
-
-// Start server
-connection.sync().then(() => {
+const startServer = () => {
   app.listen(PORT)
-  console.log(`headway started @ ${(new Date()).toLocaleString()}\nhttp://localhost:${PORT}\n`)
+  Logger.info(`headway started @ ${(new Date()).toLocaleString()}\nhttp://localhost:${PORT}\n`)
+}
+
+const debug = async () => {
+}
+
+connection.sync().then(() => {
+  // debug()
+  startServer()
 })
