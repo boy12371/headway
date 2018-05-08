@@ -1,11 +1,23 @@
 import connection from './connection'
 
-import { Business, Card, Course, Mentor, Student, Unit, Admin } from './models'
+import { Business, Card, Course, Mentor, Student, Unit, Admin, Activity } from './models'
 
 const DIVIDER = '------------------------'
 
 const printHeading = text => {
   console.log(`\n\n${text}\n${DIVIDER}\n`)
+}
+
+const getFirstActivity = (unitId, studentId) => {
+  Promise.all([
+    Activity.findAll({ where: { studentId } }),
+    Unit.findById(unitId, { include: [Card] }).then(unit => unit.cards)
+  ]).then(([activities, cards]) => {
+    const cardIds = cards.map(card => card.id)
+    activities = activities.filter(activity => cardIds.indexOf(activity.cardId) >= 0)
+    const firstActivity = activities.sort((a, b) => a.createdAt - b.createdAt).pop()
+    return firstActivity
+  })
 }
 
 const studentActivity = () => {
@@ -94,6 +106,7 @@ const businessSummary = () => {
 }
 
 const report = async () => {
+  await getFirstActivity(1, 1)
   await studentActivity()
   await studentEnrolment()
   await courseSummary()
