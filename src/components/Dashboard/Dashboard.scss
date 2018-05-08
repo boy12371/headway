@@ -12,6 +12,7 @@
 .Dashboard__main {
   flex: 1;
   padding: 1rem;
+  position: relative;
 }
 
 .Dashboard__sidebar {
@@ -26,7 +27,6 @@
 
   .Dashboard__main {
     padding: 1rem;
-    display: flex;
     flex: 1;
     background: #f9f9f9;
     padding: 1rem 2rem;
@@ -38,10 +38,6 @@
     padding: 1.5rem 1rem;
     background: #1e283c;
     color: #fff;
-  }
-
-  .Dashboard__main .Students {
-    flex: 1;
   }
 
   .Dashboard__main .Businesses {

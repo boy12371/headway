@@ -9,7 +9,8 @@
       <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu"></CourseMenu>
     </div>
     <div class="Dashboard__main">
-      <Students></Students>
+      <Students v-if="view == 'dashboard'"></Students>
+      <Course v-if="view == 'course'" :name="activeCourse.name" :units="activeCourse.units"></Course>
     </div>
   </div>
   <AddCourse v-show="showCourseModal" @close="showCourseModal = false"></AddCourse>

@@ -1,0 +1,7 @@
+<div class="Course">
+  <div class="Filters">
+    <h2 class="flat Filters__sorted-by">{{ name }}</h2>
+    <button class="btn" v-if="units.length">Create unit</button>
+  </div>
+  <Units :units="units"></Units>
+</div>

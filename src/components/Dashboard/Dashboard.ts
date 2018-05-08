@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
 import { CourseService } from '../../services'
@@ -14,6 +14,7 @@ import { AddCourse } from '../AddCourse'
 import { AddStudent } from '../AddStudent'
 import { AddBusiness } from '../AddBusiness'
 import { Students } from '../Students'
+import { Course } from '../Course'
 import { Businesses } from '../Businesses'
 
 import './Dashboard.scss'
@@ -29,6 +30,7 @@ import store from '../../store'
     AddBusiness,
     Students,
     CourseMenu,
+    Course,
   }
 })
 export class Dashboard extends Vue {
@@ -39,24 +41,40 @@ export class Dashboard extends Vue {
   @State courses
   @State authed
 
+  @State activeCourse
+
+  @Watch('$route', { deep: true})
+  watchRoute(newVal, oldVal) {
+    if (newVal.name === 'course') {
+      store.commit('setActiveCourse', newVal.params.id)
+    }
+  }
+
+  // Set the view name
+  get view() {
+    return this.$route.name
+  }
+
   get courseMenu() {
     // TODO: Use Course ID for link
     const menu = this.courses.map((course, index) => ({
       text: course.name,
-      link: '/dashboard/course/' + index,
+      link: '/c/' + course.name,
       totalUnits: course.units.length,
     }))
     return menu
   }
 
   mounted() {
-    businessService.getAll().then(businesss => {
-      store.commit('setBusinesses', businesss)
+
+    businessService.getAll().then(businesses => {
+      store.commit('setBusinesses', businesses)
     })
 
     courseService.getAll().then(courses => {
       store.commit('setCourses', courses)
     })
+
   }
 
 }

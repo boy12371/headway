@@ -17,6 +17,7 @@
 .CourseMenu__link {
   display: block;
   padding: 1rem 1rem;
+  padding-left: calc(1rem - 0.3rem);
   text-decoration: none;
   color: #fff;
   transition: all 200ms ease;
@@ -26,6 +27,7 @@
   margin: 0 -1rem;
   position: relative;
   z-index: 20;
+  border-left: 0.3rem solid transparent;
 }
 
 .CourseMenu__bg {
@@ -43,7 +45,12 @@
 }
 
 .CourseMenu__link--active + .CourseMenu__bg,
+.CourseMenu__link.router-link-active + .CourseMenu__bg,
 .CourseMenu__link:hover + .CourseMenu__bg {
   opacity: 1;
   transform: scaleX(1);
+}
+
+.CourseMenu__link.router-link-active {
+  border-left-color: $green;
 }
