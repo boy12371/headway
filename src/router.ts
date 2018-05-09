@@ -30,7 +30,12 @@ export const createRoutes: () => RouteConfig[] = () => [
   },
   {
     path: '/c/:courseId/:unitId',
-    name: 'course',
+    name: 'unit',
+    component: dashboardComponent
+  },
+  {
+    path: '/c/:courseId/:unitId/:cardId',
+    name: 'card',
     component: dashboardComponent
   },
   {

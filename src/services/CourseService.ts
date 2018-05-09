@@ -10,7 +10,7 @@ export class CourseService {
       })
   }
   get(id) {
-    return axios.get(BASE_URL + '/courses/' + id)
+    return axios.get(BASE_URL + '/admin/course/' + id)
       .then(res => {
         return res.data
       })

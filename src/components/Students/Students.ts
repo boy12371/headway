@@ -23,10 +23,4 @@ import store from '../../store'
 
 export class Students extends Vue {
   @State students
-
-  mounted() {
-    studentService.getAll().then(students => {
-      store.commit('setStudents', students)
-    })
-  }
 }

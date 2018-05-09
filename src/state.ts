@@ -3,5 +3,6 @@ export const state = {
   courses: [],
   students: [],
   businesses: [],
-  activeCourse: {}
+  activeCourse: {},
+  activeUnit: {}
 }

@@ -1,15 +1,14 @@
 export const mutations = {
-  setCourses(state, courses) {
-    state.courses = courses
-  },
-  setStudents(state, students) {
-    state.students = students
+  setOverview(state, overview) {
+    state.courses = overview.courses
+    state.students = overview.students
+    state.businesses = overview.businesses
   },
   setActiveCourse(state, course) {
     state.activeCourse = course
   },
-  setBusinesses(state, businesses) {
-    state.businesses = businesses
+  setActiveUnit(state, unit) {
+    state.activeUnit = unit
   },
   reset(state) {
     state.courses = []

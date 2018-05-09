@@ -22,6 +22,11 @@
   margin-bottom: 0.5rem !important;
 }
 
+.router-link,
+.router-link-active {
+  text-decoration: none;
+}
+
 html,
 body,
 #app-main {

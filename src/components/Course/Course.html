@@ -1,7 +1,9 @@
 <div class="Course">
   <div class="Filters">
-    <h2 class="flat Filters__sorted-by">{{ name }}</h2>
-    <button class="btn" v-if="units.length">Create unit</button>
+    <h2 class="flat Filters__sorted-by">{{ activeCourse.name }}</h2>
+    <h2 class="flat Filters__sorted-by">{{ activeUnit.name }}</h2>
   </div>
-  <Units :units="units"></Units>
+  <Units v-if="view == 'course' && activeCourse.units" :units="activeCourse.units"></Units>
+  <Cards v-if="view == 'unit' && activeUnit.cards" :cards="activeUnit.cards"></Cards>
+  <LearningCard v-if="view == 'card'"></LearningCard>
 </div>

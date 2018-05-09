@@ -2,21 +2,26 @@ import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
 
 import { Card } from '../Card'
 
-import './Units.scss'
+import './Cards.scss'
 
 @Component({
-  template: require('./Units.html'),
-  name: 'Units',
+  template: require('./Cards.html'),
+  name: 'Cards',
   components: {
     Card,
   }
 })
 
-export class Units extends Vue {
-  @Prop() units: any[]
+export class Cards extends Vue {
+  @Prop() cards: any[]
 
   // Set the view name
   get courseId() {
     return this.$route.params.courseId
+  }
+
+  // Set the view name
+  get unitId() {
+    return this.$route.params.unitId
   }
 }

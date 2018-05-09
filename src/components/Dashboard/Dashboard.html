@@ -10,7 +10,8 @@
     </div>
     <div class="Dashboard__main">
       <Students v-if="view == 'dashboard'"></Students>
-      <Course v-if="view == 'course'" :name="activeCourse.name" :units="activeCourse.units"></Course>
+      <!-- The following v-if is bad. -->
+      <Course v-if="view != 'dashboard'" :name="activeCourse.name" :units="activeCourse.units"></Course>
     </div>
   </div>
   <AddCourse v-show="showCourseModal" @close="showCourseModal = false"></AddCourse>

@@ -1,6 +1,8 @@
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
+import { BASE_URL } from '../../constants'
+
 import { CourseService } from '../../services'
 const courseService = new CourseService()
 
@@ -11,6 +13,7 @@ import { AddStudent, AddBusiness, Students, Course, Header, Businesses, CourseMe
 
 import './Dashboard.scss'
 import store from '../../store'
+import axios from 'axios'
 
 @Component({
   template: require('./Dashboard.html'),
@@ -35,20 +38,9 @@ export class Dashboard extends Vue {
 
   @State activeCourse
 
-  @Watch('$route', { deep: true})
-  watchRoute(newVal, oldVal) {
-    this.updateRoute(newVal)
-  }
-
   // Set the view name
   get view() {
     return this.$route.name
-  }
-
-  updateRoute(route) {
-    if (route.name === 'course') {
-      store.commit('setActiveCourse', route.params.id)
-    }
   }
 
   get courseMenu() {
@@ -66,17 +58,9 @@ export class Dashboard extends Vue {
   }
 
   mounted() {
-
-    this.updateRoute(this.$route)
-
-    businessService.getAll().then(businesses => {
-      store.commit('setBusinesses', businesses)
+    axios.get(BASE_URL + '/admin/overview').then(res => {
+      store.commit('setOverview', res.data)
     })
-
-    courseService.getAll().then(courses => {
-      store.commit('setCourses', courses)
-    })
-
   }
 
 }

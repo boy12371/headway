@@ -1,7 +1,7 @@
 <div class="Units">
   <div class="Units__wrap" v-if="units">
-    <router-link v-for="unit in units" :to="unit">
-      <Card v-for="unit in units" :key="unit.id" :title="unit"></Card>
+    <router-link v-for="unit in units" :to="{ name: 'unit', params: { courseId: courseId, unitId: unit.id }}">
+      <Card v-for="unit in units" :key="unit.id" :title="unit.name"></Card>
     </router-link>
   </div>
   <div class="Units__error" v-if="!units.length">

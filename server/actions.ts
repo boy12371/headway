@@ -129,10 +129,12 @@ export const studentUnitProgress = async (unitId, studentId): Promise<UnitProgre
 
 
 export const courseSummary = (adminId?: number) => {
-  return Course.findAll({ where: { adminId }, include: [Unit, Student] }).then((courses) => {
+  // { where: { adminId }
+  return Course.findAll({ include: [Unit, Student] }).then((courses) => {
     return courses.map(course => ({
       name: course.name,
-      units: course.units.map(unit => unit.name),
+      id: course.id,
+      units: course.units,
       students: course.students.map(student => student.email),
     }))
   })
