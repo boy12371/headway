@@ -4,8 +4,8 @@ import Card from './Card'
 
 @Table({ timestamps: true })
 export class Unit extends Model<Unit> {
-  @Column
-  name: string
+  @Column name: string
+  @Column slug: string
 
   @ForeignKey(() => Course)
   @Column

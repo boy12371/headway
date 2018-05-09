@@ -9,6 +9,7 @@ import Admin from './Admin'
 @Table({ timestamps: true })
 export class Course extends Model<Course> {
   @Column name: string
+  @Column slug: string
 
   @ForeignKey(() => Admin)
   @Column

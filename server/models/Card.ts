@@ -6,6 +6,7 @@ import Student from './Student'
 @Table({ timestamps: true })
 export class Card extends Model<Card> {
   @Column name: string
+  @Column slug: string
   @Column content: string
   @Column evidence_task: string
   @Column media: string
