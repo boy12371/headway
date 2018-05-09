@@ -7,15 +7,15 @@ export class Unit extends Model<Unit> {
   @Column
   name: string
 
-  @HasMany(() => Card)
-  cards: Card[]
-
   @ForeignKey(() => Course)
   @Column
   courseId: number
 
   @BelongsTo(() => Course)
   course: Course
+
+  @HasMany(() => Card)
+  cards: Card[]
 }
 
 export default Unit
