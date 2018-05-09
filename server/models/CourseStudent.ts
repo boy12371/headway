@@ -16,6 +16,8 @@ export class CourseStudent extends Model<CourseStudent> {
   @Column
   studentId: number
 
+  @Column completedUnits: number
+  @Column timeSpentOnCurrentUnit: number
 }
 
 export default CourseStudent
