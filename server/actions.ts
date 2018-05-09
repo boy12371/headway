@@ -46,6 +46,10 @@ export const createMentor = (data) => {
   })
 }
 
+export const addStudentToBusinesses = (student: Student, businessIds: number[]) => {
+  const promises = businessIds.map(id => addStudentToBusiness(student, id))
+  return Promise.all(promises)
+}
 export const addStudentToBusiness = (student: Student, businessId: number) => {
   Logger.debug('Add student to business', student.email, businessId)
   return BusinessStudent.create({
@@ -60,23 +64,23 @@ export const addStudentToBusiness = (student: Student, businessId: number) => {
   })
 }
 
-export const inviteStudent = async (email: string, businessId: number) => {
-  Logger.debug('Invite Student', email, 'to business', businessId)
+export const inviteStudent = async (email: string, businessIds: number[]) => {
+  Logger.debug('Invite Student', email, 'to business', businessIds)
   return Student.findOne({ where: { email }, include: [Business] }).then(student => {
     if (!student) {
       Logger.debug('Create new student and link to business', email)
       const password = 'password'
       return createStudent({ email, password }).then(student => {
-        return addStudentToBusiness(student, businessId)
+        return addStudentToBusinesses(student, businessIds)
       })
     } else {
       Logger.debug('Student exists', email)
       const ids = student.businesses.map(business => business.id)
-      if (ids.indexOf(businessId) >= 0) {
-        Logger.debug(student.email, 'already added to business', businessId)
-      } else {
-        return addStudentToBusiness(student, businessId)
-      }
+      // if (ids.indexOf(businessIds) >= 0) {
+      //   Logger.debug(student.email, 'already added to business', businessIds)
+      // } else {
+      //   return addStudentToBusinesses(student, businessIds)
+      // }
     }
   })
 }
@@ -156,6 +160,7 @@ export const studentSummary = (adminId?: number) => {
 export const businessSummary = (adminId?: number) => {
   return Business.findAll({ include: [Student] }).then((businesses) => {
     return businesses.map(business => ({
+      id: business.id,
       name: business.name,
       students: business.students,
     }))

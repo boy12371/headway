@@ -68,9 +68,9 @@ app.get('/admin/overview', (req, res) => {
 
 // app.post('/admin/students/invite', checkAdminLogin, (req, res) => {
 app.post('/admin/students/invite', (req, res) => {
-  const { email, businessId } = req.body
+  const { email, businessIds } = req.body
   // TODO: check Admin owns Business
-  inviteStudent(email, businessId).then(businessStudent => {
+  inviteStudent(email, businessIds).then(businessStudent => {
     res.send(businessStudent)
   })
 })
