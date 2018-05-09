@@ -90,7 +90,3 @@ app.get('/admin/business/:businessId', (req, res) => {
     res.send(business)
   })
 })
-
-app.get('/admin/:course/:unit/:card', checkAdminLogin, checkAdminPermission, (req, res) => {
-  res.send('OK')
-})
