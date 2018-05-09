@@ -49,3 +49,14 @@ app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
 })
+
+
+// This is probably a really bad idea
+
+app.get('/reset-database', (req, res) => {
+  res.send('<form method="POST"><button>RESET DATABASE</button></form>')
+})
+
+app.post('/reset-database', (req, res) => {
+
+})

@@ -37,8 +37,10 @@ const main = async () => {
   await CourseStudent.create({ courseId: 1, studentId: 3, assigned: Date.now() })
   await CourseStudent.create({ courseId: 2, studentId: 3, assigned: Date.now() })
   await CourseStudent.create({ courseId: 2, studentId: 2, assigned: Date.now() })
-  await Activity.create({ studentId: 1, cardId: 1, evidence_proof: 'I mowed a lawn', })
-  await Activity.create({ studentId: 1, cardId: 2, evidence_proof: 'I mowed a lawn', })
+  await Activity.create({ studentId: 1, cardId: 1, evidence_proof: 'I mowed a lawn', completed: true })
+  // await Activity.create({ studentId: 1, cardId: 2, evidence_proof: 'I washed a lawn?', }) // DUPE!
+  await Activity.create({ studentId: 1, cardId: 2, evidence_proof: 'I cleaned the deck', completed: true })
+  await Activity.create({ studentId: 1, cardId: 3, evidence_proof: 'I hacked it out', completed: true})
   done()
 }
 

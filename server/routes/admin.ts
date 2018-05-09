@@ -8,7 +8,7 @@ import { createAdmin, inviteStudent } from '../actions'
 import { PASSWORD_OPTS } from '../constants'
 import mail from '../mail'
 
-import { Admin, Course, Business, Student } from '../models'
+import { Admin, Course, Business, Student, Unit, Card } from '../models'
 
 app.get('/admin', checkAdminLogin, (req, res) => {
   res.send('Authed as admin')
@@ -49,8 +49,9 @@ app.post('/admin/register', (req, res) => {
   })
 })
 
-app.post('/admin/students/invite', (req, res) => {
+app.post('/admin/students/invite', checkAdminLogin, (req, res) => {
   const { email, businessId } = req.body
+  // TODO: check Admin owns Business
   inviteStudent(email, businessId).then(businessStudent => {
     res.send('Invite Sent')
   })
@@ -62,8 +63,34 @@ app.get('/admin/courses', checkAdminLogin, (req, res) => {
   })
 })
 
-app.get('/admin/course/:courseId', checkAdminLogin, checkAdminPermission, (req, res) => {
-  Course.findById(req.params.courseId).then(course => {
-    res.send(`Admin ${req.user.admin.name} owns ${course.name}`)
+// app.get('/admin/course/:courseId', checkAdminLogin, checkAdminPermission, (req, res) => {
+app.get('/admin/course/:courseId', (req, res) => {
+  Course.findById(req.params.courseId, { include: [Student, Unit] }).then(course => {
+    res.send(course)
   })
+})
+
+// app.get('/admin/unit/:unitId', checkAdminLogin, checkAdminPermission, (req, res) => {
+app.get('/admin/unit/:unitId', (req, res) => {
+  Unit.findById(req.params.unitId, { include: [Card, Course] }).then(unit => {
+    res.send(unit)
+  })
+})
+
+// app.get('/admin/course/:courseId', checkAdminLogin, checkAdminPermission, (req, res) => {
+app.get('/admin/student/:studentId', (req, res) => {
+  Student.findById(req.params.studentId, { include: [Course, Business] }).then(student => {
+    res.send(student)
+  })
+})
+
+// app.get('/admin/course/:courseId', checkAdminLogin, checkAdminPermission, (req, res) => {
+app.get('/admin/business/:businessId', (req, res) => {
+  Business.findById(req.params.businessId, { include: [Student, Course] }).then(business => {
+    res.send(business)
+  })
+})
+
+app.get('/admin/:course/:unit/:card', checkAdminLogin, checkAdminPermission, (req, res) => {
+  res.send('OK')
 })

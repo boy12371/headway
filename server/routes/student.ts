@@ -3,6 +3,7 @@ import app from '../app'
 import {checkStudentLogin, authStudent, checkStudentEnrolled } from '../authentication'
 
 import {Course, Student} from '../models'
+import { getStudentActivitiesByUnit, studentUnitProgress, incrementCompletedUnits } from '../actions';
 
 app.get('/student', checkStudentLogin, (req, res) => {
   res.send('Authed as student')
@@ -25,5 +26,17 @@ app.get('/student/courses', checkStudentLogin, (req, res) => {
 app.get('/student/course/:courseId', checkStudentEnrolled, (req, res) => {
   Course.findById(req.params.courseId).then(course => {
     res.send(`Student ${req.user.student.displayName()} enrolled in course ${course.name}`)
+  })
+})
+
+app.post('/students/:course/:unit/:card/quiz/submit', (req, res) => {
+  studentUnitProgress(1, 1).then(progress => {
+    if (progress.unitCompleted) {
+      // TODO: do not allow double submit
+      // incrementCompletedUnits(courseId, studentId)
+      res.send('Unit completed')
+    } else {
+      res.send(progress.completedLength + ' / ' + progress.numberOfCards  + ' cards completed')
+    }
   })
 })

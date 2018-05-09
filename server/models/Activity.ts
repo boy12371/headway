@@ -5,7 +5,7 @@ import Card from './Card'
 @Table({ timestamps: true })
 export class Activity extends Model<Activity> {
   @Column evidence_proof: string // File
-  @Column completed: Date
+  @Column completed: Date // got quiz correct
 
   @ForeignKey(() => Card)
   @Column
