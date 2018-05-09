@@ -2,7 +2,7 @@ import * as bcrypt from 'bcrypt'
 import Admin from './models/Admin'
 import Student from './models/Student'
 import Mentor from './models/Mentor'
-import { Business, BusinessStudent, Activity, Unit, Card, CourseStudent } from './models'
+import { Business, BusinessStudent, Activity, Unit, Card, CourseStudent, Course } from './models'
 import { Logger } from './logger'
 import { UnitProgress } from './interfaces'
 
@@ -125,4 +125,37 @@ export const studentUnitProgress = async (unitId, studentId): Promise<UnitProgre
       Logger.debug(res)
       return res
     })
+}
+
+
+export const courseSummary = (adminId?: number) => {
+  return Course.findAll({ where: { adminId }, include: [Unit, Student] }).then((courses) => {
+    return courses.map(course => ({
+      name: course.name,
+      units: course.units.map(unit => unit.name),
+      students: course.students.map(student => student.email),
+    }))
+  })
+}
+
+export const studentSummary = (adminId?: number) => {
+  //  where: {adminId},
+  return Student.findAll({ include: [Course] }).then((students) => {
+    const data = students.map(student => ({
+      name: student.displayName(),
+      email: student.email,
+      courses: student.courses,
+      businesses: student.courses,
+    }))
+    return data
+  })
+}
+
+export const businessSummary = (adminId?: number) => {
+  return Business.findAll({ include: [Student] }).then((businesses) => {
+    return businesses.map(business => ({
+      name: business.name,
+      students: business.students,
+    }))
+  })
 }

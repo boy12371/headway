@@ -4,7 +4,7 @@ import app from '../app'
 import mailer from '../mailer'
 
 import { authEpilogue, authAdmin, checkAdminLogin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, checkAdminPermission, } from '../authentication'
-import { createAdmin, inviteStudent } from '../actions'
+import { createAdmin, inviteStudent, studentSummary, courseSummary, businessSummary } from '../actions'
 import { PASSWORD_OPTS } from '../constants'
 import mail from '../mail'
 
@@ -46,6 +46,18 @@ app.post('/admin/register', (req, res) => {
       }
     })
     res.send(admin)
+  })
+})
+
+// TODO: checkAdminLogin
+app.get('/admin/overview', (req, res) => {
+  // TODO: provide req.user.admin.id
+  Promise.all([
+    courseSummary(),
+    studentSummary(),
+    businessSummary(),
+  ]).then(([courses, students, businesses]) => {
+    res.send({courses, students, businesses})
   })
 })
 
