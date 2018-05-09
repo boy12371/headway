@@ -15,6 +15,9 @@ export class BusinessCourse extends Model<BusinessCourse> {
   @Column
   courseId: number
 
+  // When new Course created, add StudentCourse for all existing Students
+  // When new Student created, add StudentCourse
+  @Column autoInviteStudents: boolean
 }
 
 export default BusinessCourse
