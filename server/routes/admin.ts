@@ -11,7 +11,7 @@ import mail from '../mail'
 import { Admin, Course, Business, BusinessCourse, Student, Unit, Card } from '../models'
 
 app.get('/admin', checkAdminLogin, (req, res) => {
-  res.send('Authed as admin')
+  res.send(req.user)
 })
 
 app.get('/admin/login', (req, res) => {
@@ -57,7 +57,12 @@ app.get('/admin/overview', (req, res) => {
     studentSummary(),
     businessSummary(),
   ]).then(([courses, students, businesses]) => {
-    res.send({courses, students, businesses})
+    res.send({
+      courses,
+      students,
+      businesses,
+      user: req.user ? req.user.admin : null
+    })
   })
 })
 
