@@ -6,6 +6,14 @@
           <label class="label" for="student-name">Name</label>
           <input type="text" class="input" id="student-name" autofocus>
         </div>
+        <div class="form__group">
+          <label class="label">Add to Business (optional)</label>
+          <p><small>This will make this a default Course of the a selected Business.</small></p>
+          <label class="checkbox" for="index" v-for="(business, index) in businesses">
+            <input type="checkbox" v-model="businessIds" ::id="index" :value="business.id">
+            {{ business.name }}
+          </label>
+        </div>
         <div class="form__footer">
           <button class="btn btn--block">Create</button>
         </div>

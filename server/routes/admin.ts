@@ -8,7 +8,7 @@ import { createAdmin, inviteStudent, studentSummary, courseSummary, businessSumm
 import { PASSWORD_OPTS } from '../constants'
 import mail from '../mail'
 
-import { Admin, Course, Business, Student, Unit, Card } from '../models'
+import { Admin, Course, Business, BusinessCourse, Student, Unit, Card } from '../models'
 
 app.get('/admin', checkAdminLogin, (req, res) => {
   res.send('Authed as admin')
@@ -33,7 +33,7 @@ app.post('/admin/register', (req, res) => {
     email: req.body.email,
     password,
   }
-  createAdmin​(data).then(admin => {
+  createAdmin(data).then(admin => {
     mailer.messages().send({
       to: admin.email,
       from: mail.FROM,
@@ -61,11 +61,12 @@ app.get('/admin/overview', (req, res) => {
   })
 })
 
-app.post('/admin/students/invite', checkAdminLogin, (req, res) => {
+// app.post('/admin/students/invite', checkAdminLogin, (req, res) => {
+app.post('/admin/students/invite', (req, res) => {
   const { email, businessId } = req.body
   // TODO: check Admin owns Business
   inviteStudent(email, businessId).then(businessStudent => {
-    res.send('Invite Sent')
+    res.send(businessStudent)
   })
 })
 
@@ -75,9 +76,26 @@ app.get('/admin/courses', checkAdminLogin, (req, res) => {
   })
 })
 
+// app.post('/admin/students/invite', checkAdminLogin, (req, res) => {
+app.post('/admin/courses/create', (req, res) => {
+  const { name, businessIds } = req.body
+  // TODO: check Admin owns Business
+  Course.create({
+    name,
+    adminId : 1, // req.user.admin.id
+  }).then(course => {
+    businessIds.forEach(businessId => {
+      BusinessCourse.create({
+        businessId,
+        courseId : course.id
+      })
+    })
+  })
+})
+
 // app.get('/admin/course/:courseId', checkAdminLogin, checkAdminPermission, (req, res) => {
 app.get('/admin/course/:courseId', (req, res) => {
-  Course.findById(req.params.courseId, { include: [Student, Unit] }).then(course => {
+  Course.findById(req.params.courseId, { include: [Student, Unit, Business] }).then(course => {
     res.send(course)
   })
 })

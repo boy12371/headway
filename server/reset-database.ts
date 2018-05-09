@@ -31,7 +31,7 @@ const main = async () => {
   await createMentor({ first_name: 'Jesus', businessId: 1, email: 'jesus@hotmail.com', password: 'password' })
   await BusinessStudent.create({ businessId: 1, studentId: 1, })
   await BusinessStudent.create({ businessId: 1, studentId: 2, })
-  await BusinessCourse​​.create({ businessId: 1, courseId: 1, })
+  await BusinessCourse.create({ businessId: 1, courseId: 1, })
   await CourseStudent.create({ courseId: 1, studentId: 1, assigned: Date.now() })
   await CourseStudent.create({ courseId: 1, studentId: 2, assigned: Date.now() })
   await CourseStudent.create({ courseId: 1, studentId: 3, assigned: Date.now() })

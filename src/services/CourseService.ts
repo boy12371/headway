@@ -9,4 +9,16 @@ export class CourseService {
         return res.data
       })
   }
+  get(id) {
+    return axios.get(BASE_URL + '/courses/' + id)
+      .then(res => {
+        return res.data
+      })
+  }
+  create(name, businessIds) {
+    return axios.post(BASE_URL + '/admin/courses/create', {
+      name,
+      businessIds
+    })
+  }
 }

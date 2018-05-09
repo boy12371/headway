@@ -1,19 +1,23 @@
 <transition name="Modal">
   <Modal @close="$emit('close')">
     <Card slot="body" title="Add student">
-      <form action="" slot="body">
+      <form action="" slot="body" @submit="addStudent">
         <div class="form__group">
-          <label class="label" for="student-name">Name</label>
-          <input type="text" class="input" id="student-name" autofocus>
+          <label class="label" for="first-name">First name</label>
+          <input type="text" class="input" id="first-name" v-model="firstName" autofocus>
+        </div>
+        <div class="form__group">
+          <label class="label" for="last-name">Last name</label>
+          <input type="text" class="input" id="last-name" v-model="lastName">
         </div>
         <div class="form__group">
           <label class="label" for="student-email">Email</label>
-          <input type="email" class="input" id="student-email">
+          <input type="email" class="input" id="student-email" v-model="email">
         </div>
         <div class="form__group">
           <label class="label" for="student-email">Add to Business (optional)</label>
-          <select id="" name="" class="input">
-            <option v-for="business in businesses" value="">{{ business.name }}</option>
+          <select id="" name="" class="input" v-model="businessId">
+            <option v-for="business in businesses" :value="business.id">{{ business.name }}</option>
           </select>
         </div>
         <div class="form__footer">

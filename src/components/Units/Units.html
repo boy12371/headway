@@ -1,6 +1,8 @@
 <div class="Units">
   <div class="Units__wrap" v-if="units">
-    <Card v-for="unit in units" :key="unit.id" :title="unit"></Card>
+    <router-link v-for="unit in units" :to="unit">
+      <Card v-for="unit in units" :key="unit.id" :title="unit"></Card>
+    </router-link>
   </div>
   <div class="Units__error" v-if="!units.length">
     <div class="text-centered">

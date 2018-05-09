@@ -5,9 +5,8 @@ export const mutations = {
   setStudents(state, students) {
     state.students = students
   },
-  setActiveCourse(state, name) {
-    state.activeCourse = state.courses
-      .find(course => course.name === name)
+  setActiveCourse(state, course) {
+    state.activeCourse = course
   },
   setBusinesses(state, businesses) {
     state.businesses = businesses

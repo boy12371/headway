@@ -37,9 +37,7 @@ export class Dashboard extends Vue {
 
   @Watch('$route', { deep: true})
   watchRoute(newVal, oldVal) {
-    if (newVal.name === 'course') {
-      store.commit('setActiveCourse', newVal.params.id)
-    }
+    this.updateRoute(newVal)
   }
 
   // Set the view name
@@ -47,17 +45,29 @@ export class Dashboard extends Vue {
     return this.$route.name
   }
 
+  updateRoute(route) {
+    if (route.name === 'course') {
+      store.commit('setActiveCourse', route.params.id)
+    }
+  }
+
   get courseMenu() {
     // TODO: Use Course ID for link
-    const menu = this.courses.map((course, index) => ({
-      text: course.name,
-      link: '/c/' + course.name,
-      totalUnits: course.units.length,
-    }))
+    const menu = this.courses.map((course, index) => {
+      const data = {
+        text: course.name,
+        link: '/c/' + course.id,
+        totalUnits: course.units.length,
+      }
+      console.log(data)
+      return data
+    })
     return menu
   }
 
   mounted() {
+
+    this.updateRoute(this.$route)
 
     businessService.getAll().then(businesses => {
       store.commit('setBusinesses', businesses)
