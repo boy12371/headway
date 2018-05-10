@@ -16,6 +16,8 @@ import './Dashboard.scss'
 import store from '../../store'
 import axios from 'axios'
 
+const toggleModal = k => store.commit('toggleModal', k)
+
 @Component({
   template: require('./Dashboard.html'),
   name: 'Dashboard',
@@ -41,6 +43,7 @@ export class Dashboard extends Vue {
   @Provide() studentService = new StudentService()
   @Provide() businessService = new BusinessService()
   @Provide() unitService = new UnitService()
+  @Provide() toggleModal = toggleModal
 
   @State courses
   @State authed
@@ -52,10 +55,6 @@ export class Dashboard extends Vue {
   // Set the view name
   get view() {
     return this.$route.name
-  }
-
-  toggleModal(k) {
-    store.commit('toggleModal', k)
   }
 
   get courseMenu() {

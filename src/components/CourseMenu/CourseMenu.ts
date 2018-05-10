@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
 
 import './CourseMenu.scss'
 
@@ -10,10 +10,7 @@ import store from '../../store'
 })
 export class CourseMenu extends Vue {
   @Prop() items: any[]
-
-  toggleModal(k) {
-    store.commit('toggleModal', k)
-  }
+  @Inject() toggleModal
 
   linkClass(active) {
     return {

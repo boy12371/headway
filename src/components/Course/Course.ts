@@ -1,4 +1,4 @@
-import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
+import { Component, Prop, Watch, Vue, Inject } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
 import { CourseService } from '../../services'
@@ -33,6 +33,8 @@ export class Course extends Vue {
   @State activeCard
   @State breadcrumbs
 
+  @Inject() toggleModal
+
   @Watch('$route', { deep: true})
   watchRoute(newVal, oldVal) {
     this.updateRoute(newVal)
@@ -40,10 +42,6 @@ export class Course extends Vue {
 
   get view() {
     return this.$route.name
-  }
-
-  toggleModal(k) {
-    store.commit('toggleModal', k)
   }
 
   updateRoute(route) {
