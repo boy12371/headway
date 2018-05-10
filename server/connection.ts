@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript'
-import parse from 'parse-database-url'
+import * as parse from 'parse-database-url'
 
 const url = process.env.CLEARDB_DATABASE_URL
 
