@@ -1,0 +1,26 @@
+.Cards {
+  .Card {
+    cursor: pointer;
+  }
+}
+
+.Cards__error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media(min-width: 1024px) {
+
+  .Cards__wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+
+}

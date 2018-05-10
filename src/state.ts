@@ -5,6 +5,7 @@ export const state = {
   businesses: [],
   activeCourse: {},
   activeUnit: {},
-  activeCard: null,
+  activeCard: {},
   user: {},
+  breadcrumbs: []
 }

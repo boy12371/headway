@@ -7,7 +7,7 @@ import Student from './Student'
 export class Card extends Model<Card> {
   @Column name: string
   @Column slug: string
-  @Column content: string
+  @Column(DataType.TEXT) content: string
   @Column evidence_task: string
   @Column media: string
   @Column(DataType.TEXT) quiz: string

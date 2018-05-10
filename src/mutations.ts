@@ -20,6 +20,9 @@ export const mutations = {
     state.authed = true
     state.user = user
   },
+  setBreadcrumbs(state, crumbs) {
+    state.breadcrumbs = crumbs
+  },
   reset(state) {
     state.courses = []
     state.students = []

@@ -1,33 +1,60 @@
 <div class="LearningCard">
-  <form>
-    <div class="form__group">
-      <label class="label" for="card-name">Name</label>
-      <input type="text" class="input" id="card-name" v-model="card.name">
-    </div>
+  <div class="LearningCard__form">
+    <form>
+      <div class="form__group">
+        <label class="label" for="card-name">Name</label>
+        <input type="text" class="input" id="card-name" v-model="card.name">
+      </div>
 
-    <div class="form__group">
-      <div class="LearningCard__actions">
-        <span class="btn">Upload Video</span>
-        <span class="btn">Upload Audio</span>
+      <div class="form__group">
+        <div class="LearningCard__actions">
+          <span class="btn">Upload Video</span>
+          <span class="btn">Upload Audio</span>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label class="label" for="card-content">Content</label>
+        <textarea class="input" id="card-content" v-model="card.content"></textarea>
+      </div>
+
+      <div class="form__group">
+        <label class="label" for="card-task">Task</label>
+        <textarea class="input" id="card-task" v-model="card.evidence_task"></textarea>
+      </div>
+
+      <h3>Quiz</h3>
+
+      <Quiz :questions="quiz"></Quiz>
+
+      <div class="form__footer">
+        <button class="btn">Update Card</button>
+      </div>
+    </form>
+  </div>
+  <div class="LearningCard__mobile">
+    <div class="Mobile">
+      <div class="Mobile__screen">
+        <div class="Mobile__header">
+          <h4 class="flat">{{ card.name }}</h4>
+        </div>
+        <div class="Mobile__hero">
+          <p class="flat">Upload a video to see it here</p>
+        </div>
+        <div class="Mobile__content">
+          <p v-for="p in card.content.split('\n')">{{ p }}</p>
+        </div>
+        <div class="Mobile__footer">
+          <div class="btn" @click="quizVisible = true">Take quiz</div>
+          <div class="btn">View task</div>
+        </div>
+        <div class="Mobile__task">
+          {{ card.task }}
+        </div>
+        <div :class="{ 'Mobile__quiz': true, 'Mobile__quiz--visible' : quizVisible }">
+          <StudentQuiz @finish="quizVisible = false" :questions="quiz"></StudentQuiz>
+        </div>
       </div>
     </div>
-
-    <div class="form__group">
-      <label class="label" for="card-content">Content</label>
-      <textarea class="input" id="card-content" v-model="card.content"></textarea>
-    </div>
-
-    <div class="form__group">
-      <label class="label" for="card-task">Task</label>
-      <textarea class="input" id="card-task" v-model="card.evidence_task"></textarea>
-    </div>
-
-    <h3>Quiz</h3>
-
-    <Quiz :questions="quiz"></Quiz>
-
-    <div class="form__footer">
-      <button class="btn">Update Card</button>
-    </div>
-  </form>
+  </div>
 </div>

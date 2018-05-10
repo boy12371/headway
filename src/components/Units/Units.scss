@@ -23,4 +23,13 @@
     grid-gap: 1rem;
   }
 
+  .Units .Card {
+    opacity: 0.75;
+    transition: opacity 200ms ease;
+  }
+
+  .Units .Card:hover {
+    opacity: 1;
+  }
+
 }

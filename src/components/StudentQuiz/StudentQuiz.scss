@@ -1,0 +1,27 @@
+@import "../../sass/variables.scss";
+
+.StudentQuiz__answer {
+  display: block;
+  height: 2.5rem;
+  width: 100%;
+  line-height: 2.5rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 0 1rem;
+  text-align: left;
+  transition: all 200ms ease;
+  outline: 0;
+}
+
+.StudentQuiz__answer--clicked.StudentQuiz__answer--correct {
+  background: $green;
+  color: #fff;
+  border-color: $green;
+}
+
+.StudentQuiz__answer--clicked.StudentQuiz__answer--wrong {
+  font-weight: 900;
+  background: red;
+  color: #fff;
+  border-color: red;
+}

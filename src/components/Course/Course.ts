@@ -9,6 +9,7 @@ const unitService = new UnitService()
 
 import { Units } from '../Units'
 import { Cards } from '../Cards'
+import { Breadcrumbs } from '../Breadcrumbs'
 import { LearningCard } from '../LearningCard'
 
 import './Course.scss'
@@ -21,6 +22,7 @@ import store from '../../store'
     Units,
     Cards,
     LearningCard,
+    Breadcrumbs,
   }
 })
 
@@ -29,9 +31,7 @@ export class Course extends Vue {
   @State activeCourse
   @State activeUnit
   @State activeCard
-
-  @Prop() name: string
-  @Prop({ default: () => [] }) units: any[]
+  @State breadcrumbs
 
   @Watch('$route', { deep: true})
   watchRoute(newVal, oldVal) {
@@ -46,11 +46,27 @@ export class Course extends Vue {
     const { cardId, courseId, unitId } = route.params
     if (route.name === 'course') {
       courseService.get(courseId).then(course => {
+        store.commit('setBreadcrumbs', [
+          {
+            label: course.name,
+            link: { name: 'course', params: { courseId: course.id } }
+          }
+        ])
         store.commit('setActiveCourse', course)
       })
     }
     if (route.name === 'unit') {
       unitService.get(unitId).then(unit => {
+        store.commit('setBreadcrumbs', [
+          {
+            label: unit.course.name,
+            link: { name: 'course', params: { courseId: unit.course.id } }
+          },
+          {
+            label: unit.name,
+            link: { name: 'unit', params: { courseId: unit.course.id, unitId: unit.id } }
+          }
+        ])
         store.commit('setActiveUnit', unit)
       })
     }
@@ -61,6 +77,20 @@ export class Course extends Vue {
         if (cards.length === 1) {
           const card = cards.pop()
           store.commit('setActiveCard', card)
+          store.commit('setBreadcrumbs', [
+            {
+              label: unit.course.name,
+              link: { name: 'course', params: { courseId: unit.course.id } }
+            },
+            {
+              label: unit.name,
+              link: { name: 'unit', params: { courseId: unit.course.id, unitId: unit.id } }
+            },
+            {
+              label: this.activeCard.name,
+              link: { name: 'card', params: { courseId: unit.course.id, unitId: unit.id, cardId: this.activeCard.id } }
+            }
+          ])
         } else {
           console.warn('No card', cardId, 'in unit', unit.name)
         }

@@ -1,0 +1,11 @@
+<div class="StudentQuiz">
+  <div class="StudentQuiz__question" v-show="currentQuestion == index + 1" v-for="(question, index) in questions">
+    <h4 class="StudentQuiz__text">{{ question.question }}</h4>
+    <button
+      :class="{ 'StudentQuiz__answer' : true, 'StudentQuiz__answer--correct' : answer.correct, 'StudentQuiz__answer--wrong' : !answer.correct,  'StudentQuiz__answer--clicked' : clicked === i }"
+      v-for="(answer, i) in question.answers"
+      @click="submitAnswer(i)">
+      {{ answer.text }}
+    </button>
+  </div>
+</div>
