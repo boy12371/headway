@@ -28,6 +28,7 @@ export class Course extends Vue {
 
   @State activeCourse
   @State activeUnit
+  @State activeCard
 
   @Prop() name: string
   @Prop({ default: () => [] }) units: any[]
@@ -42,14 +43,27 @@ export class Course extends Vue {
   }
 
   updateRoute(route) {
+    const { cardId, courseId, unitId } = route.params
     if (route.name === 'course') {
-      courseService.get(route.params.courseId).then(course => {
+      courseService.get(courseId).then(course => {
         store.commit('setActiveCourse', course)
       })
     }
     if (route.name === 'unit') {
-      unitService.get(route.params.unitId).then(unit => {
+      unitService.get(unitId).then(unit => {
         store.commit('setActiveUnit', unit)
+      })
+    }
+    if (route.name === 'card') {
+      unitService.get(unitId).then(unit => {
+        store.commit('setActiveUnit', unit)
+        const cards = unit.cards.filter(card => card.id === parseInt(cardId))
+        if (cards.length === 1) {
+          const card = cards.pop()
+          store.commit('setActiveCard', card)
+        } else {
+          console.warn('No card', cardId, 'in unit', unit.name)
+        }
       })
     }
   }

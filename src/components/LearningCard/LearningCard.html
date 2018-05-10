@@ -1,1 +1,33 @@
-<h1>Card data will go here</h1>
+<div class="LearningCard">
+  <form>
+    <div class="form__group">
+      <label class="label" for="card-name">Name</label>
+      <input type="text" class="input" id="card-name" v-model="card.name">
+    </div>
+
+    <div class="form__group">
+      <div class="LearningCard__actions">
+        <span class="btn">Upload Video</span>
+        <span class="btn">Upload Audio</span>
+      </div>
+    </div>
+
+    <div class="form__group">
+      <label class="label" for="card-content">Content</label>
+      <textarea class="input" id="card-content" v-model="card.content"></textarea>
+    </div>
+
+    <div class="form__group">
+      <label class="label" for="card-task">Task</label>
+      <textarea class="input" id="card-task" v-model="card.evidence_task"></textarea>
+    </div>
+
+    <h3>Quiz</h3>
+
+    <Quiz :questions="quiz"></Quiz>
+
+    <div class="form__footer">
+      <button class="btn">Update Card</button>
+    </div>
+  </form>
+</div>

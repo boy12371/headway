@@ -12,6 +12,5 @@ import { QuizAnswer } from '../QuizAnswer'
 export class QuizQuestion extends Vue {
   @Prop() question: string
   @Prop() answers: any[]
-  @Prop() count: string
-
+  @Prop() count: number
 }

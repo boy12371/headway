@@ -5,8 +5,8 @@
     <label class="label">Answers</label>
     <QuizAnswer
       v-for="(answer, aIndex) in answers"
-      key="aIndex"
-      :answer="answer.text" 
+      :key="aIndex"
+      :answer="answer.text"
       :correct="answer.correct"
     />
     <div class="input Quiz__add-answer" @click="$emit('addAnswer')">Add another answer</div>

@@ -1,6 +1,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import './Header.scss'
+import { State } from 'vuex-class'
 
 @Component({
     template: require('./Header.html'),
@@ -10,5 +11,6 @@ import './Header.scss'
 })
 
 export class Header extends Vue {
+  @State user
   @Prop({ default: false }) authed: boolean
 }

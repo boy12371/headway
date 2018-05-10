@@ -4,5 +4,7 @@ export const state = {
   students: [],
   businesses: [],
   activeCourse: {},
-  activeUnit: {}
+  activeUnit: {},
+  activeCard: null,
+  user: {},
 }

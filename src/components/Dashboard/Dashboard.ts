@@ -53,7 +53,6 @@ export class Dashboard extends Vue {
         link: '/c/' + course.id,
         totalUnits: course.units.length,
       }
-      console.log(data)
       return data
     })
     return menu

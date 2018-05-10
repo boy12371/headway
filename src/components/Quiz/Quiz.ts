@@ -12,7 +12,7 @@ import './Quiz.scss'
   }
 })
 export class Quiz extends Vue {
-  questions = []
+  @Prop() questions: any[]
 
   addQuestion() {
     const question = {

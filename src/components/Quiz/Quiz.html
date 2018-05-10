@@ -2,7 +2,7 @@
   <QuizQuestion
     v-if="questions.length"
     v-for="(question, qIndex) in questions"
-    key="qIndex"
+    :key="qIndex"
     @addAnswer="addAnswer(qIndex)"
     :count="qIndex + 1"
     :question="question.question"
