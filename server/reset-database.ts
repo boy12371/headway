@@ -28,7 +28,7 @@ const main = async () => {
     d.quiz = JSON.stringify(d.quiz)
     return Card.create(d)
   }))
-  //await Card.create({ name: 'Welcome', unitId: 1, evidence_task: 'Demonstrate a set of clean tools', quiz: JSON.stringify(quiz) })
+  // await Card.create({ name: 'Welcome', unitId: 1, evidence_task: 'Demonstrate a set of clean tools', quiz: JSON.stringify(quiz) })
   await createMentor({ first_name: 'Buddha', businessId: 1, email: 'buddha@gmail.com', password: 'password' })
   await createMentor({ first_name: 'Jesus', businessId: 1, email: 'jesus@hotmail.com', password: 'password' })
   await BusinessStudent.create({ businessId: 1, studentId: 1, })
@@ -41,7 +41,7 @@ const main = async () => {
   await CourseStudent.create({ courseId: 2, studentId: 2, assigned: Date.now() })
   await Activity.create({ studentId: 1, cardId: 1, evidence_proof: 'I mowed a lawn', completed: true })
   // await Activity.create({ studentId: 1, cardId: 2, evidence_proof: 'I washed a lawn?', }) // DUPE!
-  //done()
+  done()
 }
 
 const reset = () => {
