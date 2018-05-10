@@ -41,9 +41,17 @@ const main = async () => {
   // await Activity.create({ studentId: 1, cardId: 2, evidence_proof: 'I washed a lawn?', }) // DUPE!
   await Activity.create({ studentId: 1, cardId: 2, evidence_proof: 'I cleaned the deck', completed: true })
   await Activity.create({ studentId: 1, cardId: 3, evidence_proof: 'I hacked it out', completed: true})
-  done()
+  return Promise.resolve('ok')
 }
 
-connection.sync({ force: true }).then(() => {
-  main()
-})
+const reset = () => {
+  connection.sync({ force: true }).then(() => {
+    main()
+  })
+}
+
+if (process.argv.pop() === '-run') {
+  reset()
+}
+
+export default reset

@@ -1,3 +1,4 @@
+
 import app from '../app'
 
 import { Business, Card, Course, Mentor, Student, Unit, Admin, BusinessStudent, BusinessCourse, CourseStudent, Activity } from '../models'
@@ -19,11 +20,13 @@ app.get('/logout', (req, res) => {
 
 
 // This is probably a really bad idea
+import resetDatabase from '../reset-database'
 
 app.get('/reset-database', (req, res) => {
-  res.send('<form method="POST"><button>RESET DATABASE</button></form>')
+  res.send(`<form method="POST"><button onclick="return confirm('Are you sure?')">RESET DATABASE</button></form>`)
 })
 
 app.post('/reset-database', (req, res) => {
-
+  resetDatabase()
+  res.send('Database Reset')
 })
