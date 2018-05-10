@@ -6,6 +6,12 @@ import './sass/headway.scss'
 
 import store from './store'
 
+// Global Components
+import { Modal } from './components/Modal'
+import { Card } from './components/Card'
+Vue.component('Card', Card)
+Vue.component('Modal', Modal)
+
 // tslint:disable-next-line:no-unused-expression
 new Vue({
   el: '#app-main',
