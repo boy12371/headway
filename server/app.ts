@@ -19,10 +19,12 @@ app.engine('handlebars', hbs.engine)
 // Middleware
 import { cors } from './middleware'
 import * as bodyParser from 'body-parser'
+const staticRoute = express.static(path.resolve('./dist'))
 
 app.use(cors)
-app.use('/', express.static(path.resolve('./dist')))
-app.use('/app', express.static(path.resolve('./dist')))
+app.use('/', staticRoute)
+app.use('/app', staticRoute)
+app.use('/dashboard', staticRoute)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(require('express-session')({ secret: 'I hate cats', resave: false, saveUninitialized: false }))

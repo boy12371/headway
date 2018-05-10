@@ -9,6 +9,7 @@ import { PASSWORD_OPTS } from '../constants'
 import mail from '../mail'
 
 import { Admin, Course, Business, BusinessCourse, Student, Unit, Card } from '../models'
+import { Logger } from '../logger'
 
 app.get('/admin', checkAdminLogin, (req, res) => {
   res.send(req.user)
@@ -19,7 +20,7 @@ app.get('/admin/login', (req, res) => {
 })
 
 app.post('/admin/login', authAdmin, (req, res) => {
-  res.redirect('/admin')
+  res.send(req.user)
 })
 
 app.get('/admin/register', (req, res) => {

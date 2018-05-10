@@ -32,6 +32,7 @@ export class Login extends Vue {
       const user = res.data
       if (res.status === 200 && user.id) {
         store.commit('setUser', user)
+        this.$router.push('dashboard')
       }
     })
   }

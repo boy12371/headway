@@ -7,8 +7,10 @@
   <div class="flex flex--aligned" v-if="authed">
     <button class="btn Header__action" @click="$emit('createBusiness')">Create business</button>
     <button class="btn Header__action" @click="$emit('inviteStudent')">Invite student</button>
-    <div class="User">
-      <div class="User__avatar">J</div>
-    </div>
+    <router-link to="/login">
+      <div class="User">
+        <div class="User__avatar">J</div>
+      </div>
+    </router-link>
   </div>
 </header>

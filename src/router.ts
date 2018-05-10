@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter, { Location, Route, RouteConfig } from 'vue-router'
 import { makeHot, reload } from './util/hot-reload'
 
+const loginComponent = () => import('./components/Login').then(({ Login }) => Login)
 const landingComponent = () => import('./components/landing').then(({ LandingComponent }) => LandingComponent)
 const dashboardComponent = () => import('./components/Dashboard').then(({ Dashboard }) => Dashboard)
 const styleguideComponent = () => import('./components/styleguide').then(({ StyleguideComponent }) => StyleguideComponent)
@@ -12,6 +13,11 @@ export const createRoutes: () => RouteConfig[] = () => [
   {
     path: '/',
     component: landingComponent
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: loginComponent
   },
   {
     path: '/dashboard',
