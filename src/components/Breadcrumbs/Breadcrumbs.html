@@ -1,5 +1,8 @@
   <div class="Breadcrumbs">
-    <div class="Breadcrumbs__item" v-for="crumb in crumbs" :key="crumb.name">
-      <router-link :to="crumb.link">{{ crumb.label }}</router-link>
+    <div class="Breadcrumbs__wrap">
+      <div class="Breadcrumbs__item" v-for="crumb in crumbs" :key="crumb.name">
+        <router-link :to="crumb.link">{{ crumb.label }}</router-link>
+      </div>
     </div>
+    <slot></slot>
   </div>

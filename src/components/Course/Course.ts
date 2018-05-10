@@ -42,6 +42,10 @@ export class Course extends Vue {
     return this.$route.name
   }
 
+  toggleModal(k) {
+    store.commit('toggleModal', k)
+  }
+
   updateRoute(route) {
     const { cardId, courseId, unitId } = route.params
     if (route.name === 'course') {

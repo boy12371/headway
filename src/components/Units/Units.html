@@ -3,7 +3,6 @@
     <router-link v-for="unit in units" :key="unit.id" :to="{ name: 'unit', params: { courseId: courseId, unitId: unit.id }}">
       <Card :title="unit.name"></Card>
     </router-link>
-    <button class="btn" @click="create()">Create a unit</button>
   </div>
   <div class="Units__error" v-if="!units.length">
     <div class="text-centered">

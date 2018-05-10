@@ -3,9 +3,15 @@
 .Breadcrumbs {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid #ddd;
+}
+
+.Breadcrumbs__wrap {
+  display: flex;
+  align-items: center;
 }
 
 .Breadcrumbs__item {

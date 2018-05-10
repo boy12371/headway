@@ -11,10 +11,12 @@
     <div class="Dashboard__main">
       <Students v-if="view == 'dashboard'"></Students>
       <!-- The following v-if is bad. -->
-      <Course v-if="view != 'dashboard'" :name="activeCourse.name" :units="activeCourse.units"></Course>
+      <Course @create-unit="showUnitModal = true" v-if="view != 'dashboard'" :name="activeCourse.name" :units="activeCourse.units"></Course>
     </div>
   </div>
-  <AddCourse v-show="showCourseModal" @close="showCourseModal = false"></AddCourse>
-  <AddStudent v-show="showStudentModal" @close="showStudentModal = false"></AddStudent>
-  <AddBusiness v-show="showBusinessModal" @close="showBusinessModal = false"></AddBusiness>
+  <AddCourse v-show="modals.course" @close="toggleModal('course')"></AddCourse>
+  <AddStudent v-show="modals.student" @close="toggleModal('student')"></AddStudent>
+  <AddBusiness v-show="modals.business" @close="toggleModal('business')"></AddBusiness>
+  <AddUnit v-show="modals.unit" @close="toggleModal('unit')"></AddUnit>
+  <AddCard v-show="modals.card" @close="toggleModal('card')"></AddCard>
 </div>

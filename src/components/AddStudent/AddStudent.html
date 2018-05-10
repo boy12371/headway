@@ -15,7 +15,7 @@
           <input type="email" class="input" id="student-email" v-model="email">
         </div>
         <div class="form__group">
-          <label class="label" for="student-email">Add to Business (optional)</label>
+          <label class="label">Add to Business (optional)</label>
           <label class="input" v-for="(business, index) in businesses">
             <input type="checkbox" :::id="index" :value="business.id" v-model="businessIds">
             {{ business.name }}

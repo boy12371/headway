@@ -1,0 +1,15 @@
+<transition name="Modal">
+  <Modal @close="$emit('close')">
+    <Card slot="body" title="Create card">
+      <form @submit.prevent="submit" slot="body">
+        <div class="form__group">
+          <label class="label" for="card-name">Name</label>
+          <input type="text" class="input" id="card-name" autofocus>
+        </div>
+        <div class="form__footer">
+          <button class="btn btn--block">Create</button>
+        </div>
+      </form>
+    </Card>
+  </Modal>
+</transition>

@@ -7,5 +7,12 @@ export const state = {
   activeUnit: {},
   activeCard: {},
   user: {},
-  breadcrumbs: []
+  breadcrumbs: [],
+  modals: {
+    unit: false,
+    student: false,
+    course: false,
+    business: false,
+    card: false,
+  }
 }

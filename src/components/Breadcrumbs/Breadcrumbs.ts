@@ -9,5 +9,5 @@ import './Breadcrumbs.scss'
 })
 
 export class Breadcrumbs extends Vue {
-  @Prop() crumbs: any[]
+  @Prop({default: []}) crumbs: any[]
 }

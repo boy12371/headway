@@ -8,7 +8,7 @@ const courseService = new CourseService()
 const businessService = new BusinessService()
 const studentService = new StudentService()
 
-import { AddStudent, AddBusiness, Students, Course, Header, Businesses, CourseMenu, AddCourse } from '../'
+import { AddStudent, AddUnit, AddCard, AddBusiness, Students, Course, Header, Businesses, CourseMenu, AddCourse } from '../'
 
 import { Login } from '../Login'
 
@@ -24,6 +24,8 @@ import axios from 'axios'
     AddCourse,
     AddStudent,
     AddBusiness,
+    AddUnit,
+    AddCard,
     Students,
     CourseMenu,
     Course,
@@ -34,6 +36,7 @@ export class Dashboard extends Vue {
   showCourseModal = false
   showStudentModal = false
   showBusinessModal = false
+  showUnitModal = false
 
   @Provide() studentService = new StudentService()
   @Provide() businessService = new BusinessService()
@@ -42,12 +45,17 @@ export class Dashboard extends Vue {
   @State courses
   @State authed
   @State user
+  @State modals
 
   @State activeCourse
 
   // Set the view name
   get view() {
     return this.$route.name
+  }
+
+  toggleModal(k) {
+    store.commit('toggleModal', k)
   }
 
   get courseMenu() {
