@@ -1,8 +1,8 @@
 <div class="Course">
   <Breadcrumbs :crumbs="breadcrumbs">
     <div>
-      <button class="btn" v-show="view == 'course'" @click="toggleModal('unit')">Create a unit</button>
-      <button class="btn" v-show="view == 'unit'" @click="toggleModal('card')">Create a card</button>
+      <button class="btn Course__action" v-show="view == 'course'" @click="toggleModal('unit')">Create a unit</button>
+      <button class="btn Course__action" v-show="view == 'unit'" @click="toggleModal('card')">Create a card</button>
     </div>
   </Breadcrumbs>
   <Units
