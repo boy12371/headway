@@ -3,7 +3,7 @@
   <div class="Students__wrap">
     <Card v-for="(student, sIndex) in students" :title="student.name" :key="sIndex">
       <div slot="body">
-        <p>{{ student.email }}</p>
+        <p><small>{{ student.email }}</small></p>
         <div v-for="(course, cIndex) in student.courses">
           <label class="label flat flex flex--spaced">
             <span>{{ course.name }}</span>
