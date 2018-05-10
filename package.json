@@ -15,7 +15,7 @@
     "dev": "webpack-dev-server --config config/webpack.config.dev.js --hot --inline",
     "lint": "tslint src/**/*.ts; tslint server/**/*.ts --fix;",
     "serve": "http-server dist/ -g -o",
-    "start": "npm run build; ts-node ./server/server.ts"
+    "start": "ts-node ./server/server.ts"
   },
   "dependencies": {
     "@types/node": "~9.4.0",
