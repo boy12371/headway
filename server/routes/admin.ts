@@ -11,6 +11,8 @@ import mail from '../mail'
 import { Admin, Course, Business, BusinessCourse, Student, Unit, Card } from '../models'
 import { Logger } from '../logger'
 
+// app.use('/admin/*', checkAdminLogin)
+
 app.get('/admin', checkAdminLogin, (req, res) => {
   res.send(req.user)
 })
