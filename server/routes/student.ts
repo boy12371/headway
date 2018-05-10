@@ -3,7 +3,7 @@ import app from '../app'
 import { checkStudentLogin, authStudent, checkStudentEnrolled } from '../authentication'
 
 import { Course, Student, Card } from '../models'
-import { getStudentActivitiesByUnit, studentUnitProgress, incrementCompletedUnits } from '../actions';
+import { getStudentActivitiesByUnit, studentUnitProgress, incrementCompletedUnits } from '../actions'
 
 app.get('/student', checkStudentLogin, (req, res) => {
   res.send('Authed as student')

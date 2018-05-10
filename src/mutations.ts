@@ -4,6 +4,8 @@ export const mutations = {
     state.students = overview.students
     state.businesses = overview.businesses
     state.user = overview.user
+    // state.authed = overview.user && overview.user.id
+    state.authed = true
   },
   setActiveCourse(state, course) {
     state.activeCourse = course
@@ -13,6 +15,10 @@ export const mutations = {
   },
   setActiveCard(state, card) {
     state.activeCard = card
+  },
+  setUser(state, user) {
+    state.authed = true
+    state.user = user
   },
   reset(state) {
     state.courses = []

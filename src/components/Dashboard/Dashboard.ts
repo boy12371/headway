@@ -10,6 +10,8 @@ const studentService = new StudentService()
 
 import { AddStudent, AddBusiness, Students, Course, Header, Businesses, CourseMenu, AddCourse } from '../'
 
+import { Login } from '../Login'
+
 import './Dashboard.scss'
 import store from '../../store'
 import axios from 'axios'
@@ -25,6 +27,7 @@ import axios from 'axios'
     Students,
     CourseMenu,
     Course,
+    Login,
   }
 })
 export class Dashboard extends Vue {
@@ -37,6 +40,7 @@ export class Dashboard extends Vue {
 
   @State courses
   @State authed
+  @State user
 
   @State activeCourse
 
