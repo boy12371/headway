@@ -4,7 +4,7 @@ import app from '../app'
 import mailer from '../mailer'
 
 import { authEpilogue, authAdmin, checkAdminLogin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, checkAdminPermission, } from '../authentication'
-import { createAdmin, inviteStudent, studentSummary, courseSummary, businessSummary } from '../actions'
+import { createAdmin, createCourse, inviteStudent, studentSummary, courseSummary, businessSummary } from '../actions'
 import { PASSWORD_OPTS } from '../constants'
 import mail from '../mail'
 
@@ -86,16 +86,8 @@ app.get('/admin/courses', checkAdminLogin, (req, res) => {
 app.post('/admin/courses/create', (req, res) => {
   const { name, businessIds } = req.body
   // TODO: check Admin owns Business
-  Course.create({
-    name,
-    adminId : 1, // req.user.admin.id
-  }).then(course => {
-    businessIds.forEach(businessId => {
-      BusinessCourse.create({
-        businessId,
-        courseId : course.id
-      })
-    })
+  createCourse(name, businessIds).then(course => {
+    res.send(course)
   })
 })
 

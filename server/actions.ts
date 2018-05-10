@@ -2,7 +2,7 @@ import * as bcrypt from 'bcrypt'
 import Admin from './models/Admin'
 import Student from './models/Student'
 import Mentor from './models/Mentor'
-import { Business, BusinessStudent, Activity, Unit, Card, CourseStudent, Course } from './models'
+import { Business, BusinessCourse, BusinessStudent, Activity, Unit, Card, CourseStudent, Course } from './models'
 import { Logger } from './logger'
 import { UnitProgress } from './interfaces'
 
@@ -17,6 +17,13 @@ export const createAdmin = (data) => {
     email,
     password,
     salt,
+  })
+}
+
+export const createCourse = (name, businesses) => {
+  return Course.create({
+    name,
+    adminId : 1, // req.user.admin.id
   })
 }
 

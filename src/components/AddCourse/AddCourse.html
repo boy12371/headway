@@ -1,15 +1,15 @@
 <transition name="Modal">
   <Modal @close="$emit('close')">
     <Card slot="body" title="Create course">
-      <form action="" slot="body">
+      <form @submit.prevent="submit" slot="body">
         <div class="form__group">
           <label class="label" for="student-name">Name</label>
-          <input type="text" class="input" id="student-name" autofocus>
+          <input type="text" class="input" id="student-name" autofocus v-model="name">
         </div>
         <div class="form__group">
           <label class="label">Add to Business (optional)</label>
           <label class="checkbox" v-for="(business, index) in businesses">
-            <input type="checkbox" :::id="index" :value="business.id" v-model="businessIds">
+            <input type="checkbox" :id="index" :value="business.id" v-model="businessIds">
             {{ business.name }}
           </label>
         </div>

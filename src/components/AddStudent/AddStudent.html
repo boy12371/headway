@@ -1,7 +1,7 @@
 <transition name="Modal">
   <Modal @close="$emit('close')">
     <Card slot="body" title="Add student">
-      <form action="" slot="body" @submit="addStudent">
+      <form slot="body" @submit="addStudent">
         <div class="form__group">
           <label class="label" for="first-name">First name</label>
           <input type="text" class="input" id="first-name" v-model="firstName" autofocus>

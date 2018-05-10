@@ -20,5 +20,8 @@ export class CourseService {
       name,
       businessIds
     })
+    .then(res => {
+      return res.data
+    })
   }
 }

@@ -23,6 +23,9 @@ export const mutations = {
   setBreadcrumbs(state, crumbs) {
     state.breadcrumbs = crumbs
   },
+  createCourse(state, course) {
+    state.courses.push(course)
+  },
   toggleModal(state, k) {
     state.modals[k] = !state.modals[k]
   },
