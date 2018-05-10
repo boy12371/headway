@@ -28,11 +28,8 @@ export class AddCourse extends Vue {
 
   submit() {
     this.$emit('close')
-    courseService.create(this.name, this.businessIds).then(res => {
-      // Help me Simon! this should be done in the function above
-      res.units = []
-      res.students = []
-      store.commit('createCourse', res)
+    courseService.create(this.name, this.businessIds).then(course => {
+      store.commit('createCourse', course)
     })
   }
 

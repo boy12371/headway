@@ -63,7 +63,7 @@ export class Dashboard extends Vue {
       const data = {
         text: course.name,
         link: '/c/' + course.id,
-        totalUnits: course.units.length,
+        totalUnits: course.unit ? course.units.length : 0,
       }
       return data
     })

@@ -21,7 +21,10 @@ export class CourseService {
       businessIds
     })
     .then(res => {
-      return res.data
+      let course = res.data
+      course.students = []
+      course.units = []
+      return course
     })
   }
 }

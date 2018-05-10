@@ -7,7 +7,7 @@
   <div class="Units__error" v-if="!units.length">
     <div class="text-centered">
       <h2>You haven't created any units</h2>
-      <button class="btn">Create a unit</button>
+      <button class="btn" @click="toggleModal('unit')">Create a unit</button>
     </div>
   </div>
 </div>

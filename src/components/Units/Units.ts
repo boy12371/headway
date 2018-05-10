@@ -15,6 +15,7 @@ import store from '../../store'
 })
 
 export class Units extends Vue {
+  @Inject() toggleModal
   @Inject() unitService
 
   @Prop({ default: () => [] }) units: any[]
