@@ -41,7 +41,7 @@
         <div class="Mobile__hero">
           <p class="flat">Upload a video to see it here</p>
         </div>
-        <div class="Mobile__content">
+        <div class="Mobile__content" v-if="card.content">
           <p v-for="p in card.content.split('\n')">{{ p }}</p>
         </div>
         <div class="Mobile__footer">
