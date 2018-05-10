@@ -25,7 +25,8 @@ export class AddUnit extends Vue {
 
   submit() {
     this.unitService.create(1, this.name).then(unit => {
-      store.commit('addUnit', unit)
+      console.log('TODO: add unit to course in store')
+      // store.commit('addUnit', unit)
     })
   }
 }

@@ -100,6 +100,14 @@ app.get('/admin/course/:courseId', (req, res) => {
   })
 })
 
+app.post('/admin/units/create', (req, res) => {
+  const { name, courseId } = req.body
+  // TODO: check Admin owns Course
+  Unit.create({name, courseId}).then(unit => {
+    res.send(unit)
+  })
+})
+
 // app.get('/admin/unit/:unitId', checkAdminLogin, checkAdminPermission, (req, res) => {
 app.get('/admin/unit/:unitId', (req, res) => {
   Unit.findById(req.params.unitId, { include: [Card, Course] }).then(unit => {

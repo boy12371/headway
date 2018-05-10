@@ -10,7 +10,7 @@ export class UnitService {
       })
   }
   create(courseId, name) {
-    return axios.post(BASE_URL + '/api/unit', {
+    return axios.post(BASE_URL + '/admin/units/create', {
       courseId,
       name
     })
