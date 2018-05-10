@@ -1,4 +1,5 @@
-import { Table, Column, Model, HasMany, ForeignKey, BelongsTo, BelongsToMany } from 'sequelize-typescript'
+import * as slug from 'slug'
+import { Table, Column, Model, HasMany, ForeignKey, BelongsTo, BelongsToMany, BeforeUpdate, BeforeCreate } from 'sequelize-typescript'
 import Student from './Student'
 import Unit from './Unit'
 import CourseStudent from './CourseStudent'
@@ -10,6 +11,12 @@ import Admin from './Admin'
 export class Course extends Model<Course> {
   @Column name: string
   @Column slug: string
+
+  @BeforeUpdate
+  @BeforeCreate
+  static slugify(instance: Course) {
+    instance.slug = slug(instance.name)
+  }
 
   @ForeignKey(() => Admin)
   @Column
