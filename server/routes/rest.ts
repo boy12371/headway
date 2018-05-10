@@ -2,7 +2,7 @@ import * as epilogue from 'epilogue'
 
 import { authEpilogue } from '../authentication'
 
-import { Admin, Activity, Card, Course, Student } from '../models'
+import { Admin, Activity, Card, Course, Student, Unit } from '../models'
 
 
 // Admin REST API
@@ -12,6 +12,7 @@ const restApis = {
   'card': Card,
   'course': Course,
   'student': Student,
+  'unit': Unit,
 }
 Object.keys(restApis).forEach(k => {
   const model = restApis[k]
