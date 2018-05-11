@@ -34,11 +34,11 @@ app.post('/login/admin', authAdmin, (req, res) => {
   res.send(req.user)
 })
 
-app.get('/admin/register', (req, res) => {
+app.get('/register', (req, res) => {
   res.render('register')
 })
 
-app.post('/admin/register', (req, res) => {
+app.post('/register', (req, res) => {
   const password: string = passwordGenerator.generate(PASSWORD_OPTS)
   const data = {
     name: req.body.name,
@@ -61,7 +61,6 @@ app.post('/admin/register', (req, res) => {
   })
 })
 
-
 app.get('/login/student', (req, res) => {
   res.render('login')
 })
@@ -69,7 +68,6 @@ app.get('/login/student', (req, res) => {
 app.post('/login/student', authStudent, (req, res) => {
   res.redirect('/student')
 })
-
 
 // This is probably a really bad idea
 
