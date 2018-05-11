@@ -11,10 +11,8 @@ import mail from '../mail'
 import { Admin, Course, Business, BusinessCourse, Student, Unit, Card } from '../models'
 import { Logger } from '../logger'
 
-app.use('/admin/*', checkAdminLogin)
-
-app.get('/admin', (req, res) => {
-  res.send(req.user)
+app.get('/admin/courses', (req, res) => {
+  Course.findAll().then(courses => res.send(courses))
 })
 
 app.get('/admin/overview', (req, res) => {
@@ -33,7 +31,6 @@ app.get('/admin/overview', (req, res) => {
   })
 })
 
-// app.post('/admin/students/invite', (req, res) => {
 app.post('/admin/students/invite', (req, res) => {
   const { email, businessIds } = req.body
   // TODO: check Admin owns Business
@@ -48,7 +45,6 @@ app.get('/admin/courses', (req, res) => {
   })
 })
 
-// app.post('/admin/students/invite', (req, res) => {
 app.post('/admin/courses/create', (req, res) => {
   const { name, businessIds } = req.body
   // TODO: check Admin owns Business
@@ -57,7 +53,6 @@ app.post('/admin/courses/create', (req, res) => {
   })
 })
 
-// app.get('/admin/course/:courseId', checkAdminPermission, (req, res) => {
 app.get('/admin/course/:courseId', (req, res) => {
   Course.findById(req.params.courseId, { include: [Student, Unit, Business] }).then(course => {
     res.send(course)

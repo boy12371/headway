@@ -7,10 +7,6 @@ import { getStudentActivitiesByUnit, studentUnitProgress, incrementCompletedUnit
 
 app.use('/student/*', checkStudentLogin)
 
-app.get('/student', (req, res) => {
-  res.send('Authed as student')
-})
-
 app.get('/student/courses', (req, res) => {
   Student.findById(req.user.student.id, { include: [Course] }).then(student => {
     res.send(student.courses)
