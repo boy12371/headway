@@ -75,34 +75,34 @@ passport.deserializeUser((key, done) => {
 })
 
 export const authAdmin = passport.authenticate('admin-local', {
-  failureRedirect: '/admin/login'
+  failureRedirect: '/login/admin'
 })
 
 export const authStudent = passport.authenticate('student-local', {
-  failureRedirect: '/student/login'
+  failureRedirect: '/login/student'
 })
 
 export const authMentor = passport.authenticate('mentor-local', {
-  failureRedirect: '/mentor/login'
+  failureRedirect: '/login/mentor'
 })
 
 export const checkAdminLogin = (req, res, next) => {
   if (!req.isAuthenticated || !req.isAuthenticated() || !req.user.admin) {
-    return res.redirect('/admin/login')
+    return res.redirect('/login/admin')
   }
   next()
 }
 
 export const checkStudentLogin = (req, res, next) => {
   if (!req.isAuthenticated || !req.isAuthenticated() || !req.user.student) {
-    return res.redirect('/student/login')
+    return res.redirect('/login/student')
   }
   next()
 }
 
 export const checkMentorLogin = (req, res, next) => {
   if (!req.isAuthenticated || !req.isAuthenticated() || !req.user.mentor) {
-    return res.redirect('/mentor/login')
+    return res.redirect('/login/mentor')
   }
   next()
 }
