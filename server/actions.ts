@@ -153,15 +153,7 @@ export const courseSummary = (adminId?: number) => {
 
 export const studentSummary = (adminId?: number) => {
   //  where: {adminId},
-  return Student.findAll({ include: [Course] }).then((students) => {
-    const data = students.map(student => ({
-      name: student.displayName(),
-      email: student.email,
-      courses: student.courses,
-      businesses: student.courses,
-    }))
-    return data
-  })
+  return Student.scope('public').findAll({ include: [Course] })
 }
 
 export const businessSummary = (adminId?: number) => {

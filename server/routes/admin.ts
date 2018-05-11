@@ -72,23 +72,35 @@ app.post('/admin/units/create', (req, res) => {
   })
 })
 
-// app.get('/admin/unit/:unitId', checkAdminPermission, (req, res) => {
 app.get('/admin/unit/:unitId', (req, res) => {
   Unit.findById(req.params.unitId, { include: [Card, Course] }).then(unit => {
     res.send(unit)
   })
 })
 
-// app.get('/admin/course/:courseId', checkAdminPermission, (req, res) => {
 app.get('/admin/student/:studentId', (req, res) => {
   Student.findById(req.params.studentId, { include: [Course, Business] }).then(student => {
     res.send(student)
   })
 })
 
-// app.get('/admin/course/:courseId', checkAdminPermission, (req, res) => {
+app.get('/admin/business', (req, res) => {
+  Business.findAll({
+    include: [
+      Student.scope('public'),
+    ]
+  }).then(business => {
+    res.send(business)
+  })
+})
+
 app.get('/admin/business/:businessId', (req, res) => {
-  Business.findById(req.params.businessId, { include: [Student, Course] }).then(business => {
+  Business.findById(req.params.businessId, {
+    include: [
+      Student.scope('public'),
+      Course,
+    ]
+  }).then(business => {
     res.send(business)
   })
 })

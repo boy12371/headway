@@ -1,4 +1,4 @@
-import { Table, Column, Model, HasMany, BelongsToMany } from 'sequelize-typescript'
+import { Table, Column, Model, HasMany, BelongsToMany, Scopes } from 'sequelize-typescript'
 
 import Course from './Course'
 import CourseStudent from './CourseStudent'
@@ -7,6 +7,11 @@ import Activity from './Activity'
 import Business from './Business'
 import BusinessStudent from './BusinessStudent'
 
+@Scopes({
+  public: {
+    attributes: ['id', 'first_name', 'last_name', 'email'],
+  },
+})
 @Table({ timestamps: true })
 export class Student extends Model<Student> {
 
