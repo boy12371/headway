@@ -20,5 +20,5 @@ Object.keys(restApis).forEach(k => {
     model,
     endpoints: ['/api/' + k, '/api/' + k + '/:id']
   })
-  resource.all.auth(authEpilogue)
+  // resource.all.auth(authEpilogue)
 })
