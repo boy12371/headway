@@ -5,8 +5,6 @@ import Student from './Student'
 @Table({ timestamps: true })
 export class BusinessStudent extends Model<BusinessStudent> {
 
-  @Column code: string // is this for invite/accept?
-
   @ForeignKey(() => Business)
   @Column
   businessId: number
