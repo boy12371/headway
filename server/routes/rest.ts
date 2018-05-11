@@ -2,12 +2,13 @@ import * as epilogue from 'epilogue'
 
 import { authEpilogue } from '../authentication'
 
-import { Admin, Activity, Card, Course, Student, Unit } from '../models'
-
+import { Admin, Activity, Card, Course, Student, Unit, Business, BusinessCourse } from '../models'
 
 // Admin REST API
 const restApis = {
   'admin': Admin,
+  'business': Business,
+  'business-course': BusinessCourse,
   'activity': Activity,
   'card': Card,
   'course': Course,
