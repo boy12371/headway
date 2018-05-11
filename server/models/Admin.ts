@@ -9,7 +9,7 @@ export class Admin extends Model<Admin> {
   @Unique @Column email: string
   @Column password: string
   @Column salt: string
-  @Column userType: string = 'admin'
+  @Column readonly userType: string = 'admin'
 
   @HasMany(() => Course)
   courses: Course[]

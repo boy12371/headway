@@ -8,7 +8,7 @@ export class Mentor extends Model<Mentor> {
   @Column email: string
   @Column password: string
   @Column salt: string
-  @Column userType: string = 'mentor'
+  @Column readonly userType: string = 'mentor'
 
   @ForeignKey(() => Business)
   @Column

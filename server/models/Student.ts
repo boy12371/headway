@@ -16,7 +16,7 @@ export class Student extends Model<Student> {
   @Column password: string
   @Column salt: string
   @Column lastLoggedIn: Date
-  @Column userType: string = 'student'
+  @Column readonly userType: string = 'student'
 
   @BelongsToMany(() => Course, {
     through: {
