@@ -11,15 +11,29 @@ import mail from '../mail'
 import { Admin, Course, Business, BusinessCourse, Student, Unit, Card } from '../models'
 import { Logger } from '../logger'
 
-app.use('/admin/*', checkAdminLogin)
-// app.use('/admin/*', checkAdminPermission) // does not work thanks to bad req.params values
+app.use('/admin*', checkAdminLogin)
 
-app.get('/admin/courses', (req, res) => {
-  Course.findAll().then(courses => res.send(courses))
+// Overview
+
+app.get('/admin', (req, res) => {
+  const adminId = req.user.admin.id
+  Admin.findById(adminId, {
+    include: [
+      Business,
+      {
+        model: Course,
+        include: [
+          Student.scope('public'),
+          Unit,
+        ],
+      },
+    ]
+  }).then(admin => {
+    res.send(admin)
+  })
 })
 
 app.get('/admin/overview', (req, res) => {
-  // TODO: provide req.user.admin.id
   Promise.all([
     courseSummary(),
     studentSummary(),
@@ -34,25 +48,19 @@ app.get('/admin/overview', (req, res) => {
   })
 })
 
-app.post('/admin/students/invite', (req, res) => {
-  const { email, businessIds } = req.body
-  // TODO: check Admin owns Business
-  inviteStudent(email, businessIds).then(businessStudent => {
-    res.send(businessStudent)
-  })
-})
 
-app.get('/admin/courses', (req, res) => {
-  Admin.findById(req.user.admin.id, { include: [Course] }).then(admin => {
+// Courses
+
+app.get('/admin/course', (req, res) => {
+  Admin.findById(req.user.admin.id, { include: [Course, Unit] }).then(admin => {
     res.send(admin.courses)
   })
 })
 
-app.post('/admin/courses/create', (req, res) => {
+app.post('/admin/course', (req, res) => {
   const { name, businessIds } = req.body
-  const adminId = 1 // req.user.admin.id
   // TODO: check Admin owns Businesses
-  createCourse(adminId, name, businessIds).then(course => {
+  createCourse(req.user.admin.id, name, businessIds).then(course => {
     res.send(course)
   })
 })
@@ -63,19 +71,25 @@ app.get('/admin/course/:courseId', checkAdminPermission, (req, res) => {
   })
 })
 
-app.post('/admin/units/create', (req, res) => {
+
+// Units
+
+app.post('/admin/unit', checkAdminLogin, (req, res) => {
   const { name, courseId } = req.body
-  // TODO: check Admin owns Course
   Unit.create({name, courseId}).then(unit => {
     res.send(unit)
   })
 })
 
 app.get('/admin/unit/:unitId', (req, res) => {
+  // TODO: check Admin owns Unit
   Unit.findById(req.params.unitId, { include: [Card, Course] }).then(unit => {
     res.send(unit)
   })
 })
+
+
+// Students
 
 app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
   Student.findById(req.params.studentId, { include: [Course, Business] }).then(student => {
@@ -83,13 +97,22 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
   })
 })
 
+
+// Businesses
+
 app.get('/admin/business', (req, res) => {
-  Business.findAll({
+  const adminId = req.user.admin.id
+  Admin.findById(adminId, {
     include: [
-      Student.scope('public'),
+      {
+        model: Business,
+        // include: [
+        //   Student.scope('public'),
+        // ],
+      },
     ]
-  }).then(business => {
-    res.send(business)
+  }).then(admin => {
+    res.send(admin.businesses)
   })
 })
 
