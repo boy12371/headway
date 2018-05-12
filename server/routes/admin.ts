@@ -53,7 +53,11 @@ app.get('/admin/overview', (req, res) => {
 // Courses
 
 app.get('/admin/course', (req, res) => {
-  Admin.findById(req.user.admin.id, { include: [Course, Unit] }).then(admin => {
+  Admin.findById(req.user.admin.id, {
+    include: [
+      { model: Course, include: [Unit]}
+    ]
+  }).then(admin => {
     res.send(admin.courses)
   })
 })
@@ -77,7 +81,7 @@ app.get('/admin/course/:courseId', checkAdminPermission, (req, res) => {
 
 app.post('/admin/unit', checkAdminLogin, (req, res) => {
   const { name, courseId } = req.body
-  Unit.create({name, courseId}).then(unit => {
+  Unit.create({ name, courseId }).then(unit => {
     res.send(unit)
   })
 })
