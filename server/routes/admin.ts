@@ -3,7 +3,7 @@ import * as passwordGenerator from 'generate-password'
 import app from '../app'
 import mailer from '../mailer'
 
-import { authEpilogue, authAdmin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, checkAdminPermission, checkAdminLogin, } from '../authentication'
+import { authEpilogue, authAdmin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, checkAdminPermission, checkAdminLogin, mockAdminLogin, } from '../authentication'
 import { createAdmin, createCourse, inviteStudent, studentSummary, courseSummary, businessSummary } from '../actions'
 import { PASSWORD_OPTS } from '../constants'
 import mail from '../mail'
@@ -11,7 +11,8 @@ import mail from '../mail'
 import { Admin, Course, Business, BusinessCourse, Student, Unit, Card } from '../models'
 import { Logger } from '../logger'
 
-app.use('/admin*', checkAdminLogin)
+// app.use('/admin*', checkAdminLogin)
+app.use('/admin*', mockAdminLogin)
 
 // Overview
 
