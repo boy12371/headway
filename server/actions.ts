@@ -20,10 +20,18 @@ export const createAdmin = (data) => {
   })
 }
 
-export const createCourse = (name, businesses) => {
+export const createCourse = (adminId, name, businessIds = []) => {
   return Course.create({
     name,
-    adminId : 1, // req.user.admin.id
+    adminId,
+  }).then(course => {
+    if (businessIds.length) {
+      const courseId = course.id
+      const promises = businessIds.map(businessId => {
+        return BusinessCourse.create({businessId, courseId})
+      })
+    }
+    return course
   })
 }
 
@@ -57,6 +65,7 @@ export const addStudentToBusinesses = (student: Student, businessIds: number[]) 
   const promises = businessIds.map(id => addStudentToBusiness(student, id))
   return Promise.all(promises)
 }
+
 export const addStudentToBusiness = (student: Student, businessId: number) => {
   Logger.debug('Add student to business', student.email, businessId)
   return BusinessStudent.create({

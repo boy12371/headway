@@ -7,6 +7,8 @@ import Admin from './models/Admin'
 import Student from './models/Student'
 import Mentor from './models/Mentor'
 import Course from './models/Course'
+import { Business } from './models'
+import { Logger } from './logger'
 
 passport.use('admin-local', new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
   return Admin.findOne({ where: { email } }).then(admin => {
@@ -75,6 +77,7 @@ passport.deserializeUser((key, done) => {
 })
 
 export const authAdmin = passport.authenticate('admin-local', {
+  // successReturnToOrRedirect: true,
   failureRedirect: '/login/admin'
 })
 
@@ -112,26 +115,55 @@ export const checkStudentEnrolled = (req, res, next) => {
   if (!req.user) {
     return res.status(401).send({ message: 'Unauthorized' })
   }
-  Student.findById(req.user.student.id, {include: [Course]}).then(student => {
+  Student.findById(req.user.student.id, { include: [Course] }).then(student => {
     const ids = student.courses.map(course => course.id)
     if (ids.indexOf(parseInt(courseId)) === -1) {
-        return res.status(401).send({ message: 'Unauthorized' })
+      return res.status(401).send({ message: 'Unauthorized' })
     }
     next()
   })
 }
 
+// TODO: req.body as well as req.params? _.extend?
 export const checkAdminPermission = (req, res, next) => {
-  const { courseId } = req.params
+  const { courseId, businessId, studentId } = req.params
   if (!req.user) {
     return res.status(401).send({ message: 'Unauthorized' })
   }
-  Admin.findById(req.user.admin.id, {include: [Course]}).then(admin => {
-    const ids = admin.courses.map(course => course.id)
-    if (ids.indexOf(parseInt(courseId)) === -1) {
-        return res.status(401).send({ message: 'Unauthorized' })
+  Admin.findById(req.user.admin.id, {
+    include: [
+      Course,
+      {
+        model: Business,
+        include: [Student]
+      },
+    ]
+  }).then(admin => {
+    if (courseId) {
+      const courseIds = admin.courses.map(course => course.id)
+      if (courseIds.indexOf(parseInt(courseId)) === -1) {
+        return res.status(401).send({ message: 'Unauthorized: Admin does not own Course' })
+      }
     }
-    next()
+    if (businessId) {
+      const businessIds = admin.businesses.map(business => business.id)
+      if (businessIds.indexOf(parseInt(businessId)) === -1) {
+        return res.status(401).send({ message: 'Unauthorized: Admin does not own Business' })
+      }
+    }
+    if (studentId) {
+      const studentIds = admin.businesses.reduce((previousValue, currentValue) => {
+        const ids = currentValue.students.map(student => student.id)
+        return previousValue.concat(ids)
+      }, [])
+      if (studentIds.indexOf(parseInt(studentId)) === -1) {
+        return res.status(401).send({ message: 'Unauthorized: Admin does not own Student' })
+      } else {
+        next()
+      }
+    } else {
+      next()
+    }
   })
 }
 

@@ -1,7 +1,8 @@
 import { omit } from 'lodash'
 import { Table, Column, Model, HasMany, BelongsToMany, Unique } from 'sequelize-typescript'
-import Course from './Course'
 import { Logger } from '../logger'
+import Course from './Course'
+import Business from './Business'
 
 @Table({ timestamps: true })
 export class Admin extends Model<Admin> {
@@ -10,6 +11,9 @@ export class Admin extends Model<Admin> {
   @Column password: string
   @Column salt: string
   @Column readonly userType: string = 'admin'
+
+  @HasMany(() => Business)
+  businesses: Business[]
 
   @HasMany(() => Course)
   courses: Course[]
