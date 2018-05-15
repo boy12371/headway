@@ -7,12 +7,9 @@ import { Logger } from '../logger'
 
 // Admin REST API
 const restApis = {
-  'admin': Admin,
   'business-course': BusinessCourse,
   'activity': Activity,
   'card': Card,
-  'student': Student,
-  'unit': Unit,
 }
 Object.keys(restApis).forEach(k => {
   const model = restApis[k]
@@ -21,12 +18,11 @@ Object.keys(restApis).forEach(k => {
     endpoints: ['/api/' + k, '/api/' + k + '/:id']
   })
   // resource.all.auth(authEpilogue)
-  console.warn('Exposing publicly accessibly REST API: ' + k)
+  Logger.warn('Exposing publicly accessible REST API: ' + k)
 })
 
 const authRest = (authorize) => (req, res, context) => {
   return new Promise((resolve, reject) => {
-    Logger.debug(req.isAuthenticated, req.user)
     if (!req.isAuthenticated || !req.isAuthenticated() || !req.user.admin) {
       res.status(401).send({ message: 'Unauthorized' })
       resolve(context.stop)
@@ -44,7 +40,7 @@ const createRestApi = (model, k, authorize) => {
     ]
   })
   resource.all.auth(authRest(authorize))
-  console.log('Exposing secure REST API: ' + k)
+  Logger.info('Exposing secure REST API: ' + k)
 }
 
 createRestApi(Business, 'business', (req, res, context, resolve) => {
@@ -52,11 +48,10 @@ createRestApi(Business, 'business', (req, res, context, resolve) => {
   const adminId = req.user.admin.id
   Admin.findById(adminId, { include: [Business] }).then(admin => {
     const ids = admin.businesses.map(d => d.id)
-    Logger.debug({ ids })
     if (ids.indexOf(id) >= 0) {
       resolve(context.continue)
     } else {
-      res.status(401).send({ message: `Unauthorized` })
+      res.status(401).send({ message: 'Unauthorized: Admin does not own Business #' + id })
       resolve(context.stop)
     }
   })
@@ -67,12 +62,39 @@ createRestApi(Course, 'course', (req, res, context, resolve) => {
   const adminId = req.user.admin.id
   Admin.findById(adminId, { include: [Course] }).then(admin => {
     const ids = admin.courses.map(d => d.id)
-    Logger.debug({ ids })
     if (ids.indexOf(id) >= 0) {
       resolve(context.continue)
     } else {
-      res.status(401).send({ message: `Unauthorized` })
+      res.status(401).send({ message: 'Unauthorized: Admin does not own Course #' + id })
       resolve(context.stop)
     }
   })
+})
+
+createRestApi(Unit, 'unit', (req, res, context, resolve) => {
+  const id = parseInt(req.params.id)
+  const adminId = req.user.admin.id
+  Admin.findById(adminId, { include: [{ model: Course, include: [Unit] }] })
+    .then(admin => {
+      if (admin.ownsUnit(id)) {
+        resolve(context.continue)
+      } else {
+        res.status(401).send({ message: 'Unauthorized: Admin does not own Unit #' + id })
+        resolve(context.stop)
+      }
+    })
+})
+
+createRestApi(Student, 'student', (req, res, context, resolve) => {
+  const id = parseInt(req.params.id)
+  const adminId = req.user.admin.id
+  Admin.findById(adminId, { include: [{ model: Business, include: [Student] }] })
+    .then(admin => {
+      if (admin.ownsStudent(id)) {
+        resolve(context.continue)
+      } else {
+        res.status(401).send({ message: 'Unauthorized: Admin does not own Student #' + id })
+        resolve(context.stop)
+      }
+    })
 })

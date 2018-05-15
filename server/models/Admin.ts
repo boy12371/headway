@@ -18,6 +18,28 @@ export class Admin extends Model<Admin> {
   @HasMany(() => Course)
   courses: Course[]
 
+  getStudents() {
+    return this.businesses.reduce((previousValue, currentValue) => {
+      return previousValue.concat(currentValue.students)
+    }, [])
+  }
+
+  ownsStudent(id) {
+    const ids = this.getStudents().map(student => student.id)
+    return ids.indexOf(id) >= 0
+  }
+
+  getUnits() {
+    return this.courses.reduce((previousValue, currentValue) => {
+      return previousValue.concat(currentValue.units)
+    }, [])
+  }
+
+  ownsUnit(id) {
+    const ids = this.getUnits().map(student => student.id)
+    return ids.indexOf(id) >= 0
+  }
+
   toJSON() {
     return omit(this.dataValues, ['password', 'salt'])
   }
