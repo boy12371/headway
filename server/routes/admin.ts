@@ -12,7 +12,10 @@ import { Admin, Course, Business, BusinessCourse, Student, Unit, Card } from '..
 import { Logger } from '../logger'
 
 // app.use('/admin*', checkAdminLogin)
+
+Logger.warn('WARNING: Mock Admin Auth enabled for /admin and /api')
 app.use('/admin*', mockAdminLogin)
+app.use('/api*', mockAdminLogin)
 
 // Overview
 

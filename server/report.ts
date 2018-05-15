@@ -1,7 +1,7 @@
 import connection from './connection'
 
 import { Business, Card, Course, Mentor, Student, Unit, Admin, Activity } from './models'
-import { getStudentActivitiesByUnit, studentUnitProgress } from './actions'
+import { getStudentActivitiesByUnit, studentUnitProgress, studentSummary } from './actions'
 import { Logger } from './logger'
 
 const DIVIDER = '------------------------'
@@ -100,7 +100,75 @@ const businessSummary = () => {
   })
 }
 
+const fullAdminReport = async (id) => {
+  return Admin.findById(id, {
+    include: [
+      {
+        model: Course,
+        include: [
+          {
+            model: Unit,
+            include: [
+              {
+                model: Card
+              }
+            ]
+          },
+          {
+            model: Student
+          }
+        ]
+      },
+      {
+        model: Business,
+        include: [
+          {
+            model: Student,
+            include: [{
+              model: Course
+            }]
+          }
+        ]
+      }
+    ]
+  }).then(admin => {
+    Logger.debug('Admin: ', admin.name)
+    admin.businesses.forEach(business => {
+      Logger.debug('-', business.name, 'Students')
+      business.students.forEach(student => {
+        Logger.debug('-- Business: ', student.displayName())
+        // student.courses.forEach(course => {})
+      })
+    })
+
+    admin.courses.forEach(course => {
+      Logger.debug('-', course.name, 'Units')
+      course.units.forEach(unit => {
+        Logger.debug('--', unit.name, 'Unit Cards')
+        unit.cards.forEach(card => {
+          Logger.debug('---', card.name)
+          // card.activityStudents.forEach(activity => {})
+        })
+      })
+      Logger.debug('--', course.name, 'Students')
+      course.students.forEach(student => {
+        Logger.debug('--', student.displayName())
+      })
+    })
+  })
+}
+
+// const students = async id => {
+//   return Student.scope('byAdmin', { method: ['byAdmin', id] }).findAll().then(students => {
+//     Logger.debug('Admin', id)
+//     Logger.debug(students.map(d => d.email))
+//   })
+// }
+
 const report = async () => {
+  // await students('1')
+  // await students('2')
+  await fullAdminReport(1)
   await studentActivity()
   await studentEnrolment()
   await courseSummary()
