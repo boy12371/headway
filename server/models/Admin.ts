@@ -40,6 +40,17 @@ export class Admin extends Model<Admin> {
     return ids.indexOf(id) >= 0
   }
 
+  getCards() {
+    return this.getUnits().reduce((previousValue, currentValue) => {
+      return previousValue.concat(currentValue.cards)
+    }, [])
+  }
+
+  ownsCard(id) {
+    const ids = this.getCards().map(card => card.id)
+    return ids.indexOf(id) >= 0
+  }
+
   toJSON() {
     return omit(this.dataValues, ['password', 'salt'])
   }
