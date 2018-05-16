@@ -134,3 +134,10 @@ app.get('/admin/business/:businessId', checkAdminPermission, (req, res) => {
     res.send(business)
   })
 })
+
+app.get('/admin/student', (req, res) => {
+  const adminId = req.user.admin.id
+  Admin.findById(adminId, { include: [{model: Business, include: [Student]}] }).then(admin => {
+    res.send(admin.getStudents())
+  })
+})
