@@ -11,6 +11,15 @@ export const actions = {
     })
   },
 
+  inviteStudent(context, payload) {
+    return axios.post(BASE_URL + '/admin/student', payload).then(res => {
+      const student = res.data
+      // context.commit('addOrUpdateStudent', student)
+      context.dispatch('getAdmin')
+      return student
+    })
+  },
+
   createCourse(context, { name, businessIds }) {
     return axios.post(BASE_URL + '/admin/course', {
       name,

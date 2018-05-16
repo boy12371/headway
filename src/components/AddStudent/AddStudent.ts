@@ -21,6 +21,7 @@ import axios from 'axios'
 
 export class AddStudent extends Vue {
   @Inject() studentService
+  @Inject() toggleModal
 
   @State businesses
 
@@ -29,12 +30,19 @@ export class AddStudent extends Vue {
   email = ''
   businessIds = []
 
-  addStudent(e) {
-    e.preventDefault()
-    this.studentService.invite(this.firstName, this.email, this.businessIds).then(res => {
-      if (res.status === 200) {
-        store.commit('addStudent')
-      }
+  submit() {
+    store.dispatch('inviteStudent', {
+      first_name: this.firstName,
+      last_name: this.lastName,
+      email: this.email,
+      businessIds: this.businessIds,
     })
+
+    // Reset UI
+    this.toggleModal('student')
+    this.firstName = ''
+    this.lastName = ''
+    this.email = ''
+    this.businessIds = []
   }
 }

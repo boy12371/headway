@@ -28,7 +28,7 @@ export const createCourse = (adminId, name, businessIds = []) => {
     if (businessIds.length) {
       const courseId = course.id
       const promises = businessIds.map(businessId => {
-        return BusinessCourse.create({businessId, courseId})
+        return BusinessCourse.create({ businessId, courseId })
       })
     }
     return course
@@ -80,13 +80,14 @@ export const addStudentToBusiness = (student: Student, businessId: number) => {
   })
 }
 
-export const inviteStudent = async (email: string, businessIds: number[]) => {
+export const inviteStudent = async (payload, businessIds: number[]) => {
+  const { email, first_name, last_name } = payload
   Logger.debug('Invite Student', email, 'to business', businessIds)
   return Student.findOne({ where: { email }, include: [Business] }).then(student => {
     if (!student) {
       Logger.debug('Create new student and link to business', email, businessIds)
       const password = 'password' // todo: generate
-      return createStudent({ email, password }).then(student => {
+      return createStudent({ email, first_name, last_name, password }).then(student => {
         Logger.debug('Student Created')
         return addStudentToBusinesses(student, businessIds)
       })

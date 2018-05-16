@@ -134,20 +134,34 @@ app.put('/admin/card/:cardId', (req, res) => {
 // Students
 
 app.post('/admin/student', (req, res) => {
-  const { email, businessIds } = req.body
-  inviteStudent(email, businessIds).then(student => {
-    res.send(student)
+  const { email, first_name, last_name, businessIds } = req.body
+  inviteStudent({ email, first_name, last_name }, businessIds).then(invitation => {
+    res.send({ email, first_name, last_name })
   })
 })
 
 app.get('/admin/student', (req, res) => {
-  Admin.findById(req.user.admin.id, { include: [{ model: Business, include: [Student] }] }).then(admin => {
+  Admin.findById(req.user.admin.id, {
+    include: [
+      {
+        model: Business,
+        include: [Student.scope('public')]
+      }
+    ]
+  }).then(admin => {
     res.send(admin.getStudents())
   })
 })
 
 app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
-  Student.findById(req.params.studentId, { include: [Course, Business] }).then(student => {
+  const adminId = req.user.admin.id
+  Student.scope('public').findById(req.params.studentId, {
+    include: [
+      // TODO: restrict to Course and Business from this Admin only
+      // { model: Course, where: { adminId } },
+      // { model: Business, where: { adminId } },
+    ]
+  }).then(student => {
     res.send(student)
   })
 })

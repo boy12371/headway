@@ -33,6 +33,14 @@ export const mutations = {
   createBusiness(state, business) {
     state.businesses.push(business)
   },
+  addOrUpdateStudent(state, {student, businessIds}) {
+    console.log('todo: add student to appropriate courses too')
+    // state.businesses = state.businesses.map(business => {
+    //   if (businessIds.indexOf(business.id) >= 0) {
+    //     business.students.push(student)
+    //   }
+    // })
+  },
   createUnit(state, {courseId, unit}) {
     state.courses = state.courses.map(course => {
       if (course.id === courseId) {
@@ -52,7 +60,6 @@ export const mutations = {
   },
   reset(state) {
     state.courses = []
-    state.students = []
     state.businesses = []
   }
 }
