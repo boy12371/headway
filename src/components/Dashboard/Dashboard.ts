@@ -1,8 +1,6 @@
 import { Component, Prop, Watch, Vue, Provide } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
-import { BASE_URL } from '../../constants'
-
 import { CourseService, BusinessService, StudentService, UnitService } from '../../services'
 const courseService = new CourseService()
 const businessService = new BusinessService()
@@ -59,21 +57,21 @@ export class Dashboard extends Vue {
 
   get courseMenu() {
     // TODO: Use Course ID for link
-    const menu = this.courses.map((course, index) => {
-      const data = {
-        text: course.name,
-        link: '/c/' + course.id,
-        totalUnits: course.unit ? course.units.length : 0,
-      }
-      return data
-    })
-    return menu
+    if (this.courses) {
+      const menu = this.courses.map((course, index) => {
+        const data = {
+          text: course.name,
+          link: '/c/' + course.id,
+          totalUnits: course.unit ? course.units.length : 0,
+        }
+        return data
+      })
+      return menu
+    }
   }
 
   mounted() {
-    axios.get(BASE_URL + '/admin/overview').then(res => {
-      store.commit('setOverview', res.data)
-    })
+    store.dispatch('getAdminOverview')
   }
 
   resetDatabase() {

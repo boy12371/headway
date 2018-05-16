@@ -12,6 +12,7 @@
 .Dashboard__main {
   flex: 1;
   padding: 1rem;
+  padding-top: 0;
   position: relative;
 }
 
@@ -26,10 +27,10 @@
 @media(min-width:1200px) {
 
   .Dashboard__main {
-    padding: 1rem;
     flex: 1;
     background: #f9f9f9;
     padding: 1rem 2rem;
+    padding-top: 0;
   }
 
   .Dashboard__sidebar {
