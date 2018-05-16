@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
 import { BASE_URL } from '../../constants'
@@ -10,15 +10,6 @@ import './AddStudent.scss'
 import store from '../../store'
 import axios from 'axios'
 
-const studentService = {
-  invite: (name, email, businessId) => {
-    return axios.post(BASE_URL + '/admin/students/invite', {
-      email,
-      businessId
-    })
-  }
-}
-
 @Component({
   template: require('./AddStudent.html'),
   name: 'AddStudent',
@@ -29,6 +20,8 @@ const studentService = {
 })
 
 export class AddStudent extends Vue {
+  @Inject() studentService
+
   @State businesses
 
   firstName = ''
@@ -38,7 +31,7 @@ export class AddStudent extends Vue {
 
   addStudent(e) {
     e.preventDefault()
-    studentService.invite(this.firstName, this.email, this.businessIds).then(res => {
+    this.studentService.invite(this.firstName, this.email, this.businessIds).then(res => {
       if (res.status === 200) {
         store.commit('addStudent')
       }

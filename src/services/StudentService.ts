@@ -10,7 +10,8 @@ export class StudentService {
       })
   }
   invite(name, email, businessIds) {
-    return axios.post(BASE_URL + '/admin/students/invite', {
+    return axios.post(BASE_URL + '/admin/student', {
+      name,
       email,
       businessIds
     })

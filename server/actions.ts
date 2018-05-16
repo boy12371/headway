@@ -84,19 +84,20 @@ export const inviteStudent = async (email: string, businessIds: number[]) => {
   Logger.debug('Invite Student', email, 'to business', businessIds)
   return Student.findOne({ where: { email }, include: [Business] }).then(student => {
     if (!student) {
-      Logger.debug('Create new student and link to business', email)
-      const password = 'password'
+      Logger.debug('Create new student and link to business', email, businessIds)
+      const password = 'password' // todo: generate
       return createStudent({ email, password }).then(student => {
+        Logger.debug('Student Created')
         return addStudentToBusinesses(student, businessIds)
       })
     } else {
       Logger.debug('Student exists', email)
       const ids = student.businesses.map(business => business.id)
-      // if (ids.indexOf(businessIds) >= 0) {
-      //   Logger.debug(student.email, 'already added to business', businessIds)
-      // } else {
-      //   return addStudentToBusinesses(student, businessIds)
-      // }
+      if (ids.indexOf(businessIds) >= 0) {
+        Logger.debug(student.email, 'already added to business', businessIds)
+      } else {
+        return addStudentToBusinesses(student, businessIds)
+      }
     }
   })
 }

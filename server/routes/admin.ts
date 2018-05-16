@@ -58,7 +58,7 @@ app.get('/admin/overview', (req, res) => {
 app.get('/admin/course', (req, res) => {
   Admin.findById(req.user.admin.id, {
     include: [
-      { model: Course, include: [Unit]}
+      { model: Course, include: [Unit] }
     ]
   }).then(admin => {
     res.send(admin.courses)
@@ -99,6 +99,19 @@ app.get('/admin/unit/:unitId', (req, res) => {
 
 // Students
 
+app.post('/admin/student', (req, res) => {
+  const { email, businessIds } = req.body
+  inviteStudent(email, businessIds).then(student => {
+    res.send(student)
+  })
+})
+
+app.get('/admin/student', (req, res) => {
+  Admin.findById(req.user.admin.id, { include: [{ model: Business, include: [Student] }] }).then(admin => {
+    res.send(admin.getStudents())
+  })
+})
+
 app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
   Student.findById(req.params.studentId, { include: [Course, Business] }).then(student => {
     res.send(student)
@@ -108,18 +121,16 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
 
 // Businesses
 
+app.post('/admin/business', (req, res) => {
+  const { name } = req.body
+  Business.create({ name }).then(business => {
+    res.send(business)
+  })
+})
+
 app.get('/admin/business', (req, res) => {
   const adminId = req.user.admin.id
-  Admin.findById(adminId, {
-    include: [
-      {
-        model: Business,
-        // include: [
-        //   Student.scope('public'),
-        // ],
-      },
-    ]
-  }).then(admin => {
+  Admin.findById(adminId, { include: [ { model: Business } ]}).then(admin => {
     res.send(admin.businesses)
   })
 })
@@ -132,12 +143,5 @@ app.get('/admin/business/:businessId', checkAdminPermission, (req, res) => {
     ]
   }).then(business => {
     res.send(business)
-  })
-})
-
-app.get('/admin/student', (req, res) => {
-  const adminId = req.user.admin.id
-  Admin.findById(adminId, { include: [{model: Business, include: [Student]}] }).then(admin => {
-    res.send(admin.getStudents())
   })
 })
