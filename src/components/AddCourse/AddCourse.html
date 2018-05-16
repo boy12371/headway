@@ -3,8 +3,8 @@
     <Card slot="body" title="Create course">
       <form @submit.prevent="submit" slot="body">
         <div class="form__group">
-          <label class="label" for="student-name">Name</label>
-          <input type="text" class="input" id="student-name" autofocus v-model="name">
+          <label class="label" for="course-name">Name</label>
+          <input type="text" class="input" id="course-name" autofocus v-model="name" required>
         </div>
         <div class="form__group">
           <label class="label">Add to Business (optional)</label>

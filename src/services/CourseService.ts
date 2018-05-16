@@ -15,16 +15,4 @@ export class CourseService {
         return res.data
       })
   }
-  create(name, businessIds) {
-    return axios.post(BASE_URL + '/admin/course', {
-      name,
-      businessIds
-    })
-    .then(res => {
-      let course = res.data
-      course.students = []
-      course.units = []
-      return course
-    })
-  }
 }

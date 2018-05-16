@@ -6,7 +6,6 @@ import { Card } from '../Card'
 
 import './AddUnit.scss'
 import store from '../../store'
-import axios from 'axios'
 
 @Component({
   template: require('./AddUnit.html'),
@@ -31,6 +30,7 @@ export class AddUnit extends Vue {
       courseId: this.activeCourse.id,
       name: this.name
     })
+    this.name = ''
     this.toggleModal('unit')
   }
 }

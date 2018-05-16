@@ -27,10 +27,15 @@ export class AddCourse extends Vue {
   businessIds = []
 
   submit() {
-    this.$emit('close')
-    courseService.create(this.name, this.businessIds).then(course => {
-      store.commit('createCourse', course)
+    store.dispatch('createCourse', {
+      name: this.name,
+      businessIds: this.businessIds
+    }).then(course => {
+      this.$router.push({
+        path: '/c/' + course.id,
+      })
     })
+    this.name = ''
+    this.$emit('close')
   }
-
 }

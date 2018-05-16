@@ -28,6 +28,8 @@ export class AddBusiness extends Vue {
       name: this.name,
       courseIds: this.courseIds,
     })
+    this.name = ''
+    this.courseIds = []
     this.toggleModal('business')
   }
 }

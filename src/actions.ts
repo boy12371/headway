@@ -11,13 +11,26 @@ export const actions = {
     })
   },
 
+  createCourse(context, { name, businessIds }) {
+    return axios.post(BASE_URL + '/admin/course', {
+      name,
+      businessIds
+    }).then(res => {
+      let course = res.data
+      course.students = []
+      course.units = []
+      context.commit('createCourse', course)
+      return course
+    })
+  },
+
   createUnit(context, { courseId, name }) {
-      return axios.post(BASE_URL + '/admin/unit', {
-        courseId,
-        name,
-      }).then(res => {
-        const unit = res.data
-        context.commit('createUnit', { courseId, unit })
+    return axios.post(BASE_URL + '/admin/unit', {
+      courseId,
+      name,
+    }).then(res => {
+      const unit = res.data
+      context.commit('createUnit', { courseId, unit })
     })
   },
 
@@ -38,7 +51,7 @@ export const actions = {
     })
   },
 
-  createBusiness(context, {name, courseIds}) {
+  createBusiness(context, { name, courseIds }) {
     return axios.post(BASE_URL + '/admin/business', {
       name,
       courseIds,
