@@ -90,10 +90,9 @@ app.post('/admin/unit', checkAdminLogin, (req, res) => {
 app.get('/admin/unit/:unitId', (req, res) => {
   const { unitId } = req.params
   Unit.findById(unitId, { include: [Card, Course] }).then(unit => {
-    if (unit.course.adminId === req.user.admin.id) {
+    if (unit && unit.course.adminId === req.user.admin.id) {
       res.send(unit)
-    }
-    else {
+    } else {
       res.status(401).send({ message: 'Unauthorized: Admin does not own Unit #' + unitId })
     }
   })
