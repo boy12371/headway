@@ -75,8 +75,12 @@ h4 {
 .container {
   width: 100%;
   max-width: 720px;
-  padding: 1rem;
+  padding: 0 1rem;
   margin: 0 auto;
+}
+
+.container--large {
+  max-width: 1200px;
 }
 
 .text-centered {
@@ -85,12 +89,6 @@ h4 {
 
 .text-right {
   text-align: right;
-}
-
-.container {
-  padding: 0 1rem;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .btn {
