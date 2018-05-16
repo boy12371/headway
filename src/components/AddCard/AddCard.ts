@@ -22,8 +22,14 @@ export class AddCard extends Vue {
 
   @Inject() unitService
 
+  @State activeUnit
+
   name = ''
 
   submit() {
+    store.dispatch('createCard', {
+      unitId: this.activeUnit.id,
+      name: this.name,
+    })
   }
 }

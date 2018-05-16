@@ -56,9 +56,17 @@ app.get('/admin/course', (req, res) => {
 
 app.post('/admin/course', (req, res) => {
   const { name, businessIds } = req.body
-  // TODO: check Admin owns Businesses
-  createCourse(req.user.admin.id, name, businessIds).then(course => {
-    res.send(course)
+  Admin.findById(req.user.admin.id, { include: [Business] }).then(admin => {
+    const ids = admin.businesses.map(d => d.id)
+    for (const id of businessIds) {
+      if (ids.indexOf(id) === -1) {
+        res.status(401).send({ message: 'Unauthorized: Admin does not own Business #' + id })
+        return
+      }
+    }
+    createCourse(req.user.admin.id, name, businessIds).then(course => {
+      res.send(course)
+    })
   })
 })
 
@@ -79,9 +87,46 @@ app.post('/admin/unit', checkAdminLogin, (req, res) => {
 })
 
 app.get('/admin/unit/:unitId', (req, res) => {
-  // TODO: check Admin owns Unit
-  Unit.findById(req.params.unitId, { include: [Card, Course] }).then(unit => {
-    res.send(unit)
+  const { unitId } = req.params
+  Unit.findById(unitId, { include: [Card, Course] }).then(unit => {
+    if (unit.course.adminId === req.user.admin.id) {
+      res.send(unit)
+    }
+    else {
+      res.status(401).send({ message: 'Unauthorized: Admin does not own Unit #' + unitId })
+    }
+  })
+})
+
+
+// Cards
+
+app.post('/admin/unit/:unitId/card', (req, res) => {
+  const { unitId } = req.params
+  Unit.findById(unitId, { include: [Course] }).then(unit => {
+    if (unit.course.adminId === req.user.admin.id) {
+      Card.create({ unitId }).then(card => {
+        res.send(card)
+      })
+    }
+    else {
+      res.status(401).send({ message: 'Unauthorized: Admin does not own Unit #' + unitId })
+    }
+  })
+})
+
+app.put('/admin/card/:cardId', (req, res) => {
+  const { cardId } = req.params
+  Card.findById(cardId, { include: [{ model: Unit, include: [Course] }] }).then(card => {
+    if (card.unit.course.adminId === req.user.admin.id) {
+      Card.findById(cardId).then(card => {
+        Logger.debug('TODO: modify card')
+        res.send(card)
+      })
+    }
+    else {
+      res.status(401).send({ message: 'Unauthorized: Admin does not own Card #' + cardId })
+    }
   })
 })
 
@@ -119,7 +164,7 @@ app.post('/admin/business', (req, res) => {
 
 app.get('/admin/business', (req, res) => {
   const adminId = req.user.admin.id
-  Admin.findById(adminId, { include: [ { model: Business } ]}).then(admin => {
+  Admin.findById(adminId, { include: [{ model: Business }] }).then(admin => {
     res.send(admin.businesses)
   })
 })

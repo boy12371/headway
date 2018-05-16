@@ -16,7 +16,7 @@ export class CourseService {
       })
   }
   create(name, businessIds) {
-    return axios.post(BASE_URL + '/admin/courses/create', {
+    return axios.post(BASE_URL + '/admin/course', {
       name,
       businessIds
     })

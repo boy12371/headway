@@ -17,7 +17,7 @@ export class Filters extends Vue {
   @State dashboardView
 
   setDashboardView(view) {
-    store.dispatch('setDashboardView', view)
+    store.commit('setDashboardView', view)
   }
 }
 

@@ -10,6 +10,7 @@ export const actions = {
       context.commit('setAdmin', res.data)
     })
   },
+
   createUnit(context, { courseId, name }) {
       return axios.post(BASE_URL + '/admin/unit', {
         courseId,
@@ -19,7 +20,21 @@ export const actions = {
         context.commit('createUnit', { courseId, unit })
     })
   },
-  setDashboardView(context, view) {
-    context.commit('setDashboardView', view)
+
+  createCard(context, { unitId, name }) {
+    return axios.post(BASE_URL + '/admin/unit/' + unitId, {
+      unitId,
+      name,
+    }).then(res => {
+      const card = res.data
+      context.commit('createCard', { unitId, card })
+    })
   },
+
+  editCard(context, { card }) {
+    return axios.put(BASE_URL + '/admin/card/' + card.id, card).then(res => {
+      const card = res.data
+      // context.commit('updateCard', { card })
+    })
+  }
 }

@@ -41,6 +41,12 @@ export const mutations = {
       state.activeCourse.units.push(unit)
     }
   },
+  createCard(state, {unitId, card}) {
+    // TODO: state.courses course.units
+    if (unitId === state.activeUnit.id) {
+      state.activeUnit.cards.push(card)
+    }
+  },
   reset(state) {
     state.courses = []
     state.students = []
