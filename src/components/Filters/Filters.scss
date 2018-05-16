@@ -1,5 +1,12 @@
 @import "../../sass/variables.scss";
 
+.Filters {
+  margin-left: -2rem;
+  margin-right: -2rem;
+  padding: 0 2rem;
+  background: #fff;
+}
+
 .Filters__wrap {
   display: flex;
   align-items: center;
