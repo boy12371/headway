@@ -10,19 +10,10 @@ app.use('/student*', checkStudentLogin)
 app.get('/student', (req, res) => {
   Student.scope('public').findById(req.user.student.id, {
     include: [
-      Business
+      Business,
+      Course,
     ]
   }).then(student => res.send(student))
-})
-
-app.get('/student/course', (req, res) => {
-  Student.findById(req.user.student.id, {
-    include: [
-      { model: Course, include: [Unit] },
-    ]
-  }).then(student => {
-    res.send(student.courses)
-  })
 })
 
 app.get('/student/course/:courseId', checkStudentEnrolled, (req, res) => {
