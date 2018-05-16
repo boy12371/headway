@@ -1,36 +1,41 @@
+<Filters></Filters>
 <div class="Students">
-  <div class="container container--large" v-for="business in businesses" v-show="dashboardView === 'business'">
-    <h2>{{ business.name }}</h2>
-    <div class="Students__wrap">
-      <Card v-for="(student, sIndex) in business.students" :title="student.name" :key="sIndex">
-        <div slot="body">
-          <p><small>{{ student.email }}</small></p>
-          <div v-for="(course, cIndex) in student.courses">
-            <label class="label flat flex flex--spaced">
-              <span>{{ course.name }}</span>
-            </label>
-            <ProgressBar class="flat" :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
-            <p class="Students__elapsed"><small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small></p>
+  <div v-show="dashboardView === 'business'">
+    <div v-for="business in businesses">
+      <h4>{{ business.name }}</h4>
+      <div class="Students__wrap">
+        <Card v-for="(student, sIndex) in business.students" :title="student.first_name + '' + student.last_name" :key="sIndex">
+          <div slot="body">
+            <p><small>{{ student.email }}</small></p>
+            <div v-for="(course, cIndex) in student.courses">
+              <label class="label flat flex flex--spaced">
+                <span>{{ course.name }}</span>
+              </label>
+              <ProgressBar class="flat" :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
+              <p class="Students__elapsed"><small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small></p>
+            </div>
           </div>
-        </div>
-      </Card>
+        </Card>
+      </div>
     </div>
   </div>
-  <div class="container container--large" v-for="course in courses" v-show="dashboardView === 'course'">
-    <h2>{{ course.name }}</h2>
-    <div class="Students__wrap">
-      <Card v-for="(student, sIndex) in course.students" :title="student.name" :key="sIndex">
-        <div slot="body">
-          <p><small>{{ student.email }}</small></p>
-          <div v-for="(course, cIndex) in student.courses">
-            <label class="label flat flex flex--spaced">
-              <span>{{ course.name }}</span>
-            </label>
-            <ProgressBar class="flat" :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
-            <p class="Students__elapsed"><small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small></p>
+  <div v-show="dashboardView === 'course'">
+    <div v-for="course in courses">
+      <h4>{{ course.name }}</h4>
+      <div class="Students__wrap">
+        <Card v-for="(student, sIndex) in course.students" :title="student.first_name + '' + student.last_name" :key="sIndex">
+          <div slot="body">
+            <p><small>{{ student.email }}</small></p>
+            <div v-for="(course, cIndex) in student.courses">
+              <label class="label flat flex flex--spaced">
+                <span>{{ course.name }}</span>
+              </label>
+              <ProgressBar class="flat" :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
+              <p class="Students__elapsed"><small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small></p>
+            </div>
           </div>
-        </div>
-      </Card>
+        </Card>
+      </div>
     </div>
   </div>
 </div>

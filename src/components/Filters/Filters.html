@@ -1,5 +1,9 @@
 <div class="Filters">
-  <div class="container container--large Filters__wrap">
+  <h2 class="flat Filters__sorted-by">Your students</h2>
+  <div class="Filters__wrap">
+    <small class="Filters__title">
+      Browse by
+    </small>
     <div :class="{ 'Filters__option' : true, 'Filters__option--active' : dashboardView === 'business' } " @click="setDashboardView('business')">
       <i class="fal fa-briefcase"></i> Businesses
     </div>

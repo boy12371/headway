@@ -5,11 +5,10 @@
     @createBusiness="showBusinessModal = true">
   </Header>
   <div class="Dashboard__content">
-    <div class="Dashboard__sidebar" hidden>
+    <div class="Dashboard__sidebar">
       <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu"></CourseMenu>
     </div>
     <div class="Dashboard__main">
-      <Filters></Filters>
       <Students v-if="view == 'dashboard'"></Students>
       <!-- The following v-if is bad. -->
       <Course @create-unit="showUnitModal = true" v-if="view != 'dashboard'" :name="activeCourse.name" :units="activeCourse.units"></Course>
