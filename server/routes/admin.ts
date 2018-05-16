@@ -71,7 +71,8 @@ app.post('/admin/course', (req, res) => {
 })
 
 app.get('/admin/course/:courseId', checkAdminPermission, (req, res) => {
-  Course.findById(req.params.courseId, { include: [Student, Unit, Business] }).then(course => {
+  // TODO: restrict to Student and Business onwed by current Admin
+  Course.findById(req.params.courseId, { include: [Student, Business] }).then(course => {
     res.send(course)
   })
 })
