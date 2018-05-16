@@ -102,10 +102,10 @@ app.get('/admin/unit/:unitId', (req, res) => {
 // Cards
 
 app.post('/admin/unit/:unitId/card', (req, res) => {
-  const { unitId } = req.params
+  const { unitId, name } = req.body
   Unit.findById(unitId, { include: [Course] }).then(unit => {
     if (unit.course.adminId === req.user.admin.id) {
-      Card.create({ unitId }).then(card => {
+      Card.create({ unitId, name }).then(card => {
         res.send(card)
       })
     }

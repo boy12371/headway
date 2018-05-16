@@ -19,7 +19,7 @@ import axios from 'axios'
 })
 
 export class AddCard extends Vue {
-
+  @Inject() toggleModal
   @Inject() unitService
 
   @State activeUnit
@@ -31,5 +31,7 @@ export class AddCard extends Vue {
       unitId: this.activeUnit.id,
       name: this.name,
     })
+    this.name = ''
+    this.toggleModal('card')
   }
 }

@@ -44,7 +44,7 @@ export const actions = {
   },
 
   createCard(context, { unitId, name }) {
-    return axios.post(BASE_URL + '/admin/unit/' + unitId, {
+    return axios.post(BASE_URL + '/admin/unit/' + unitId + '/card', {
       unitId,
       name,
     }).then(res => {
