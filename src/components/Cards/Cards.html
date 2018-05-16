@@ -7,7 +7,7 @@
   <div class="Cards__error" v-if="!cards.length">
     <div class="text-centered">
       <h2>You haven't created any cards</h2>
-      <button class="btn">Create a card</button>
+      <button class="btn" @click="toggleModal('card')">Create a card</button>
     </div>
   </div>
 </div>
