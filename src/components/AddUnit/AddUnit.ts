@@ -20,13 +20,17 @@ import axios from 'axios'
 export class AddUnit extends Vue {
 
   @Inject() unitService
+  @Inject() toggleModal
+
+  @State activeCourse
 
   name = ''
 
   submit() {
-    this.unitService.create(1, this.name).then(unit => {
-      console.log('TODO: add unit to course in store')
-      // store.commit('addUnit', unit)
+    store.dispatch('createUnit', {
+      courseId: this.activeCourse.id,
+      name: this.name
     })
+    this.toggleModal('unit')
   }
 }

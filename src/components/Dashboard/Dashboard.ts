@@ -50,13 +50,11 @@ export class Dashboard extends Vue {
 
   @State activeCourse
 
-  // Set the view name
   get view() {
     return this.$route.name
   }
 
   get courseMenu() {
-    // TODO: Use Course ID for link
     if (this.courses) {
       const menu = this.courses.map((course, index) => {
         const data = {
