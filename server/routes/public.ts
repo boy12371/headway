@@ -68,14 +68,3 @@ app.get('/login/student', (req, res) => {
 app.post('/login/student', authStudent, (req, res) => {
   res.redirect('/student')
 })
-
-// This is probably a really bad idea
-
-app.get('/reset-database', (req, res) => {
-  res.send(`<form method="POST"><button onclick="return confirm('Are you sure?')">RESET DATABASE</button></form>`)
-})
-
-app.post('/reset-database', (req, res) => {
-  resetDatabase()
-  res.send('Database Reset')
-})
