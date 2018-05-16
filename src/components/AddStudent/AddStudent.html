@@ -16,8 +16,8 @@
         </div>
         <div class="form__group">
           <label class="label">Add to Business (optional)</label>
-          <label class="checkbox" v-for="(business, index) in businesses">
-            <input type="checkbox" :::id="index" :value="business.id" v-model="businessIds">
+          <label class="checkbox" :for="'student-item-' + index" v-for="(business, index) in businesses">
+            <input type="checkbox" :id="'student-item-' + index" :value="business.id" v-model="businessIds">
             {{ business.name }}
           </label>
         </div>

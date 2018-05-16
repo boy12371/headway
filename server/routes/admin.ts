@@ -156,8 +156,20 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
 // Businesses
 
 app.post('/admin/business', (req, res) => {
-  const { name } = req.body
-  Business.create({ name }).then(business => {
+  const adminId = req.user.admin.id
+  const { name, courseIds } = req.body
+  Business.create({ name, adminId }).then(business => {
+    const businessId = business.id
+    console.warn('TODO: check Admin owns Course before linking')
+    Admin.findById(adminId, { include: [Course] }).then(admin => {
+      for (const courseId of courseIds) {
+        if (admin.ownsCourse(courseId)) {
+          BusinessCourse.create({ courseId, businessId })
+        } else {
+          console.warn(`Admin does not own Course #${courseId}`)
+        }
+      }
+    })
     res.send(business)
   })
 })

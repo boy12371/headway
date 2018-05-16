@@ -4,6 +4,8 @@ import { Logger } from '../logger'
 import Course from './Course'
 import Business from './Business'
 
+const includes = (models, id) => models.map(d => d.id).indexOf(id) >= 0
+
 @Table({ timestamps: true })
 export class Admin extends Model<Admin> {
   @Column name: string
@@ -25,8 +27,11 @@ export class Admin extends Model<Admin> {
   }
 
   ownsStudent(id) {
-    const ids = this.getStudents().map(student => student.id)
-    return ids.indexOf(id) >= 0
+    return includes(this.getStudents(), id)
+  }
+
+  ownsCourse(id) {
+    return includes(this.courses, id)
   }
 
   getUnits() {

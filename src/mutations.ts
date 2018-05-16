@@ -30,6 +30,9 @@ export const mutations = {
   toggleModal(state, k) {
     state.modals[k] = !state.modals[k]
   },
+  createBusiness(state, business) {
+    state.businesses.push(business)
+  },
   createUnit(state, {courseId, unit}) {
     state.courses = state.courses.map(course => {
       if (course.id === courseId) {

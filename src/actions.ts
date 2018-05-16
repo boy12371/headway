@@ -36,5 +36,15 @@ export const actions = {
       const card = res.data
       // context.commit('updateCard', { card })
     })
+  },
+
+  createBusiness(context, {name, courseIds}) {
+    return axios.post(BASE_URL + '/admin/business', {
+      name,
+      courseIds,
+    }).then(res => {
+      const business = res.data
+      context.commit('createBusiness', business)
+    })
   }
 }
