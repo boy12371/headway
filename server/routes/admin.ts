@@ -4,7 +4,7 @@ import app from '../app'
 import mailer from '../mailer'
 
 import { authEpilogue, authAdmin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, checkAdminPermission, checkAdminLogin, mockAdminLogin, } from '../authentication'
-import { createAdmin, createCourse, inviteStudent, studentSummary, courseSummary, businessSummary } from '../actions'
+import { createAdmin, createCourse, inviteStudent } from '../actions'
 import { PASSWORD_OPTS } from '../constants'
 import mail from '../mail'
 
@@ -23,7 +23,12 @@ app.get('/admin', (req, res) => {
   const adminId = req.user.admin.id
   Admin.findById(adminId, {
     include: [
-      Business,
+      {
+        model: Business,
+        include: [
+          Student.scope('public'),
+        ],
+      },
       {
         model: Course,
         include: [
@@ -36,22 +41,6 @@ app.get('/admin', (req, res) => {
     res.send(admin)
   })
 })
-
-app.get('/admin/overview', (req, res) => {
-  Promise.all([
-    courseSummary(),
-    studentSummary(),
-    businessSummary(),
-  ]).then(([courses, students, businesses]) => {
-    res.send({
-      courses,
-      students,
-      businesses,
-      user: req.user ? req.user.admin : null
-    })
-  })
-})
-
 
 // Courses
 

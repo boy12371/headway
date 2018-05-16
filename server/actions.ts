@@ -147,31 +147,3 @@ export const studentUnitProgress = async (unitId, studentId): Promise<UnitProgre
       return res
     })
 }
-
-
-export const courseSummary = (adminId?: number) => {
-  // { where: { adminId }
-  return Course.findAll({ include: [Unit, Student] }).then((courses) => {
-    return courses.map(course => ({
-      name: course.name,
-      id: course.id,
-      units: course.units,
-      students: course.students.map(student => student.email),
-    }))
-  })
-}
-
-export const studentSummary = (adminId?: number) => {
-  //  where: {adminId},
-  return Student.scope('public').findAll({ include: [Course] })
-}
-
-export const businessSummary = (adminId?: number) => {
-  return Business.findAll({ include: [Student] }).then((businesses) => {
-    return businesses.map(business => ({
-      id: business.id,
-      name: business.name,
-      students: business.students,
-    }))
-  })
-}

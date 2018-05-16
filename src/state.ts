@@ -1,8 +1,8 @@
 export const state = {
   authed: false,
   courses: [],
-  students: [],
   businesses: [],
+  dashboardView: 'business',
   activeCourse: {},
   activeUnit: {},
   activeCard: {},

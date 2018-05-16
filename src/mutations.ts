@@ -1,9 +1,7 @@
 export const mutations = {
-  setOverview(state, overview) {
-    state.courses = overview.courses
-    state.students = overview.students
-    state.businesses = overview.businesses
-    state.user = overview.user
+  setAdmin(state, admin) {
+    state.courses = admin.courses
+    state.businesses = admin.businesses
     // state.authed = overview.user && overview.user.id
     state.authed = true
   },
@@ -22,6 +20,9 @@ export const mutations = {
   },
   setBreadcrumbs(state, crumbs) {
     state.breadcrumbs = crumbs
+  },
+  setDashboardView(state, view) {
+    state.dashboardView = view
   },
   createCourse(state, course) {
     state.courses.push(course)

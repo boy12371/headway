@@ -14,6 +14,11 @@ import store from '../../store'
 export class Filters extends Vue {
   @State businesses
   @State courses
+  @State dashboardView
+
+  setDashboardView(view) {
+    store.dispatch('setDashboardView', view)
+  }
 }
 
 

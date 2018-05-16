@@ -22,5 +22,7 @@ import store from '../../store'
 })
 
 export class Students extends Vue {
-  @State students
+  @State businesses
+  @State courses
+  @State dashboardView
 }
