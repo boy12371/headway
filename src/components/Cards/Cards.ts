@@ -1,4 +1,4 @@
-import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
+import { Component, Prop, Watch, Vue, Inject } from 'vue-property-decorator'
 
 import { Card } from '../Card'
 
@@ -13,6 +13,7 @@ import './Cards.scss'
 })
 
 export class Cards extends Vue {
+  @Inject() toggleModal
   @Prop() cards: any[]
 
   // Set the view name

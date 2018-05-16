@@ -30,8 +30,9 @@ export class AddCard extends Vue {
     store.dispatch('createCard', {
       unitId: this.activeUnit.id,
       name: this.name,
+    }).then(d => {
+      this.name = ''
+      this.toggleModal('card')
     })
-    this.name = ''
-    this.toggleModal('card')
   }
 }

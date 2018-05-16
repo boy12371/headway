@@ -34,8 +34,9 @@ export class AddCourse extends Vue {
       this.$router.push({
         path: '/c/' + course.id,
       })
+    }).then(d => {
+      this.name = ''
+      this.$emit('close')
     })
-    this.name = ''
-    this.$emit('close')
   }
 }
