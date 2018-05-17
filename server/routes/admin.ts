@@ -55,7 +55,7 @@ app.get('/admin/course', (req, res) => {
 })
 
 app.post('/admin/course', (req, res) => {
-  const { name, businessIds } = req.body
+  const { name, businessIds = [] } = req.body
   Admin.findById(req.user.admin.id, { include: [Business] }).then(admin => {
     const ids = admin.businesses.map(d => d.id)
     for (const id of businessIds) {
