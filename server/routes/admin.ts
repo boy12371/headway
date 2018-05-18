@@ -83,7 +83,7 @@ app.get('/admin/course/:courseId', checkAdminPermission, (req, res) => {
 
 // Units
 
-app.post('/admin/unit', checkAdminLogin, (req, res) => {
+app.post('/admin/unit', checkAdminLogin, checkAdminPermission, (req, res) => {
   const { name, courseId } = req.body
   Unit.create({ name, courseId }).then(unit => {
     res.send(unit)

@@ -1,3 +1,5 @@
+import { defaults } from 'lodash'
+
 import * as bcrypt from 'bcrypt'
 import * as passport from 'passport'
 import { Model } from 'sequelize-typescript'
@@ -134,9 +136,8 @@ export const checkStudentEnrolled = (req, res, next) => {
   })
 }
 
-// TODO: req.body as well as req.params? _.extend?
 export const checkAdminPermission = (req, res, next) => {
-  const { courseId, businessId, studentId } = req.params
+  const { courseId, businessId, studentId } = defaults(req.body, req.params)
   if (!req.user) {
     return res.status(401).send({ message: 'Unauthorized' })
   }
