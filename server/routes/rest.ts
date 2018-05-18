@@ -87,15 +87,14 @@ createRestApi(Unit, 'unit', (req, res, context, resolve) => {
 createRestApi(Card, 'card', (req, res, context, resolve) => {
   const id = parseInt(req.params.id)
   const adminId = req.user.admin.id
-  Admin.findById(adminId, { include: [{ model: Course, include: [{model: Unit, include: [Card]}] }] })
-    .then(admin => {
-      if (admin.ownsCard(id)) {
-        resolve(context.continue)
-      } else {
-        res.status(401).send({ message: 'Unauthorized: Admin does not own Card #' + id })
-        resolve(context.stop)
-      }
-    })
+  Card.findById(id, { include: [{ model: Unit, include: [Course] }] }).then(card => {
+    if (card && card.unit.course.adminId === adminId) {
+      resolve(context.continue)
+    } else {
+      res.status(401).send({ message: 'Unauthorized: Admin does not own Card #' + id })
+      resolve(context.stop)
+    }
+  })
 })
 
 createRestApi(Student, 'student', (req, res, context, resolve) => {

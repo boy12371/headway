@@ -121,11 +121,9 @@ app.post('/admin/unit/:unitId/card', (req, res) => {
 app.put('/admin/card/:cardId', (req, res) => {
   const { cardId } = req.params
   Card.findById(cardId, { include: [{ model: Unit, include: [Course] }] }).then(card => {
-    if (card.unit.course.adminId === req.user.admin.id) {
-      Card.findById(cardId).then(card => {
-        Logger.debug('TODO: modify card')
-        res.send(card)
-      })
+    if (card && card.unit.course.adminId === req.user.admin.id) {
+      Logger.debug('TODO: modify card')
+      res.send(card)
     }
     else {
       res.status(401).send({ message: 'Unauthorized: Admin does not own Card #' + cardId })
