@@ -174,7 +174,7 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
 
 app.post('/admin/business', (req, res) => {
   const adminId = req.user.admin.id
-  const { name, courseIds } = req.body
+  const { name, courseIds = [] } = req.body
   Business.create({ name, adminId }).then(business => {
     const businessId = business.id
     console.warn('TODO: check Admin owns Course before linking')
