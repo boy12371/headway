@@ -72,8 +72,4 @@ export class Dashboard extends Vue {
     store.dispatch('getAdmin')
   }
 
-  resetDatabase() {
-    axios.post('/api/course/create', )
-  }
-
 }
