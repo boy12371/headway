@@ -1,0 +1,24 @@
+.QuizBuilder__question {
+  margin-bottom: 1rem;
+  padding-top: 0.5rem;
+}
+
+.QuizBuilder__answer {
+  margin-bottom: 0.25rem;
+}
+
+.QuizBuilder__add-answer {
+  opacity: 0.75;
+  background: #eee;
+  cursor: pointer;
+  transition: opacity 200ms ease;
+}
+
+.QuizBuilder__add-answer:hover {
+  opacity: 1;
+}
+
+.QuizBuilder__question .QuizBuilder__question,
+.QuizBuilder__question + .QuizBuilder__add-question {
+  margin-top: 1rem;
+}

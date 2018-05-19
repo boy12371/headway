@@ -1,0 +1,23 @@
+<div id="dashboard" class="Admin">
+  <Header
+    authed
+    @inviteStudent="showStudentModal = true"
+    class="Admin__header"
+    @createBusiness="showBusinessModal = true">
+  </Header>
+  <div class="Admin__content">
+    <div class="Admin__sidebar">
+      <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu"></CourseMenu>
+    </div>
+    <div class="Admin__main">
+      <StudentList v-if="view == 'dashboard'"></StudentList>
+      <!-- The following v-if is bad. -->
+      <Course @create-unit="showUnitModal = true" v-if="view != 'dashboard'" :name="activeCourse.name" :units="activeCourse.units"></Course>
+    </div>
+  </div>
+  <AddCourse v-show="modals.course" @close="toggleModal('course')"></AddCourse>
+  <AddStudent v-show="modals.student" @close="toggleModal('student')"></AddStudent>
+  <AddBusiness v-show="modals.business" @close="toggleModal('business')"></AddBusiness>
+  <AddUnit v-show="modals.unit" @close="toggleModal('unit')"></AddUnit>
+  <AddCard v-show="modals.card" @close="toggleModal('card')"></AddCard>
+</div>

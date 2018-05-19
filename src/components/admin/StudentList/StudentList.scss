@@ -1,0 +1,47 @@
+.StudentList {
+  padding-top: 6rem;
+}
+
+.StudentList__elapsed {
+  text-align: right;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  font-size: 0.825rem;
+}
+
+.StudentList__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 2rem;
+}
+
+.StudentList__group {
+  border-top: 1px solid #ddd;
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  &:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+@media(min-width: 1024px) {
+
+  .StudentList__wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+  }
+
+  .StudentList .Card {
+    cursor: pointer;
+    transition: all 200ms ease;
+    &:hover {
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+  }
+
+}

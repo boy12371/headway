@@ -1,0 +1,63 @@
+.Admin {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding-top: 4rem;
+}
+
+.Admin__header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+}
+
+.Admin__content {
+  flex: 1;
+  display: flex;
+}
+
+.Admin__main {
+  flex: 1;
+  padding: 1rem;
+  padding-top: 0;
+  position: relative;
+}
+
+.Admin__sidebar {
+  display: none;
+}
+
+.Admin__sidebar-title {
+  color: #fff;
+}
+
+@media(min-width:768px) {
+
+  .Admin__main {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 1rem 2rem;
+    padding-top: 0;
+    padding-left: 22rem;
+  }
+
+  .Admin__sidebar {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    width: 20rem;
+    bottom: 0;
+    display: block;
+    z-index: 100;
+    padding: 1.5rem 1rem;
+    background: #1e283c;
+    color: #fff;
+  }
+
+  .Admin__main .Businesses {
+    width: 15rem;
+  }
+
+}

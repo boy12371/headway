@@ -1,0 +1,56 @@
+@import "../../../sass/variables.scss";
+
+.CourseMenu__menu {
+  list-style: none;
+}
+
+.CourseMenu__title {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.CourseMenu__item {
+  margin-bottom: 0.0625rem;
+  position: relative;
+}
+
+.CourseMenu__link {
+  display: block;
+  padding: 1rem 1rem;
+  padding-left: calc(1rem - 0.3rem);
+  text-decoration: none;
+  color: #fff;
+  transition: all 200ms ease;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.85;
+  margin: 0 -1rem;
+  position: relative;
+  z-index: 20;
+  border-left: 0.3rem solid transparent;
+}
+
+.CourseMenu__bg {
+  background-color: rgba(0,0,0,.2);
+  position: absolute;
+  top: 0;
+  left: -1rem;
+  right:-1rem;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
+  transition: all 200ms ease;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.CourseMenu__link--active + .CourseMenu__bg,
+.CourseMenu__link.router-link-active + .CourseMenu__bg,
+.CourseMenu__link:hover + .CourseMenu__bg {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.CourseMenu__link.router-link-active {
+  border-left-color: $green;
+}
