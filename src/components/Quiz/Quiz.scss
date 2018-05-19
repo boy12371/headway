@@ -1,5 +1,6 @@
 .Quiz__question {
   margin-bottom: 1rem;
+  padding-top: 0.5rem;
 }
 
 .Quiz__answer {
@@ -16,12 +17,6 @@
 .Quiz__add-answer:hover {
   opacity: 1;
 }
-
-.Quiz__question + .Quiz__question {
-  padding-top: 0.5rem;
-  border-top: 1px solid #ddd;
-}
-
 
 .Quiz__question .Quiz__question,
 .Quiz__question + .Quiz__add-question {
