@@ -1,15 +1,15 @@
-<div id="dashboard" class="Dashboard">
+<div id="dashboard" class="AdminApp">
   <Header
     authed
     @inviteStudent="showStudentModal = true"
-    class="Dashboard__header"
+    class="AdminApp__header"
     @createBusiness="showBusinessModal = true">
   </Header>
-  <div class="Dashboard__content">
-    <div class="Dashboard__sidebar">
+  <div class="AdminApp__content">
+    <div class="AdminApp__sidebar">
       <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu"></CourseMenu>
     </div>
-    <div class="Dashboard__main">
+    <div class="AdminApp__main">
       <Students v-if="view == 'dashboard'"></Students>
       <!-- The following v-if is bad. -->
       <Course @create-unit="showUnitModal = true" v-if="view != 'dashboard'" :name="activeCourse.name" :units="activeCourse.units"></Course>

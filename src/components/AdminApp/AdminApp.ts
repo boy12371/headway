@@ -10,15 +10,15 @@ import { AddStudent, AddUnit, AddCard, AddBusiness, Students, Course, Header, Bu
 
 import { Login } from '../Login'
 
-import './Dashboard.scss'
+import './AdminApp.scss'
 import store from '../../store'
 import axios from 'axios'
 
 const toggleModal = k => store.commit('toggleModal', k)
 
 @Component({
-  template: require('./Dashboard.html'),
-  name: 'Dashboard',
+  template: require('./AdminApp.html'),
+  name: 'AdminApp',
   components: {
     Header,
     AddCourse,
@@ -32,7 +32,7 @@ const toggleModal = k => store.commit('toggleModal', k)
     Login,
   }
 })
-export class Dashboard extends Vue {
+export class AdminApp extends Vue {
   showCourseModal = false
   showStudentModal = false
   showBusinessModal = false

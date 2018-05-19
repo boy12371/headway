@@ -4,7 +4,7 @@ import { makeHot, reload } from './util/hot-reload'
 
 const loginComponent = () => import('./components/Login').then(({ Login }) => Login)
 const landingComponent = () => import('./components/landing').then(({ LandingComponent }) => LandingComponent)
-const dashboardComponent = () => import('./components/Dashboard').then(({ Dashboard }) => Dashboard)
+const adminAppComponent = () => import('./components/AdminApp').then(({ AdminApp }) => AdminApp)
 const styleguideComponent = () => import('./components/styleguide').then(({ StyleguideComponent }) => StyleguideComponent)
 
 Vue.use(VueRouter)
@@ -22,27 +22,22 @@ export const createRoutes: () => RouteConfig[] = () => [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: dashboardComponent
-  },
-  {
-    path: '/app',
-    name: 'app',
-    component: dashboardComponent
+    component: adminAppComponent
   },
   {
     path: '/c/:courseId',
     name: 'course',
-    component: dashboardComponent
+    component: adminAppComponent
   },
   {
     path: '/c/:courseId/:unitId',
     name: 'unit',
-    component: dashboardComponent
+    component: adminAppComponent
   },
   {
     path: '/c/:courseId/:unitId/:cardId',
     name: 'card',
-    component: dashboardComponent
+    component: adminAppComponent
   },
   {
     path: '/styleguide',

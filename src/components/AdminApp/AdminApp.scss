@@ -1,11 +1,11 @@
-.Dashboard {
+.AdminApp {
   display: flex;
   flex-direction: column;
   min-height: 100%;
   padding-top: 4rem;
 }
 
-.Dashboard__header {
+.AdminApp__header {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,29 +13,29 @@
   z-index: 200;
 }
 
-.Dashboard__content {
+.AdminApp__content {
   flex: 1;
   display: flex;
 }
 
-.Dashboard__main {
+.AdminApp__main {
   flex: 1;
   padding: 1rem;
   padding-top: 0;
   position: relative;
 }
 
-.Dashboard__sidebar {
+.AdminApp__sidebar {
   display: none;
 }
 
-.Dashboard__sidebar-title {
+.AdminApp__sidebar-title {
   color: #fff;
 }
 
 @media(min-width:768px) {
 
-  .Dashboard__main {
+  .AdminApp__main {
     flex: 1;
     background: #f9f9f9;
     padding: 1rem 2rem;
@@ -43,7 +43,7 @@
     padding-left: 22rem;
   }
 
-  .Dashboard__sidebar {
+  .AdminApp__sidebar {
     position: fixed;
     top: 4rem;
     left: 0;
@@ -56,7 +56,7 @@
     color: #fff;
   }
 
-  .Dashboard__main .Businesses {
+  .AdminApp__main .Businesses {
     width: 15rem;
   }
 
