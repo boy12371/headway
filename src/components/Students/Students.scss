@@ -1,3 +1,7 @@
+.Students {
+  padding-top: 6rem;
+}
+
 .Students__elapsed {
   text-align: right;
   margin-top: 0.25rem;
@@ -12,6 +16,16 @@
   height: 5rem;
   border-bottom: 1px solid #ddd;
   margin-bottom: 2rem;
+}
+
+.Students__group {
+  border-top: 1px solid #ddd;
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  &:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
 }
 
 @media(min-width: 1024px) {

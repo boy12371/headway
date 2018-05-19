@@ -14,8 +14,9 @@
       </div>
     </div>
   </div>
+
   <div v-show="dashboardView === 'business'">
-    <div class="Business" v-for="business in businesses">
+    <div class="Students__group" v-for="business in businesses" v-show="business.students.length">
       <h4>{{ business.name }}</h4>
       <div class="Students__wrap">
         <Card v-for="(student, sIndex) in business.students" :title="student.first_name + '' + student.last_name" :key="sIndex">
@@ -33,8 +34,9 @@
       </div>
     </div>
   </div>
+
   <div v-show="dashboardView === 'course'">
-    <div v-for="course in courses" v-show="course.students">
+    <div class="Students__group" v-for="course in courses" v-show="course.students.length">
       <h4>{{ course.name }}</h4>
       <div class="Students__wrap">
         <Card v-for="(student, sIndex) in course.students" :title="student.first_name + '' + student.last_name" :key="sIndex">

@@ -12,7 +12,7 @@ import './Students.scss'
 import '../Filters/Filters.scss'
 import store from '../../store'
 
-const crumbs = [
+const crumbs = () => [
   {
     label: 'Your students',
     link: '/dashboard'

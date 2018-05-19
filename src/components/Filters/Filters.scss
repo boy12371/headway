@@ -1,8 +1,11 @@
 @import "../../sass/variables.scss";
 
 .Filters {
-  margin-left: -2rem;
-  margin-right: -2rem;
+  position: fixed;
+  top: 4rem;
+  left: 20rem;
+  right: 0;
+  z-index: 100;
   padding: 0 2rem;
   background: #fff;
 }
