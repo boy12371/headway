@@ -22,6 +22,7 @@ const main = async () => {
   await Course.create({ name: 'Sports Turf Management', adminId: 1 })
   await Course.create({ name: 'Pool Maintenance', adminId: 2 })
   await Unit.create({ name: 'Grass Maintenance', courseId: 1, })
+  await Unit.create({ name: 'Maintaining chemical balance in pools', courseId: 2, })
   await Business.create({ name: 'Green Options', adminId: 1 })
   await Business.create({ name: 'Perfection Plus', adminId: 2 })
   await Promise.all(cards.map(d => {
@@ -33,12 +34,12 @@ const main = async () => {
   await createMentor({ first_name: 'Jesus', businessId: 1, email: 'jesus@hotmail.com', password: 'password' })
   await BusinessStudent.create({ businessId: 1, studentId: 1, })
   await BusinessStudent.create({ businessId: 1, studentId: 2, })
+  await BusinessStudent.create({ businessId: 2, studentId: 1, })
   await BusinessCourse.create({ businessId: 1, courseId: 1, })
   await CourseStudent.create({ courseId: 1, studentId: 1, assigned: Date.now() })
   await CourseStudent.create({ courseId: 1, studentId: 2, assigned: Date.now() })
   await CourseStudent.create({ courseId: 1, studentId: 3, assigned: Date.now() })
-  await CourseStudent.create({ courseId: 2, studentId: 3, assigned: Date.now() })
-  await CourseStudent.create({ courseId: 2, studentId: 2, assigned: Date.now() })
+  await CourseStudent.create({ courseId: 2, studentId: 1, assigned: Date.now() })
   await Activity.create({ studentId: 1, cardId: 1, evidence_proof: 'I mowed a lawn', completed: true })
   // await Activity.create({ studentId: 1, cardId: 2, evidence_proof: 'I washed a lawn?', }) // DUPE!
   done()
