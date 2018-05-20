@@ -16,23 +16,48 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4eb68754-0a6e-409d-9a94-1a423c7d0704",
+								"id": "c2cf10c3-02a0-4281-8b01-780bc6793bad",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test('Response OK', function () {",
 									"\tpm.response.to.have.status(200);",
 									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
-									"})"
+									"})",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"<h1 class=\\\"form__title\\\">Login</h1>\");",
+									"});"
 								]
 							}
 						}
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
-						"body": {},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "bad email",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "p",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:5000/login/admin?email=bad&password=p",
+							"raw": "http://localhost:5000/login/admin",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -41,16 +66,6 @@
 							"path": [
 								"login",
 								"admin"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "bad"
-								},
-								{
-									"key": "password",
-									"value": "p"
-								}
 							]
 						},
 						"description": "Some request description"
@@ -67,8 +82,8 @@
 								"type": "text/javascript",
 								"exec": [
 									"pm.test('Response OK', function () {",
-									"\tpm.response.to.have.status(200);",
-									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"  pm.response.to.have.status(200);",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);",
 									"})",
 									"",
 									"pm.test(\"Admin user returned\", function () {",
@@ -508,6 +523,54 @@
 					"response": []
 				},
 				{
+					"name": "Admin Student #1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "66b07e83-366d-470d-b1c4-c32ec2c30722",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response OK', function () {",
+									"\tpm.response.to.have.status(200);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Only contains own Courses\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.courses.length).to.eql(1);",
+									"});",
+									"",
+									"pm.test(\"Only contains own Businesses\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.businesses.length).to.eql(1);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/admin/student/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"student",
+								"1"
+							]
+						},
+						"description": "Some request description"
+					},
+					"response": []
+				},
+				{
 					"name": "Admin Invite Student - Success",
 					"event": [
 						{
@@ -662,6 +725,206 @@
 			"description": "",
 			"item": [
 				{
+					"name": "Edit Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65efb5fc-ca11-4d64-8d9e-4afd827fc920",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response OK', function () {",
+									"\tpm.response.to.have.status(200);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Name updated\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql('Changed Course Name');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Changed Course Name\"}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/course/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"course",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Course Unauthorised",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7387f133-5877-4ed4-bd69-25a1a99fadf3",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response 401', function () {",
+									"\tpm.response.to.have.status(401);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Error Message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql('Unauthorized: Admin does not own Course #2');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Changed Unit Name\"}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/course/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"course",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Unit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "315abfe7-5c22-439a-9c2c-0b82d4b40d8c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response OK', function () {",
+									"\tpm.response.to.have.status(200);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Name updated\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql('Changed Unit Name');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Changed Unit Name\"}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/unit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"unit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Unit Unauthorised",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "baed26b6-59b5-4027-bcb8-5a5199e6308c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response 401', function () {",
+									"\tpm.response.to.have.status(401);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Error Message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql('Unauthorized: Admin does not own Unit #2');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Changed Unit Name\"}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/unit/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"unit",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Edit Card",
 					"event": [
 						{
@@ -712,7 +975,7 @@
 					"response": []
 				},
 				{
-					"name": "Edit Card Unauthorised",
+					"name": "Edit Card Not Found",
 					"event": [
 						{
 							"listen": "test",
