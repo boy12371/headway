@@ -1,5 +1,3 @@
-import * as passwordGenerator from 'generate-password'
-
 import app from '../app'
 import mailer from '../mailer'
 
@@ -74,7 +72,6 @@ app.post('/admin/course', (req, res) => {
 })
 
 app.get('/admin/course/:courseId', checkAdminPermission, (req, res) => {
-  // TODO: restrict to Student and Business onwed by current Admin
   Course.findById(req.params.courseId, { include: [Student, Business, Unit] }).then(course => {
     res.send(course)
   })
@@ -171,9 +168,8 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
   const adminId = req.user.admin.id
   Student.scope('public').findById(req.params.studentId, {
     include: [
-      // TODO: restrict to Course and Business from this Admin only
-      // { model: Course, where: { adminId } },
-      // { model: Business, where: { adminId } },
+      { model: Course, where: { adminId } },
+      { model: Business, where: { adminId } },
     ]
   }).then(student => {
     res.send(student)
@@ -188,7 +184,6 @@ app.post('/admin/business', (req, res) => {
   const { name, courseIds = [] } = req.body
   Business.create({ name, adminId }).then(business => {
     const businessId = business.id
-    console.warn('TODO: check Admin owns Course before linking')
     Admin.findById(adminId, { include: [Course] }).then(admin => {
       for (const courseId of courseIds) {
         if (admin.ownsCourse(courseId)) {
