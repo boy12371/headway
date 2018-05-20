@@ -1,3 +1,4 @@
+import * as passwordGenerator from 'generate-password'
 import * as bcrypt from 'bcrypt'
 import Admin from './models/Admin'
 import Student from './models/Student'
@@ -5,12 +6,11 @@ import Mentor from './models/Mentor'
 import { Business, BusinessCourse, BusinessStudent, Activity, Unit, Card, CourseStudent, Course } from './models'
 import { Logger } from './logger'
 import { UnitProgress } from './interfaces'
-
-const saltRounds = 10
+import { PASSWORD_OPTS, SALT_ROUNDS } from './constants'
 
 export const createAdmin = (data) => {
   const { email, name } = data
-  const salt = bcrypt.genSaltSync(saltRounds)
+  const salt = bcrypt.genSaltSync(SALT_ROUNDS)
   const password = bcrypt.hashSync(data.password, salt)
   return Admin.create({
     name,
@@ -37,7 +37,7 @@ export const createCourse = (adminId, name, businessIds = []) => {
 
 export const createStudent = (data) => {
   const { email, first_name, last_name } = data
-  const salt = bcrypt.genSaltSync(saltRounds)
+  const salt = bcrypt.genSaltSync(SALT_ROUNDS)
   const password = bcrypt.hashSync(data.password, salt)
   return Student.create({
     first_name,
@@ -50,7 +50,7 @@ export const createStudent = (data) => {
 
 export const createMentor = (data) => {
   const { email, first_name, last_name } = data
-  const salt = bcrypt.genSaltSync(saltRounds)
+  const salt = bcrypt.genSaltSync(SALT_ROUNDS)
   const password = bcrypt.hashSync(data.password, salt)
   return Mentor.create({
     first_name,
@@ -88,7 +88,7 @@ export const inviteStudent = async (payload, businessIds: number[]) => {
   return Student.findOne({ where: { email }, include: [Business] }).then(student => {
     if (!student) {
       Logger.debug('Create new student and link to business', email, businessIds)
-      const password = 'password' // todo: generate
+      const password: string = passwordGenerator.generate(PASSWORD_OPTS)
       return createStudent({ email, first_name, last_name, password }).then(student => {
         Logger.debug('Student Created')
         return addStudentToBusinesses(student, businessIds)
