@@ -1025,6 +1025,184 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "CSRF Prevention",
+			"description": "",
+			"item": [
+				{
+					"name": "Edit Course adminId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a39adff-cf40-4b95-84f8-3ef66c7b9ff6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response 401', function () {",
+									"\tpm.response.to.have.status(401);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Error Message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql('Unauthorized: Course can not change Admin');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"adminId\":2}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/course/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"course",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Unit courseId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0e9ecdb8-db18-4a63-8480-87f8d5349da3",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response 401', function () {",
+									"\tpm.response.to.have.status(401);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Error Message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql('Unauthorized: Admin does not own Course #2');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"courseId\":2}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/unit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"unit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Card unitId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6985ccd7-0713-4526-9b05-ef971a98cb2a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response 401', function () {",
+									"\tpm.response.to.have.status(401);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Error Message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql('Unauthorized: Cards are not currently able to change Units');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"unitId\":2}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/card/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"card",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f007fc19-c642-441c-b383-49178afd5703",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a4b17ee-29df-44a4-84c0-46c1987277b1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		}
 	]
 }
