@@ -68,9 +68,11 @@ export const addStudentToBusinesses = (student: Student, businessIds: number[]) 
 
 export const addStudentToBusiness = (student: Student, businessId: number) => {
   Logger.debug('Add student to business', student.email, businessId)
-  return BusinessStudent.create({
-    businessId,
-    studentId: student.id,
+  return BusinessStudent.findOrCreate({
+    where: {
+      businessId,
+      studentId: student.id,
+    }
   }).then(businessStudent => {
     Logger.debug('Student added to business', student.email, businessId)
     return businessStudent

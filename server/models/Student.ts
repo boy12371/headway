@@ -51,6 +51,11 @@ export class Student extends Model<Student> {
     const name = [this.first_name, this.last_name].join(' ').trim()
     return name
   }
+
+  addToCourse(courseId) {
+    const studentId = this.id
+    return CourseStudent.findOrCreate({ where: { courseId, studentId }})
+  }
 }
 
 export default Student
