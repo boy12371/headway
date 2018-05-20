@@ -45,6 +45,11 @@ const createRestApi = (model, k, authorize) => {
 createRestApi(Business, 'business', (req, res, context, resolve) => {
   const id = parseInt(req.params.id)
   const adminId = req.user.admin.id
+  if (req.body.adminId) {
+    res.status(401).send({ message: 'Unauthorized: Business can not change Admin' })
+    resolve(context.stop)
+    return
+  }
   Admin.findById(adminId, { include: [Business] }).then(admin => {
     const ids = admin.businesses.map(d => d.id)
     if (ids.indexOf(id) >= 0) {
@@ -59,6 +64,11 @@ createRestApi(Business, 'business', (req, res, context, resolve) => {
 createRestApi(Course, 'course', (req, res, context, resolve) => {
   const id = parseInt(req.params.id)
   const adminId = req.user.admin.id
+  if (req.body.adminId) {
+    res.status(401).send({ message: 'Unauthorized: Course can not change Admin' })
+    resolve(context.stop)
+    return
+  }
   Admin.findById(adminId, { include: [Course] }).then(admin => {
     const ids = admin.courses.map(d => d.id)
     if (ids.indexOf(id) >= 0) {
@@ -73,8 +83,16 @@ createRestApi(Course, 'course', (req, res, context, resolve) => {
 createRestApi(Unit, 'unit', (req, res, context, resolve) => {
   const id = parseInt(req.params.id)
   const adminId = req.user.admin.id
+  const { courseId } = req.body
   Admin.findById(adminId, { include: [{ model: Course, include: [Unit] }] })
     .then(admin => {
+      if (courseId) {
+        if (!admin.ownsCourse(courseId)) {
+          res.status(401).send({ message: 'Unauthorized: Admin does not own Course #' + courseId })
+          resolve(context.stop)
+          return
+        }
+      }
       if (admin.ownsUnit(id)) {
         resolve(context.continue)
       } else {
@@ -87,7 +105,13 @@ createRestApi(Unit, 'unit', (req, res, context, resolve) => {
 createRestApi(Card, 'card', (req, res, context, resolve) => {
   const id = parseInt(req.params.id)
   const adminId = req.user.admin.id
+  const { unitId } = req.body
   Card.findById(id, { include: [{ model: Unit, include: [Course] }] }).then(card => {
+    if (unitId) {
+      res.status(401).send({ message: 'Unauthorized: Cards are not currently able to change Units' })
+      resolve(context.stop)
+      return
+    }
     if (card && card.unit.course.adminId === adminId) {
       resolve(context.continue)
     } else {
