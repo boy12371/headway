@@ -6,7 +6,7 @@ import { createAdmin, createCourse, inviteStudent } from '../actions'
 import { PASSWORD_OPTS } from '../constants'
 import mail from '../mail'
 
-import { Admin, Course, Business, BusinessCourse, Student, Unit, Card } from '../models'
+import { Admin, Course, Business, BusinessCourse, Student, Unit, Card, Activity } from '../models'
 import { Logger } from '../logger'
 
 if (process.env.MOCK_AUTH) {
@@ -146,8 +146,12 @@ app.post('/admin/card/:cardId/upload', (req, res) => {
 
 app.post('/admin/student', (req, res) => {
   const { email, first_name, last_name, businessIds } = req.body
+  Logger.warn('TODO: auth check businessIds belong to this Admin')
   inviteStudent({ email, first_name, last_name }, businessIds).then(invitation => {
-    res.send({ email, first_name, last_name })
+    res.send({ message: 'Invite Sent' })
+  }).catch(err => {
+    Logger.warn(err)
+    res.status(500).send({ message: 'Could not invite Student' })
   })
 })
 

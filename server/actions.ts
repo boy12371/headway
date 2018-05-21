@@ -67,40 +67,31 @@ export const addStudentToBusinesses = (student: Student, businessIds: number[]) 
 }
 
 export const addStudentToBusiness = (student: Student, businessId: number) => {
-  Logger.debug('Add student to business', student.email, businessId)
   return BusinessStudent.findOrCreate({
     where: {
       businessId,
       studentId: student.id,
     }
-  }).then(businessStudent => {
-    Logger.debug('Student added to business', student.email, businessId)
-    return businessStudent
-  }).catch(err => {
-    Logger.debug('Could not add student to business', student.email, businessId)
-    return null
+  }).then(businessStudents => {
+    Business.findById(businessId, { include: [Course] }).then(business => {
+      business.courses.forEach(course => {
+        student.addToCourse(course.id)
+      })
+    })
+    return businessStudents
   })
 }
 
 export const inviteStudent = async (payload, businessIds: number[]) => {
   const { email, first_name, last_name } = payload
-  Logger.debug('Invite Student', email, 'to business', businessIds)
   return Student.findOne({ where: { email }, include: [Business] }).then(student => {
     if (!student) {
-      Logger.debug('Create new student and link to business', email, businessIds)
       const password: string = passwordGenerator.generate(PASSWORD_OPTS)
       return createStudent({ email, first_name, last_name, password }).then(student => {
-        Logger.debug('Student Created')
         return addStudentToBusinesses(student, businessIds)
       })
     } else {
-      Logger.debug('Student exists', email)
-      const ids = student.businesses.map(business => business.id)
-      if (ids.indexOf(businessIds) >= 0) {
-        Logger.debug(student.email, 'already added to business', businessIds)
-      } else {
-        return addStudentToBusinesses(student, businessIds)
-      }
+      return addStudentToBusinesses(student, businessIds)
     }
   })
 }
