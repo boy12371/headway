@@ -108,6 +108,16 @@ export const mockAdminLogin = (req, res, next) => {
   next()
 }
 
+export const mockStudentLogin = (req, res, next) => {
+  req.isAuthenticated = () => true // =\
+  req.user = {
+    student: {
+      id: 1
+    }
+  }
+  next()
+}
+
 export const checkStudentLogin = (req, res, next) => {
   if (!req.isAuthenticated || !req.isAuthenticated() || !req.user.student) {
     return res.redirect('/login/student')

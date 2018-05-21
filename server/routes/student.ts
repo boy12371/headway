@@ -1,11 +1,17 @@
 import app from '../app'
 
-import { checkStudentLogin, authStudent, checkStudentEnrolled } from '../authentication'
+import { checkStudentLogin, authStudent, checkStudentEnrolled, mockStudentLogin } from '../authentication'
 
 import { Course, Student, Card, Unit, Business } from '../models'
 import { getStudentActivitiesByUnit, studentUnitProgress, incrementCompletedUnits } from '../actions'
+import { Logger } from '../logger'
 
-app.use('/student*', checkStudentLogin)
+if (process.env.MOCK_AUTH) {
+  Logger.warn('WARNING: Mock Student Auth enabled for /student')
+  app.use('/student*', mockStudentLogin)
+} else {
+  app.use('/student*', checkStudentLogin)
+}
 
 app.get('/student', (req, res) => {
   Student.scope('public').findById(req.user.student.id, {
