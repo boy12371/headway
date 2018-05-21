@@ -120,17 +120,3 @@ createRestApi(Card, 'card', (req, res, context, resolve) => {
     }
   })
 })
-
-createRestApi(Student, 'student', (req, res, context, resolve) => {
-  const id = parseInt(req.params.id)
-  const adminId = req.user.admin.id
-  Admin.findById(adminId, { include: [{ model: Business, include: [Student] }] })
-    .then(admin => {
-      if (admin.ownsStudent(id)) {
-        resolve(context.continue)
-      } else {
-        res.status(401).send({ message: 'Unauthorized: Admin does not own Student #' + id })
-        resolve(context.stop)
-      }
-    })
-})
