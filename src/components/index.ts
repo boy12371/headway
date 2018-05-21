@@ -18,4 +18,7 @@ export * from './admin/StudentList'
 
 export * from './student/Student'
 export * from './student/Quiz'
-export * from './student/Home'
+export * from './student/StudentHeader'
+export * from './student/StudentHome'
+export * from './student/StudentCourse'
+export * from './student/StudentCard'

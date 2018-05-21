@@ -3,9 +3,11 @@ export const state = {
   courses: [],
   businesses: [],
   dashboardView: 'business',
+  appView: 'studentHome',
   activeCourse: {},
   activeUnit: {},
   activeCard: {},
+  studentCourse: {},
   user: {},
   breadcrumbs: [],
   modals: {

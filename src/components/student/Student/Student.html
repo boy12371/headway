@@ -1,3 +1,8 @@
 <div class="Student">
-  <Header></Header>
+  <StudentHeader></StudentHeader>
+  <div class="Student__main">
+    <StudentHome v-if="appView == 'studentHome'"></StudentHome>
+    <StudentCourse v-if="appView == 'studentCourse'"></StudentCourse>
+    <StudentCard v-if="appView == 'studentCard'"></StudentCard>
+  </div>
 </div>

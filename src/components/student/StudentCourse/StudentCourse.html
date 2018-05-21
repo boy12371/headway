@@ -1,0 +1,16 @@
+<div class="StudentCourse">
+  <div class="StudentCourse__group" v-if="unit.cards.length > 0" v-for="unit in studentCourse.units">
+    <div class="StudentCourse__header">
+      <h3 class="flat">{{ unit.name }}</h3>
+    </div>
+    <div class="StudentCourse__body">
+      <router-link
+        class="StudentCourse__link"
+        v-for="card in unit.cards"
+        :key="card.id"
+        :to="{ name: 'studentCard', params: { courseId: courseId, unitId: unit.id, cardId: card.id }}">
+        {{ card.name }}
+      </router-link>
+    </div>
+  </div>
+</div>

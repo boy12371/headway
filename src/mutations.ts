@@ -5,6 +5,15 @@ export const mutations = {
     // state.authed = overview.user && overview.user.id
     state.authed = true
   },
+  setStudent(state, student) {
+    state.courses = student.courses
+    state.businesses = student.businesses
+    // state.authed = overview.user && overview.user.id
+    state.authed = true
+  },
+  setStudentCourse(state, course) {
+    state.studentCourse = course
+  },
   setActiveCourse(state, course) {
     state.activeCourse = course
   },

@@ -1,0 +1,18 @@
+.StudentCourse__header {
+  background: #fff;
+  padding: 1rem;
+}
+
+.StudentCourse__body {
+  box-shadow: inset 0 2px 2px rgba(0,0,0,0.25);
+}
+
+.StudentCourse__link {
+  padding: 1rem;
+  display: block;
+  border-top: 1px solid #ddd;
+  color: inherit;
+  &:first-child {
+    border-top: 0;
+  }
+}

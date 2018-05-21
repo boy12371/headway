@@ -11,6 +11,18 @@ export const actions = {
     })
   },
 
+  getStudent(context) {
+    return axios.get(BASE_URL + '/student').then(res => {
+      context.commit('setStudent', res.data)
+    })
+  },
+
+  getStudentCourse(context, id) {
+    return axios.get(BASE_URL + '/student/course/' + id).then(res => {
+      context.commit('setStudentCourse', res.data)
+    })
+  },
+
   inviteStudent(context, payload) {
     return axios.post(BASE_URL + '/admin/student', payload).then(res => {
       const student = res.data

@@ -42,7 +42,17 @@ export const createRoutes: () => RouteConfig[] = () => [
   },
   {
     path: '/app',
-    name: 'student',
+    name: 'studentHome',
+    component: studentAppComponent
+  },
+  {
+    path: '/app/:courseId',
+    name: 'studentCourse',
+    component: studentAppComponent
+  },
+  {
+    path: '/app/:courseId/:unitId/:cardId',
+    name: 'studentCard',
     component: studentAppComponent
   },
   {
