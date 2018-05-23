@@ -3,6 +3,8 @@ import { State, Getter, Mutation } from 'vuex-class'
 
 import { ProgressBar } from '../../shared/ProgressBar'
 
+import store from '../../../store'
+
 import './StudentHome.scss'
 
 @Component({
@@ -15,4 +17,8 @@ import './StudentHome.scss'
 
 export class StudentHome extends Vue {
   @State courses
+
+  mounted() {
+    store.dispatch('getStudent')
+  }
 }

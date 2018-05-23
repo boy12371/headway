@@ -10,6 +10,7 @@ import './ProgressBar.scss'
 export class ProgressBar extends Vue {
   @Prop() completed: number
   @Prop() total: number
+  @Prop() collection: string
 
   get computedProgress() {
     return this.completed / this.total * 100

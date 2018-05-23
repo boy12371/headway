@@ -2,7 +2,19 @@
   <router-link class="Logo" to="/app">
     <div class="Logo__icon">H</div>
   </router-link>
-  <h1 class="StudentHeader__title flat">Your courses</h1>
+  <div :class="{
+    'StudentHeader__wrap' : true, 
+    'StudentHeader__wrap--home' : appView === 'studentHome',
+    'StudentHeader__wrap--course' : appView === 'studentCourse',
+    'StudentHeader__wrap--card' : appView === 'studentCard',
+    }">
+    <h1 class="StudentHeader__title flat">Your courses</h1>
+    <h1 class="StudentHeader__course flat">{{ courseName }}</h1>
+    <div class="StudentHeader__unit-card">
+      <h3 class="StudentHeader__unit flat">Unit name</h3>
+      <h4 class="StudentHeader__card flat">{{ activeStudentCard.name }}</h4>
+    </div>
+  </div>
   <router-link to="/login">
     <div class="User">
       <div class="User__avatar">J</div>

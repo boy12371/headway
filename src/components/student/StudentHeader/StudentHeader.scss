@@ -66,3 +66,82 @@
   box-shadow: 0 0.0625rem 0.0625rem rgba(0,0,0,0.1);
 }
 
+// Header states
+
+.StudentHeader__wrap {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.StudentHeader__title,
+.StudentHeader__course,
+.StudentHeader__unit-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: all 200ms ease;
+}
+
+.StudentHeader__title,
+.StudentHeader__course,
+.StudentHeader__unit,
+.StudentHeader__card {
+  color: #fff;
+}
+
+.StudentHeader__title,
+.StudentHeader__course {
+  font-size: 1.25rem;
+}
+
+.StudentHeader__course,
+.StudentHeader__unit-card {
+  top: 100%;
+}
+
+.StudentHeader__unit {
+  font-size: 1rem;
+}
+
+.StudentHeader__card {
+  font-size: 0.75rem;
+}
+
+.StudentHeader__wrap--home {
+  .StudentHeader__title {
+    opacity: 1;
+  }
+}
+
+.StudentHeader__wrap--course {
+  .StudentHeader__title {
+    opacity: 0;
+    transform: translateY(-100%)
+  }
+  .StudentHeader__course {
+    opacity: 1;
+    transform: translateY(-100%)
+  }
+}
+
+.StudentHeader__wrap--card {
+  .StudentHeader__title {
+    opacity: 0;
+    transform: translateY(-100%)
+  }
+  .StudentHeader__course {
+    opacity: 0;
+    transform: translateY(-200%)
+  }
+  .StudentHeader__unit-card {
+    opacity: 1;
+    transform: translateY(-100%)
+  }
+}

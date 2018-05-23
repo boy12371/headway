@@ -1,4 +1,4 @@
 <div class="ProgressBar">
-  <span class="ProgressBar__text">{{ completed }} / {{ total }}</span>
+  <span class="ProgressBar__text">{{ completed }} / {{ total }} <span>{{ collection }} completed</span></span>
   <div class="ProgressBar__bar" v-bind:style="{ width: computedProgress + '%' }"></div>
 </div>

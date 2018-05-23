@@ -11,9 +11,6 @@ export const mutations = {
     // state.authed = overview.user && overview.user.id
     state.authed = true
   },
-  setStudentCourse(state, course) {
-    state.studentCourse = course
-  },
   setActiveCourse(state, course) {
     state.activeCourse = course
   },
@@ -22,6 +19,12 @@ export const mutations = {
   },
   setActiveCard(state, card) {
     state.activeCard = card
+  },
+  setActiveStudentCourse(state, course) {
+    state.activeStudentCourse = course
+  },
+  setActiveStudentCard(state, card) {
+    state.activeStudentCard = card
   },
   setUser(state, user) {
     state.authed = true
@@ -70,5 +73,8 @@ export const mutations = {
   reset(state) {
     state.courses = []
     state.businesses = []
+  },
+  setAppView(state, view) {
+    state.appView = view
   }
 }

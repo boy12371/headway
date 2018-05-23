@@ -6,7 +6,6 @@ import { StudentHeader, StudentHome, StudentCourse, StudentCard } from '../../'
 import './Student.scss'
 
 import store from '../../../store'
-import axios from 'axios'
 
 const toggleModal = k => store.commit('toggleModal', k)
 
@@ -24,6 +23,7 @@ const toggleModal = k => store.commit('toggleModal', k)
 export class Student extends Vue {
 
   @State courses
+  @State appView
 
   @Provide() toggleModal = toggleModal
 
@@ -32,18 +32,8 @@ export class Student extends Vue {
     this.updateRoute(newVal)
   }
 
-  get appView() {
-    return this.$route.name
-  }
-
   updateRoute(route) {
-    const { cardId, courseId, unitId } = route.params
-    if (route.name === 'studentHome') {
-      store.dispatch('getStudent')
-    }
-    if (route.name === 'studentCourse') {
-      store.dispatch('getStudentCourse', courseId)
-    }
+    store.dispatch('setAppView', route.name )
   }
 
   mounted() {

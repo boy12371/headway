@@ -1,3 +1,6 @@
+.StudentCourse {
+  border-bottom: 1px solid #ddd;
+}
 .StudentCourse__header {
   background: #fff;
   padding: 1rem;
@@ -12,6 +15,7 @@
   display: block;
   border-top: 1px solid #ddd;
   color: inherit;
+  font-size: 1rem;
   &:first-child {
     border-top: 0;
   }

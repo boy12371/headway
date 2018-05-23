@@ -19,8 +19,27 @@ export const actions = {
 
   getStudentCourse(context, id) {
     return axios.get(BASE_URL + '/student/course/' + id).then(res => {
-      context.commit('setStudentCourse', res.data)
+      context.commit('setActiveStudentCourse', res.data)
     })
+  },
+
+  getStudentCard(context, { courseId, unitId, cardId }) {
+    if (!context.activeStudentCourse) {
+      return new Promise((resolve, reject) => {
+        axios.get(BASE_URL + '/student/course/' + courseId).then(res => {
+          // TODO: bad equals signs below need to use string comparison?
+          const activeUnitIndex = res.data.units.findIndex( unit => unit.id == unitId)
+          const activeCardIndex = res.data.units[activeUnitIndex].cards.findIndex( card => card.id == cardId)
+          context.commit('setActiveStudentCourse', res.data)
+          context.commit('setActiveStudentCard', res.data.units[activeUnitIndex].cards[activeCardIndex])
+        })
+      })
+    } else {
+      // TODO: bad equals signs below need to use string comparison?
+      const activeUnitIndex = context.activeStudentCourse.units.findIndex( unit => unit.id == unitId)
+      const activeCardIndex = context.activeStudentCourse.data.units[activeUnitIndex].cards.findIndex( card => card.id == cardId)
+      context.commit('setActiveStudentCard', context.activeStudentCourse.units[activeUnitIndex].cards[activeCardIndex])
+    }
   },
 
   inviteStudent(context, payload) {
@@ -80,5 +99,9 @@ export const actions = {
       const business = res.data
       context.commit('createBusiness', business)
     })
-  }
+  },
+
+  setAppView(context, view) {
+    context.commit('setAppView', view)
+  },
 }
