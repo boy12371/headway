@@ -89,6 +89,10 @@
   transition: all 200ms ease;
 }
 
+.StudentHeader__unit-card {
+  transition: none;
+}
+
 .StudentHeader__title,
 .StudentHeader__course,
 .StudentHeader__unit,
@@ -108,10 +112,18 @@
 
 .StudentHeader__unit {
   font-size: 1rem;
+  transform: translateY(50%);
+  opacity: 0;
+  transition: all 200ms 200ms ease;
 }
 
 .StudentHeader__card {
   font-size: 0.75rem;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 200ms 200ms ease;
+  font-weight: 400;
+  color: $green;
 }
 
 .StudentHeader__wrap--home {
@@ -138,10 +150,15 @@
   }
   .StudentHeader__course {
     opacity: 0;
-    transform: translateY(-200%)
+    transform: translateY(-100%)
   }
   .StudentHeader__unit-card {
     opacity: 1;
     transform: translateY(-100%)
+  }
+  .StudentHeader__unit,
+  .StudentHeader__card {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
