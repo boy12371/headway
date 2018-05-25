@@ -11,4 +11,5 @@ import './Card.scss'
 export class Card extends Vue {
   @Prop() title: string
   @Prop() subTitle: string
+  @Prop() icon: string
 }

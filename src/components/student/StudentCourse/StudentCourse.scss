@@ -1,9 +1,12 @@
 .StudentCourse {
   border-bottom: 1px solid #ddd;
 }
+
 .StudentCourse__header {
   background: #fff;
   padding: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .StudentCourse__body {
@@ -13,10 +16,15 @@
 .StudentCourse__link {
   padding: 1rem;
   display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-top: 1px solid #ddd;
   color: inherit;
-  font-size: 1rem;
+  font-size: 0.825rem;
+  font-weight: 500;
   &:first-child {
     border-top: 0;
   }
+  i { margin-right: 0 }
 }

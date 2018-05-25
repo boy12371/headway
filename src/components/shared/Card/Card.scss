@@ -11,6 +11,8 @@
 .Card__title {
   color: $blue;
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .Card__body {

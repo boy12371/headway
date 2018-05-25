@@ -1,7 +1,7 @@
 <div class="StudentHome">
   <div class="container">
     <router-link v-for="course in courses" :key="course.id" :to="{ name: 'studentCourse', params: { courseId: course.id }}">
-      <Card :title="course.name">
+      <Card :icon="'course'" :title="course.name">
         <div slot="body">
           <ProgressBar class="flat" :completed="course.CourseStudent.completedUnits || 0" :total="11" collection="Units"></ProgressBar>
         </div>

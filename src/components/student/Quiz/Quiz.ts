@@ -28,4 +28,5 @@ export class Quiz extends Vue {
       }
     }, 1000)
   }
+
 }

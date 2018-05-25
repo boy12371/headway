@@ -3,12 +3,16 @@ import { State, Getter, Mutation } from 'vuex-class'
 
 import store from '../../../store'
 
+import { Quiz } from '../Quiz'
+
 import './StudentCard.scss'
 
 @Component({
   template: require('./StudentCard.html'),
   name: 'StudentCard',
-  components: {}
+  components: {
+    Quiz
+  }
 })
 
 export class StudentCard extends Vue {
@@ -24,6 +28,10 @@ export class StudentCard extends Vue {
 
   get cardId() {
     return this.$route.params.cardId
+  }
+
+  get parsedQuestions() {
+    return JSON.parse(this.activeStudentCard.quiz)
   }
 
   mounted() {

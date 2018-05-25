@@ -238,3 +238,18 @@ textarea.input {
   align-items: center;
 }
 
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 0.75rem;
+}
+
+.icon.course { background-image: url('/assets/img/icons/course.svg'); }
+
+.icon.unit { background-image: url('/assets/img/icons/unit.svg'); }
+
+.icon.card-complete { background-image: url('/assets/img/icons/card-complete.svg'); }
