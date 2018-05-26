@@ -18,28 +18,16 @@ import './StudentCard.scss'
 export class StudentCard extends Vue {
   @State activeStudentCard
 
-  get courseId() {
-    return parseInt(this.$route.params.courseId)
-  }
-
-  get unitId() {
-    return parseInt(this.$route.params.unitId)
-  }
-
-  get cardId() {
-    return parseInt(this.$route.params.cardId)
-  }
-
   get parsedQuestions() {
     return this.activeStudentCard.quiz ? JSON.parse(this.activeStudentCard.quiz) : []
   }
 
   mounted() {
-    const card = {
-      courseId: this.courseId,
-      unitId: this.unitId,
-      cardId: this.cardId
-    }
-    store.dispatch('getStudentCard', card)
+    const { params } = this.$route
+    store.dispatch('getStudentCard', {
+      courseId: parseInt(params.courseId),
+      unitId: parseInt(params.unitId),
+      cardId: parseInt(params.cardId)
+    })
   }
 }
