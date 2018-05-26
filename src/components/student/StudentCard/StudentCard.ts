@@ -19,19 +19,19 @@ export class StudentCard extends Vue {
   @State activeStudentCard
 
   get courseId() {
-    return this.$route.params.courseId
+    return parseInt(this.$route.params.courseId)
   }
 
   get unitId() {
-    return this.$route.params.unitId
+    return parseInt(this.$route.params.unitId)
   }
 
   get cardId() {
-    return this.$route.params.cardId
+    return parseInt(this.$route.params.cardId)
   }
 
   get parsedQuestions() {
-    return JSON.parse(this.activeStudentCard.quiz)
+    return this.activeStudentCard.quiz ? JSON.parse(this.activeStudentCard.quiz) : []
   }
 
   mounted() {

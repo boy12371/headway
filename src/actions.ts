@@ -27,17 +27,15 @@ export const actions = {
     if (!context.activeStudentCourse) {
       return new Promise((resolve, reject) => {
         axios.get(BASE_URL + '/student/course/' + courseId).then(res => {
-          // TODO: bad equals signs below need to use string comparison?
-          const activeUnitIndex = res.data.units.findIndex( unit => unit.id == unitId)
-          const activeCardIndex = res.data.units[activeUnitIndex].cards.findIndex( card => card.id == cardId)
+          const activeUnitIndex = res.data.units.findIndex(unit => unit.id === unitId)
+          const activeCardIndex = res.data.units[activeUnitIndex].cards.findIndex(card => card.id === cardId)
           context.commit('setActiveStudentCourse', res.data)
           context.commit('setActiveStudentCard', res.data.units[activeUnitIndex].cards[activeCardIndex])
         })
       })
     } else {
-      // TODO: bad equals signs below need to use string comparison?
-      const activeUnitIndex = context.activeStudentCourse.units.findIndex( unit => unit.id == unitId)
-      const activeCardIndex = context.activeStudentCourse.data.units[activeUnitIndex].cards.findIndex( card => card.id == cardId)
+      const activeUnitIndex = context.activeStudentCourse.units.findIndex(unit => unit.id === unitId)
+      const activeCardIndex = context.activeStudentCourse.data.units[activeUnitIndex].cards.findIndex(card => card.id === cardId)
       context.commit('setActiveStudentCard', context.activeStudentCourse.units[activeUnitIndex].cards[activeCardIndex])
     }
   },
