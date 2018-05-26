@@ -25,13 +25,12 @@ export const actions = {
 
   getStudentCard(context, { courseId, unitId, cardId }) {
     if (!context.activeStudentCourse) {
-      return new Promise((resolve, reject) => {
-        axios.get(BASE_URL + '/student/course/' + courseId).then(res => {
-          const activeUnitIndex = res.data.units.findIndex(unit => unit.id === unitId)
-          const activeCardIndex = res.data.units[activeUnitIndex].cards.findIndex(card => card.id === cardId)
-          context.commit('setActiveStudentCourse', res.data)
-          context.commit('setActiveStudentCard', res.data.units[activeUnitIndex].cards[activeCardIndex])
-        })
+      return axios.get(BASE_URL + '/student/course/' + courseId).then(res => {
+        const activeUnitIndex = res.data.units.findIndex(unit => unit.id === unitId)
+        const unit = res.data.units[activeUnitIndex]
+        const activeCardIndex = unit.cards.findIndex(card => card.id === cardId)
+        context.commit('setActiveStudentCourse', res.data)
+        context.commit('setActiveStudentCard', unit.cards[activeCardIndex])
       })
     } else {
       const activeUnitIndex = context.activeStudentCourse.units.findIndex(unit => unit.id === unitId)
