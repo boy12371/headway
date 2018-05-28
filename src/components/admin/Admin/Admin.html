@@ -10,9 +10,10 @@
       <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu"></CourseMenu>
     </div>
     <div class="Admin__main">
-      <StudentList v-if="view == 'dashboard'"></StudentList>
+      <StudentList v-if="view === 'dashboard'"></StudentList>
+      <StudentProfile v-if="view === 'studentProfile'"></StudentProfile>
       <!-- The following v-if is bad. -->
-      <Course @create-unit="showUnitModal = true" v-if="view != 'dashboard'" :name="activeCourse.name" :units="activeCourse.units"></Course>
+      <Course @create-unit="showUnitModal = true" v-if="view === 'course'" :name="activeCourse.name" :units="activeCourse.units"></Course>
     </div>
   </div>
   <AddCourse v-show="modals.course" @close="toggleModal('course')"></AddCourse>

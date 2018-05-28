@@ -39,6 +39,23 @@ export const actions = {
     }
   },
 
+  getStudentProfile(context, id) {
+    return axios.get(BASE_URL + '/admin/student/' + id).then(res => {
+      const student = res.data
+      context.commit('setActiveStudentProfile', student)
+      context.commit('setBreadcrumbs', [
+        {
+          label: 'Your students',
+          link: { name: 'dashboard' }
+        },
+        {
+          label: student.first_name + ' ' + student.last_name,
+          link: { name: 'studentProfile', params: { studentId: student.id } }
+        }
+      ])
+    })
+  },
+
   inviteStudent(context, payload) {
     return axios.post(BASE_URL + '/admin/student', payload).then(res => {
       const student = res.data

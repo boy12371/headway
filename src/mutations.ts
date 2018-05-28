@@ -26,6 +26,9 @@ export const mutations = {
   setActiveStudentCard(state, card) {
     state.activeStudentCard = card
   },
+  setActiveStudentProfile(state, profile) {
+    state.activeStudentProfile = profile
+  },
   setUser(state, user) {
     state.authed = true
     state.user = user
