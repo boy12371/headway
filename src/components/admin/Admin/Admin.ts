@@ -6,7 +6,7 @@ const courseService = new CourseService()
 const businessService = new BusinessService()
 const studentService = new StudentService()
 
-import { AddStudent, AddUnit, AddCard, AddBusiness, StudentList, StudentProfile, Course, Businesses, CourseMenu, AddCourse } from '../../'
+import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, Course, Businesses, CourseMenu, AddCourse } from '../../'
 
 import { Login } from '../../shared/Login'
 
@@ -30,6 +30,7 @@ const toggleModal = k => store.commit('toggleModal', k)
     CourseMenu,
     Course,
     Login,
+    Breadcrumbs,
   }
 })
 
@@ -48,6 +49,7 @@ export class Admin extends Vue {
   @State authed
   @State user
   @State modals
+  @State breadcrumbs
 
   @State activeCourse
 
