@@ -30,4 +30,11 @@ export class StudentCard extends Vue {
       cardId: parseInt(params.cardId)
     })
   }
+
+  submit() {
+    const completed: boolean = false // quiz passed
+    store.dispatch('submitStudentCard', {
+      completed,
+    })
+  }
 }

@@ -73,7 +73,10 @@ export const addStudentToBusiness = (student: Student, businessId: number) => {
       studentId: student.id,
     }
   }).then(businessStudents => {
-    Business.findById(businessId, { include: [Course] }).then(business => {
+    Business.findById(businessId, { include: [
+      {model: Course}
+    ] }).then(business => {
+      // TODO: where BusinessCourse.autoInviteStudents true
       business.courses.forEach(course => {
         student.addToCourse(course.id)
       })

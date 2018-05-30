@@ -4,6 +4,9 @@
   </div>
   <div class="container">
     {{ activeStudentCard.content }}
+    <form @submit.prevent="submit">
+      <button class="btn">Submit Quiz</button>
+    </form>
   </div>
   <div class="StudentCard__footer">
     <div class="StudentCard__footer-wrap">

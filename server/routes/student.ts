@@ -2,7 +2,7 @@ import app from '../app'
 
 import { checkStudentLogin, authStudent, checkStudentEnrolled, mockStudentLogin } from '../authentication'
 
-import { Course, Student, Card, Unit, Business } from '../models'
+import { Course, Student, Card, Unit, Business, Activity } from '../models'
 import { getStudentActivitiesByUnit, studentUnitProgress, incrementCompletedUnits } from '../actions'
 import { Logger } from '../logger'
 
@@ -43,16 +43,28 @@ app.get('/student/activity', (req, res) => {
 })
 
 app.post('/student/:cardId/submit', (req, res) => {
-  const { cardId } = res.body // params?
-  Card.findById(cardId).then(card => {
-    studentUnitProgress(card.unitId, cardId).then(progress => {
-      if (progress.unitCompleted) {
-        // TODO: do not allow double submit
-        // incrementCompletedUnits(courseId, studentId)
-        res.send('Unit completed')
-      } else {
-        res.send(progress.completedLength + ' / ' + progress.numberOfCards + ' cards completed')
-      }
+  const studentId = req.user.student.id
+  const { cardId } = req.params
+  const { completed, evidence_proof } = req.body
+  Card.scope('includeCourse').findById(cardId).then(card => {
+    console.log(card.toJSON())
+    Activity.create({
+      studentId,
+      cardId,
+      completed: completed ? new Date() : null,
+      evidence_proof,
+    }).then(activity => {
+      console.log(activity.toJSON())
+      studentUnitProgress(card.unit.id, card.id).then(progress => {
+        if (progress.unitCompleted) {
+          // TODO: do not allow double submit
+          incrementCompletedUnits(card.unit.course.id, studentId).then(result => {
+            res.send('Unit completed')
+          })
+        } else {
+          res.send(progress.completedLength + ' / ' + progress.numberOfCards + ' cards completed')
+        }
+      })
     })
   })
 })

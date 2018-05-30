@@ -18,6 +18,7 @@ export class CourseStudent extends Model<CourseStudent> {
 
   @Column completedUnits: number
   @Column timeSpentOnCurrentUnit: number
+  // @Column currentUnitId: number // proper foreign key?
 }
 
 export default CourseStudent
