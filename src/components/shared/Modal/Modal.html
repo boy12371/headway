@@ -1,5 +1,5 @@
 <div class="Modal" @click="emitClose">
-  <div class="Modal__content" @click="stopEmitClose">
+  <div :class="{ 'Modal__content' : true, 'Modal__content--wide' : this.wide }" @click="stopEmitClose">
     <slot name="body"></slot>
   </div>
 </div>

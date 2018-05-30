@@ -159,6 +159,16 @@ h4 {
   padding-top: 0.75rem;
 }
 
+.form__footer--end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.form__footer--end .btn {
+  margin-left: 1rem;
+}
+
 .input {
   height: 2.25rem;
   font-size: 0.825rem;
@@ -252,8 +262,15 @@ textarea.input {
   margin-right: 0.75rem;
 }
 
+.icon--large {
+  width: 2rem;
+  height: 2rem;
+}
+
 .icon.course { background-image: url('/assets/img/icons/course.svg'); }
 
 .icon.unit { background-image: url('/assets/img/icons/unit.svg'); }
 
 .icon.card-complete { background-image: url('/assets/img/icons/card-complete.svg'); }
+
+.icon.student { background-image: url('/assets/img/icons/student.svg'); }

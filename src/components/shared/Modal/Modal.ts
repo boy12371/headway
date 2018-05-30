@@ -14,6 +14,8 @@ import './Modal.scss'
 
 export class Modal extends Vue {
 
+  @Prop({ default: false }) wide: boolean
+
   emitClose() {
     this.$emit('close')
   }

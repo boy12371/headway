@@ -19,6 +19,10 @@
   transition: all 300ms ease;
 }
 
+.Modal__content--wide {
+  max-width: 31.25rem; // 500
+}
+
 // Transitions 
 
 .Modal-enter {

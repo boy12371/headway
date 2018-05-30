@@ -1,32 +1,41 @@
 <div class="StudentProfile">
-  <div class="Filters">
+  <div>
+    <Card
+      :sub-title="activeStudentProfile.email"
+      :title="activeStudentProfile.first_name + ' ' + activeStudentProfile.last_name">
+      <div slot="body">
+        <h2>Activity</h2>
+      </div>
+    </Card>
   </div>
-  <h1>{{ activeStudentProfile.first_name }} {{ activeStudentProfile.last_name }}</h1>
+  <div>
+    <div class="StudentProfile__group">
+      <h3>Assigned Courses</h3>
+      <div v-for="course in activeStudentProfile.courses" :title="course.name" class="StudentProfile__course">
+        <router-link :to="{ name: 'course', params: { courseId : course.id }}"><strong>{{ course.name }}</strong></router-link>
+        <ProgressBar :complete="course.CourseStudent.completedUnits" total="11"></ProgressBar>
+        <div v-if="course.CourseStudent.timeSpentOnCurrentUnit"> Time spent on current Unit: {{ course.CourseStudent.timeSpentOnCurrentUnit }} </div>
+        <button @click="toggleModal('removeStudentCourse')">
+          <!--<button @click="removeStudentFromCourse(course.id)">-->
+          Remove Student from Course
+        </button>
+      </div>
+      <button class="btn" @click="toggleModal('addStudentCourse')">
+        Assign course
+      </button>
+    </div>
 
-  <p>{{ activeStudentProfile.email }}</p>
-
-  <h2>Courses</h2>
-  <div v-for="course in activeStudentProfile.courses" class="course">
-    <h3>{{ course.name }}</h3>
-    <div> Completed Units: {{ course.CourseStudent.completedUnits }} / (total units) </div>
-    <div> Time spent on current Unit: {{ course.CourseStudent.timeSpentOnCurrentUnit }} </div>
-    <button @click="removeStudentFromCourse(course.id)">
-      Remove Student from Course
-    </button>
+    <div class="StudentProfile__group">
+      <h4>Businesses</h4>
+      <div v-for="business in activeStudentProfile.businesses">
+        <p>{{ business.name }}</p>
+        <button @click="removeStudentFromBusiness(business.id)">
+          Remove Student from Business
+        </button>
+      </div>
+      <button @click="toggleModal('student')">
+        Add Student to Business
+      </button>
+    </div>
   </div>
-  <button @click="toggleModal('addStudentCourse')">
-    Add Student to Course
-  </button>
-
-  <h2>Businesses</h2>
-  <div v-for="business in activeStudentProfile.businesses">
-    <h3>{{ business.name }}</h3>
-
-    <button @click="removeStudentFromBusiness(business.id)">
-      Remove Student from Business
-    </button>
-  </div>
-  <button @click="toggleModal('student')">
-    Add Student to Business
-  </button>
 </div>

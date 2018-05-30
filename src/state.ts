@@ -19,5 +19,6 @@ export const state = {
     business: false,
     card: false,
     addStudentCourse: false,
+    removeStudentCourse: false,
   }
 }

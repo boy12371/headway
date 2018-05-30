@@ -8,7 +8,7 @@ import './ProgressBar.scss'
   components: {}
 })
 export class ProgressBar extends Vue {
-  @Prop() completed: number
+  @Prop({ default: 0 }) completed: number
   @Prop() total: number
   @Prop() collection: string
 

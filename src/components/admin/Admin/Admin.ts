@@ -6,7 +6,7 @@ const courseService = new CourseService()
 const businessService = new BusinessService()
 const studentService = new StudentService()
 
-import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, Course, Businesses, CourseMenu, AddCourse } from '../../'
+import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, Course, Businesses, CourseMenu, RemoveStudentCourse, AddCourse } from '../../'
 
 import { Login } from '../../shared/Login'
 
@@ -27,6 +27,7 @@ const toggleModal = k => store.commit('toggleModal', k)
     AddStudentCourse,
     AddUnit,
     AddCard,
+    RemoveStudentCourse,
     StudentList,
     StudentProfile,
     CourseMenu,
@@ -37,10 +38,6 @@ const toggleModal = k => store.commit('toggleModal', k)
 })
 
 export class Admin extends Vue {
-  showCourseModal = false
-  showStudentModal = false
-  showBusinessModal = false
-  showUnitModal = false
 
   @Provide() studentService = new StudentService()
   @Provide() businessService = new BusinessService()
