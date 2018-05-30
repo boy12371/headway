@@ -6,7 +6,7 @@ import { createAdmin, createCourse, inviteStudent } from '../actions'
 import { PASSWORD_OPTS } from '../constants'
 import mail from '../mail'
 
-import { Admin, Course, Business, BusinessCourse, Student, Unit, Card, Activity } from '../models'
+import { Admin, Course, Business, BusinessCourse, Student, Unit, Card, Activity, CourseStudent } from '../models'
 import { Logger } from '../logger'
 
 if (process.env.MOCK_AUTH) {
@@ -174,11 +174,41 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
     include: [
       { model: Course, where: { adminId } },
       { model: Business, where: { adminId } },
+      // This loads way too much data. will need to be custom scopes for sure
+      // {
+      //   model: Card,
+      //   include: [{
+      //     model: Unit,
+      //     include: [{
+      //       model: Course,
+      //       where: { adminId }
+      //     }]
+      //   }]
+      // }
     ]
   }).then(student => {
+    // TODO: also get Activity where course.adminId === adminId
     res.send(student)
   })
 })
+
+
+app.post('/admin/student-course', (req, res) => {
+  const { studentId, courseIds = [] } = req.body
+  // Logger.warn('TODO: auth check courseIds belong to this Admin')
+  const promises = courseIds.map(courseId => {
+    return CourseStudent.findOrCreate({
+      where: {
+        studentId,
+        courseId,
+      }
+    })
+  })
+  Promise.all(promises).then(studentCourses => {
+    res.send('OK')
+  })
+})
+
 
 
 // Businesses

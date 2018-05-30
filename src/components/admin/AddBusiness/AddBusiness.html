@@ -7,9 +7,9 @@
           <input type="text" class="input" id="business-name" v-model="name" autofocus required>
         </div>
         <div class="form__group">
-          <label class="label" for="mentor-email">Default Courses</label>
-          <label class="checkbox" :for="'business-item-' + index" v-for="(course, index) in courses">
-            <input type="checkbox" :id="'business-item-' + index" :value="course.id" v-model="courseIds">
+          <label class="label">Default Courses</label>
+          <label class="checkbox" :for="'business-course-item-' + index" v-for="(course, index) in courses">
+            <input type="checkbox" :id="'business-course-item-' + index" :value="course.id" v-model="courseIds">
             {{ course.name }}
           </label>
         </div>

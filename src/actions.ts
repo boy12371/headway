@@ -65,6 +65,28 @@ export const actions = {
     })
   },
 
+  addStudentCourse(context, payload) {
+    return axios.post(BASE_URL + '/admin/student-course', payload).then(res => {
+      context.dispatch('getStudentProfile', payload.studentId)
+      return res.data
+    })
+  },
+
+  removeStudentFromCourse(context, payload) {
+    // TODO: can DELETE have a body? or need separate endpoint?
+    return axios.delete(BASE_URL + '/admin/student-course', payload).then(res => {
+      context.dispatch('getStudentProfile', payload.studentId)
+      return res.data
+    })
+  },
+
+  removeStudentFromBusiness(context, payload) {
+    return axios.post(BASE_URL + '/admin/student-business', payload).then(res => {
+      context.dispatch('getStudentProfile', payload.studentId)
+      return res.data
+    })
+  },
+
   createCourse(context, { name, businessIds }) {
     return axios.post(BASE_URL + '/admin/course', {
       name,

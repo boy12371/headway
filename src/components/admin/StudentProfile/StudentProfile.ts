@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
 import { ProgressBar } from '../../shared/ProgressBar'
@@ -23,14 +23,28 @@ const crumbs = () => [
     Breadcrumbs,
   }
 })
-
 export class StudentProfile extends Vue {
+
   @State breadcrumbs
   @State activeStudentProfile
+
+  @Inject() toggleModal
 
   mounted() {
     const { params } = this.$route
     store.dispatch('getStudentProfile', parseInt(params.studentId))
+  }
+
+  removeStudentFromCourse(courseId) {
+    const studentId: number = this.activeStudentProfile.id
+    console.log({ studentId, courseId })
+    store.dispatch('removeStudentFromCourse', { studentId, courseId })
+  }
+
+  removeStudentFromBusiness(businessId) {
+    const studentId: number = this.activeStudentProfile.id
+    console.log({ studentId, businessId })
+    store.dispatch('removeStudentFromBusiness', { studentId, businessId })
   }
 
 }

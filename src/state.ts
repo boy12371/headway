@@ -18,5 +18,6 @@ export const state = {
     course: false,
     business: false,
     card: false,
+    addStudentCourse: false,
   }
 }

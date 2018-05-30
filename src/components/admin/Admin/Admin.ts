@@ -13,6 +13,7 @@ import { Login } from '../../shared/Login'
 import './Admin.scss'
 import store from '../../../store'
 import axios from 'axios'
+import { AddStudentCourse } from '../AddStudentCourse'
 
 const toggleModal = k => store.commit('toggleModal', k)
 
@@ -23,6 +24,7 @@ const toggleModal = k => store.commit('toggleModal', k)
     AddCourse,
     AddStudent,
     AddBusiness,
+    AddStudentCourse,
     AddUnit,
     AddCard,
     StudentList,

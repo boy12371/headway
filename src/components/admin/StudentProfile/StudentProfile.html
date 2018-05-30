@@ -2,4 +2,31 @@
   <div class="Filters">
   </div>
   <h1>{{ activeStudentProfile.first_name }} {{ activeStudentProfile.last_name }}</h1>
+
+  <p>{{ activeStudentProfile.email }}</p>
+
+  <h2>Courses</h2>
+  <div v-for="course in activeStudentProfile.courses" class="course">
+    <h3>{{ course.name }}</h3>
+    <div> Completed Units: {{ course.CourseStudent.completedUnits }} / (total units) </div>
+    <div> Time spent on current Unit: {{ course.CourseStudent.timeSpentOnCurrentUnit }} </div>
+    <button @click="removeStudentFromCourse(course.id)">
+      Remove Student from Course
+    </button>
+  </div>
+  <button @click="toggleModal('addStudentCourse')">
+    Add Student to Course
+  </button>
+
+  <h2>Businesses</h2>
+  <div v-for="business in activeStudentProfile.businesses">
+    <h3>{{ business.name }}</h3>
+
+    <button @click="removeStudentFromBusiness(business.id)">
+      Remove Student from Business
+    </button>
+  </div>
+  <button @click="toggleModal('student')">
+    Add Student to Business
+  </button>
 </div>
