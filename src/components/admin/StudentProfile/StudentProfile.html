@@ -13,9 +13,9 @@
       <h3>Assigned Courses</h3>
       <div v-for="course in activeStudentProfile.courses" :title="course.name" class="StudentProfile__course">
         <router-link :to="{ name: 'course', params: { courseId : course.id }}"><strong>{{ course.name }}</strong></router-link>
-        <ProgressBar :complete="course.CourseStudent.completedUnits" total="11"></ProgressBar>
+        <ProgressBar :complete="course.CourseStudent.completedUnits" :total="11"></ProgressBar>
         <div v-if="course.CourseStudent.timeSpentOnCurrentUnit"> Time spent on current Unit: {{ course.CourseStudent.timeSpentOnCurrentUnit }} </div>
-        <button @click="toggleModal('removeStudentCourse')">
+        <button @click="confirmRemoveCourse(course.id)">
           <!--<button @click="removeStudentFromCourse(course.id)">-->
           Remove Student from Course
         </button>

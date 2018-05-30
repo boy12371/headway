@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
 import { CourseService } from '../../../services'
@@ -17,6 +17,16 @@ import axios from 'axios'
 
 export class RemoveStudentCourse extends Vue {
 
-  name = ''
+  @State activeStudentProfile
+  @State deleteStudentCourseId
 
+  @Inject() toggleModal
+
+  submit() {
+    store.dispatch('removeStudentFromCourse', {
+      studentId: this.activeStudentProfile.id,
+      courseId: this.deleteStudentCourseId
+    })
+    this.toggleModal('removeStudentCourse')
+  }
 }
