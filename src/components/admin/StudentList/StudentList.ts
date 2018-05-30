@@ -38,4 +38,13 @@ export class StudentList extends Vue {
   setDashboardView(view) {
     store.commit('setDashboardView', view)
   }
+
+  mounted() {
+    store.commit('setBreadcrumbs', [
+      {
+        label: 'Your students',
+        link: { name: 'dashboard' }
+      }
+    ])
+  }
 }

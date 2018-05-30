@@ -10,6 +10,8 @@
       <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu"></CourseMenu>
     </div>
     <div class="Admin__main">
+      <Breadcrumbs :crumbs="breadcrumbs">
+      </Breadcrumbs>
       <StudentList v-if="view === 'dashboard'"></StudentList>
       <StudentProfile v-if="view === 'studentProfile'"></StudentProfile>
       <!-- The following v-if is bad. -->
