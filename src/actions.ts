@@ -74,7 +74,7 @@ export const actions = {
 
   removeStudentFromCourse(context, payload) {
     // TODO: can DELETE have a body? or need separate endpoint?
-    return axios.delete(BASE_URL + '/admin/student-course', payload).then(res => {
+    return axios.delete(BASE_URL + '/admin/student-course', { data: payload }).then(res => {
       context.dispatch('getStudentProfile', payload.studentId)
       return res.data
     })

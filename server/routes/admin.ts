@@ -193,9 +193,9 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
 })
 
 
-app.post('/admin/student-course', (req, res) => {
+app.post('/admin/student-course', checkAdminPermission, (req, res) => {
   const { studentId, courseIds = [] } = req.body
-  // Logger.warn('TODO: auth check courseIds belong to this Admin')
+  Logger.warn('TODO: auth check courseIds belong to this Admin')
   const promises = courseIds.map(courseId => {
     return CourseStudent.findOrCreate({
       where: {
@@ -205,6 +205,18 @@ app.post('/admin/student-course', (req, res) => {
     })
   })
   Promise.all(promises).then(studentCourses => {
+    res.send('OK')
+  })
+})
+
+app.delete('/admin/student-course', checkAdminPermission, (req, res) => {
+  const { studentId, courseId } = req.body
+  return CourseStudent.destroy({
+    where: {
+      studentId,
+      courseId,
+    }
+  }).then(result => {
     res.send('OK')
   })
 })
