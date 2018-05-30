@@ -172,7 +172,7 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
   const adminId = req.user.admin.id
   Student.scope('public').findById(req.params.studentId, {
     include: [
-      { model: Course, where: { adminId } },
+      { model: Course, where: { adminId }, required: false },
       { model: Business, where: { adminId } },
       // This loads way too much data. will need to be custom scopes for sure
       // {
