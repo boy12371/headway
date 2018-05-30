@@ -28,6 +28,8 @@ import store from '../../../store'
 
 export class Course extends Vue {
 
+  @Getter currentCourse
+
   @State activeCourse
   @State activeUnit
   @State activeCard
