@@ -16,6 +16,7 @@
     "dev": "webpack-dev-server --config config/webpack.config.dev.js --hot --inline",
     "lint": "tslint src/**/*.ts; tslint server/**/*.ts --fix;",
     "serve": "http-server dist/ -g -o",
+    "test": "newman run tests/Headway.postman_collection.json",
     "start": "ts-node --project server/tsconfig.json ./server/server.ts"
   },
   "dependencies": {

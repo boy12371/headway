@@ -1,15 +1,8 @@
 # headway
 
-## Technology
-
-Client is based on `vue-webpack-typescript` boilerplate
-
-Server is TypeScript, run with `ts-node`
-
-Data stored in MySQL, accessed via `sequelize`
-
-
 ## Development
+
+TLDR; `make db`, `make dev`, `make server` and open [http://localhost:8080](http://localhost:8080)
 
 Install dependencies with `make install`
 
@@ -25,7 +18,18 @@ Create a new component with `make component name=FluxCapacitor`
 
 Lint both client and server with `make lint`
 
+Lint both client and server with `make lint`
+
 Run database report with `make report`
+
+
+## Technology
+
+Client is based on `vue-webpack-typescript` boilerplate
+
+Server is TypeScript, run with `ts-node`
+
+Data stored in MySQL, accessed via `sequelize`
 
 
 ## Routes
