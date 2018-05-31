@@ -1213,7 +1213,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"email\":\"s@s.com\",\"businessIds\":[2]}\n"
+							"raw": "{\"email\":\"s@s.com\",\"businessIds\":[3]}\n"
 						},
 						"url": {
 							"raw": "http://localhost:5000/admin/student",
@@ -1225,6 +1225,146 @@
 							"path": [
 								"admin",
 								"student"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"description": "",
+			"item": [
+				{
+					"name": "Student Overview",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9995a30d-0c40-4f3d-be9e-283aa296709f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response OK', function () {",
+									"\tpm.response.to.have.status(200);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Businesses\", function () {",
+									"    var student = pm.response.json();",
+									"    pm.expect(student.businesses.length).to.eql(2);",
+									"});",
+									"",
+									"pm.test(\"Courses\", function () {",
+									"    var student = pm.response.json();",
+									"    pm.expect(student.courses.length).to.eql(2);",
+									"    pm.expect(student.courses[0].name).to.eql('Sports Turf Management');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a2adcad-2aad-449e-8af2-66efa3f19b18",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response OK', function () {",
+									"\tpm.response.to.have.status(200);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Course, Units, Card\", function () {",
+									"    var course = pm.response.json();",
+									"    pm.expect(course.name).to.eql('Sports Turf Management');",
+									"    pm.expect(course.units.length).to.eql(1);",
+									"    pm.expect(course.units[0].cards[0].name).to.eql('Grass types');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/student/course/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"student",
+								"course",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student Activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a2adcad-2aad-449e-8af2-66efa3f19b18",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response OK', function () {",
+									"\tpm.response.to.have.status(200);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"pm.test(\"Course, Units, Card\", function () {",
+									"    var course = pm.response.json();",
+									"    pm.expect(course.name).to.eql('Sports Turf Management');",
+									"    pm.expect(course.units.length).to.eql(1);",
+									"    pm.expect(course.units[0].cards[0].name).to.eql('Grass types');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/student/course/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"student",
+								"course",
+								"1"
 							]
 						}
 					},
