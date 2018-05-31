@@ -39,34 +39,10 @@ Public, Static:
 ```
 GET /
 GET /app
+GET /dashboard
 ```
 
-Public:
-
-```
-GET /status
-GET /user
-GET /logout
-
-GET, POST /admin/login
-GET, POST /student/login
-```
-
-Requires Admin Auth:
-
-```
-GET /admin
-GET, POST, PUT, DELETE /api/admin
-GET, POST, PUT, DELETE /api/card
-GET, POST, PUT, DELETE /api/course
-```
-
-
-Requires Student Auth:
-
-```
-GET /student
-```
+For APIs, see POSTMAN collection in [tests/Headway.postman_collection.json](tests/Headway.postman_collection.json)
 
 ## Dev on Windows
 
