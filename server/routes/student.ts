@@ -33,16 +33,17 @@ app.get('/student/course/:courseId', checkStudentEnrolled, (req, res) => {
 })
 
 app.get('/student/activity', (req, res) => {
-  Student.findById(req.user.student.id, {
-    include: [
-      { model: Card },
-    ]
-  }).then(student => {
-    res.send(student.cardActivities)
+  const studentId = req.user.student.id
+  Activity.findAll({
+    where: {
+      studentId,
+    },
+  }).then(activities => {
+    res.send(activities)
   })
 })
 
-app.post('/student/:cardId/submit', (req, res) => {
+app.post('/student/card/:cardId/submit', (req, res) => {
   const studentId = req.user.student.id
   const { cardId } = req.params
   const { completed, evidence_proof } = req.body
