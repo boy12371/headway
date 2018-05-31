@@ -26,16 +26,8 @@ app.get('/logout', (req, res) => {
 })
 
 
-app.get('/login/admin', (req, res) => {
-  res.render('login')
-})
-
 app.post('/login/admin', authAdmin, (req, res) => {
   res.send(req.user)
-})
-
-app.get('/register', (req, res) => {
-  res.render('register')
 })
 
 app.post('/register', (req, res) => {
@@ -59,10 +51,6 @@ app.post('/register', (req, res) => {
     })
     res.send(admin)
   })
-})
-
-app.get('/login/student', (req, res) => {
-  res.render('login')
 })
 
 app.post('/login/student', authStudent, (req, res) => {
