@@ -18,9 +18,9 @@ Create a new component with `make component name=FluxCapacitor`
 
 Lint both client and server with `make lint`
 
-Lint both client and server with `make lint`
-
 Run database report with `make report`
+
+Deploy to heroku with `make deploy`
 
 
 ## Technology
