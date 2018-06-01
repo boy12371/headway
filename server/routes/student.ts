@@ -48,14 +48,15 @@ app.post('/student/card/:cardId/submit', (req, res) => {
   const { cardId } = req.params
   const { completed, evidence_proof } = req.body
   Card.scope('includeCourse').findById(cardId).then(card => {
-    console.log(card.toJSON())
+    if (!card) {
+      return res.status(404)
+    }
     Activity.create({
       studentId,
       cardId,
       completed: completed ? new Date() : null,
       evidence_proof,
     }).then(activity => {
-      console.log(activity.toJSON())
       studentUnitProgress(card.unit.id, card.id).then(progress => {
         if (progress.unitCompleted) {
           // TODO: do not allow double submit
