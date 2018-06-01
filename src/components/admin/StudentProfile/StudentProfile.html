@@ -11,7 +11,7 @@
   <div>
     <div class="StudentProfile__group">
       <h3>Assigned Courses</h3>
-      <div v-for="course in activeStudentProfile.courses" :title="course.name" class="StudentProfile__course">
+      <div v-for="course in activeStudentProfile.courses" :title="course.name" class="StudentProfile__course Card">
         <router-link :to="{ name: 'course', params: { courseId : course.id }}"><strong>{{ course.name }}</strong></router-link>
         <ProgressBar :complete="course.CourseStudent.completedUnits" :total="11"></ProgressBar>
         <div v-if="course.CourseStudent.timeSpentOnCurrentUnit"> Time spent on current Unit: {{ course.CourseStudent.timeSpentOnCurrentUnit }} </div>
