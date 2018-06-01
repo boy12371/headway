@@ -26,9 +26,11 @@ export const createCourse = (adminId, name, businessIds = []) => {
     adminId,
   }).then(course => {
     if (businessIds.length) {
-      const courseId = course.id
       const promises = businessIds.map(businessId => {
-        return BusinessCourse.create({ businessId, courseId })
+        return linkBusinessToCourse(businessId, course.id)
+      })
+      return Promise.all(promises).then(d => {
+        return course
       })
     }
     return course
@@ -45,6 +47,22 @@ export const createStudent = (data) => {
     email,
     password,
     salt,
+  })
+}
+
+export const linkBusinessToCourse = (businessId, courseId) => {
+  return BusinessCourse.findOrCreate({
+    where: {
+      businessId,
+      courseId,
+      // autoInviteStudents: true,
+    }
+  }).then(businessCourse => {
+    return Business.findById(businessId, { include: [Student] }).then(business => {
+      return business.students.map(student => {
+        return student.addToCourse(courseId)
+      })
+    })
   })
 }
 
@@ -118,7 +136,7 @@ export const incrementCompletedUnits = async (courseId, studentId) => {
     }
   }).then(courseStudent => {
     courseStudent.completedUnits = courseStudent.completedUnits + 1
-    courseStudent.save()
+    return courseStudent.save()
   })
 }
 
