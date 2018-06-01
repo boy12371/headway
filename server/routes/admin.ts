@@ -195,17 +195,22 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
 
 app.post('/admin/student-course', checkAdminPermission, (req, res) => {
   const { studentId, courseIds = [] } = req.body
-  Logger.warn('TODO: auth check courseIds belong to this Admin')
-  const promises = courseIds.map(courseId => {
-    return CourseStudent.findOrCreate({
-      where: {
-        studentId,
-        courseId,
+  Admin.findById(req.user.admin.id, { include: [Course] }).then(admin => {
+    const adminCourseIds = admin.courses.map(course => course.id)
+    const promises = courseIds.map(courseId => {
+      if (adminCourseIds.indexOf(parseInt(courseId)) === -1) {
+        return res.status(401).send({ message: 'Unauthorized: Admin does not own Course' })
       }
+      return CourseStudent.findOrCreate({
+        where: {
+          studentId,
+          courseId,
+        }
+      })
     })
-  })
-  Promise.all(promises).then(studentCourses => {
-    res.send('OK')
+    Promise.all(promises).then(studentCourses => {
+      res.send('OK')
+    })
   })
 })
 
