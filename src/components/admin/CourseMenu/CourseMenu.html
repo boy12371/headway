@@ -2,6 +2,7 @@
   <ul class="CourseMenu__menu">
     <li class="CourseMenu__item" v-for="item in items">
       <router-link :class="linkClass(item.active)" :to="item.link">
+        <i class="icon course"></i>
         <div>
           <p class="flat">{{ item.text }}</p>
           <small>{{ item.totalUnits }} Units</small>

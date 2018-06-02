@@ -27,19 +27,22 @@
   top: 0;
   padding: 1rem;
   width: 280px;
-  background: linear-gradient(315deg, #1b3f6b 0%, #263454 74%);
+  background: $blue;
   z-index: 500;
   color: #fff;
 }
 
 .Admin__sidebar-title {
   color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
+  border-bottom: 1px solid #fff;
+  margin-right: 3rem;
 }
 
 .Admin__sidebar-title i {
+  position: absolute;
+  top: -8px;
+  right: -3rem;
   display: block;
   font-size: 0.875rem;
   text-align: center;
@@ -47,23 +50,34 @@
   width: 2.25rem;
   line-height: 2.25rem;
   border-radius: 50%;
-  opacity: 0.75;
   cursor: pointer;
+  background: $blue;
+  transition: all 200ms ease;
 }
 
 .Admin__sidebar-title i:hover {
-  background-color: rgba(0,0,0,.1);
-  opacity: 1;
+  background: $green;
+  color: #fff;
 }
 
-.Admin__sidebar-head {
+.Admin__sidebar .Logo {
   padding: 1rem;
   margin: -1rem;
   margin-bottom: 1rem;
   display: flex;
   height: 4rem;
   align-items: center;
-  background: $blue;
+  background: darken($blue, 7.5);
+  transition: all 200ms ease;
+}
+
+.Admin__sidebar .Logo:hover {
+  background: darken($blue, 5);
+}
+
+.Admin__sidebar .Logo:hover .Logo__icon {
+  background: $green;
+  color: #fff;
 }
 
 .Admin__toolbar {
