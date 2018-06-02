@@ -32,8 +32,13 @@ export class StudentList extends Vue {
   @State businesses
   @State courses
   @State studentListFilter
+  @State route
 
   @Prop({ default: crumbs }) breadcrumbs: any[]
+
+  setStudentListFilter(view) {
+    store.commit('setStudentListFilter', view)
+  }
 
   mounted() {
     store.commit('setBreadcrumbs', [

@@ -5,8 +5,6 @@
   </router-link>
   <a href="#" v-if="!authed" class="btn btn--small Header__btn">Sign in</a>
   <div class="flex flex--aligned" v-if="authed">
-    <button class="btn Header__action" @click="toggleModal('business')">Create business</button>
-    <button class="btn Header__action" @click="toggleModal('student')">Invite student</button>
     <router-link to="/login">
       <div class="User">
         <div class="User__avatar">J</div>

@@ -1,7 +1,3 @@
-.StudentList {
-  padding-top: 6rem;
-}
-
 .StudentList__elapsed {
   text-align: right;
   margin-top: 0.25rem;
@@ -38,7 +34,6 @@
 
   .StudentList .Card {
     cursor: pointer;
-    transition: all 200ms ease;
     &:hover {
       box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }

@@ -45,11 +45,11 @@ export class Admin extends Vue {
   @Provide() toggleModal = toggleModal
 
   @State courses
+  @State businesses
   @State authed
   @State user
   @State modals
   @State breadcrumbs
-  @State studentListFilter
   @State route
 
   @State activeCourse
@@ -72,8 +72,18 @@ export class Admin extends Vue {
     }
   }
 
-  setStudentListFilter(view) {
-    store.commit('setStudentListFilter', view)
+  get businessMenu() {
+    if (this.businesses) {
+      const menu = this.businesses.map((business, index) => {
+        const data = {
+          text: business.name,
+          link: '/b/' + business.id,
+          totalStudents: business.students ? business.students.length : 0,
+        }
+        return data
+      })
+      return menu
+    }
   }
 
   mounted() {

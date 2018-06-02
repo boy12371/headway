@@ -1,5 +1,6 @@
 <div id="dashboard" class="Admin">
   <Header
+                    hidden
     authed
     @inviteStudent="showStudentModal = true"
     class="Admin__header"
@@ -7,25 +8,30 @@
   </Header>
   <div class="Admin__content">
     <div class="Admin__sidebar">
-      <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu"></CourseMenu>
+      <div class="Admin__sidebar-head">
+        <router-link class="Logo" to="/dashboard">
+          <div class="Logo__icon">H</div>
+          Headway
+        </router-link>
+      </div>
+      <div class="Browse">
+        <h4 class="Admin__sidebar-title">
+          Courses
+          <i class="fa fa-plus" @click="toggleModal('course')"></i>
+        </h4>
+        <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu"></CourseMenu>
+        <h4 class="Admin__sidebar-title">
+          Businesses
+          <i class="fa fa-plus" @click="toggleModal('business')"></i>
+        </h4>
+        <CourseMenu @createCourse="showBusinessModal = true" :items="businessMenu"></CourseMenu>
+      </div>
     </div>
     <div class="Admin__main">
       <div class="Admin__toolbar">
         <Breadcrumbs :crumbs="breadcrumbs">
         </Breadcrumbs>
-        <div class="Filters" v-show="route.name === 'dashboard'">
-          <div class="Filters__wrap">
-            <small class="Filters__title">
-              Browse by
-            </small>
-            <div :class="{ 'Filters__option' : true, 'Filters__option--active' : studentListFilter === 'business' } " @click="setStudentListFilter('business')">
-              <i class="fa fa-briefcase"></i> Businesses
-            </div>
-            <div :class="{ 'Filters__option' : true, 'Filters__option--active' : studentListFilter === 'course' } " @click="setStudentListFilter('course')">
-              <i class="fa fa-book"></i> Courses
-            </div>
-          </div>
-        </div>
+        <button class="btn" v-show="route.name === 'dashboard'" @click="toggleModal('student')">Invite student</button>
         <button class="btn Course__action" v-show="route.name === 'course'" @click="toggleModal('unit')">Create a unit</button>
         <button class="btn Course__action" v-show="route.name === 'unit'" @click="toggleModal('card')">Create a card</button>
         <div v-show="route.name === 'studentProfile'">

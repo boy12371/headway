@@ -1,8 +1,7 @@
+@import "../../../sass/variables.scss";
+
 .Admin {
-  display: flex;
-  flex-direction: column;
   min-height: 100%;
-  padding-top: 4rem;
 }
 
 .Admin__header {
@@ -13,76 +12,66 @@
   z-index: 200;
 }
 
-.Admin__content {
-  flex: 1;
-  display: flex;
-}
-
 .Admin__main {
   flex: 1;
+  position: relative;
   padding: 1rem;
   padding-top: 0;
-  position: relative;
+  padding-left: calc(280px + 2rem);
 }
 
 .Admin__sidebar {
-  display: none;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  padding: 1rem;
+  width: 280px;
+  background: linear-gradient(315deg, #1b3f6b 0%, #263454 74%);
+  z-index: 500;
+  color: #fff;
 }
 
 .Admin__sidebar-title {
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Admin__sidebar-title i {
+  display: block;
+  font-size: 0.875rem;
+  text-align: center;
+  height: 2.25rem;
+  width: 2.25rem;
+  line-height: 2.25rem;
+  border-radius: 50%;
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.Admin__sidebar-title i:hover {
+  background-color: rgba(0,0,0,.1);
+  opacity: 1;
+}
+
+.Admin__sidebar-head {
+  padding: 1rem;
+  margin: -1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  height: 4rem;
+  align-items: center;
+  background: $blue;
 }
 
 .Admin__toolbar {
-  position: fixed;
-  top: 4rem;
-  left: 20rem;
-  right: 0;
   z-index: 100;
-  padding: 0 2rem;
-  background: #fff;
-}
-
-@media(min-width:768px) {
-
-  .Admin__toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    height: 5rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #eee;
-  }
-
-  .Admin__main {
-    flex: 1;
-    padding: 1rem 2rem;
-    padding-top: 0;
-    padding-left: 22rem;
-  }
-
-  .Admin__sidebar {
-    position: fixed;
-    top: 4rem;
-    left: 0;
-    width: 20rem;
-    bottom: 0;
-    display: block;
-    z-index: 100;
-    padding: 1.5rem 1rem;
-    background: #1e283c;
-    color: #fff;
-  }
-
-  .Admin__main .Businesses {
-    width: 15rem;
-  }
-
-  .Admin__main .Breadcrumbs {
-    position: fixed;
-    top: 5.6rem;
-    left: 22rem;
-    z-index: 200;
-  }
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
 }

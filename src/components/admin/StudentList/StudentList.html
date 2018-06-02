@@ -1,5 +1,18 @@
 <div class="StudentList">
-  <div v-show="studentListFilter === 'business'">
+  <div hidden class="Filters">
+    <div class="Filters__wrap">
+      <small class="Filters__title">
+        Browse by
+      </small>
+      <div :class="{ 'Filters__option' : true, 'Filters__option--active' : studentListFilter === 'business' } " @click="setStudentListFilter('business')">
+        <i class="fa fa-briefcase"></i> Businesses
+      </div>
+      <div :class="{ 'Filters__option' : true, 'Filters__option--active' : studentListFilter === 'course' } " @click="setStudentListFilter('course')">
+        <i class="fa fa-book"></i> Courses
+      </div>
+    </div>
+  </div>
+  <div hidden>
     <div class="StudentList__group" v-for="business in businesses" v-show="business.students.length">
       <h4>{{ business.name }}</h4>
       <div class="StudentList__wrap">
@@ -21,7 +34,7 @@
     </div>
   </div>
 
-  <div v-show="studentListFilter === 'course'">
+  <div>
     <div class="StudentList__group" v-for="course in courses" v-show="course.students.length">
       <h4>{{ course.name }}</h4>
       <div class="StudentList__wrap">

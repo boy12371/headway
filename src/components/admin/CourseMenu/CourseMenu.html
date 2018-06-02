@@ -1,13 +1,11 @@
 <div class="CourseMenu">
-  <p>
-    <button class="btn btn--block" @click="toggleModal('course')">Create course</button>
-  </p>
-  <h4 class="CourseMenu__title">Your courses</h4>
   <ul class="CourseMenu__menu">
     <li class="CourseMenu__item" v-for="item in items">
       <router-link :class="linkClass(item.active)" :to="item.link">
-        <p class="flat">{{ item.text }}</p>
-        <small>{{ item.totalUnits }} Units</small>
+        <div>
+          <p class="flat">{{ item.text }}</p>
+          <small>{{ item.totalUnits }} Units</small>
+        </div>
       </router-link>
       <div class="CourseMenu__bg"></div>
     </li>
