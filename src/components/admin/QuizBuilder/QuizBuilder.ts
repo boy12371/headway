@@ -17,7 +17,6 @@ export class QuizBuilder extends Vue {
   @Watch('data', { deep: true })
   watchRoute(newVal, oldVal) {
     this.questions = this.data.slice()
-    console.log(this.questions)
   }
 
   addQuestion() {
