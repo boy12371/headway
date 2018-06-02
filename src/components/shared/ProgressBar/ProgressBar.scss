@@ -4,7 +4,7 @@
   position: relative;
   height: 1.5rem;
   width: 100%;
-  background: #1e6b49;
+  background: $green;
   overflow: hidden;
   margin-bottom: 1rem;
   padding: 0 1rem;
@@ -22,14 +22,14 @@
   font-weight: bold;
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 100%;
-  span { font-weight: 400 }
+  span { font-weight: 400; padding-left: 0.25rem }
 }
 
 .ProgressBar__bar {
   position: absolute;
-  background: linear-gradient(#0ebd6f, $green);
+  background: lighten($green, 10);
   top: 0;
   bottom: 0;
   right: 100%;

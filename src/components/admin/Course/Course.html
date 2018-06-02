@@ -1,10 +1,4 @@
 <div class="Course">
-  <div class="Filters">
-    <div>
-      <button class="btn Course__action" v-show="view == 'course'" @click="toggleModal('unit')">Create a unit</button>
-      <button class="btn Course__action" v-show="view == 'unit'" @click="toggleModal('card')">Create a card</button>
-    </div>
-  </div>
   <Units
     v-if="view == 'course' && activeCourse.units"
     :units="activeCourse.units">

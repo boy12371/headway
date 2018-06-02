@@ -39,8 +39,8 @@ export const mutations = {
   setBreadcrumbs(state, crumbs) {
     state.breadcrumbs = crumbs
   },
-  setDashboardView(state, view) {
-    state.dashboardView = view
+  setStudentListFilter(state, view) {
+    state.studentListFilter = view
   },
   createCourse(state, course) {
     state.courses.push(course)

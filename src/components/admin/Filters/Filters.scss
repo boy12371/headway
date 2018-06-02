@@ -1,13 +1,6 @@
 @import "../../../sass/variables.scss";
 
 .Filters {
-  position: fixed;
-  top: 4rem;
-  left: 20rem;
-  right: 0;
-  z-index: 100;
-  padding: 0 2rem;
-  background: #fff;
 }
 
 .Filters__wrap {
@@ -87,15 +80,4 @@
 
 .Filters__option:hover .Filters__dropdown {
   display: block;
-}
-
-@media(min-width: 768px) {
-  .Filters {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    height: 5rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #eee;
-  }
 }

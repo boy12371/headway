@@ -1,21 +1,5 @@
 <div class="StudentList">
-  <div class="Filters">
-    <Breadcrumbs :crumbs="breadcrumbs">
-    </Breadcrumbs>
-    <div class="Filters__wrap">
-      <small class="Filters__title">
-        Browse by
-      </small>
-      <div :class="{ 'Filters__option' : true, 'Filters__option--active' : dashboardView === 'business' } " @click="setDashboardView('business')">
-        <i class="fal fa-briefcase"></i> Businesses
-      </div>
-      <div :class="{ 'Filters__option' : true, 'Filters__option--active' : dashboardView === 'course' } " @click="setDashboardView('course')">
-        <i class="fal fa-book"></i> Courses
-      </div>
-    </div>
-  </div>
-
-  <div v-show="dashboardView === 'business'">
+  <div v-show="studentListFilter === 'business'">
     <div class="StudentList__group" v-for="business in businesses" v-show="business.students.length">
       <h4>{{ business.name }}</h4>
       <div class="StudentList__wrap">
@@ -37,7 +21,7 @@
     </div>
   </div>
 
-  <div v-show="dashboardView === 'course'">
+  <div v-show="studentListFilter === 'course'">
     <div class="StudentList__group" v-for="course in courses" v-show="course.students.length">
       <h4>{{ course.name }}</h4>
       <div class="StudentList__wrap">

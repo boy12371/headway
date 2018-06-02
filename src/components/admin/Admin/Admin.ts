@@ -49,6 +49,8 @@ export class Admin extends Vue {
   @State user
   @State modals
   @State breadcrumbs
+  @State studentListFilter
+  @State route
 
   @State activeCourse
 
@@ -68,6 +70,10 @@ export class Admin extends Vue {
       })
       return menu
     }
+  }
+
+  setStudentListFilter(view) {
+    store.commit('setStudentListFilter', view)
   }
 
   mounted() {

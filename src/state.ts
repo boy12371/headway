@@ -2,7 +2,7 @@ export const state = {
   authed: false,
   courses: [],
   businesses: [],
-  dashboardView: 'business',
+  studentListFilter: 'business',
   appView: 'studentHome',
   activeCourse: {},
   activeUnit: {},

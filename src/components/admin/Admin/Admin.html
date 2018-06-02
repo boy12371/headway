@@ -10,12 +10,33 @@
       <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu"></CourseMenu>
     </div>
     <div class="Admin__main">
-      <Breadcrumbs :crumbs="breadcrumbs">
-      </Breadcrumbs>
-      <StudentList v-if="view === 'dashboard'"></StudentList>
-      <StudentProfile v-if="view === 'studentProfile'"></StudentProfile>
+      <div class="Admin__toolbar">
+        <Breadcrumbs :crumbs="breadcrumbs">
+        </Breadcrumbs>
+        <div class="Filters" v-show="route.name === 'dashboard'">
+          <div class="Filters__wrap">
+            <small class="Filters__title">
+              Browse by
+            </small>
+            <div :class="{ 'Filters__option' : true, 'Filters__option--active' : studentListFilter === 'business' } " @click="setStudentListFilter('business')">
+              <i class="fa fa-briefcase"></i> Businesses
+            </div>
+            <div :class="{ 'Filters__option' : true, 'Filters__option--active' : studentListFilter === 'course' } " @click="setStudentListFilter('course')">
+              <i class="fa fa-book"></i> Courses
+            </div>
+          </div>
+        </div>
+        <button class="btn Course__action" v-show="route.name === 'course'" @click="toggleModal('unit')">Create a unit</button>
+        <button class="btn Course__action" v-show="route.name === 'unit'" @click="toggleModal('card')">Create a card</button>
+        <div v-show="route.name === 'studentProfile'">
+          <button class="btn btn--standard" @click="toggleModal('unit')">Edit</button>
+          <button class="btn btn--standard" @click="toggleModal('card')">Delete</button>
+        </div>
+      </div>
+      <StudentList v-if="route.name === 'dashboard'"></StudentList>
+      <StudentProfile v-if="route.name === 'studentProfile'"></StudentProfile>
       <!-- The following v-if is bad. -->
-      <Course @create-unit="showUnitModal = true" v-if="view == 'course' || 'unit' || 'card'" :name="activeCourse.name" :units="activeCourse.units"></Course>
+      <Course @create-unit="showUnitModal = true" v-if="route.name === 'course' || 'unit' || 'card'" :name="activeCourse.name" :units="activeCourse.units"></Course>
     </div>
   </div>
   <AddCourse v-show="modals.course" @close="toggleModal('course')"></AddCourse>

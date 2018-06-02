@@ -31,13 +31,9 @@ export class StudentList extends Vue {
 
   @State businesses
   @State courses
-  @State dashboardView
+  @State studentListFilter
 
   @Prop({ default: crumbs }) breadcrumbs: any[]
-
-  setDashboardView(view) {
-    store.commit('setDashboardView', view)
-  }
 
   mounted() {
     store.commit('setBreadcrumbs', [
