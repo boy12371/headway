@@ -6,7 +6,7 @@ const courseService = new CourseService()
 const businessService = new BusinessService()
 const studentService = new StudentService()
 
-import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, Course, Businesses, CourseMenu, RemoveStudentCourse, AddCourse } from '../../'
+import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, Course, Businesses, CourseMenu, RemoveStudentCourse, AddCourse, RemoveCard, RemoveCourse, RemoveUnit } from '../../'
 
 import { Login } from '../../shared/Login'
 
@@ -21,19 +21,22 @@ const toggleModal = k => store.commit('toggleModal', k)
   template: require('./Admin.html'),
   name: 'Admin',
   components: {
+    AddBusiness,
+    AddCard,
     AddCourse,
     AddStudent,
-    AddBusiness,
     AddStudentCourse,
     AddUnit,
-    AddCard,
+    Breadcrumbs,
+    Course,
+    CourseMenu,
+    Login,
+    RemoveCard,
+    RemoveCourse,
     RemoveStudentCourse,
+    RemoveUnit,
     StudentList,
     StudentProfile,
-    CourseMenu,
-    Course,
-    Login,
-    Breadcrumbs,
   }
 })
 

@@ -20,5 +20,11 @@ export const state = {
     card: false,
     addStudentCourse: false,
     removeStudentCourse: false,
-  }
+    removeCourse: false,
+    removeUnit: false,
+    removeCard: false,
+  },
+  removeCourseId: null,
+  removeUnitId: null,
+  removeCardId: null,
 }

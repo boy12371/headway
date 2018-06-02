@@ -11,6 +11,9 @@ export const mutations = {
     // state.authed = overview.user && overview.user.id
     state.authed = true
   },
+  set(state, {key, value}) {
+    state[key] = value
+  },
   setActiveCourse(state, course) {
     state.activeCourse = course
   },

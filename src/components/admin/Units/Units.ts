@@ -7,13 +7,11 @@ import store from '../../../store'
 @Component({
   template: require('./Units.html'),
   name: 'Units',
-  components: {
-  }
+  components: {}
 })
 
 export class Units extends Vue {
   @Inject() toggleModal
-  @Inject() unitService
 
   @Prop({ default: () => [] }) units: any[]
 

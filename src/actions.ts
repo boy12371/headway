@@ -105,6 +105,13 @@ export const actions = {
     })
   },
 
+  removeCourse(context, id) {
+    return axios.delete(BASE_URL + '/api/course/' + id).then(res => {
+      // ...
+    })
+  },
+
+
   createUnit(context, { courseId, name }) {
     return axios.post(BASE_URL + '/admin/unit', {
       courseId,
@@ -112,6 +119,12 @@ export const actions = {
     }).then(res => {
       const unit = res.data
       context.commit('createUnit', { courseId, unit })
+    })
+  },
+
+  removeUnit(context, id) {
+    return axios.delete(BASE_URL + '/api/unit/' + id).then(res => {
+      // ...
     })
   },
 
@@ -129,6 +142,12 @@ export const actions = {
     return axios.put(BASE_URL + '/api/card/' + card.id, card).then(res => {
       const card = res.data
       // context.commit('updateCard', { card })
+    })
+  },
+
+  removeCard(context, id) {
+    return axios.delete(BASE_URL + '/api/card/' + id).then(res => {
+      // ...
     })
   },
 
