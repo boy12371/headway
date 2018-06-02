@@ -1,0 +1,42 @@
+<div class="BusinessProfile">
+  <div>
+    <h1 class="flat">{{ activeBusinessProfile.name }}</h1>
+    <p>Created {{ activeBusinessProfile.createdAt | moment("from", true) }} ago</p>
+    <div class="BusinessProfile__empty" v-show="!activeBusinessProfile.students.length > 0">
+      <p>You have no students in this Business</p>
+    </div>
+    <div class="StudentList__wrap" v-show="activeBusinessProfile.students.length > 0">
+      <router-link class="non-link" v-for="(student, sIndex) in activeBusinessProfile.students" :to="{ name: 'studentProfile', params: { studentId: student.id } }">
+        <Card icon="student" class="StudentList__Student" :title="student.first_name + '' + student.last_name" :key="sIndex">
+          <div slot="body">
+            <p><small>{{ student.email }}</small></p>
+            <div v-for="(course, cIndex) in student.courses">
+              <label class="label flat flex flex--spaced">
+                <span>{{ course.name }}</span>
+              </label>
+              <ProgressBar class="flat" :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
+              <p class="StudentList__elapsed"><small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small></p>
+            </div>
+          </div>
+        </Card>
+      </router-link>
+    </div>
+  </div>
+  <div class="BusinessProfile__group">
+    <h4>Default courses</h4>
+    <div>
+      <div v-for="course in activeBusinessProfile.courses" class="Card CourseCard">
+        <div class="CourseCard__wrap">
+          <i class="fa fa-trash CourseCard__action" @click="confirmRemoveCourse(course.id)"></i>
+          <router-link :to="{ name: 'course', params: { courseId : course.id }}" class="CourseCard__link">
+            <p class="flat"><strong>{{ course.name }}</strong></p>
+            <small>Begun <strong>Introduction</strong> 6 days ago</small>
+          </router-link>
+        </div>
+      </div>
+      <button class="btn btn--small btn--text" @click="toggleModal('addStudentCourse')">
+        <i class="fa fa-plus"></i> Assign a course
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,4 @@
 <div id="dashboard" class="Admin">
-  <Header
-                    hidden
-    authed
-    @inviteStudent="showStudentModal = true"
-    class="Admin__header"
-    @createBusiness="showBusinessModal = true">
-  </Header>
   <div class="Admin__content">
     <div class="Admin__sidebar">
       <div class="Admin__sidebar-head">
@@ -41,6 +34,7 @@
       </div>
       <StudentList v-if="route.name === 'dashboard'"></StudentList>
       <StudentProfile v-if="route.name === 'studentProfile'"></StudentProfile>
+      <BusinessProfile v-if="route.name === 'businessProfile'"></BusinessProfile>
       <!-- The following v-if is bad. -->
       <Course @create-unit="showUnitModal = true" v-if="route.name === 'course' || 'unit' || 'card'" :name="activeCourse.name" :units="activeCourse.units"></Course>
     </div>

@@ -61,6 +61,23 @@ export const actions = {
     })
   },
 
+  getBusinessProfile(context, id) {
+    return axios.get(BASE_URL + '/admin/business/' + id).then(res => {
+      const business = res.data
+      context.commit('setActiveBusinessProfile', business)
+      context.commit('setBreadcrumbs', [
+        {
+          label: 'Your businesses',
+          link: ''
+        },
+        {
+          label: business.name,
+          link: { name: 'businessProfile', params: { businessId: business.id } }
+        }
+      ])
+    })
+  },
+
   inviteStudent(context, payload) {
     return axios.post(BASE_URL + '/admin/student', payload).then(res => {
       const student = res.data

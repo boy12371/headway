@@ -35,6 +35,9 @@ export const mutations = {
   setActiveStudentProfile(state, profile) {
     state.activeStudentProfile = profile
   },
+  setActiveBusinessProfile(state, profile) {
+    state.activeBusinessProfile = profile
+  },
   setUser(state, user) {
     state.authed = true
     state.user = user

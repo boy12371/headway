@@ -6,7 +6,7 @@ const courseService = new CourseService()
 const businessService = new BusinessService()
 const studentService = new StudentService()
 
-import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, Course, Businesses, CourseMenu, RemoveStudentCourse, AddCourse, RemoveCard, RemoveCourse, RemoveUnit } from '../../'
+import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, BusinessProfile, Course, Businesses, CourseMenu, RemoveStudentCourse, AddCourse, RemoveCard, RemoveCourse, RemoveUnit } from '../../'
 
 import { Login } from '../../shared/Login'
 
@@ -36,6 +36,7 @@ const toggleModal = k => store.commit('toggleModal', k)
     RemoveStudentCourse,
     RemoveUnit,
     StudentList,
+    BusinessProfile,
     StudentProfile,
   }
 })

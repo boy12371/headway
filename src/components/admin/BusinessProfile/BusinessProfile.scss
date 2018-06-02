@@ -1,0 +1,13 @@
+@import "../../../sass/variables.scss";
+
+.BusinessProfile {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 2rem;
+}
+
+.BusinessProfile__empty {
+  border-top: 1px solid #ddd;
+  padding-top: 2rem;
+}
+

@@ -8,6 +8,7 @@ export const state = {
   activeUnit: {},
   activeCard: {},
   activeStudentProfile: {},
+  activeBusinessProfile: {},
   activeStudentCourse: {},
   activeStudentCard: {},
   user: {},

@@ -31,6 +31,11 @@ export const createRoutes: () => RouteConfig[] = () => [
     component: adminComponent
   },
   {
+    path: '/b/:businessId',
+    name: 'businessProfile',
+    component: adminComponent
+  },
+  {
     path: '/c/:courseId',
     name: 'course',
     component: adminComponent
