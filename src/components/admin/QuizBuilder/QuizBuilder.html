@@ -1,12 +1,32 @@
 <div class="QuizBuilder">
-  <QuizBuilderQuestion
+  <div class="QuizBuilder__question Card"
     v-if="questions.length"
     v-for="(question, qIndex) in questions"
     :key="qIndex"
-    @addAnswer="addAnswer(qIndex)"
-    :count="qIndex + 1"
-    :question="question.question"
-    :answers="question.answers"
-  />
+  >
+    <label class="label">Question {{ qIndex + 1 }}</label>
+    <input type="text"
+      class="input"
+      @focus.native="$event.target.select()"
+      v-model="question.question"
+      placeholder="Question"
+    >
+    <div class="QuizBuilder__answers">
+      <label class="label">Answers</label>
+      <div v-for="(answer, aIndex) in question.answers"
+        class="QuizBuilder__answer"
+        :key="aIndex"
+      >
+        <input type="text"
+          class="input"
+          v-model="answer.text"
+          placeholder="Answer"
+        >
+        <input type="checkbox" v-model="answer.correct">
+      </div>
+      <div class="input QuizBuilder__add-answer" @click="addAnswer(qIndex)">Add another answer</div>
+    </div>
+  </div>
   <span class="btn btn--standard Quiz__add-question" @click="addQuestion">Add question</span>
+  <span class="btn" @click="save">Save</span>
 </div>

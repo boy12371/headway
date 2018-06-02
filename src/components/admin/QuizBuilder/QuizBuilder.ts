@@ -1,41 +1,56 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
-
-import { QuizBuilderQuestion } from './QuizBuilderQuestion'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 
 import './QuizBuilder.scss'
+import { Answer, Question } from '../../../interfaces'
+import store from '../../../store'
 
 @Component({
   template: require('./QuizBuilder.html'),
   name: 'QuizBuilder',
-  components: {
-    QuizBuilderQuestion
-  }
+  components: { }
 })
 export class QuizBuilder extends Vue {
-  @Prop() questions: any[]
+  @Prop() data: any[]
+
+  questions: Question[] = []
+
+  @Watch('data', { deep: true })
+  watchRoute(newVal, oldVal) {
+    this.questions = this.data.slice()
+    console.log(this.questions)
+  }
 
   addQuestion() {
-    const question = {
-      question: 'Untitled Question',
+    let question: Question = {
+      question: '',
       answers: [
         {
-          text: 'Option 1',
-          correct: true
+          text: '',
+          correct: true,
         }
       ]
     }
     this.questions.push(question)
   }
 
-  addAnswer(i) {
+  removeQuestion(qIndex) {
+    // ...
+  }
 
-    const totalAnswers = this.questions[i].answers.length + 1
-
-    const answer = {
-      text: 'Option ' + totalAnswers,
+  addAnswer(qIndex) {
+    let totalAnswers = this.questions[qIndex].answers.length + 1
+    let answer: Answer = {
+      text: '',
       correct: false
     }
+    this.questions[qIndex].answers.push(answer)
+  }
 
-    this.questions[i].answers.push(answer)
+  removeAnswer(qIndex, aIndex) {
+    // ....
+  }
+
+  save() {
+    store.dispatch('updateActiveCardQuiz', this.questions)
   }
 }
