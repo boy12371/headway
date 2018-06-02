@@ -132,13 +132,21 @@ app.post('/admin/card/:cardId/upload', (req, res) => {
 // Students
 
 app.post('/admin/student', (req, res) => {
-  const { email, first_name, last_name, businessIds } = req.body
-  Logger.warn('TODO: auth check businessIds belong to this Admin')
-  inviteStudent({ email, first_name, last_name }, businessIds).then(invitation => {
-    res.send({ message: 'Invite Sent' })
-  }).catch(err => {
-    Logger.warn(err)
-    res.status(500).send({ message: 'Could not invite Student' })
+  const { email, first_name, last_name, businessIds = [] } = req.body
+  Admin.findById(req.user.admin.id, { include: [Business] }).then(admin => {
+    const ids = admin.businesses.map(d => d.id)
+    for (const id of businessIds) {
+      if (ids.indexOf(id) === -1) {
+        res.status(401).send({ message: 'Unauthorized: Admin does not own Business #' + id })
+        return
+      }
+    }
+    inviteStudent({ email, first_name, last_name }, businessIds).then(invitation => {
+      res.send({ message: 'Invite Sent' })
+    }).catch(err => {
+      Logger.warn(err)
+      res.status(500).send({ message: 'Could not invite Student' })
+    })
   })
 })
 
