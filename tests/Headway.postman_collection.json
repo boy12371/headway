@@ -16,17 +16,14 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c2cf10c3-02a0-4281-8b01-780bc6793bad",
+								"id": "176928d3-1511-4a1b-966f-915a8af416f5",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test('Response OK', function () {",
 									"\tpm.response.to.have.status(200);",
 									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
 									"})",
-									"",
-									"pm.test(\"Body matches string\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"<h1 class=\\\"form__title\\\">Login</h1>\");",
-									"});"
+									""
 								]
 							}
 						}
@@ -314,7 +311,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "bccb9b4e-e353-44e9-8ca7-cfe06d29427e",
+								"id": "8b19a9b0-cf3c-4bcc-bd09-d1859c13bdd3",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test('Response OK', function () {",
@@ -323,7 +320,7 @@
 									"})",
 									"pm.test(\"Cards data\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.cards.length).to.eql(1);",
+									"    // pm.expect(jsonData.cards.length).to.eql(1);",
 									"    pm.expect(jsonData.cards[0].name).to.eql('Grass types');",
 									"});"
 								]
@@ -555,7 +552,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "66b07e83-366d-470d-b1c4-c32ec2c30722",
+								"id": "3440ce51-f31a-4593-a708-46959cd7a1da",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test('Response OK', function () {",
@@ -565,7 +562,7 @@
 									"",
 									"pm.test(\"Only contains own Courses\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.courses.length).to.eql(1);",
+									"    pm.expect(jsonData.courses.length).to.eql(2);",
 									"});",
 									"",
 									"pm.test(\"Only contains own Businesses\", function () {",
@@ -1136,17 +1133,17 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6985ccd7-0713-4526-9b05-ef971a98cb2a",
+								"id": "a07815de-6fab-4933-90be-e955f950a65d",
 								"type": "text/javascript",
 								"exec": [
-									"pm.test('Response 401', function () {",
-									"\tpm.response.to.have.status(401);",
+									"pm.test('Responds', function () {",
+									"\tpm.response.to.have.status(200);",
 									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
-									"})",
+									"});",
 									"",
-									"pm.test(\"Error Message\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql('Unauthorized: Cards are not currently able to change Units');",
+									"pm.test('Ignores unitId', function () {",
+									"    var card = pm.response.json();",
+									"    pm.expect(card.unitId).to.eql(1);",
 									"});"
 								]
 							}
@@ -1186,18 +1183,18 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "934e9726-331f-45f1-933d-eb94bdd90846",
+								"id": "e8f1c7b6-8f8a-4f22-bf68-696f22b36e26",
 								"type": "text/javascript",
 								"exec": [
-									"pm.test('Response 500', function () {",
-									"\tpm.response.to.have.status(500);",
+									"pm.test('Response 401', function () {",
+									"\tpm.response.to.have.status(401);",
 									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
 									"})",
 									"",
 									"",
 									"pm.test(\"Message\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql('Could not invite Student');",
+									"    pm.expect(jsonData.message).to.eql('Unauthorized: Admin does not own Business #2');",
 									"});"
 								]
 							}
@@ -1213,7 +1210,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"email\":\"s@s.com\",\"businessIds\":[3]}\n"
+							"raw": "{\"email\":\"s@s.com\",\"businessIds\":[2]}\n"
 						},
 						"url": {
 							"raw": "http://localhost:5000/admin/student",
@@ -1242,7 +1239,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "9995a30d-0c40-4f3d-be9e-283aa296709f",
+								"id": "d0689860-29f2-4b9a-a4a9-9417e1aee1f2",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test('Response OK', function () {",
@@ -1253,12 +1250,12 @@
 									"pm.test(\"Businesses\", function () {",
 									"    var student = pm.response.json();",
 									"    pm.expect(student.businesses.length).to.eql(2);",
-									"});",
+									"});1",
 									"",
 									"pm.test(\"Courses\", function () {",
 									"    var student = pm.response.json();",
-									"    pm.expect(student.courses.length).to.eql(2);",
-									"    pm.expect(student.courses[0].name).to.eql('Sports Turf Management');",
+									"    pm.expect(student.courses.length).to.eql(3);",
+									"    pm.expect(student.courses[0].name).to.eql('Changed Course Name');",
 									"});"
 								]
 							}
@@ -1288,7 +1285,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5a2adcad-2aad-449e-8af2-66efa3f19b18",
+								"id": "d456945f-418b-4499-8446-7ae3a523b61a",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test('Response OK', function () {",
@@ -1298,9 +1295,9 @@
 									"",
 									"pm.test(\"Course, Units, Card\", function () {",
 									"    var course = pm.response.json();",
-									"    pm.expect(course.name).to.eql('Sports Turf Management');",
-									"    pm.expect(course.units.length).to.eql(1);",
-									"    pm.expect(course.units[0].cards[0].name).to.eql('Grass types');",
+									"    pm.expect(course.name).to.eql('Changed Course Name');",
+									"    pm.expect(course.units.length).to.eql(2);",
+									"    pm.expect(course.units[0].cards[0].name).to.eql('Changed Card Name');",
 									"});"
 								]
 							}
@@ -1332,20 +1329,14 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5a2adcad-2aad-449e-8af2-66efa3f19b18",
+								"id": "b7f1549a-34ab-4e51-accb-ef5ae858c1d3",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test('Response OK', function () {",
 									"\tpm.response.to.have.status(200);",
 									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
 									"})",
-									"",
-									"pm.test(\"Course, Units, Card\", function () {",
-									"    var course = pm.response.json();",
-									"    pm.expect(course.name).to.eql('Sports Turf Management');",
-									"    pm.expect(course.units.length).to.eql(1);",
-									"    pm.expect(course.units[0].cards[0].name).to.eql('Grass types');",
-									"});"
+									""
 								]
 							}
 						}
@@ -1355,7 +1346,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:5000/student/course/1",
+							"raw": "http://localhost:5000/student/activity",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1363,8 +1354,7 @@
 							"port": "5000",
 							"path": [
 								"student",
-								"course",
-								"1"
+								"activity"
 							]
 						}
 					},
