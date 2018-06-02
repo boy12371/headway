@@ -105,13 +105,8 @@ createRestApi(Unit, 'unit', (req, res, context, resolve) => {
 createRestApi(Card, 'card', (req, res, context, resolve) => {
   const id = parseInt(req.params.id)
   const adminId = req.user.admin.id
-  const { unitId } = req.body
+  delete req.body.unitId // Do not allow cards to change units
   Card.findById(id, { include: [{ model: Unit, include: [Course] }] }).then(card => {
-    if (unitId) {
-      res.status(401).send({ message: 'Unauthorized: Cards are not currently able to change Units' })
-      resolve(context.stop)
-      return
-    }
     if (card && card.unit.course.adminId === adminId) {
       resolve(context.continue)
     } else {

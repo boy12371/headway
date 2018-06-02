@@ -126,7 +126,16 @@ export const actions = {
   },
 
   editCard(context, { card }) {
-    return axios.put(BASE_URL + '/admin/card/' + card.id, card).then(res => {
+    return axios.put(BASE_URL + '/api/card/' + card.id, card).then(res => {
+      const card = res.data
+      // context.commit('updateCard', { card })
+    })
+  },
+
+  updateActiveCardQuiz(context, quiz) {
+    let card = context.state.activeCard
+    card.quiz = JSON.stringify(quiz)
+    return axios.put(BASE_URL + '/api/card/' + card.id, card).then(res => {
       const card = res.data
       // context.commit('updateCard', { card })
     })

@@ -115,19 +115,6 @@ app.post('/admin/unit/:unitId/card', (req, res) => {
   })
 })
 
-app.put('/admin/card/:cardId', (req, res) => {
-  const { cardId } = req.params
-  Card.findById(cardId, { include: [{ model: Unit, include: [Course] }] }).then(card => {
-    if (card && card.unit.course.adminId === req.user.admin.id) {
-      Logger.debug('TODO: modify card')
-      res.send(card)
-    }
-    else {
-      res.status(401).send({ message: 'Unauthorized: Admin does not own Card #' + cardId })
-    }
-  })
-})
-
 app.post('/admin/card/:cardId/upload', (req, res) => {
   const { cardId } = req.params
   Card.findById(cardId, { include: [{ model: Unit, include: [Course] }] }).then(card => {
