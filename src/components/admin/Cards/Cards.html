@@ -3,9 +3,6 @@
     <router-link v-for="card in cards" :to="{ name: 'card', params: { courseId: courseId, unitId: unitId, cardId: card.id }}">
       <Card :key="card.id" :title="card.name"></Card>
     </router-link>
-    <button class="btn pull-right" @click="removeUnit">
-      <i class="fa fa-trash"></i> Delete Unit
-    </button>
   </div>
   <div class="Cards__error" v-if="!cards.length">
     <div class="text-centered">
@@ -13,4 +10,7 @@
       <button class="btn" @click="toggleModal('card')">Create a card</button>
     </div>
   </div>
+  <button class="btn pull-right" @click="removeUnit">
+    <i class="fa fa-trash"></i> Delete Unit
+  </button>
 </div>

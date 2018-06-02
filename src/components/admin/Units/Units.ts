@@ -19,4 +19,12 @@ export class Units extends Vue {
   get courseId() {
     return this.$route.params.courseId
   }
+
+  removeCourse() {
+    store.commit('set', {
+      key: 'removeCourseId',
+      value: this.$route.params.courseId
+    })
+    this.toggleModal('removeCourse')
+  }
 }

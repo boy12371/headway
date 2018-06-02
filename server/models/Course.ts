@@ -25,7 +25,10 @@ export class Course extends Model<Course> {
   @BelongsTo(() => Admin)
   admin: Admin
 
-  @HasMany(() => Unit)
+  @HasMany(() => Unit, {
+    onDelete: 'cascade',
+    hooks: true,
+  })
   units: Unit[]
 
   @BelongsToMany(() => Business, {

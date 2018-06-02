@@ -21,7 +21,10 @@ export class Unit extends Model<Unit> {
   @BelongsTo(() => Course)
   course: Course
 
-  @HasMany(() => Card)
+  @HasMany(() => Card, {
+    onDelete: 'cascade',
+    hooks: true,
+  })
   cards: Card[]
 }
 

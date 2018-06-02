@@ -17,9 +17,7 @@ export class RemoveCourse extends Vue {
   @Inject() toggleModal
 
   submit() {
-    store.dispatch('removeCourse', {
-      courseId: this.removeCourseId
-    })
+    store.dispatch('removeCourse', this.removeCourseId)
     this.toggleModal('removeCourse')
   }
 }
