@@ -55,8 +55,7 @@ export class LearningCard extends Vue {
             link: { name: 'course', params: { courseId: unit.course.id } }
           },
           {
-            label: unit.name,
-            link: { name: 'unit', params: { courseId: unit.course.id, unitId: unit.id } }
+            label: unit.name
           },
           {
             label: this.activeCard.name,

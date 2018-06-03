@@ -43,8 +43,7 @@ export class StudentList extends Vue {
   mounted() {
     store.commit('setBreadcrumbs', [
       {
-        label: 'Your students',
-        link: { name: 'dashboard' }
+        label: 'Students'
       }
     ])
   }

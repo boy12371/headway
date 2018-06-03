@@ -50,7 +50,7 @@ export const actions = {
       context.commit('setActiveStudentProfile', student)
       context.commit('setBreadcrumbs', [
         {
-          label: 'Your students',
+          label: 'Students',
           link: { name: 'dashboard' }
         },
         {
@@ -67,8 +67,7 @@ export const actions = {
       context.commit('setActiveBusinessProfile', business)
       context.commit('setBreadcrumbs', [
         {
-          label: 'Your businesses',
-          link: ''
+          label: 'Businesses'
         },
         {
           label: business.name,
