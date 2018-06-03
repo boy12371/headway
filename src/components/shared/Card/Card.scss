@@ -9,6 +9,21 @@
   transition: all 375ms ease;
 }
 
+.Card--action {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 500;
+  opacity: 0.5;
+  max-height: 8rem;
+}
+
+.Card--action:hover {
+  opacity: 0.8;
+}
+
 .Card--link {
   cursor: pointer;
 }

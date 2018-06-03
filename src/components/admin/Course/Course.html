@@ -1,8 +1,5 @@
 <div class="Course">
   <Units
-    v-if="view == 'course' && activeCourse.units"
     :units="activeCourse.units">
   </Units>
-  <Cards v-if="view == 'unit' && activeUnit.cards" :cards="activeUnit.cards"></Cards>
-  <LearningCard v-if="view == 'card'" :card="activeCard"></LearningCard>
 </div>

@@ -4,7 +4,7 @@
       <form @submit.prevent="submit" slot="body">
         <div class="form__group">
           <label class="label" for="course-name">Name</label>
-          <input type="text" class="input" id="course-name" autofocus v-model="name" required>
+          <input type="text" class="input" id="course-name" autofocus autocomplete="off" v-model="name" required>
         </div>
         <div class="form__group">
           <label class="label">Auto-assign to students from</label>

@@ -8,7 +8,9 @@ export const state = {
   activeUnit: {},
   activeCard: {},
   activeStudentProfile: {},
-  activeBusinessProfile: {},
+  activeBusinessProfile: {
+    students: []
+  },
   activeStudentCourse: {},
   activeStudentCard: {},
   user: {},
@@ -28,4 +30,5 @@ export const state = {
   removeCourseId: null,
   removeUnitId: null,
   removeCardId: null,
+  addCardUnitId: null,
 }

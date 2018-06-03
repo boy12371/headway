@@ -23,8 +23,9 @@
         <Breadcrumbs :crumbs="breadcrumbs">
         </Breadcrumbs>
         <button class="btn" v-show="route.name === 'dashboard'" @click="toggleModal('student')">Invite student</button>
-        <button class="btn Course__action" v-show="route.name === 'course'" @click="toggleModal('unit')">Create a unit</button>
-        <button class="btn Course__action" v-show="route.name === 'unit'" @click="toggleModal('card')">Create a card</button>
+        <button class="btn btn--standard" @click="removeCourse" v-show="route.name === 'course'">
+          <i class="fa fa-trash"></i>
+        </button>
         <div v-show="route.name === 'studentProfile'">
           <button class="btn btn--standard" @click="toggleModal('unit')">Edit</button>
           <button class="btn btn--standard" @click="toggleModal('card')">Delete</button>
@@ -34,14 +35,14 @@
       <StudentProfile v-if="route.name === 'studentProfile'"></StudentProfile>
       <BusinessProfile v-if="route.name === 'businessProfile'"></BusinessProfile>
       <!-- The following v-if is bad. -->
-      <Course @create-unit="showUnitModal = true" v-if="route.name === 'course' || 'unit' || 'card'" :name="activeCourse.name" :units="activeCourse.units"></Course>
+      <Course @create-unit="showUnitModal = true" v-if="route.name === 'course'" :name="activeCourse.name" :units="activeCourse.units"></Course>
+      <LearningCard v-if="route.name == 'card'" :card="activeCard"></LearningCard>
     </div>
   </div>
   <AddCourse v-show="modals.course" @close="toggleModal('course')"></AddCourse>
   <AddStudent v-show="modals.student" @close="toggleModal('student')"></AddStudent>
   <AddBusiness v-show="modals.business" @close="toggleModal('business')"></AddBusiness>
   <AddUnit v-show="modals.unit" @close="toggleModal('unit')"></AddUnit>
-  <AddCard v-show="modals.card" @close="toggleModal('card')"></AddCard>
   <AddStudentCourse v-show="modals.addStudentCourse" @close="toggleModal('addStudentCourse')"></AddStudentCourse>
   <RemoveStudentCourse v-show="modals.removeStudentCourse" @close="toggleModal('removeStudentCourse')"></RemoveStudentCourse>
   <RemoveCourse v-show="modals.removeCourse" @close="toggleModal('removeCourse')"></RemoveCourse>

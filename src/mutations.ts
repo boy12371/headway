@@ -17,8 +17,9 @@ export const mutations = {
   setActiveCourse(state, course) {
     state.activeCourse = course
   },
-  setActiveUnit(state, unit) {
-    state.activeUnit = unit
+  setUnitInCourse(state, { unit, k}) {
+    console.log(unit, k)
+    // state.courses[k] = unit
   },
   setActiveCard(state, card) {
     state.activeCard = card

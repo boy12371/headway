@@ -1,22 +1,22 @@
 .Units {
-  .Card {
-    cursor: pointer;
-  }
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-left: -1rem;
+  margin: -1rem;
+  margin-left: -2rem;
+  height: calc(100vh - 4rem);
+  padding: 1rem;
+  padding-left: 2rem;
 }
 
-.Units__error {
-  margin: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media(min-width: 1024px) {
-
-  .Units__wrap {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 1rem;
+.Units__list {
+  display: inline-block;
+  vertical-align: top;
+  width: 280px;
+  white-space: normal;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  &:first-child {
+    margin-left: 0;
   }
-
 }

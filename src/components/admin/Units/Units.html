@@ -1,16 +1,12 @@
-<div class="Units">
-  <div class="Units__wrap" v-if="units">
-    <router-link v-for="unit in units" :key="unit.id" :to="{ name: 'unit', params: { courseId: courseId, unitId: unit.id }}">
-      <Card :title="unit.name"></Card>
-    </router-link>
+<div class="Units" v-if="units">
+  <UnitList
+    v-for="unit in units"
+    class="Units__list"
+    :name="unit.name"
+    :unit-id="unit.id"
+    :course-id="route.params.courseId"
+    :key="'unit-' + unit.id"></UnitList>
+  <div class="Card Card--action Units__list" @click="toggleModal('unit')">
+    <i class="fa fa-plus" style="margin-right: 1rem; margin-top: -2px"></i> Add a unit
   </div>
-  <div class="Units__error" v-if="!units.length">
-    <div class="text-centered">
-      <h2>You haven't created any units</h2>
-      <button class="btn" @click="toggleModal('unit')">Create a unit</button>
-    </div>
-  </div>
-  <button class="btn pull-right" @click="removeCourse">
-    <i class="fa fa-trash"></i> Delete Course
-  </button>
 </div>

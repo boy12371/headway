@@ -1,9 +1,9 @@
 <div class="Card">
-  <h3 class="Card__title flat">
+  <h4 class="Card__title flat">
     <i v-show="icon" :class="['icon', icon]">
     </i>
     {{ title }}
-  </h3>
+  </h4>
   <p class="flat"><small>{{ subTitle }}</small></p>
   <div class="Card__body" v-if="$slots.body">
     <slot name="body"></slot>

@@ -1,0 +1,45 @@
+@import "../../../sass/variables.scss";
+
+.UnitList {
+  box-shadow: $boxShadowFloat;
+  background: #f9f9f9;
+  border-radius: $radius;
+}
+
+.UnitList__head {
+  background: #fff;
+  box-shadow: $boxShadowLight;
+  display: flex;
+  align-items: center;
+}
+
+.UnitList__head,
+.UnitList__body,
+.UnitList__footer {
+  padding: 1rem;
+}
+
+.UnitList__card {
+  display: block;
+  margin-bottom: 0.25rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.UnitList__new-card {
+  position: relative;
+  overflow: hidden;
+  margin-top: -1.25rem;
+}
+
+.UnitList--empty .UnitList__new-card {
+  margin-top: 0;
+}
+
+.UnitList__new-card button {
+  position: absolute;
+  left: 100%;
+}
+
+.UnitList__body { padding-bottom: 0.5rem }

@@ -4,7 +4,7 @@
       <form @submit.prevent="submit" slot="body">
         <div class="form__group">
           <label class="label" for="business-name">Business Name</label>
-          <input type="text" class="input" id="business-name" v-model="name" autofocus required>
+          <input type="text" class="input" id="business-name" v-model="name" autofocus autocomplete="off" required>
         </div>
         <div class="form__group">
           <label class="label">Default Courses</label>

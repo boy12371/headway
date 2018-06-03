@@ -151,6 +151,7 @@ export const actions = {
       name,
     }).then(res => {
       const card = res.data
+      console.log(res.data)
       context.commit('createCard', { unitId, card })
     })
   },

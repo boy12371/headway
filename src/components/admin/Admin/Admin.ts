@@ -6,7 +6,7 @@ const courseService = new CourseService()
 const businessService = new BusinessService()
 const studentService = new StudentService()
 
-import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, BusinessProfile, Course, Businesses, CourseMenu, RemoveStudentCourse, AddCourse, RemoveCard, RemoveCourse, RemoveUnit } from '../../'
+import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, BusinessProfile, LearningCard, Course, Businesses, CourseMenu, RemoveStudentCourse, AddCourse, RemoveCard, RemoveCourse, RemoveUnit } from '../../'
 
 import { Login } from '../../shared/Login'
 
@@ -29,6 +29,7 @@ const toggleModal = k => store.commit('toggleModal', k)
     AddUnit,
     Breadcrumbs,
     Course,
+    LearningCard,
     CourseMenu,
     Login,
     RemoveCard,
@@ -55,7 +56,7 @@ export class Admin extends Vue {
   @State modals
   @State breadcrumbs
   @State route
-
+  @State activeCard
   @State activeCourse
 
   get view() {
@@ -88,6 +89,14 @@ export class Admin extends Vue {
       })
       return menu
     }
+  }
+
+  removeCourse() {
+    store.commit('set', {
+      key: 'removeCourseId',
+      value: this.$route.params.courseId
+    })
+    this.toggleModal('removeCourse')
   }
 
   mounted() {
