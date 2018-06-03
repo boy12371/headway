@@ -29,6 +29,7 @@ export class UnitList extends Vue {
   cardName = ''
 
   addingCard = false
+  menuOpen = false
 
   addCard() {
     this.cardName = ''
@@ -37,6 +38,33 @@ export class UnitList extends Vue {
       value: this.unitId
     })
     this.addingCard = true
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen
+  }
+
+  removeUnit() {
+    store.commit('set', {
+      key: 'removeUnitId',
+      value: this.unitId
+    })
+    this.toggleModal('removeUnit')
+    this.toggleMenu()
+  }
+
+  blur() {
+    this.addingCard = false
+  }
+
+  submit() {
+    store.dispatch('createCard', {
+      unitId: this.addCardUnitId,
+      name: this.cardName,
+    }).then(d => {
+      this.cardName = ''
+      this.addingCard = false
+    })
   }
 
   mounted() {
@@ -49,19 +77,5 @@ export class UnitList extends Vue {
     })
   }
 
-  blur() {
-    this.addingCard = false
-  }
-
-  submit() {
-    console.log(this.cardName)
-    store.dispatch('createCard', {
-      unitId: this.addCardUnitId,
-      name: this.cardName,
-    }).then(d => {
-      this.cardName = ''
-      this.addingCard = false
-    })
-  }
 
 }

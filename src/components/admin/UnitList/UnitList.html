@@ -2,6 +2,12 @@
   <header class="UnitList__head">
     <i class="icon unit"></i>
     <h4 class="flat">{{ name }}</h4>
+    <div class="div UnitList__options">
+      <i class="fa fa-ellipsis-v UnitList__dots" @click="toggleMenu"></i>
+      <div class="UnitList__menu" v-show="menuOpen">
+        <div class="UnitList__menu-option" @click="removeUnit"><i class="fa fa-trash"></i> Delete</div>
+      </div>
+    </div>
   </header>
   <div class="UnitList__body" v-show="cards.length">
     <router-link class="UnitList__card" v-for="card in cards" :to="{ name: 'card', params: { courseId: route.params.courseId, unitId: unitId, cardId: card.id }}">
@@ -13,6 +19,6 @@
       <input type="text" class="input" id="cardName" ref="cardName" @blur="blur" v-model="cardName" placeholder="Card name" autofocus autocomplete="off" required>
       <button class="btn btn--block">Save</button>
     </form>
-    <button class="btn btn--block btn--standard Course__action" @click="addCard">Add a card</button>
+    <button class="btn btn--block btn--standard Course__action" @click.stop="addCard">Add a card</button>
   </div>
 </div>
