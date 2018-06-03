@@ -78,6 +78,7 @@
     "vue": "~2.5.13",
     "vue-awesome": "^3.0.0",
     "vue-class-component": "~6.1.2",
+    "vue-dragscroll": "^1.4.2",
     "vue-hot-reload-api": "~2.2.4",
     "vue-moment": "^3.2.0",
     "vue-property-decorator": "~6.0.0",

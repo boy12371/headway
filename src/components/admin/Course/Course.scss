@@ -12,3 +12,26 @@
 .Course__action {
   animation: fadeInUp 200ms ease;
 }
+
+.Units {
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-left: -1rem;
+  margin: -1rem;
+  margin-left: -2rem;
+  height: calc(100vh - 4rem);
+  padding: 1rem;
+  padding-left: 2rem;
+}
+
+.Units__list {
+  display: inline-block;
+  vertical-align: top;
+  width: 280px;
+  white-space: normal;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  &:first-child {
+    margin-left: 0;
+  }
+}

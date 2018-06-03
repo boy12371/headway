@@ -7,10 +7,9 @@ const courseService = new CourseService()
 import { UnitService } from '../../../services'
 const unitService = new UnitService()
 
-import { Units } from '../Units'
-import { Cards } from '../Cards'
-import { Breadcrumbs } from '../Breadcrumbs'
-import { LearningCard } from '../LearningCard'
+import { UnitList } from '../UnitList'
+
+import { dragscroll } from 'vue-dragscroll'
 
 import './Course.scss'
 import store from '../../../store'
@@ -19,9 +18,10 @@ import store from '../../../store'
   template: require('./Course.html'),
   name: 'Course',
   components: {
-    Units,
-    Cards,
-    Breadcrumbs,
+    UnitList,
+  },
+  directives: {
+    'dragscroll': dragscroll
   }
 })
 
@@ -30,9 +30,9 @@ export class Course extends Vue {
   @Getter currentCourse
 
   @State activeCourse
-  @State activeUnit
   @State activeCard
   @State breadcrumbs
+  @State route
 
   @Inject() toggleModal
 
