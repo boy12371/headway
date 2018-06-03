@@ -78,9 +78,9 @@
 @media(min-width: 1024px) {
 
   .LearningCard__mobile {
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
   }
 
   .LearningCard__form {

@@ -1,5 +1,6 @@
 export const mutations = {
   setAdmin(state, admin) {
+    state.adminName = admin.name
     state.courses = admin.courses
     state.businesses = admin.businesses
     // state.authed = overview.user && overview.user.id

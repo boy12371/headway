@@ -15,7 +15,7 @@ import store from '../../../store'
   name: 'LearningCard',
   components: {
     QuizBuilder,
-    Quiz,
+    Quiz
   }
 })
 

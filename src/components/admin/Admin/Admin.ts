@@ -58,6 +58,7 @@ export class Admin extends Vue {
   @State route
   @State activeCard
   @State activeCourse
+  @State adminName
 
   get view() {
     return this.$route.name

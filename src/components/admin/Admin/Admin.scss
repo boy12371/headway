@@ -18,6 +18,7 @@
   padding: 1rem;
   padding-top: 0;
   padding-left: calc(280px + 2rem);
+  padding-top: 5rem;
 }
 
 .Admin__sidebar {
@@ -67,8 +68,8 @@
   display: flex;
   height: 4rem;
   align-items: center;
-  background: darken($blue, 7.5);
   transition: all 200ms ease;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .Admin__sidebar .Logo:hover {
@@ -88,9 +89,12 @@
   height: 4rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid #eee;
-  margin-left: -2rem;
-  margin-right: -1rem;
   background: #fff;
   padding-left: 2rem;
   padding-right: 1rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 280px;
+  z-index: 500;
 }

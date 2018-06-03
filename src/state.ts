@@ -4,6 +4,7 @@ export const state = {
   businesses: [],
   studentListFilter: 'business',
   appView: 'studentHome',
+  adminName: '',
   activeCourse: {},
   activeUnit: {},
   activeCard: {},
