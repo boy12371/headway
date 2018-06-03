@@ -13,6 +13,7 @@ import store from '../../../store'
 export class RemoveCard extends Vue {
 
   @State removeCardId
+  @State router
 
   @Inject() toggleModal
 

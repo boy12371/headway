@@ -56,9 +56,9 @@
 }
 
 .Mobile__hero {
-  background: #111;
+  background: darken($blue, 5);
   display: flex;
-  color: #666;
+  color: rgba(255,255,255,0.5);
   align-items: center;
   justify-content: center;
   height: 200px;
@@ -118,6 +118,6 @@
   }
 
   .LearningCard__form {
-    padding-right: calc(320px + 2rem);
+    padding-right: calc(320px + 4rem);
   }
 }

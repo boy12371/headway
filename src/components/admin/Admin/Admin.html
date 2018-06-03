@@ -26,13 +26,16 @@
         <Breadcrumbs :crumbs="breadcrumbs">
         </Breadcrumbs>
         <button class="btn" v-show="route.name === 'dashboard'" @click="toggleModal('student')">Invite student</button>
-        <button class="btn btn--standard" @click="removeCourse" v-show="route.name === 'course'">
+        <button class="btn btn--standard btn--icon" @click="removeCourse" v-show="route.name === 'course'">
           <i class="fa fa-trash"></i>
         </button>
         <div v-show="route.name === 'studentProfile'">
           <button class="btn btn--standard" @click="toggleModal('unit')">Edit</button>
           <button class="btn btn--standard" @click="toggleModal('card')">Delete</button>
         </div>
+        <button class="btn btn--standard btn--icon" @click="removeCard" v-show="route.name === 'card'">
+          <i class="fa fa-trash"></i>
+        </button>
       </div>
       <StudentList v-if="route.name === 'dashboard'"></StudentList>
       <StudentProfile v-if="route.name === 'studentProfile'"></StudentProfile>

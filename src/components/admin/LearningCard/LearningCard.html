@@ -4,11 +4,11 @@
       <div class="Card">
         <div class="form__group LearningCard__uploads">
           <div class="LearningCard__upload-zone">
-            <span class="btn">Upload Video</span>
+            <p class="pressed"><span class="btn">Upload Video</span></p>
             <small>Drag and drop or click above</small>
           </div>
           <div class="LearningCard__upload-zone">
-            <span class="btn">Upload Audio</span>
+            <p class="pressed"><span class="btn">Upload Audio</span></p>
             <small>Drag and drop or click above</small>
           </div>
         </div>
@@ -28,8 +28,12 @@
     </form>
   </div>
   <div class="LearningCard__mobile">
-    <div class="Mobile">
-      <div class="Mobile__screen">
+    <div class="marvel-device nexus5">
+      <div class="top-bar"></div>
+      <div class="sleep"></div>
+      <div class="volume"></div>
+      <div class="camera"></div>
+      <div class="screen">
         <div class="Mobile__header">
           <h4 class="flat">{{ card.name }}</h4>
         </div>
@@ -52,7 +56,4 @@
       </div>
     </div>
   </div>
-  <button class="btn pull-right" @click="removeCard">
-    <i class="fa fa-trash"></i> Delete Card
-  </button>
 </div>

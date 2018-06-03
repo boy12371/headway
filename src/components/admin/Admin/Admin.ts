@@ -100,6 +100,14 @@ export class Admin extends Vue {
     this.toggleModal('removeCourse')
   }
 
+  removeCard() {
+    store.commit('set', {
+      key: 'removeCardId',
+      value: this.route.params.cardId
+    })
+    this.toggleModal('removeCard')
+  }
+
   mounted() {
     store.dispatch('getAdmin')
   }
