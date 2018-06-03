@@ -25,14 +25,14 @@ export class Login extends Vue {
 
   login(e) {
     e.preventDefault()
-    axios.post(BASE_URL + '/admin/login', {
+    axios.post(BASE_URL + '/login/admin', {
       email: this.email,
       password: this.password
     }).then(res => {
       const user = res.data
       if (res.status === 200 && user.id) {
         store.commit('setUser', user)
-        this.$router.push('dashboard')
+        this.$router.push({ name: 'dashboard' })
       }
     })
   }
