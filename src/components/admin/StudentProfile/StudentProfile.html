@@ -1,8 +1,11 @@
 <div class="StudentProfile">
   <div>
-    <h1 class="flat">{{ activeStudentProfile.first_name }} {{ activeStudentProfile.last_name }}</h1>
-    <p v-show="activeStudentProfile.lastLoggedIn">Logged in {{ activeStudentProfile.lastLoggedIn | moment("from", true) }} ago</p>
-    <p v-show="!activeStudentProfile.lastLoggedIn">Has not logged in yet</p>
+    <div class="StudentProfile__header">
+      <h1 class="flat">{{ activeStudentProfile.first_name }} {{ activeStudentProfile.last_name }}</h1>
+      <p v-show="activeStudentProfile.lastLoggedIn">Logged in {{ activeStudentProfile.lastLoggedIn | moment("from", true) }} ago</p>
+      <p v-show="!activeStudentProfile.lastLoggedIn">Has not logged in yet</p>
+    </div>
+    <h4>Recent activity</h4>
   </div>
   <div>
     <div class="StudentProfile__group">

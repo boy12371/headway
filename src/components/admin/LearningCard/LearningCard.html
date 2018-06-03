@@ -1,15 +1,15 @@
 <div class="LearningCard">
   <div class="LearningCard__form">
     <form>
-      <div class="form__group">
-        <input type="text" class="input" id="card-name" v-model="card.name">
-      </div>
-      <h3>Learning Material</h3>
       <div class="Card">
-        <div class="form__group">
-          <div class="LearningCard__actions">
+        <div class="form__group LearningCard__uploads">
+          <div class="LearningCard__upload-zone">
             <span class="btn">Upload Video</span>
+            <small>Drag and drop or click above</small>
+          </div>
+          <div class="LearningCard__upload-zone">
             <span class="btn">Upload Audio</span>
+            <small>Drag and drop or click above</small>
           </div>
         </div>
 
@@ -23,10 +23,8 @@
           <textarea class="input" id="card-task" v-model="card.evidence_task"></textarea>
         </div>
       </div>
-
       <h3>Quiz</h3>
       <QuizBuilder :data="quiz"></QuizBuilder>
-
     </form>
   </div>
   <div class="LearningCard__mobile">

@@ -1,7 +1,9 @@
 <div class="BusinessProfile">
   <div>
-    <h1 class="flat">{{ activeBusinessProfile.name }}</h1>
-    <p>Created {{ activeBusinessProfile.createdAt | moment("from", true) }} ago</p>
+    <header class="BusinessProfile__header">
+      <h1 class="flat">{{ activeBusinessProfile.name }}</h1>
+      <p>Created {{ activeBusinessProfile.createdAt | moment("from", true) }} ago</p>
+    </header>
     <div class="BusinessProfile__empty" v-show="!activeBusinessProfile.students.length > 0">
       <p>You have no students in this Business</p>
     </div>
