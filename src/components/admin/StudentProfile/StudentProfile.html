@@ -27,7 +27,7 @@
 
     <div class="StudentProfile__group">
       <h4>{{ activeStudentProfile.first_name }} works with</h4>
-      <div v-for="business in activeStudentProfile.businesses" class="Card CourseCard">
+      <router-link v-for="business in activeStudentProfile.businesses" class="Card CourseCard" :to="{ name: 'businessProfile', params: { businessId : business.id }}">
         <div class="CourseCard__wrap CourseCard__wrap--flat">
           <p class="flat"><strong>{{ business.name }}</strong></p>
           <small>Subscribed {{ business.createdAt |  moment("from", true) }} ago</small>
@@ -37,7 +37,7 @@
             Remove Student from Business
           </button>
         </div>
-      </div>
+      </router-link>
       <button class="btn btn--text" @click="toggleModal('student')">
         <i class="fa fa-plus"></i> Invite to business
       </button>
