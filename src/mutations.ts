@@ -15,6 +15,9 @@ export const mutations = {
   set(state, {key, value}) {
     state[key] = value
   },
+  setNotification(state, payload) {
+    state.notification = payload
+  },
   setActiveCard(state, card) {
     state.activeCard = card
   },

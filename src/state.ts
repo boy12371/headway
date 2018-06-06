@@ -5,6 +5,10 @@ export const state = {
   studentListFilter: 'business',
   appView: 'studentHome',
   adminName: '',
+  notification: {
+    type: '',
+    message: ''
+  },
   activeUnit: {},
   activeCard: {},
   activeStudentProfile: {},

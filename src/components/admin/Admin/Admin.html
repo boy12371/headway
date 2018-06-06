@@ -30,8 +30,7 @@
           <i class="fa fa-trash"></i>
         </button>
         <div v-show="route.name === 'studentProfile'">
-          <button class="btn btn--standard" @click="toggleModal('unit')">Edit</button>
-          <button class="btn btn--standard" @click="toggleModal('card')">Delete</button>
+          <button class="btn btn--standard btn--icon" @click="toggleModal('card')"><i class="fa fa-trash"></i></button>
         </div>
         <button class="btn btn--standard btn--icon" @click="removeCard" v-show="route.name === 'card'">
           <i class="fa fa-trash"></i>
@@ -55,4 +54,5 @@
   <RemoveUnit v-show="modals.removeUnit" @close="toggleModal('removeUnit')"></RemoveUnit>
   <RemoveCard v-show="modals.removeCard" @close="toggleModal('removeCard')"></RemoveCard>
   <i class="fa fa-window-restore Switch" @click="switchApp"></i>
+  <Toast></Toast>
 </div>

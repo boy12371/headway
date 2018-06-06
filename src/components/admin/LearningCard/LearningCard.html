@@ -2,6 +2,12 @@
   <div class="LearningCard__form">
     <form>
       <div class="Card">
+
+        <div class="form__group">
+          <label class="label" for="card-name">Name</label>
+          <input class="input" type="text" id="card-name" @change="save" v-model="card.name" />
+        </div>
+
         <div class="form__group">
           <label class="label" for="card-content">Content</label>
           <wysiwyg v-model.lazy="card.content" @change="save" />

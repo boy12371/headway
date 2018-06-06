@@ -190,7 +190,10 @@ export const actions = {
   updateActiveCard(context, card) {
     return axios.put(BASE_URL + '/api/card/' + card.id, card).then(res => {
       const card = res.data
-      // context.commit('updateCard', { card })
+      context.commit('setNotification', {
+        type: 'success',
+        message: 'Card saved'
+      })
     })
   },
 
@@ -199,7 +202,10 @@ export const actions = {
     card.quiz = JSON.stringify(quiz)
     return axios.put(BASE_URL + '/api/card/' + card.id, card).then(res => {
       const card = res.data
-      // context.commit('updateCard', { card })
+      context.commit('setNotification', {
+        type: 'success',
+        message: 'Quiz updated'
+      })
     })
   },
 
