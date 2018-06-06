@@ -28,12 +28,12 @@ test:
 deploy:
 	git push heroku master
 
-# usage make component name=widget
+# usage make component app=admin name=widget
 component:
-	mkdir -p src/components/$(name)
-	touch src/components/$(name)/$(name).html
-	touch src/components/$(name)/$(name).scss
-	sed 's/my-component/$(name)/g' src/components/base.ts > src/components/$(name)/$(name).ts
-	echo "export * from './$(name)'" > src/components/$(name)/index.ts
+	mkdir -p src/components/$(app)/$(name)
+	touch src/components/$(app)/$(name)/$(name).html
+	touch src/components/$(app)/$(name)/$(name).scss
+	sed 's/my-component/$(name)/g' src/components/base.ts > src/components/$(app)/$(name)/$(name).ts
+	echo "export * from './$(name)'" > src/components/$(app)/$(name)/index.ts
 
 .PHONY: dev test server
