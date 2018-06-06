@@ -29,8 +29,7 @@ const crumbs = () => [
 
 export class StudentList extends Vue {
 
-  @State businesses
-  @State courses
+  @Getter allStudents
   @State studentListFilter
   @State route
 
