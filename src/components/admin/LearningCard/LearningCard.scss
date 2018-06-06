@@ -51,16 +51,16 @@
 .Mobile__content {
   padding: 1rem;
   flex: 1;
-  background: #eee;
   font-size: 0.825rem;
 }
 
 .Mobile__hero {
-  background: darken($blue, 5);
+  background: #333;
   display: flex;
   color: rgba(255,255,255,0.5);
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 200px;
 }
 
@@ -90,11 +90,10 @@
 }
 
 .Mobile__screen {
-  background: #fff;
-  flex: 1;
-  margin: 70px 10px 90px 10px;
-  position: relative;
-  overflow: hidden;
+  background: #eee;
+  overflow-y: scroll;
+  height: 100%;
+  padding-bottom: 4rem;
 }
 
 .Mobile__footer {

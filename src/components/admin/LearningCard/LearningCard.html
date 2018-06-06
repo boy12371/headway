@@ -23,15 +23,18 @@
       <div class="volume"></div>
       <div class="camera"></div>
       <div class="screen">
-        <div class="Mobile__header">
-          <h4 class="flat">{{ card.name }}</h4>
-        </div>
-        <div class="Mobile__hero">
-          <p class="flat">Upload a video to see it here</p>
-        </div>
-        <div class="Mobile__content" v-if="card.content">
-          <div v-html="card.content"></div>
-          <!-- <p v-for="p in card.content.split('\n')">{{ p }}</p> -->
+        <div class="Mobile__screen">
+          <div class="Mobile__header">
+            <h4 class="flat">{{ card.name }}</h4>
+          </div>
+          <div class="Mobile__hero">
+            <p class="pressed">Drop video anywhere to upload or</p>
+            <button class="btn">Upload video</button>
+          </div>
+          <div class="Mobile__content" v-if="card.content">
+            <div v-html="card.content"></div>
+            <!-- <p v-for="p in card.content.split('\n')">{{ p }}</p> -->
+          </div>
         </div>
         <div class="Mobile__footer">
           <div class="btn btn--standard" @click="quizVisible = true">Take quiz</div>
