@@ -2,20 +2,6 @@
   <div class="LearningCard__form">
     <form>
       <div class="Card">
-        <div class="form__group LearningCard__uploads">
-          <div class="LearningCard__upload-zone">
-            <p class="pressed"><span class="btn">Upload Video</span></p>
-            <small>Drag and drop or click above</small>
-          </div>
-
-          <!-- <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone> -->
-
-          <div class="LearningCard__upload-zone">
-            <p class="pressed"><span class="btn">Upload Audio</span></p>
-            <small>Drag and drop or click above</small>
-          </div>
-        </div>
-
         <div class="form__group">
           <label class="label" for="card-content">Content</label>
           <wysiwyg v-model="card.content" />
@@ -48,8 +34,8 @@
           <!-- <p v-for="p in card.content.split('\n')">{{ p }}</p> -->
         </div>
         <div class="Mobile__footer">
-          <div class="btn" @click="quizVisible = true">Take quiz</div>
-          <div class="btn">View task</div>
+          <div class="btn btn--standard" @click="quizVisible = true">Take quiz</div>
+          <div class="btn btn--standard">View task</div>
         </div>
         <div class="Mobile__task">
           {{ card.task }}
