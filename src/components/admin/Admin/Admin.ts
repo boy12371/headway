@@ -114,6 +114,11 @@ export class Admin extends Vue {
     this.toggleModal('removeCard')
   }
 
+  switchApp() {
+    this.$router.push({ name: 'studentHome' })
+    window.location.reload()
+  }
+
   mounted() {
     store.dispatch('getAdmin')
   }

@@ -101,3 +101,18 @@
   left: 280px;
   z-index: 500;
 }
+
+.Switch {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 500;
+  color: #fff;
+  opacity: 0.75;
+  cursor: pointer;
+  transition: opacity 200ms ease;
+}
+
+.Switch:hover {
+  opacity: 1;
+}

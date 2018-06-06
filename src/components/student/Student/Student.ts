@@ -36,6 +36,11 @@ export class Student extends Vue {
     store.dispatch('setAppView', route.name )
   }
 
+  switchApp() {
+    this.$router.push({ name: 'dashboard' })
+    window.location.reload()
+  }
+
   mounted() {
     this.updateRoute(this.$route)
   }
