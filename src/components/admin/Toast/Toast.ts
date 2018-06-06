@@ -18,13 +18,13 @@ export class Toast extends Vue {
     return {
       'Toast': true,
       'Toast--visible': this.visible,
-      ['Toast--' + this.notification.type] : true
+      ['Toast--' + this.notification.type]: true
     }
   }
 
-  @Watch('notification', { deep: true})
+  @Watch('notification', { deep: true })
   watchNotification(newVal, oldVal) {
-    if(!this.visible) {
+    if (!this.visible) {
       this.visible = true
       setTimeout(() => {
         this.visible = false
