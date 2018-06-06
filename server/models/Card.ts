@@ -21,7 +21,7 @@ import { Course } from './Course'
 export class Card extends Model<Card> {
   @Column name: string
   @Column slug: string
-  @Column(DataType.TEXT) content: string
+  @Column(DataType.TEXT({ length: 'long' })) content: string
   @Column evidence_task: string
   @Column media: string
   @Column(DataType.TEXT) quiz: string
