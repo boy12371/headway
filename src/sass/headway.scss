@@ -331,3 +331,9 @@ textarea.input {
   font-size: 0.825rem;
   line-height: 1.5 !important;
 }
+
+@media (min-width: 1000px) {
+  html {
+    font-size: 20px;
+  }
+}
