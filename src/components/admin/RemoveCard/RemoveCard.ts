@@ -13,13 +13,13 @@ import store from '../../../store'
 export class RemoveCard extends Vue {
 
   @State removeCardId
-  @State activeCourse
+  @State route
 
   @Inject() toggleModal
 
   submit() {
     store.dispatch('removeCard', this.removeCardId)
     this.toggleModal('removeCard')
-    this.$router.push({ name: 'course', params: { courseId: this.activeCourse.id } })
+    this.$router.push({ name: 'course', params: { courseId: this.route.params.courseId } })
   }
 }

@@ -49,6 +49,8 @@ export class Admin extends Vue {
   @Provide() unitService = new UnitService()
   @Provide() toggleModal = toggleModal
 
+  @Getter currentCourse
+
   @State courses
   @State businesses
   @State authed
@@ -57,7 +59,6 @@ export class Admin extends Vue {
   @State breadcrumbs
   @State route
   @State activeCard
-  @State activeCourse
   @State adminName
 
   get view() {

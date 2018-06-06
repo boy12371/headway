@@ -5,7 +5,6 @@ export const state = {
   studentListFilter: 'business',
   appView: 'studentHome',
   adminName: '',
-  activeCourse: {},
   activeUnit: {},
   activeCard: {},
   activeStudentProfile: {},

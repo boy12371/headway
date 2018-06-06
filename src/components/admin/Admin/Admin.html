@@ -41,7 +41,7 @@
       <StudentProfile v-if="route.name === 'studentProfile'"></StudentProfile>
       <BusinessProfile v-if="route.name === 'businessProfile'"></BusinessProfile>
       <!-- The following v-if is bad. -->
-      <Course @create-unit="showUnitModal = true" v-if="route.name === 'course'" :name="activeCourse.name" :units="activeCourse.units"></Course>
+      <Course @create-unit="showUnitModal = true" v-if="route.name === 'course' && currentCourse" :name="currentCourse.name" :units="currentCourse.units"></Course>
       <LearningCard v-if="route.name == 'card'" :card="activeCard"></LearningCard>
     </div>
   </div>

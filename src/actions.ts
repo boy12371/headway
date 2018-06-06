@@ -116,6 +116,7 @@ export const actions = {
     return axios.get(BASE_URL + '/admin/course/' + id)
       .then(res => {
         const course = res.data
+        if (!course) { debugger }
         context.commit('setBreadcrumbs', [
           {
             label: course.name,
