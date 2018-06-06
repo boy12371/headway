@@ -30,10 +30,10 @@
 
     <div class="StudentProfile__group">
       <h4>{{ activeStudentProfile.first_name }} works with</h4>
-      <router-link v-for="business in activeStudentProfile.businesses" class="Card CourseCard" :to="{ name: 'businessProfile', params: { businessId : business.id }}">
+      <router-link v-for="(business, i) in activeStudentProfile.businesses" class="Card CourseCard" :key="i" :to="{ name: 'businessProfile', params: { businessId : business.id }}">
         <div class="CourseCard__wrap CourseCard__wrap--flat">
           <p class="flat"><strong>{{ business.name }}</strong></p>
-          <small>Subscribed {{ business.createdAt |  moment("from", true) }} ago</small>
+          <small>Subscribed {{ business.createdAt | moment("from", true) }} ago</small>
         </div>
         <div class="CourseCard__actions">
           <button @click="removeStudentFromBusiness(business.id)">
