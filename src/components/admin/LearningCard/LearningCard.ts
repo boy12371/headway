@@ -1,5 +1,7 @@
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
 
+import vue2Dropzone from 'vue2-dropzone'
+
 import './LearningCard.scss'
 import { State } from 'vuex-class'
 
@@ -15,7 +17,8 @@ import store from '../../../store'
   name: 'LearningCard',
   components: {
     QuizBuilder,
-    Quiz
+    Quiz,
+    vueDropzone: vue2Dropzone,
   }
 })
 
@@ -23,10 +26,18 @@ export class LearningCard extends Vue {
   @Inject() toggleModal
   @Prop() card
 
-  @Prop({ default: false}) quizVisible: boolean
+  @Prop({ default: false }) quizVisible: boolean
 
   @State route
   @State activeCard
+
+  dropzoneOptions = {
+    url: 'https://httpbin.org/post',
+    thumbnailWidth: 150,
+    maxFilesize: 0.5,
+    headers: { 'My-Awesome-Header': 'header value' }
+    // setAWSSigningURL
+  }
 
   get quiz() {
     if (this.card.quiz) {

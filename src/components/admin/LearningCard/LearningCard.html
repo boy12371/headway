@@ -7,6 +7,9 @@
             <p class="pressed"><span class="btn">Upload Video</span></p>
             <small>Drag and drop or click above</small>
           </div>
+
+          <!-- <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone> -->
+
           <div class="LearningCard__upload-zone">
             <p class="pressed"><span class="btn">Upload Audio</span></p>
             <small>Drag and drop or click above</small>
@@ -15,7 +18,7 @@
 
         <div class="form__group">
           <label class="label" for="card-content">Content</label>
-          <textarea class="input" id="card-content" v-model="card.content"></textarea>
+          <wysiwyg v-model="card.content" />
         </div>
 
         <div class="form__group">
@@ -41,7 +44,8 @@
           <p class="flat">Upload a video to see it here</p>
         </div>
         <div class="Mobile__content" v-if="card.content">
-          <p v-for="p in card.content.split('\n')">{{ p }}</p>
+          <div v-html="card.content"></div>
+          <!-- <p v-for="p in card.content.split('\n')">{{ p }}</p> -->
         </div>
         <div class="Mobile__footer">
           <div class="btn" @click="quizVisible = true">Take quiz</div>

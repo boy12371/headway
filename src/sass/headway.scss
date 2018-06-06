@@ -318,3 +318,5 @@ textarea.input {
 .icon.card-complete { background-image: url('/assets/img/icons/card-complete.svg'); }
 
 .icon.student { background-image: url('/assets/img/icons/student.svg'); }
+@import "~vue-wysiwyg/dist/vueWysiwyg.css";
+@import "~vue2-dropzone/dist/vue2Dropzone.min.css";
