@@ -1,5 +1,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
+import store from '../../../store'
+
 import './Quiz.scss'
 
 @Component({
@@ -15,13 +17,19 @@ export class Quiz extends Vue {
 
   clicked = null
 
-  submitAnswer(i) {
-    this.clicked = i
+  passed = true
+
+  submitAnswer(qIndex, aIndex) {
+    this.clicked = aIndex
+    if (!this.questions[qIndex].answers[aIndex].correct) {
+      this.passed = false
+    }
     setTimeout(() => {
       if (this.currentQuestion === this.questions.length) {
         this.currentQuestion = 1
         this.clicked = null
         this.$emit('finish')
+        store.dispatch('submitStudentCard', this.passed)
       } else {
         this.currentQuestion++
         this.clicked = null

@@ -4,16 +4,13 @@
   </div>
   <div class="container">
     <div v-html="activeStudentCard.content"></div>
-    <form @submit.prevent="submit">
-      <button class="btn">Submit Quiz</button>
-    </form>
   </div>
   <div class="StudentCard__footer">
     <div class="StudentCard__footer-wrap">
-      <router-link class="btn btn--block btn--standard" to="quiz">Take quiz</router-link>
+      <button class="btn btn--standard btn--block" @click="showQuiz">Take quiz</button>
     </div>
-    <div class="StudentCard__quiz">
-      <Quiz :questions="parsedQuestions"></Quiz>
-    </div>
+  </div>
+  <div :class="{ 'StudentCard__quiz' : true, 'StudentCard__quiz--visible' : quizVisible }" @click="hideQuiz">
+    <Quiz @finish="hideQuiz" :questions="parsedQuestions"></Quiz>
   </div>
 </div>

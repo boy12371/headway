@@ -5,6 +5,17 @@
   padding: 1rem;
 }
 
+@keyframes showQuestion {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .Quiz__answer {
   display: block;
   height: 2.5rem;
@@ -16,6 +27,11 @@
   text-align: left;
   transition: all 200ms ease;
   outline: 0;
+}
+
+.Quiz__question {
+  opacity: 0;
+  animation: showQuestion 375ms ease forwards;
 }
 
 .Quiz__answer--clicked.Quiz__answer--correct {

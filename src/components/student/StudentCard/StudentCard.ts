@@ -18,8 +18,18 @@ import './StudentCard.scss'
 export class StudentCard extends Vue {
   @State activeStudentCard
 
+  quizVisible = false
+
   get parsedQuestions() {
     return this.activeStudentCard.quiz ? JSON.parse(this.activeStudentCard.quiz) : []
+  }
+
+  showQuiz() {
+    this.quizVisible = true
+  }
+
+  hideQuiz() {
+    this.quizVisible = false
   }
 
   mounted() {
@@ -28,13 +38,6 @@ export class StudentCard extends Vue {
       courseId: parseInt(params.courseId),
       unitId: parseInt(params.unitId),
       cardId: parseInt(params.cardId)
-    })
-  }
-
-  submit() {
-    const completed: boolean = false // quiz passed
-    store.dispatch('submitStudentCard', {
-      completed,
     })
   }
 }

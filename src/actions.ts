@@ -39,9 +39,9 @@ export const actions = {
     }
   },
 
-  submitStudentCard(context, payload) {
+  submitStudentCard(context, completed) {
     const cardId = context.state.route.params.cardId
-    return axios.post(`${BASE_URL}/student/card/${cardId}/submit`, payload)
+    return axios.post(`${BASE_URL}/student/card/${cardId}/submit`, { completed })
   },
 
   getStudentProfile(context, id) {
