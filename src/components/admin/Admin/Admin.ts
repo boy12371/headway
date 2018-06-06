@@ -50,6 +50,7 @@ export class Admin extends Vue {
   @Provide() toggleModal = toggleModal
 
   @Getter currentCourse
+  @Getter allStudents
 
   @State courses
   @State businesses
@@ -63,6 +64,10 @@ export class Admin extends Vue {
 
   get view() {
     return this.$route.name
+  }
+
+  get totalStudents() {
+    return this.allStudents.length
   }
 
   get courseMenu() {
