@@ -18,10 +18,6 @@ export const mutations = {
   setActiveCourse(state, course) {
     state.activeCourse = course
   },
-  setUnitInCourse(state, { unit, k}) {
-    console.log(unit, k)
-    // state.courses[k] = unit
-  },
   setActiveCard(state, card) {
     state.activeCard = card
   },
@@ -68,21 +64,23 @@ export const mutations = {
     // })
   },
   createUnit(state, {courseId, unit}) {
-    state.courses = state.courses.map(course => {
-      if (course.id === courseId) {
-        course.units = [...course.units, unit]
-      }
-      return course
-    })
-    if (courseId === state.activeCourse.id) {
-      state.activeCourse.units.push(unit)
-    }
+    const i = state.courses.findIndex(course => course.id === courseId)
+    state.courses[i].units.push(unit)
   },
-  createCard(state, {unitId, card}) {
-    // TODO: state.courses course.units
-    if (unitId === state.activeUnit.id) {
-      state.activeUnit.cards.push(card)
-    }
+  setUnitInCourse(state, { unit, courseId}) {
+    const i = state.courses.findIndex(course => course.id === courseId)
+    const j = state.courses[i].units.findIndex(u => u.id === unit.id)
+    state.courses[i].units[j] = unit
+  },
+  removeUnit(state, id) {
+    state.courses.forEach(course => {
+      course.units = course.units.filter(unit => unit.id !== id)
+    })
+  },
+  createCard(state, {courseId, unitId, card}) {
+    const courseIndex = state.courses.findIndex(course => course.id === courseId)
+    const unitIndex = state.courses[courseIndex].units.findIndex(unit => unit.id === unitId)
+    state.courses[courseIndex].units[unitIndex].cards.push(card)
   },
   reset(state) {
     state.courses = []

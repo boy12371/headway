@@ -11,7 +11,8 @@
   </header>
   <div class="UnitList__body" v-show="cards.length">
     <router-link class="UnitList__card" v-for="card in cards" :to="{ name: 'card', params: { courseId: route.params.courseId, unitId: unitId, cardId: card.id }}">
-      <Card :key="card.id" class="flat" :title="card.name"></Card>
+      <Card :key="card.id" class="flat" :title="card.name">
+      </Card>
     </router-link>
   </div>
   <div class="UnitList__footer">

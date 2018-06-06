@@ -16,7 +16,7 @@ export class AddUnit extends Vue {
   @Inject() unitService
   @Inject() toggleModal
 
-  @State activeCourse
+  @State route
 
   name = ''
   submitting: boolean = false
@@ -24,7 +24,7 @@ export class AddUnit extends Vue {
   submit() {
     this.submitting = true
     store.dispatch('createUnit', {
-      courseId: this.activeCourse.id,
+      courseId: parseInt(this.route.params.courseId),
       name: this.name
     }).then(d => {
       this.name = ''

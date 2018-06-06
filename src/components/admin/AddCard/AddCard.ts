@@ -18,13 +18,15 @@ export class AddCard extends Vue {
   @Inject() unitService
 
   @State activeUnit
+  @State route
   @State addCardUnitId
 
   name = ''
 
   submit() {
     store.dispatch('createCard', {
-      unitId: this.addCardUnitId,
+      courseId: parseInt(this.$route.params.courseId),
+      unitId: parseInt(this.addCardUnitId),
       name: this.name,
     }).then(d => {
       this.name = ''

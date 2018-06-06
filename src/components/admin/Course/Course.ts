@@ -1,12 +1,6 @@
 import { Component, Prop, Watch, Vue, Inject } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
-import { CourseService } from '../../../services'
-const courseService = new CourseService()
-
-import { UnitService } from '../../../services'
-const unitService = new UnitService()
-
 import { UnitList } from '../UnitList'
 
 import { dragscroll } from 'vue-dragscroll'
@@ -29,8 +23,6 @@ export class Course extends Vue {
 
   @Getter currentCourse
 
-  @State activeCourse
-  @State activeCard
   @State breadcrumbs
   @State route
 
@@ -42,16 +34,7 @@ export class Course extends Vue {
   }
 
   updateRoute(route) {
-    const { cardId, courseId, unitId } = route.params
-    courseService.get(courseId).then(course => {
-      store.commit('setBreadcrumbs', [
-        {
-          label: course.name,
-          link: { name: 'course', params: { courseId: course.id } }
-        }
-      ])
-      store.commit('setActiveCourse', course)
-    })
+    store.dispatch('fetchCurrentCourse')
   }
 
   mounted() {

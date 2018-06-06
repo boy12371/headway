@@ -1,7 +1,7 @@
-<div class="Course">
-  <div class="Units" v-if="activeCourse.units">
+<div class="Course" v-if="currentCourse">
+  <div class="Units" v-if="currentCourse.units">
     <UnitList
-      v-for="unit in activeCourse.units"
+      v-for="unit in currentCourse.units"
       class="Units__list"
       :name="unit.name"
       :unit-id="unit.id"

@@ -21,12 +21,11 @@ export class UnitList extends Vue {
   @Prop() unitId: number
 
   @State route
-  @State courses
   @State addCardUnitId
 
-  cards = []
-
   cardName = ''
+
+  cards = []
 
   addingCard = false
   menuOpen = false
@@ -59,6 +58,7 @@ export class UnitList extends Vue {
 
   submit() {
     store.dispatch('createCard', {
+      courseId: parseInt(this.route.params.courseId),
       unitId: this.addCardUnitId,
       name: this.cardName,
     }).then(d => {
@@ -71,9 +71,9 @@ export class UnitList extends Vue {
     const { params } = this.$route
 
     unitService.get(this.unitId).then(unit => {
+      const courseId = parseInt(this.route.params.courseId)
       this.cards = unit.cards
-      // const i = this.courses.findIndex( course => course.id === parseInt(params.courseId))
-      // store.commit('setUnitInCourse', { unit, i})
+      store.commit('setUnitInCourse', { unit, courseId})
     })
   }
 

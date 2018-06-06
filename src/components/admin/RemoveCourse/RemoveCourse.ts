@@ -19,5 +19,6 @@ export class RemoveCourse extends Vue {
   submit() {
     store.dispatch('removeCourse', this.removeCourseId)
     this.toggleModal('removeCourse')
+    this.$router.push({ name: 'dashboard' })
   }
 }

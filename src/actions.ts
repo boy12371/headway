@@ -108,6 +108,24 @@ export const actions = {
     })
   },
 
+  fetchCurrentCourse(context) {
+    context.dispatch('fetchCourse', context.state.route.params.courseId)
+  },
+
+  fetchCourse(context, id) {
+    return axios.get(BASE_URL + '/admin/course/' + id)
+      .then(res => {
+        const course = res.data
+        context.commit('setBreadcrumbs', [
+          {
+            label: course.name,
+            link: { name: 'course', params: { courseId: course.id } }
+          }
+        ])
+        return res.data
+      })
+  },
+
   createCourse(context, { name, businessIds }) {
     return axios.post(BASE_URL + '/admin/course', {
       name,
@@ -140,18 +158,18 @@ export const actions = {
 
   removeUnit(context, id) {
     return axios.delete(BASE_URL + '/api/unit/' + id).then(res => {
-      // ...
+      context.commit('removeUnit', id)
     })
   },
 
-  createCard(context, { unitId, name }) {
+  createCard(context, { courseId, unitId, name }) {
     return axios.post(BASE_URL + '/admin/unit/' + unitId + '/card', {
+      courseId,
       unitId,
       name,
     }).then(res => {
       const card = res.data
-      console.log(res.data)
-      context.commit('createCard', { unitId, card })
+      context.commit('createCard', { courseId, unitId, card })
     })
   },
 
