@@ -326,3 +326,8 @@ textarea.input {
 .icon.student { background-image: url('/assets/img/icons/student.svg'); }
 @import "~vue-wysiwyg/dist/vueWysiwyg.css";
 @import "~vue2-dropzone/dist/vue2Dropzone.min.css";
+
+.editr--content {
+  font-size: 0.825rem;
+  line-height: 1.5 !important;
+}
