@@ -10,7 +10,11 @@ export const getters = {
   },
   allStudents(state) {
     let map = {}
+
     state.businesses.forEach(business => {
+      if (!business.students) {
+        return
+      }
       business.students.forEach(student => {
         map[student.email] = student
       })
