@@ -141,11 +141,14 @@ export const actions = {
   },
 
   removeCourse(context, id) {
+    id = parseInt(id)
     return axios.delete(BASE_URL + '/api/course/' + id).then(res => {
-      // ...
+      context.commit('removeCourse', id)
+      context.commit('setNotification', {
+        message: 'Course Removed'
+      })
     })
   },
-
 
   createUnit(context, { courseId, name }) {
     return axios.post(BASE_URL + '/admin/unit', {

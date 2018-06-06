@@ -77,6 +77,9 @@ export const mutations = {
       course.units = course.units.filter(unit => unit.id !== id)
     })
   },
+  removeCourse(state, id) {
+    state.courses = state.courses.filter(course => course.id !== id)
+  },
   createCard(state, {courseId, unitId, card}) {
     const courseIndex = state.courses.findIndex(course => course.id === courseId)
     const unitIndex = state.courses[courseIndex].units.findIndex(unit => unit.id === unitId)
