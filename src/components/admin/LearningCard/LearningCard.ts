@@ -26,7 +26,7 @@ export class LearningCard extends Vue {
   @Inject() toggleModal
   @Prop() card
 
-  @Prop({ default: false }) quizVisible: boolean
+  quizVisible: boolean = false
 
   @State route
   @State activeCard
@@ -68,6 +68,15 @@ export class LearningCard extends Vue {
       } else {
         console.warn('No card', this.route.params.cardId, 'in unit', unit.name)
       }
+    })
+  }
+
+  save() {
+    store.dispatch('updateActiveCard', {
+      id: this.card.id,
+      name: this.card.name,
+      evidence_task: this.card.evidence_task,
+      content: this.card.content,
     })
   }
 }

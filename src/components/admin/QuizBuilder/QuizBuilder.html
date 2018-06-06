@@ -8,7 +8,8 @@
     <input type="text"
       class="input"
       @focus.native="$event.target.select()"
-      v-model="question.question"
+      @change="save"
+      v-model.lazy="question.question"
       placeholder="Question"
     >
     <div class="Card__body">
@@ -20,10 +21,14 @@
         >
           <input type="text"
             class="input"
-            v-model="answer.text"
+            v-model.lazy="answer.text"
+            @change="save"
             placeholder="Answer"
           >
-          <input type="checkbox" v-model="answer.correct">
+          <input type="checkbox"
+            v-model="answer.correct"
+            @change="save"
+           >
         </div>
         <div class="input QuizBuilder__add-answer" @click="addAnswer(qIndex)">Add another answer</div>
       </div>

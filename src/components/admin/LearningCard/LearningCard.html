@@ -4,12 +4,12 @@
       <div class="Card">
         <div class="form__group">
           <label class="label" for="card-content">Content</label>
-          <wysiwyg v-model="card.content" />
+          <wysiwyg v-model.lazy="card.content" @change="save" />
         </div>
 
         <div class="form__group">
           <label class="label" for="card-task">Practical Task</label>
-          <textarea class="input" id="card-task" v-model="card.evidence_task"></textarea>
+          <textarea class="input" id="card-task" v-model.lazy="card.evidence_task" @change="save"></textarea>
         </div>
       </div>
       <h3>Quiz</h3>
@@ -41,7 +41,7 @@
           <div class="btn btn--standard">View task</div>
         </div>
         <div class="Mobile__task">
-          {{ card.task }}
+          {{ card.evidence_task }}
         </div>
         <div :class="{ 'Mobile__quiz': true, 'Mobile__quiz--visible' : quizVisible }">
           <Quiz @finish="quizVisible = false" :questions="quiz"></Quiz>
