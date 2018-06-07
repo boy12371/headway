@@ -13,6 +13,7 @@ Vue.use(VueRouter)
 export const createRoutes: () => RouteConfig[] = () => [
   {
     path: '/',
+    name: 'landing',
     component: landingComponent
   },
   {

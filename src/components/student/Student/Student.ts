@@ -37,7 +37,7 @@ export class Student extends Vue {
   }
 
   switchApp() {
-    this.$router.push({ name: 'dashboard' })
+    this.$router.push({ name: 'landing' })
     window.location.reload()
   }
 

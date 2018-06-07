@@ -116,7 +116,7 @@ export class Admin extends Vue {
   }
 
   switchApp() {
-    this.$router.push({ name: 'studentHome' })
+    this.$router.push({ name: 'landing' })
     window.location.reload()
   }
 
