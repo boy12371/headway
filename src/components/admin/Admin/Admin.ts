@@ -77,7 +77,7 @@ export class Admin extends Vue {
         const data = {
           text: course.name,
           link: '/c/' + course.id,
-          totalUnits: course.units ? course.units.length : 0,
+          total: course.units ? course.units.length : 0,
         }
         return data
       })
@@ -91,7 +91,7 @@ export class Admin extends Vue {
         const data = {
           text: business.name,
           link: '/b/' + business.id,
-          totalStudents: business.students ? business.students.length : 0,
+          total: business.students ? business.students.length : 0,
         }
         return data
       })
