@@ -11,7 +11,7 @@ export const getters = {
   allStudents(state) {
     let map = {}
 
-    if(state.businesses) {
+    if (state.businesses) {
       state.businesses.forEach(business => {
         if (!business.students) {
           return
