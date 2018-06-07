@@ -1,4 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { State } from 'vuex-class'
 
 import axios from 'axios'
 import { BASE_URL } from '../../../constants'
@@ -23,9 +24,11 @@ export class Login extends Vue {
   email = 's'
   password = 'p'
 
+  @State route
+
   login(e) {
     e.preventDefault()
-    axios.post(BASE_URL + '/login/admin', {
+    axios.post(BASE_URL + '/login/' + this.route.params.role, {
       email: this.email,
       password: this.password
     }).then(res => {
