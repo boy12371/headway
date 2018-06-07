@@ -10,6 +10,7 @@ import store from '../../../store'
 })
 export class CourseMenu extends Vue {
   @Prop() items: any[]
+  @Prop() icon: string
   @Prop() collection: string
   @Inject() toggleModal
 

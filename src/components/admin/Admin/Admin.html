@@ -13,12 +13,12 @@
           Courses
           <i class="fa fa-plus" @click="toggleModal('course')"></i>
         </h4>
-        <CourseMenu @createCourse="showCourseModal = true" :items="courseMenu" collection="Units"></CourseMenu>
+        <CourseMenu icon="course" @createCourse="showCourseModal = true" :items="courseMenu" collection="Units"></CourseMenu>
         <h4 class="Admin__sidebar-title">
           Businesses
           <i class="fa fa-plus" @click="toggleModal('business')"></i>
         </h4>
-        <CourseMenu @createCourse="showBusinessModal = true" :items="businessMenu" collection="Students"></CourseMenu>
+        <CourseMenu icon="business" @createCourse="showBusinessModal = true" :items="businessMenu" collection="Students"></CourseMenu>
       </div>
     </div>
     <div class="Admin__main">

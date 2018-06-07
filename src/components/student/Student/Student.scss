@@ -1,14 +1,16 @@
-.Switch {
-  position: fixed;
-  bottom: 1rem;
-  left: 1rem;
-  z-index: 500;
-  color: #333;
-  opacity: 0.75;
-  cursor: pointer;
-  transition: opacity 200ms ease;
-}
+.Student {
+  .Switch {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 500;
+    color: #333 !important;
+    opacity: 0.75;
+    cursor: pointer;
+    transition: opacity 200ms ease;
+  }
 
-.Switch:hover {
-  opacity: 1;
+  .Switch:hover {
+    opacity: 1;
+  }
 }
