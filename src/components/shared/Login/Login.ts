@@ -35,7 +35,11 @@ export class Login extends Vue {
       const user = res.data
       if (res.status === 200 && user.id) {
         store.commit('setUser', user)
-        this.$router.push({ name: 'dashboard' })
+        if (this.route.params.role === 'admin') {
+          this.$router.push({ name: 'dashboard' })
+        } else if (this.route.params.role === 'student') {
+          this.$router.push({ name: 'app' })
+        }
       }
     })
   }
