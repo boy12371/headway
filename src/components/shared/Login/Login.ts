@@ -21,8 +21,10 @@ import store from '../../../store'
 })
 
 export class Login extends Vue {
-  email = 's'
-  password = 'p'
+
+  email = ''
+  password = ''
+
 
   @State route
 
@@ -38,9 +40,21 @@ export class Login extends Vue {
         if (this.route.params.role === 'admin') {
           this.$router.push({ name: 'dashboard' })
         } else if (this.route.params.role === 'student') {
-          this.$router.push({ name: 'app' })
+          this.$router.push({ name: 'studentHome' })
         }
       }
     })
   }
+
+  mounted() {
+    // Bad code only written to help Marc with logging in
+    if (this.route.params.role === 'admin') {
+      this.email = 's'
+      this.password = 'p'
+    } else if (this.route.params.role === 'student') {
+      this.email = 'me@simonlang.org'
+      this.password = 'password'
+    }
+  }
+
 }
