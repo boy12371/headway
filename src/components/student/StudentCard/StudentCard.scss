@@ -61,6 +61,7 @@
 .StudentCard__quiz .Quiz {
   transition: transform 375ms ease;
   transform: translateY(100%);
+  flex: 1;
 }
 
 .StudentCard__quiz--visible .Quiz {

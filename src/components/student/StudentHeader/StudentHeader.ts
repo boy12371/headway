@@ -15,6 +15,7 @@ export class StudentHeader extends Vue {
   @State activeStudentCourse
   @State activeStudentCard
   @State appView
+  @State student
 
   get courseName() {
     return this.activeStudentCourse.name

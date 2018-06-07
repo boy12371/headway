@@ -7,9 +7,7 @@ export const mutations = {
     state.authed = true
   },
   setStudent(state, student) {
-    state.courses = student.courses
-    state.businesses = student.businesses
-    // state.authed = overview.user && overview.user.id
+    state.student = student
     state.authed = true
   },
   set(state, {key, value}) {

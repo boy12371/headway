@@ -1,5 +1,6 @@
 export const state = {
   authed: false,
+  student: {},
   courses: [],
   businesses: [],
   studentListFilter: 'business',
