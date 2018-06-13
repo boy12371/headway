@@ -1,14 +1,10 @@
+import { createCourse, inviteStudent } from '../actions'
 import app from '../app'
-import mailer from '../mailer'
-
-import { authEpilogue, authAdmin, checkStudentLogin, authStudent, checkMentorLogin, authMentor, checkStudentEnrolled, checkAdminPermission, checkAdminLogin, mockAdminLogin, } from '../authentication'
-import { createAdmin, createCourse, inviteStudent } from '../actions'
-import { PASSWORD_OPTS } from '../constants'
-import mail from '../mail'
-
-import { Admin, Course, Business, BusinessCourse, Student, Unit, Card, Activity, CourseStudent } from '../models'
+import { checkAdminLogin, checkAdminPermission, mockAdminLogin } from '../authentication'
 import { Logger } from '../logger'
-import { getSignedUrl } from '../s3'
+import { Admin, Business, BusinessCourse, Card, Course, CourseStudent, Student, Unit } from '../models'
+import { getSignedUrl, s3 } from '../s3'
+import { S3_BUCKET } from '../constants';
 
 if (process.env.MOCK_AUTH) {
   Logger.warn('WARNING: Mock Admin Auth enabled for /admin and /api')
@@ -116,12 +112,33 @@ app.post('/admin/unit/:unitId/card', (req, res) => {
   })
 })
 
-app.post('/admin/card/:cardId/upload', (req, res) => {
-  const { cardId } = req.params
+app.post('/admin/upload', (req, res) => {
+  const { cardId } = req.body
+  const { file } = req.files
   Card.findById(cardId, { include: [{ model: Unit, include: [Course] }] }).then(card => {
     if (card && card.unit.course.adminId === req.user.admin.id) {
-      Logger.debug('TODO: upload')
-      res.send(card)
+      const localPath = './uploads/' + file.name
+      file.mv(localPath, function (err) {
+        if (err) {
+          return res.status(500).send(err)
+        }
+        const Key = card.id + '/' + file.name
+        const params = {
+          Bucket: S3_BUCKET,
+          Key,
+          Body: file.data
+        }
+        s3.putObject(params, (err) => {
+          if (err) {
+            return res.status(500).send(err)
+          } else {
+            Logger.debug(`Successfully uploaded file to ${S3_BUCKET}/${Key}`)
+          }
+        })
+        card.media = file.name
+        card.save()
+        res.send('Upload Successful') // WARNING: S3 upload not necessarily complete
+      })
     }
     else {
       res.status(401).send({ message: 'Unauthorized: Admin does not own Card #' + cardId })
@@ -276,13 +293,5 @@ app.get('/admin/business/:businessId', checkAdminPermission, (req, res) => {
     ]
   }).then(business => {
     res.send(business)
-  })
-})
-
-
-app.get('/admin/get-signed-url', (req, res) => {
-  const { name } = req.query
-  getSignedUrl(name || 'unnamed video', 'video/mp4').then(response => {
-    res.send(response)
   })
 })

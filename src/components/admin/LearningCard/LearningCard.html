@@ -35,10 +35,19 @@
           </div>
           <div class="Mobile__hero">
             <p class="pressed">Drop video anywhere to upload or</p>
-            <form method="POST" :action="uploadUrl">
+            <vue-dropzone ref="myVueDropzone"
+              id="dropzone"
+              :options="dropzoneOptions"
+              :includeStyling="true"
+              @vdropzone-sending="sendingEvent"
+            >
+            </vue-dropzone>
+            <!--
+            <form method="POST" :action="uploadUrl" enctype="multipart/form-data">
               <input type="file" name="video" @change="changeFile">
               <button class="btn">Upload video</button>
             </form>
+            -->
           </div>
           <div class="Mobile__content" v-if="card.content">
             <div v-html="card.content"></div>

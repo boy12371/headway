@@ -1,5 +1,5 @@
 import * as AWS from 'aws-sdk'
-import { AWS_CONFIG } from './constants'
+import { AWS_CONFIG, S3_BUCKET } from './constants'
 AWS.config.update(AWS_CONFIG)
 
 export const s3 = new AWS.S3()
@@ -7,7 +7,7 @@ export const s3 = new AWS.S3()
 export const getSignedUrl = (filename, filetype) => {
   return new Promise((resolve, reject) => {
     const params = {
-      Bucket: 'SOME_BUCKET',
+      Bucket: S3_BUCKET,
       Key: filename,
       Expires: 60,
       ContentType: filetype
@@ -22,3 +22,7 @@ export const getSignedUrl = (filename, filetype) => {
     })
   })
 }
+
+s3.listBuckets((err, data) => {
+  console.log(err || data)
+})

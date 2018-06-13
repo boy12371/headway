@@ -6,3 +6,5 @@ src/css
 src/**/*.map
 *.log
 todo
+.env
+uploads
