@@ -11,6 +11,8 @@ const unitService = new UnitService()
 import { QuizBuilder } from '../QuizBuilder'
 import { Quiz } from '../../student/Quiz'
 import store from '../../../store'
+import { BASE_URL } from '../../../constants'
+import axios from 'axios'
 
 @Component({
   template: require('./LearningCard.html'),
@@ -38,6 +40,12 @@ export class LearningCard extends Vue {
     headers: { 'My-Awesome-Header': 'header value' }
     // setAWSSigningURL
   }
+
+  uploadUrl = ''
+
+  // get uploadUrl() {
+  //   return BASE_URL + '/admin/card/' + this.card.id + '/upload'
+  // }
 
   get quiz() {
     if (this.card.quiz) {
@@ -78,6 +86,12 @@ export class LearningCard extends Vue {
       name: this.card.name,
       evidence_task: this.card.evidence_task,
       content: this.card.content,
+    })
+  }
+
+  changeFile() {
+    axios.get(BASE_URL + '/admin/get-signed-url').then(res => {
+      this.uploadUrl = res.data
     })
   }
 }

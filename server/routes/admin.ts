@@ -8,6 +8,7 @@ import mail from '../mail'
 
 import { Admin, Course, Business, BusinessCourse, Student, Unit, Card, Activity, CourseStudent } from '../models'
 import { Logger } from '../logger'
+import { getSignedUrl } from '../s3'
 
 if (process.env.MOCK_AUTH) {
   Logger.warn('WARNING: Mock Admin Auth enabled for /admin and /api')
@@ -258,5 +259,13 @@ app.get('/admin/business/:businessId', checkAdminPermission, (req, res) => {
     ]
   }).then(business => {
     res.send(business)
+  })
+})
+
+
+app.get('/admin/get-signed-url', (req, res) => {
+  const { name } = req.query
+  getSignedUrl(name || 'unnamed video', 'video/mp4').then(response => {
+    res.send(response)
   })
 })

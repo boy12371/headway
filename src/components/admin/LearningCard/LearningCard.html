@@ -35,7 +35,10 @@
           </div>
           <div class="Mobile__hero">
             <p class="pressed">Drop video anywhere to upload or</p>
-            <button class="btn">Upload video</button>
+            <form method="POST" :action="uploadUrl">
+              <input type="file" name="video" @change="changeFile">
+              <button class="btn">Upload video</button>
+            </form>
           </div>
           <div class="Mobile__content" v-if="card.content">
             <div v-html="card.content"></div>
