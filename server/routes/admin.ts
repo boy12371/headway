@@ -188,6 +188,23 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
   })
 })
 
+app.delete('/admin/student/:studentId', checkAdminPermission, (req, res) => {
+  // TODO: this findById include is direct copy paste
+  const adminId = req.user.admin.id
+  Student.scope('public').findById(req.params.studentId, {
+    include: [
+      { model: Course, where: { adminId }, required: false },
+      { model: Business, where: { adminId } },
+    ]
+  }).then(student => {
+    Promise.all([
+      ...student.businesses.map(studentBusiness => studentBusiness.destroy()),
+      ...student.courses.map(studentCourse => studentCourse.destroy()),
+    ]).then(results => {
+      res.send('OK')
+    })
+  })
+})
 
 app.post('/admin/student-course', checkAdminPermission, (req, res) => {
   const { studentId, courseIds = [] } = req.body
