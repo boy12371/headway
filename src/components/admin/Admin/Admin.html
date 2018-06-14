@@ -10,7 +10,23 @@
           <small class="Logo__small"> {{totalStudents}} students</small>
         </div>
       </router-link>
-      <div class="Browse">
+      <div v-show="!loaded" class="Loading">
+        <div class="Loading__title"></div>
+        <div class="Loading__group">
+          <div class="Loading__item"></div>
+          <div class="Loading__item"></div>
+          <div class="Loading__item"></div>
+          <div class="Loading__item"></div>
+        </div>
+        <div class="Loading__title"></div>
+        <div class="Loading__group">
+          <div class="Loading__item"></div>
+          <div class="Loading__item"></div>
+          <div class="Loading__item"></div>
+          <div class="Loading__item"></div>
+        </div>
+      </div>
+      <div class="Browse" v-show="loaded">
         <h4 class="Admin__sidebar-title">
           Courses
           <i class="fa fa-plus" @click="toggleModal('course')"></i>

@@ -65,12 +65,23 @@ export class Admin extends Vue {
   @State adminName
   @State sidebarOpen
 
+  loaded = false
+
   @Watch('sidebarOpen')
   watchSidebarOpen(newVal, oldVal) {
     if (newVal) {
       document.addEventListener('click', this.toggleSidebar)
     } else {
       document.removeEventListener('click', this.toggleSidebar)
+    }
+  }
+
+  // TODO: Bad Jase only looking at courses
+  // How about I return a promise on the setAdmin action below
+  @Watch('courses')
+  watchCourses(newVal, oldVal) {
+    if (newVal) {
+      this.loaded = true
     }
   }
 

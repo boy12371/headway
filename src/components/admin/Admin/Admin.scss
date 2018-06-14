@@ -153,6 +153,26 @@
   opacity: 1;
 }
 
+.Loading__group {
+  margin-bottom: 2rem;
+}
+
+.Loading__title {
+  width: 40%;
+  height: 1rem;
+  background: rgba(255,255,255,0.25);
+  border-radius: $radius;
+  margin-bottom: 1rem;
+}
+
+.Loading__item {
+  width: 100%;
+  background: rgba(0,0,0,0.15);
+  height: 1rem;
+  margin-bottom: 0.25rem;
+  border-radius: $radius;
+}
+
 @media(min-width: 1200px) {
 
   .Admin__sidebar,
