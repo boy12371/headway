@@ -67,7 +67,9 @@ export class Admin extends Vue {
   @Watch('route', { deep: true })
   watchRoute(newVal, oldVal) {
     if (newVal) {
-      store.commit('toggleSidebar')
+      if(this.sidebarOpen) {
+        store.commit('toggleSidebar')
+      }
     }
   }
 
