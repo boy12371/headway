@@ -15,3 +15,5 @@ export const AWS_CONFIG = {
 }
 
 export const S3_BUCKET = 'headway'
+
+export const UPLOAD_DIRECTORY = './uploads'
