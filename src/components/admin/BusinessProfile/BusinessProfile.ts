@@ -30,9 +30,18 @@ export class BusinessProfile extends Vue {
 
   @Inject() toggleModal
 
+  loaded = false
+
   @Watch('$route', { deep: true})
   watchRoute(newVal, oldVal) {
     this.updateRoute(newVal)
+  }
+
+  @Watch('activeBusinessProfile', { deep: true})
+  watchBusinessProfile(newVal, oldVal) {
+    if (newVal) {
+      this.loaded = true
+    }
   }
 
   updateRoute(route) {

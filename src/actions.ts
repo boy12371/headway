@@ -45,6 +45,16 @@ export const actions = {
   },
 
   getStudentProfile(context, id) {
+
+    context.commit('setBreadcrumbs', [
+      {
+        label: 'Students',
+        link: { name: 'dashboard' }
+      },
+      {
+        loading: true
+      }
+    ])
     return axios.get(BASE_URL + '/admin/student/' + id).then(res => {
       const student = res.data
       context.commit('setActiveStudentProfile', student)
@@ -62,6 +72,14 @@ export const actions = {
   },
 
   getBusinessProfile(context, id) {
+    context.commit('setBreadcrumbs', [
+      {
+        label: 'Businesses'
+      },
+      {
+        loading: true
+      }
+    ])
     return axios.get(BASE_URL + '/admin/business/' + id).then(res => {
       const business = res.data
       context.commit('setActiveBusinessProfile', business)
@@ -109,6 +127,11 @@ export const actions = {
   },
 
   fetchCurrentCourse(context) {
+    context.commit('setBreadcrumbs', [
+      {
+        loading: true
+      }
+    ])
     context.dispatch('fetchCourse', context.state.route.params.courseId)
   },
 

@@ -2,7 +2,7 @@
   <div class="Admin__content">
     <div :class="{ 'Admin__sidebar' : true, 'Admin__sidebar--open' : this.sidebarOpen }">
       <i class="fa fa-navicon Admin__navicon" v-show="!sidebarOpen" @click="toggleSidebar"></i>
-      <i class="fa fa-remove Admin__navicon" v-show="sidebarOpen" @click="toggleSidebar"></i>
+      <i class="fa fa-remove Admin__navicon Admin__navicon--close" v-show="sidebarOpen" @click="toggleSidebar"></i>
       <router-link class="Logo" to="/dashboard">
         <div class="Logo__icon">H</div>
         <div class="Logo__content">

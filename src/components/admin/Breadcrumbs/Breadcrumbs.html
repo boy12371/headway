@@ -1,6 +1,6 @@
   <div class="Breadcrumbs">
     <div class="Breadcrumbs__wrap">
-      <div class="Breadcrumbs__item" v-for="crumb in crumbs" :key="crumb.name">
+      <div :class="{ 'Breadcrumbs__item': true, 'Breadcrumbs__item--placeholder': crumb.loading}" v-for="crumb in crumbs" :key="crumb.name">
         <router-link v-if="crumb.link" :to="crumb.link">{{ crumb.label }}</router-link>
         <span v-if="!crumb.link">{{ crumb.label }}</span>
       </div>

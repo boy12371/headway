@@ -59,13 +59,15 @@
 
 .Admin__sidebar--open {
   transform: translateX(0);
-  .Admin__navicon--open { display: none }
-  .Admin__navicon--close { display: block }
   .Logo,
   .Browse {
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+.Admin__navicon--close {
+  left: 1.0625rem; // 17px
 }
 
 .Admin__sidebar-title {
@@ -155,6 +157,7 @@
 
   .Admin__sidebar,
   .Admin__sidebar--open {
+    box-shadow: none;
     transform: translateX(0)
   }
 
