@@ -6,6 +6,7 @@ export const state = {
   studentListFilter: 'business',
   appView: 'studentHome',
   adminName: '',
+  sidebarOpen: false,
   notification: {
     type: '',
     message: ''

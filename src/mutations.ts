@@ -89,5 +89,8 @@ export const mutations = {
   },
   setAppView(state, view) {
     state.appView = view
-  }
+  },
+  toggleSidebar(state) {
+    state.sidebarOpen = !state.sidebarOpen
+  },
 }

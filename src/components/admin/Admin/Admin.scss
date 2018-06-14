@@ -17,8 +17,19 @@
   position: relative;
   padding: 1rem;
   padding-top: 0;
-  padding-left: calc(19.5rem);
+  padding-left: 5.125rem;
   padding-top: 5rem;
+}
+
+.Admin__sidebar .Logo {
+  padding: 1rem;
+  margin: -1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  height: 4rem;
+  align-items: center;
+  transition: all 200ms ease;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .Admin__sidebar {
@@ -32,6 +43,29 @@
   color: #fff;
   background-color: #4c4177;
   background-image: linear-gradient(315deg, #4c4177 0%, #2a5470 74%);
+  transform: translateX(calc(-100% + 3.125rem));
+  z-index: 500;
+  box-shadow: 5px 0 10px rgba(0,0,0,0.25);
+  transition: transform 200ms ease;
+}
+
+.Admin__sidebar .Logo,
+.Admin__sidebar .Browse {
+  opacity: 0;
+  transform: translateX(-3.125rem);
+}
+
+.Admin__navicon--close { display: none }
+
+.Admin__sidebar--open {
+  transform: translateX(0);
+  .Admin__navicon--open { display: none }
+  .Admin__navicon--close { display: block }
+  .Logo,
+  .Browse {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .Admin__sidebar-title {
@@ -64,24 +98,25 @@
   transform: scale(1.1);
 }
 
-.Admin__sidebar .Logo {
-  padding: 1rem;
-  margin: -1rem;
-  margin-bottom: 1rem;
-  display: flex;
-  height: 4rem;
-  align-items: center;
+.Admin__navicon {
+  position: absolute;
+  top: 0.8125rem; // 13px
+  right: 0.5rem; // 8px
+  width: 2.25rem;
+  height: 2.25rem;
+  line-height: 2.25rem;
+  text-align: center;
+  cursor: pointer;
   transition: all 200ms ease;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 20;
+  border-radius: $radius;
+  &:hover {
+    background: rgba(0,0,0,0.1);
+  }
 }
 
 .Admin__sidebar .Logo:hover {
   background: rgba(0,0,0,0.1);
-}
-
-.Admin__sidebar .Logo:hover .Logo__icon {
-  background: $green;
-  color: #fff;
 }
 
 .Admin__toolbar {
@@ -98,8 +133,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  left: 17.5rem;
-  z-index: 500;
+  left: 3.125rem;
 }
 
 .Switch {
@@ -115,4 +149,31 @@
 
 .Switch:hover {
   opacity: 1;
+}
+
+@media(min-width: 1200px) {
+
+  .Admin__sidebar,
+  .Admin__sidebar--open {
+    transform: translateX(0)
+  }
+
+  .Admin__navicon {
+    display: none;
+  }
+
+  .Admin__sidebar .Logo,
+  .Admin__sidebar .Browse {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .Admin__main {
+    padding-left: 19.5rem;
+  }
+
+  .Admin__toolbar {
+    left: 17.5rem
+  }
+
 }

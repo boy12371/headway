@@ -34,11 +34,10 @@
             <h4 class="flat">{{ card.name }}</h4>
           </div>
           <div class="Mobile__hero">
-            <p class="pressed">Drop video anywhere to upload or</p>
             <vue-dropzone ref="myVueDropzone"
               id="dropzone"
               :options="dropzoneOptions"
-              :includeStyling="true"
+              :includeStyling="false"
               @vdropzone-sending="sendingEvent"
             >
             </vue-dropzone>

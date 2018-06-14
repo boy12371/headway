@@ -62,6 +62,14 @@ export class Admin extends Vue {
   @State route
   @State activeCard
   @State adminName
+  @State sidebarOpen
+
+  @Watch('route', { deep: true })
+  watchRoute(newVal, oldVal) {
+    if (newVal) {
+      store.commit('toggleSidebar')
+    }
+  }
 
   get view() {
     return this.$route.name
@@ -113,6 +121,10 @@ export class Admin extends Vue {
       value: this.route.params.cardId
     })
     this.toggleModal('removeCard')
+  }
+
+  toggleSidebar() {
+    store.commit('toggleSidebar')
   }
 
   switchApp() {
