@@ -4,7 +4,7 @@ import { checkAdminLogin, checkAdminPermission, mockAdminLogin } from '../authen
 import { Logger } from '../logger'
 import { Admin, Business, BusinessCourse, Card, Course, CourseStudent, Student, Unit } from '../models'
 import { getSignedUrl, s3 } from '../s3'
-import { S3_BUCKET } from '../constants';
+import { S3_BUCKET } from '../constants'
 
 if (process.env.MOCK_AUTH) {
   Logger.warn('WARNING: Mock Admin Auth enabled for /admin and /api')

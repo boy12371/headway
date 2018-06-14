@@ -25,7 +25,7 @@
       <div class="Admin__toolbar">
         <Breadcrumbs :crumbs="breadcrumbs">
         </Breadcrumbs>
-        <button class="btn" v-show="route.name === 'dashboard'" @click="toggleModal('student')">Invite student</button>
+        <button class="btn" v-show="route.name === 'dashboard' || route.name === 'businessProfile'" @click="toggleModal('student')">Invite student</button>
         <button class="btn btn--standard btn--icon" @click="removeCourse" v-show="route.name === 'course'">
           <i class="fa fa-trash"></i>
         </button>

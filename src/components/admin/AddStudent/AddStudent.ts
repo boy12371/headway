@@ -1,4 +1,4 @@
-import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
+import { Component, Prop, Vue, Inject, Watch } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
 import { BASE_URL } from '../../../constants'
@@ -19,6 +19,14 @@ export class AddStudent extends Vue {
   @Inject() toggleModal
 
   @State businesses
+
+  @State activeBusinessProfile
+  @Watch('activeBusinessProfile', { deep: true })
+  watchBusiness(newVal, oldVal) {
+    if (newVal) {
+      this.businessIds = [newVal.id]
+    }
+  }
 
   firstName = ''
   lastName = ''
