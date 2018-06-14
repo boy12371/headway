@@ -5,21 +5,6 @@ import { authEpilogue } from '../authentication'
 import { Admin, Activity, Card, Course, Student, Unit, Business, BusinessCourse } from '../models'
 import { Logger } from '../logger'
 
-// Admin REST API
-const restApis = {
-  'business-course': BusinessCourse,
-  'activity': Activity,
-}
-Object.keys(restApis).forEach(k => {
-  const model = restApis[k]
-  const resource = epilogue.resource({
-    model,
-    endpoints: ['/api/' + k, '/api/' + k + '/:id']
-  })
-  // resource.all.auth(authEpilogue)
-  Logger.warn('Exposing publicly accessible REST API: ' + k)
-})
-
 const authRest = (authorize) => (req, res, context) => {
   return new Promise((resolve, reject) => {
     if (!req.isAuthenticated || !req.isAuthenticated() || !req.user.admin) {
