@@ -64,12 +64,12 @@ export class Admin extends Vue {
   @State adminName
   @State sidebarOpen
 
-  @Watch('route', { deep: true })
-  watchRoute(newVal, oldVal) {
+  @Watch('sidebarOpen')
+  watchSidebarOpen(newVal, oldVal) {
     if (newVal) {
-      if (this.sidebarOpen) {
-        store.commit('toggleSidebar')
-      }
+      document.addEventListener('click', this.toggleSidebar)
+    } else {
+      document.removeEventListener('click', this.toggleSidebar)
     }
   }
 

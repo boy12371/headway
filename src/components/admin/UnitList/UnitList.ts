@@ -30,6 +30,15 @@ export class UnitList extends Vue {
   addingCard = false
   menuOpen = false
 
+  @Watch('menuOpen')
+  watchMenuOpen(newVal, oldVal) {
+    if (newVal) {
+      document.addEventListener('click', this.toggleMenu)
+    } else {
+      document.removeEventListener('click', this.toggleMenu)
+    }
+  }
+
   addCard() {
     this.cardName = ''
     store.commit('set', {
