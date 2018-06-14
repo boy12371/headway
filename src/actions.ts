@@ -173,6 +173,11 @@ export const actions = {
     })
   },
 
+  removeStudent(context, id) {
+    id = parseInt(id)
+    console.log('call delete on student delete api when implemented')
+  },
+
   createUnit(context, { courseId, name }) {
     return axios.post(BASE_URL + '/admin/unit', {
       courseId,

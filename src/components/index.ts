@@ -22,6 +22,7 @@ export * from './admin/StudentProfile'
 export * from './admin/RemoveCourse'
 export * from './admin/RemoveUnit'
 export * from './admin/RemoveCard'
+export * from './admin/RemoveStudent'
 export * from './admin/BusinessProfile'
 export * from './admin/Toast'
 

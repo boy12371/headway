@@ -6,7 +6,7 @@ const courseService = new CourseService()
 const businessService = new BusinessService()
 const studentService = new StudentService()
 
-import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, Toast, BusinessProfile, LearningCard, Course, Businesses, CourseMenu, RemoveStudentCourse, AddCourse, RemoveCard, RemoveCourse, RemoveUnit } from '../../'
+import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, Toast, BusinessProfile, LearningCard, Course, Businesses, CourseMenu, RemoveStudentCourse, AddCourse, RemoveCard, RemoveStudent, RemoveCourse, RemoveUnit } from '../../'
 
 import { Login } from '../../shared/Login'
 
@@ -35,6 +35,7 @@ const toggleModal = k => store.commit('toggleModal', k)
     Toast,
     RemoveCard,
     RemoveCourse,
+    RemoveStudent,
     RemoveStudentCourse,
     RemoveUnit,
     StudentList,
@@ -107,6 +108,14 @@ export class Admin extends Vue {
       })
       return menu
     }
+  }
+
+  removeStudent() {
+    store.commit('set', {
+      key: 'removeStudentId',
+      value: this.$route.params.studentId
+    })
+    this.toggleModal('removeStudent')
   }
 
   removeCourse() {

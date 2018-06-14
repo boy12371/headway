@@ -30,6 +30,7 @@ export const state = {
     addStudentCourse: false,
     removeStudentCourse: false,
     removeCourse: false,
+    removeStudent: false,
     removeUnit: false,
     removeCard: false,
   },
