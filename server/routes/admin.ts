@@ -301,3 +301,16 @@ app.get('/admin/business/:businessId', checkAdminPermission, (req, res) => {
     res.send(business)
   })
 })
+
+app.get('/admin/card/:cardId/media', (req, res) => {
+  const { cardId } = req.params
+  Card.findById(cardId, { include: [{ model: Unit, include: [Course] }] }).then(card => {
+    if (card && card.unit.course.adminId === req.user.admin.id) {
+      const name = card.media
+      const Key = `${cardId}/${name}`
+      getSignedUrl(Key).then(url => {
+        res.redirect(url)
+      })
+    }
+  })
+})
