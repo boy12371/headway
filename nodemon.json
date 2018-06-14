@@ -6,5 +6,5 @@
     "ignore": [
         "server/**/*.spec.ts"
     ],
-    "exec": "MOCK_AUTH=1 ts-node --project server/tsconfig.json ./server/server.ts"
+    "exec": "ts-node --project server/tsconfig.json ./server/server.ts"
 }

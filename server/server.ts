@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 import app from './app'
 import connection from './connection'
 
