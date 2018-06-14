@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
 import * as parse from 'parse-database-url'
+import { Logger } from './logger'
 
 const url = process.env.CLEARDB_DATABASE_URL
 
@@ -10,6 +11,8 @@ const config = url ? parse(url) : {
     database: 'headway',
 }
 const { user, password, database, host } = config
+
+Logger.debug(`Connecting to database @ ${host}`)
 
 const connection = new Sequelize({
     database,
