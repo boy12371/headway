@@ -1,4 +1,4 @@
-import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch, Inject } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
 import { ProgressBar } from '../../shared/ProgressBar'
@@ -29,6 +29,15 @@ export class StudentProfile extends Vue {
   @State activeStudentProfile
 
   @Inject() toggleModal
+
+  loaded = false
+
+  @Watch('activeStudentProfile', { deep: true})
+  watchStudentProfile(newVal, oldVal) {
+    if (newVal) {
+      this.loaded = true
+    }
+  }
 
   mounted() {
     const { params } = this.$route
