@@ -123,7 +123,7 @@ app.post('/admin/upload', (req, res) => {
   const { file } = req.files
   Card.findById(cardId, { include: [{ model: Unit, include: [Course] }] }).then(card => {
     if (card && card.unit.course.adminId === req.user.admin.id) {
-      const localPath = './uploads/' + file.name
+      const localPath = UPLOAD_DIRECTORY + '/' + file.name
       file.mv(localPath, function (err) {
         if (err) {
           return res.status(500).send(err)
