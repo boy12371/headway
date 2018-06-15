@@ -6,13 +6,14 @@
         <p v-show="activeStudentProfile.lastLoggedIn">Logged in {{ activeStudentProfile.lastLoggedIn | moment("from", true) }} ago</p>
         <p v-show="!activeStudentProfile.lastLoggedIn">Has not logged in yet</p>
       </div>
-      <h4>Recent activity</h4>
-      <div v-for="activity in activeStudentProfile.activity">
+      <h3>Activity</h3>
+      <p class="pressed" v-for="activity in activeStudentProfile.activity">
          {{ activeStudentProfile.first_name }}
          {{ activity.completed ? 'completed' : 'attempted'}}
          <strong>{{ activity.cardName }}</strong>
          {{ activity.date | moment("from", true) }} ago
-      </div>
+      </p>
+      <p v-if="activeStudentProfile.businesses">{{ activeStudentProfile.first_name }} was invited {{ activeStudentProfile.businesses[0].createdAt | moment("from", true) }} ago</p>
     </div>
     <div>
       <div class="StudentProfile__group">
