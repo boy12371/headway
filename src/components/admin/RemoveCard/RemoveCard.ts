@@ -17,9 +17,18 @@ export class RemoveCard extends Vue {
 
   @Inject() toggleModal
 
+  submitting: boolean = false
+
   submit() {
+    if (this.submitting) {
+      return
+    }
+    this.submitting = true
     store.dispatch('removeCard', this.removeCardId)
-    this.toggleModal('removeCard')
-    this.$router.push({ name: 'course', params: { courseId: this.route.params.courseId } })
+    .then(() => {
+      this.submitting = false
+      this.toggleModal('removeCard')
+      this.$router.push({ name: 'course', params: { courseId: this.route.params.courseId } })
+    })
   }
 }

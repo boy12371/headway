@@ -143,6 +143,37 @@ h4 {
   cursor: pointer;
 }
 
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.btn[disabled] {
+  cursor: default;
+  opacity: 0.75;
+  font: 0/0 a;
+  color: transparent;
+  position: relative;
+  &:after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.25);
+    border-top-color: #fff;
+    animation: spinner .6s linear infinite;
+  }
+  &:hover {
+    opacity: 0.75;
+    box-shadow: $boxShadow;
+  }
+}
+
 .btn--block {
   display: block;
   width: 100%;

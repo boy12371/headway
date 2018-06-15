@@ -18,12 +18,20 @@ export class AddStudentCourse extends Vue {
 
   courseIds = []
 
+  submitting: boolean = false
+
   submit() {
+    if (this.submitting) {
+      return
+    }
+    this.submitting = true
     store.dispatch('addStudentCourse', {
       studentId: this.activeStudentProfile.id,
       courseIds: this.courseIds,
+    }).then(course => {
+      this.courseIds = []
+      this.submitting = false
+      this.toggleModal('addStudentCourse')
     })
-    this.courseIds = []
-    this.toggleModal('addStudentCourse')
   }
 }

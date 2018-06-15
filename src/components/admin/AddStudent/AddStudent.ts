@@ -32,20 +32,25 @@ export class AddStudent extends Vue {
   lastName = ''
   email = ''
   businessIds = []
+  submitting: boolean = false
 
   submit() {
+    if (this.submitting) {
+      return
+    }
+    this.submitting = true
     store.dispatch('inviteStudent', {
       first_name: this.firstName,
       last_name: this.lastName,
       email: this.email,
       businessIds: this.businessIds,
+    }).then(course => {
+      this.firstName = ''
+      this.lastName = ''
+      this.email = ''
+      this.businessIds = []
+      this.submitting = false
+      this.toggleModal('student')
     })
-
-    // Reset UI
-    this.toggleModal('student')
-    this.firstName = ''
-    this.lastName = ''
-    this.email = ''
-    this.businessIds = []
   }
 }

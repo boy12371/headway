@@ -20,8 +20,13 @@ export class AddCourse extends Vue {
 
   name = ''
   businessIds = []
+  submitting: boolean = false
 
   submit() {
+    if (this.submitting) {
+      return
+    }
+    this.submitting = true
     store.dispatch('createCourse', {
       name: this.name,
       businessIds: this.businessIds
@@ -31,6 +36,7 @@ export class AddCourse extends Vue {
       })
     }).then(d => {
       this.name = ''
+      this.submitting = false
       this.$emit('close')
     })
   }

@@ -22,14 +22,20 @@ export class AddCard extends Vue {
   @State addCardUnitId
 
   name = ''
+  submitting: boolean = false
 
   submit() {
+    if (this.submitting) {
+      return
+    }
+    this.submitting = true
     store.dispatch('createCard', {
       courseId: parseInt(this.$route.params.courseId),
       unitId: parseInt(this.addCardUnitId),
       name: this.name,
     }).then(d => {
       this.name = ''
+      this.submitting = false
       this.toggleModal('card')
     })
   }

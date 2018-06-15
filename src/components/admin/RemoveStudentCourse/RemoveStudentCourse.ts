@@ -17,11 +17,19 @@ export class RemoveStudentCourse extends Vue {
 
   @Inject() toggleModal
 
+  submitting: boolean = false
+
   submit() {
+    if (this.submitting) {
+      return
+    }
+    this.submitting = true
     store.dispatch('removeStudentFromCourse', {
       studentId: this.activeStudentProfile.id,
       courseId: this.deleteStudentCourseId
+    }).then(() => {
+      this.submitting = false
+      this.toggleModal('removeStudentCourse')
     })
-    this.toggleModal('removeStudentCourse')
   }
 }

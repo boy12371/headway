@@ -17,14 +17,21 @@ export class AddBusiness extends Vue {
 
   name: string = ''
   courseIds = []
+  submitting: boolean = false
 
   submit() {
+    if (this.submitting) {
+      return
+    }
+    this.submitting = true
     store.dispatch('createBusiness', {
       name: this.name,
       courseIds: this.courseIds,
+    }).then(d => {
+      this.submitting = false
+      this.name = ''
+      this.courseIds = []
+      this.toggleModal('business')
     })
-    this.name = ''
-    this.courseIds = []
-    this.toggleModal('business')
   }
 }

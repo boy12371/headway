@@ -16,8 +16,17 @@ export class RemoveUnit extends Vue {
 
   @Inject() toggleModal
 
+  submitting: boolean = false
+
   submit() {
+    if (this.submitting) {
+      return
+    }
+    this.submitting = true
     store.dispatch('removeUnit', this.removeUnitId)
-    this.toggleModal('removeUnit')
+    .then(() => {
+      this.submitting = false
+      this.toggleModal('removeUnit')
+    })
   }
 }
