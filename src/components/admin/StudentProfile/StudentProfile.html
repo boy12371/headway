@@ -7,13 +7,16 @@
         <p v-show="!activeStudentProfile.lastLoggedIn">Has not logged in yet</p>
       </div>
       <h3>Activity</h3>
-      <p class="pressed" v-for="activity in activeStudentProfile.activity">
-         {{ activeStudentProfile.first_name }}
-         {{ activity.completed ? 'completed' : 'attempted'}}
-         <strong>{{ activity.cardName }}</strong>
-         {{ activity.date | moment("from", true) }} ago
-      </p>
-      <p v-if="activeStudentProfile.businesses">{{ activeStudentProfile.first_name }} was invited {{ activeStudentProfile.businesses[0].createdAt | moment("from", true) }} ago</p>
+      <div class="Activity">
+        <p class="pressed small" v-for="activity in activeStudentProfile.activity">
+        <i class="fal fa-clock Activity__icon"></i>
+          {{ activeStudentProfile.first_name }}
+          {{ activity.completed ? 'completed' : 'attempted'}}
+          <strong>{{ activity.cardName }}</strong>
+          {{ activity.date | moment("from", true) }} ago
+        </p>
+        <p class="small" v-if="activeStudentProfile.businesses"><i class="fal fa-clock Activity__icon"></i> {{ activeStudentProfile.first_name }} was invited {{ activeStudentProfile.businesses[0].createdAt | moment("from", true) }} ago</p>
+      </div>
     </div>
     <div>
       <div class="StudentProfile__group">
@@ -21,7 +24,7 @@
         <div>
           <div v-for="course in activeStudentProfile.courses" class="Card CourseCard">
             <div class="CourseCard__wrap">
-              <i class="fa fa-trash CourseCard__action" @click="confirmRemoveCourse(course.id)"></i>
+              <i class="fal fa-trash-alt CourseCard__action" @click="confirmRemoveCourse(course.id)"></i>
               <router-link :to="{ name: 'course', params: { courseId : course.id }}" class="CourseCard__link">
                 <p class="flat"><strong>{{ course.name }}</strong></p>
                 <small>Begun <strong>Introduction</strong> 6 days ago</small>
@@ -30,7 +33,7 @@
             </div>
           </div>
           <button class="btn btn--small btn--text" @click="toggleModal('addStudentCourse')">
-            <i class="fa fa-plus"></i> Assign a course
+            <i class="fal fa-plus"></i> Assign a course
           </button>
         </div>
       </div>
@@ -49,7 +52,7 @@
           </div>
         </router-link>
         <button class="btn btn--text" @click="toggleModal('student')">
-          <i class="fa fa-plus"></i> Invite to business
+          <i class="fal fa-plus"></i> Invite to business
         </button>
       </div>
     </div>

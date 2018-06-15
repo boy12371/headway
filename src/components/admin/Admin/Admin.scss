@@ -56,8 +56,6 @@
   transform: translateX(-3.125rem);
 }
 
-.Admin__navicon--close { display: none }
-
 .Admin__sidebar--open {
   transform: translateX(0);
   .Logo,
@@ -65,10 +63,6 @@
     transform: translateX(0);
     opacity: 1;
   }
-}
-
-.Admin__navicon--close {
-  left: 1.0625rem; // 17px
 }
 
 .Admin__sidebar-title {
@@ -116,6 +110,10 @@
   &:hover {
     background: rgba(0,0,0,0.1);
   }
+}
+
+.Admin__navicon--close {
+  right: 1.0625rem; // 17px
 }
 
 .Admin__sidebar .Logo:hover {

@@ -4,6 +4,9 @@ import { makeHot, reload } from './util/hot-reload'
 import { createRouter } from './router'
 
 import './sass/headway.scss'
+import './sass/fa/fontawesome.scss'
+import './sass/fa/fa-light.scss'
+import './sass/fa/fa-solid.scss'
 import './components/shared/Tabs/Tabs.scss'
 
 // Sync Router and Store

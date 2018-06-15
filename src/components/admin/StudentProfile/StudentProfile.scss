@@ -106,3 +106,7 @@
 .CourseCard:hover .CourseCard__action {
   transform: translateX(calc(-100% - 0.5rem));
 }
+
+.Activity__icon {
+  margin-right: 0.5rem;
+}

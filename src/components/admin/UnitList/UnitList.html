@@ -3,9 +3,9 @@
     <i class="icon unit"></i>
     <h4 class="flat">{{ name }}</h4>
     <div class="div UnitList__options">
-      <i class="fa fa-ellipsis-v UnitList__dots" @click="toggleMenu"></i>
+      <i class="fas fa-caret-down UnitList__dots" @click="toggleMenu"></i>
       <div class="UnitList__menu" v-show="menuOpen">
-        <div class="UnitList__menu-option" @click="removeUnit"><i class="fa fa-trash"></i> Delete</div>
+        <div class="UnitList__menu-option" @click="removeUnit"><i class="fal fa-trash-alt"></i> Delete</div>
       </div>
     </div>
   </header>

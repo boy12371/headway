@@ -1,8 +1,8 @@
 <div id="dashboard" class="Admin">
   <div class="Admin__content">
     <div :class="{ 'Admin__sidebar' : true, 'Admin__sidebar--open' : this.sidebarOpen }">
-      <i class="fa fa-navicon Admin__navicon" v-show="!sidebarOpen" @click="toggleSidebar"></i>
-      <i class="fa fa-remove Admin__navicon Admin__navicon--close" v-show="sidebarOpen" @click="toggleSidebar"></i>
+      <i class="fal fa-bars Admin__navicon" v-show="!sidebarOpen" @click="toggleSidebar"></i>
+      <i class="fal fa-times Admin__navicon Admin__navicon--close" v-show="sidebarOpen"></i>
       <router-link class="Logo" to="/dashboard">
         <div class="Logo__icon">H</div>
         <div class="Logo__content">
@@ -29,13 +29,13 @@
       <div class="Browse" v-show="loaded">
         <h4 class="Admin__sidebar-title">
           Courses
-          <i class="fa fa-plus" @click="toggleModal('course')"></i>
+          <i class="fal fa-plus" @click="toggleModal('course')"></i>
         </h4>
         <div v-show="!courses.length"><p class="ghosted">You have no courses</p></div>
         <CourseMenu icon="course" v-show="courses.length" @createCourse="showCourseModal = true" :items="courseMenu" collection="Units"></CourseMenu>
         <h4 class="Admin__sidebar-title">
           Businesses
-          <i class="fa fa-plus" @click="toggleModal('business')"></i>
+          <i class="fal fa-plus" @click="toggleModal('business')"></i>
         </h4>
         <div v-show="!businesses.length"><p class="ghosted">You have no businesses</p></div>
         <CourseMenu icon="business" v-show="businesses.length" @createCourse="showBusinessModal = true" :items="businessMenu" collection="Students"></CourseMenu>
@@ -47,13 +47,13 @@
         </Breadcrumbs>
         <button class="btn" v-show="route.name === 'dashboard' || route.name === 'businessProfile'" @click="toggleModal('student')">Invite student</button>
         <button class="btn btn--standard btn--icon" @click="removeCourse" v-show="route.name === 'course'">
-          <i class="fa fa-trash"></i>
+          <i class="fal fa-trash-alt"></i>
         </button>
         <div v-show="route.name === 'studentProfile'">
-          <button class="btn btn--standard btn--icon" @click="removeStudent"><i class="fa fa-trash"></i></button>
+          <button class="btn btn--standard btn--icon" @click="removeStudent"><i class="fal fa-trash-alt"></i></button>
         </div>
         <button class="btn btn--standard btn--icon" @click="removeCard" v-show="route.name === 'card'">
-          <i class="fa fa-trash"></i>
+          <i class="fal fa-trash-alt"></i>
         </button>
       </div>
       <StudentList v-if="route.name === 'dashboard'"></StudentList>
@@ -74,6 +74,6 @@
   <RemoveStudent v-show="modals.removeStudent" @close="toggleModal('removeStudent')"></RemoveStudent>
   <RemoveUnit v-show="modals.removeUnit" @close="toggleModal('removeUnit')"></RemoveUnit>
   <RemoveCard v-show="modals.removeCard" @close="toggleModal('removeCard')"></RemoveCard>
-  <i class="fa fa-window-restore Switch" @click="switchApp"></i>
+  <i class="fal fa-window-restore Switch" @click="switchApp"></i>
   <Toast></Toast>
 </div>
