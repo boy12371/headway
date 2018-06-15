@@ -1,3 +1,4 @@
+require('dotenv').config()
 import connection from './connection'
 import report from './report'
 

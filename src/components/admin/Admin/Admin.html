@@ -31,12 +31,14 @@
           Courses
           <i class="fa fa-plus" @click="toggleModal('course')"></i>
         </h4>
-        <CourseMenu icon="course" @createCourse="showCourseModal = true" :items="courseMenu" collection="Units"></CourseMenu>
+        <div v-show="!courses.length"><p class="ghosted">You have no courses</p></div>
+        <CourseMenu icon="course" v-show="courses.length" @createCourse="showCourseModal = true" :items="courseMenu" collection="Units"></CourseMenu>
         <h4 class="Admin__sidebar-title">
           Businesses
           <i class="fa fa-plus" @click="toggleModal('business')"></i>
         </h4>
-        <CourseMenu icon="business" @createCourse="showBusinessModal = true" :items="businessMenu" collection="Students"></CourseMenu>
+        <div v-show="!businesses.length"><p class="ghosted">You have no businesses</p></div>
+        <CourseMenu icon="business" v-show="businesses.length" @createCourse="showBusinessModal = true" :items="businessMenu" collection="Students"></CourseMenu>
       </div>
     </div>
     <div class="Admin__main">

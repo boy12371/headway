@@ -12,6 +12,9 @@
       </div>
     </div>
   </div>
+  <div v-show="!allStudents.length">
+    <p>You haven't added any students yet.</p>
+  </div>
   <div class="StudentList__wrap" v-show="allStudents.length">
     <router-link class="non-link" v-for="(student, i) in allStudents" :key="i" :to="{ name: 'studentProfile', params: { studentId: student.id } }">
       <Card icon="student" class="StudentList__Student" :title="student.first_name + ' ' + student.last_name">
