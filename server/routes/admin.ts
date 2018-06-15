@@ -2,14 +2,14 @@ import { createCourse, inviteStudent } from '../actions'
 import app from '../app'
 import { checkAdminLogin, checkAdminPermission, mockAdminLogin } from '../authentication'
 import { Logger } from '../logger'
-import { Admin, Business, BusinessCourse, Card, Course, CourseStudent, Student, Unit } from '../models'
+import { Admin, Business, BusinessCourse, Card, Course, CourseStudent, Student, Unit, BusinessStudent } from '../models'
 import { getSignedUrl, s3 } from '../s3'
 import { S3_BUCKET, UPLOAD_DIRECTORY } from '../constants'
 
 import * as fs from 'fs'
 
 if (!fs.existsSync(UPLOAD_DIRECTORY)) {
-    fs.mkdirSync(UPLOAD_DIRECTORY)
+  fs.mkdirSync(UPLOAD_DIRECTORY)
 }
 
 if (process.env.MOCK_AUTH) {
@@ -212,17 +212,17 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
 })
 
 app.delete('/admin/student/:studentId', checkAdminPermission, (req, res) => {
-  // TODO: this findById include is direct copy paste
+  const { studentId } = req.params
   const adminId = req.user.admin.id
-  Student.scope('public').findById(req.params.studentId, {
+  Student.scope('public').findById(studentId, {
     include: [
       { model: Course, where: { adminId }, required: false },
       { model: Business, where: { adminId } },
     ]
   }).then(student => {
     Promise.all([
-      ...student.businesses.map(studentBusiness => studentBusiness.destroy()),
-      ...student.courses.map(studentCourse => studentCourse.destroy()),
+      ...student.businesses.map(business => BusinessStudent.destroy({ where: { studentId, businessId: business.id, } })),
+      ...student.courses.map(course => CourseStudent.destroy({ where: { studentId, courseId: course.id, } })),
     ]).then(results => {
       res.send('OK')
     })
@@ -252,13 +252,21 @@ app.post('/admin/student-course', checkAdminPermission, (req, res) => {
 
 app.delete('/admin/student-course', checkAdminPermission, (req, res) => {
   const { studentId, courseId } = req.body
-  return CourseStudent.destroy({
-    where: {
-      studentId,
-      courseId,
-    }
-  }).then(result => {
+  return CourseStudent.destroy({ where: { studentId, courseId, } }).then(result => {
     res.send('OK')
+  })
+})
+
+app.delete('/admin/student-business', checkAdminPermission, (req, res) => {
+  const { studentId, businessId } = req.body
+  Business.findById(businessId, { include: [Course] }).then(business => {
+    // Automatically remove Student from every Course this Business owns
+    const promises = business.courses.map(course => CourseStudent.destroy({ where: { studentId, courseId: course.id, } }))
+    Promise.all(promises).then(() => {
+      BusinessStudent.destroy({ where: { studentId, businessId, } }).then(result => {
+        res.send('OK')
+      })
+    })
   })
 })
 
@@ -304,7 +312,7 @@ app.get('/admin/business/:businessId', checkAdminPermission, (req, res) => {
 
 app.get('/admin/card/:cardId/media', (req, res) => {
   const { cardId } = req.params
-  Card.findById(cardId, { include: [{ model: Unit, include: [Course] }] }).then(card => {
+  Card.scope('includeCourse').findById(cardId).then(card => {
     if (card && card.unit.course.adminId === req.user.admin.id) {
       const name = card.media
       const Key = `${cardId}/${name}`

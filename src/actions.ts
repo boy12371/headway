@@ -112,7 +112,6 @@ export const actions = {
   },
 
   removeStudentFromCourse(context, payload) {
-    // TODO: can DELETE have a body? or need separate endpoint?
     return axios.delete(BASE_URL + '/admin/student-course', { data: payload }).then(res => {
       context.dispatch('getStudentProfile', payload.studentId)
       return res.data
@@ -120,7 +119,7 @@ export const actions = {
   },
 
   removeStudentFromBusiness(context, payload) {
-    return axios.post(BASE_URL + '/admin/student-business', payload).then(res => {
+    return axios.delete(BASE_URL + '/admin/student-business', payload).then(res => {
       context.dispatch('getStudentProfile', payload.studentId)
       return res.data
     })
@@ -174,8 +173,12 @@ export const actions = {
   },
 
   removeStudent(context, id) {
-    id = parseInt(id)
-    console.log('call delete on student delete api when implemented')
+    return axios.delete(BASE_URL + '/admin/student/' + id).then(res => {
+      context.dispatch('getAdmin')
+      context.commit('setNotification', {
+        message: 'Student Removed'
+      })
+    })
   },
 
   createUnit(context, { courseId, name }) {
