@@ -5,6 +5,7 @@ import { checkStudentLogin, authStudent, checkStudentEnrolled, mockStudentLogin 
 import { Course, Student, Card, Unit, Business, Activity } from '../models'
 import { getStudentActivitiesByUnit, studentUnitProgress, incrementCompletedUnits } from '../actions'
 import { Logger } from '../logger'
+import { getSignedUrl } from '../s3'
 
 if (process.env.MOCK_AUTH) {
   Logger.warn('WARNING: Mock Student Auth enabled for /student')
@@ -69,4 +70,26 @@ app.post('/student/card/:cardId/submit', (req, res) => {
       })
     })
   })
+})
+
+app.get('/student/:courseId/:unitId/:cardId/media', checkStudentEnrolled, (req, res) => {
+  const { cardId } = req.params
+
+  Promise.all([
+    Card.scope('includeCourse').findById(cardId),
+    Student.scope('public').findById(req.user.student.id, {include: [Course]}),
+  ])
+    .then(([card, student]) => {
+      const courseIds = student.courses.map(course => course.id)
+      if (courseIds.indexOf(card.unit.courseId) === -1) {
+        res.status(401).send({ message: 'Unauthorized: Student does not own Card #' + cardId })
+        return
+      }
+      const name = card.media
+      const Key = `${cardId}/${name}`
+      getSignedUrl(Key).then(url => {
+        // res.send(`<img src="${url}">`)
+        res.redirect(url)
+      })
+    })
 })
