@@ -26,6 +26,7 @@ export class UnitList extends Vue {
   cardName = ''
 
   cards = []
+  loading = false
 
   addingCard = false
   menuOpen = false
@@ -79,9 +80,11 @@ export class UnitList extends Vue {
   mounted() {
     const { params } = this.$route
 
+    this.loading = true
     unitService.get(this.unitId).then(unit => {
       const courseId = parseInt(this.route.params.courseId)
       this.cards = unit.cards
+      this.loading = false
       store.commit('setUnitInCourse', { unit, courseId})
     })
   }

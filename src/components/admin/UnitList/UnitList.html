@@ -9,7 +9,7 @@
       </div>
     </div>
   </header>
-  <div class="sk-fading-circle" v-show="!cards.length">
+  <div class="sk-fading-circle" v-show="loading">
     <div class="sk-circle1 sk-circle"></div>
     <div class="sk-circle2 sk-circle"></div>
     <div class="sk-circle3 sk-circle"></div>
@@ -23,7 +23,7 @@
     <div class="sk-circle11 sk-circle"></div>
     <div class="sk-circle12 sk-circle"></div>
   </div>
-  <div v-show="cards.length">
+  <div v-show="!loading">
     <div class="UnitList__body">
       <router-link class="UnitList__card" v-for="card in cards" :key="'card-link-' + card.id" :to="{ name: 'card', params: { courseId: route.params.courseId, unitId: unitId, cardId: card.id }}">
         <Card :key="card.id" class="flat" :title="card.name">
