@@ -24,7 +24,7 @@
     <div class="sk-circle12 sk-circle"></div>
   </div>
   <div v-show="!loading">
-    <div class="UnitList__body">
+    <div class="UnitList__body" v-show="cards.length">
       <router-link class="UnitList__card" v-for="card in cards" :key="'card-link-' + card.id" :to="{ name: 'card', params: { courseId: route.params.courseId, unitId: unitId, cardId: card.id }}">
         <Card :key="card.id" class="flat" :title="card.name">
         </Card>

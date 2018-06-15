@@ -101,7 +101,7 @@
   right: 0.5rem; // 8px
   width: 2.25rem;
   height: 2.25rem;
-  line-height: 2.25rem;
+  line-height: 2.25rem !important;
   text-align: center;
   cursor: pointer;
   transition: all 200ms ease;
@@ -181,7 +181,7 @@
   }
 
   .Admin__navicon {
-    display: none;
+    display: none !important;
   }
 
   .Admin__sidebar .Logo,
