@@ -28,7 +28,7 @@ export class Toast extends Vue {
       this.visible = true
       setTimeout(() => {
         this.visible = false
-      }, 1000)
+      }, 5000)
     }
   }
 }
