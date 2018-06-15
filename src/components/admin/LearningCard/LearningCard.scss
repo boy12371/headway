@@ -155,8 +155,11 @@
 
 .LearningCard__mobile {
   position: fixed;
-  top: 6rem;
-  right: 1rem;
+  top: 4rem;
+  right: 0;
+  bottom: 0;
+  background: #eee;
+  padding: 2rem 1rem;
 }
 
 .LearningCard__form {
