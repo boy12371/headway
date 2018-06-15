@@ -696,6 +696,158 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Remove Student from Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1d36e6e-6a54-49c9-a2e8-be4c85bb2b24",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response OK', function () {",
+									"\tpm.response.to.have.status(200);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('OK');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"studentId\":1, \"courseId\": 1}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/admin/student-course",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"student-course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Student from Business",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1d36e6e-6a54-49c9-a2e8-be4c85bb2b24",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response OK', function () {",
+									"\tpm.response.to.have.status(200);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('OK');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"studentId\":1, \"businessId\": 1}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/admin/student-business",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"student-business"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Student from Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1d36e6e-6a54-49c9-a2e8-be4c85bb2b24",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Response OK', function () {",
+									"\tpm.response.to.have.status(200);",
+									"\tpm.expect(pm.response.responseTime).to.be.below(400);",
+									"})",
+									"",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('OK');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/admin/student/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"student",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
