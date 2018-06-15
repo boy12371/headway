@@ -11,8 +11,7 @@
          {{ activeStudentProfile.first_name }}
          {{ activity.completed ? 'completed' : 'attempted'}}
          <strong>{{ activity.cardName }}</strong>
-         on
-         {{ activity.date.toLocaleString() }}
+         {{ activity.date | moment("from", true) }} ago
       </div>
     </div>
     <div>
@@ -27,7 +26,6 @@
                 <small>Begun <strong>Introduction</strong> 6 days ago</small>
               </router-link>
               <ProgressBar class="CourseCard__progress" collection="units" :complete="course.CourseStudent.completedUnits" :total="11"></ProgressBar>
-              <div v-if="course.CourseStudent.timeSpentOnCurrentUnit" hidden> Time spent on current Unit: {{ course.CourseStudent.timeSpentOnCurrentUnit }} </div>
             </div>
           </div>
           <button class="btn btn--small btn--text" @click="toggleModal('addStudentCourse')">
