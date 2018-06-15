@@ -7,6 +7,13 @@
         <p v-show="!activeStudentProfile.lastLoggedIn">Has not logged in yet</p>
       </div>
       <h4>Recent activity</h4>
+      <div v-for="activity in activeStudentProfile.activity">
+         {{ activeStudentProfile.first_name }}
+         {{ activity.completed ? 'completed' : 'attempted'}}
+         <strong>{{ activity.cardName }}</strong>
+         on
+         {{ activity.date.toLocaleString() }}
+      </div>
     </div>
     <div>
       <div class="StudentProfile__group">

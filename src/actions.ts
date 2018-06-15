@@ -17,6 +17,12 @@ export const actions = {
     })
   },
 
+  getStudentActivity(context) {
+    return axios.get(BASE_URL + '/student').then(res => {
+      context.commit('setStudent', res.data)
+    })
+  },
+
   getStudentCourse(context, id) {
     return axios.get(BASE_URL + '/student/course/' + id).then(res => {
       context.commit('setActiveStudentCourse', res.data)
@@ -55,8 +61,11 @@ export const actions = {
         loading: true
       }
     ])
-    return axios.get(BASE_URL + '/admin/student/' + id).then(res => {
-      const student = res.data
+    const getStudentProfile = axios.get(BASE_URL + '/admin/student/' + id).then(res => res.data)
+    const getStudentActivity = axios.get(BASE_URL + '/admin/student/' + id + '/activity').then(res => res.data)
+
+    return Promise.all([getStudentProfile, getStudentActivity]).then(([student, activity]) => {
+      student.activity = activity
       context.commit('setActiveStudentProfile', student)
       context.commit('setBreadcrumbs', [
         {

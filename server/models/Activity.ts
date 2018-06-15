@@ -8,7 +8,7 @@ export class Activity extends Model<Activity> {
   id: number
 
   @Column evidence_proof: string // File
-  @Column completed: Date // got quiz correct
+  @Column completed: boolean
 
   @ForeignKey(() => Card)
   @Column

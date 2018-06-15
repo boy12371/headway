@@ -55,7 +55,7 @@ app.post('/student/card/:cardId/submit', (req, res) => {
     Activity.create({
       studentId,
       cardId,
-      completed: completed ? new Date() : null,
+      completed,
       evidence_proof,
     }).then(activity => {
       studentUnitProgress(card.unit.id, card.id).then(progress => {

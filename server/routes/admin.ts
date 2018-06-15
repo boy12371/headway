@@ -2,7 +2,7 @@ import { createCourse, inviteStudent } from '../actions'
 import app from '../app'
 import { checkAdminLogin, checkAdminPermission, mockAdminLogin } from '../authentication'
 import { Logger } from '../logger'
-import { Admin, Business, BusinessCourse, Card, Course, CourseStudent, Student, Unit, BusinessStudent } from '../models'
+import { Admin, Business, BusinessCourse, Card, Course, CourseStudent, Student, Unit, BusinessStudent, Activity } from '../models'
 import { getSignedUrl, s3 } from '../s3'
 import { S3_BUCKET, UPLOAD_DIRECTORY } from '../constants'
 
@@ -193,7 +193,6 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
     include: [
       { model: Course, where: { adminId }, required: false },
       { model: Business, where: { adminId } },
-      // This loads way too much data. will need to be custom scopes for sure
       // {
       //   model: Card,
       //   include: [{
@@ -208,6 +207,34 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
   }).then(student => {
     // TODO: also get Activity where course.adminId === adminId
     res.send(student)
+  })
+})
+
+app.get('/admin/student/:studentId/activity', checkAdminPermission, (req, res) => {
+  const { studentId } = req.params
+  const adminId = req.user.admin.id
+  Student.findById(studentId, { include: [{
+    model: Card,
+    include: [
+      {
+        model: Unit,
+        include: [Course]
+      }
+    ],
+  }] }).then(student => {
+    const activities = student.cardActivities.map(card => {
+      const json = card.toJSON()
+      if (card.unit.course.adminId !== adminId) {
+        return null
+      }
+      return {
+        cardId: card.id,
+        cardName: card.name,
+        completed: json.Activity.completed,
+        date: json.Activity.updatedAt,
+      }
+    })
+    res.send(activities)
   })
 })
 
