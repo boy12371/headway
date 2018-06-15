@@ -7,7 +7,7 @@
           <input type="text" class="input" id="unit-name" v-model="name" autofocus autocomplete="off" required>
         </div>
         <div class="form__footer">
-          <button class="btn btn--block">Create</button>
+          <button class="btn btn--block" :disabled="submitting">Create</button>
         </div>
       </form>
     </Card>

@@ -22,6 +22,9 @@ export class AddUnit extends Vue {
   submitting: boolean = false
 
   submit() {
+    if (this.submitting) {
+      return
+    }
     this.submitting = true
     store.dispatch('createUnit', {
       courseId: parseInt(this.route.params.courseId),
