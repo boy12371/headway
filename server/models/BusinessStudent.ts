@@ -5,6 +5,9 @@ import Student from './Student'
 @Table({ timestamps: true })
 export class BusinessStudent extends Model<BusinessStudent> {
 
+  @Column({ primaryKey: true, autoIncrement: true })
+  id: number
+
   @ForeignKey(() => Business)
   @Column
   businessId: number

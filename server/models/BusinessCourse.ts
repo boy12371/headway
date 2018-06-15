@@ -5,7 +5,8 @@ import Course from './Course'
 @Table({ timestamps: true })
 export class BusinessCourse extends Model<BusinessCourse> {
 
-  @Column code: string
+  @Column({ primaryKey: true, autoIncrement: true })
+  id: number
 
   @ForeignKey(() => Business)
   @Column
