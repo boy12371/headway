@@ -23,6 +23,18 @@ Run database report with `make report`
 Deploy to heroku with `make deploy`
 
 
+## Server environment variables
+
+During development, create a `.env` file to store your environment variables. The server uses the following:
+
+- `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` for S3 access
+- `MOCK_AUTH=1` will hard code the user authentication to Admin ID 1 and Student ID 1
+- `SAMPLE_DATA=1` when running `make db` will populate the database with fixtures from `data/`
+- `CLEARDB_DATABASE_URL` can be used to change database connection. Use with caution during development
+
+For production, these environment variables should be managed via heroku.
+
+
 ## Technology
 
 Client is based on `vue-webpack-typescript` boilerplate
