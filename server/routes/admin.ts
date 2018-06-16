@@ -213,27 +213,8 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
 app.get('/admin/student/:studentId/activity', checkAdminPermission, (req, res) => {
   const { studentId } = req.params
   const adminId = req.user.admin.id
-  Student.findById(studentId, { include: [{
-    model: Card,
-    include: [
-      {
-        model: Unit,
-        include: [Course]
-      }
-    ],
-  }] }).then(student => {
-    const activities = student.cardActivities.map(card => {
-      const json = card.toJSON()
-      if (card.unit.course.adminId !== adminId) {
-        return null
-      }
-      return {
-        cardId: card.id,
-        cardName: card.name,
-        completed: json.Activity.completed,
-        date: json.Activity.updatedAt,
-      }
-    })
+  Activity.findAll({ where: { studentId } }).then(activities => {
+    console.warn('TODO: Activity list restricted to current Admin')
     res.send(activities)
   })
 })

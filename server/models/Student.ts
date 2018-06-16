@@ -39,14 +39,6 @@ export class Student extends Model<Student> {
   })
   businesses: Business[]
 
-  @BelongsToMany(() => Card, {
-    through: {
-      model: () => Activity,
-      unique: false,
-    },
-  })
-  cardActivities: Card[]
-
   displayName() {
     const name = [this.first_name, this.last_name].join(' ').trim()
     return name

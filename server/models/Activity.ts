@@ -1,4 +1,4 @@
-import { Table, Column, Model, HasMany, ForeignKey } from 'sequelize-typescript'
+import { Table, Column, Model, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript'
 import Student from './Student'
 import Card from './Card'
 
@@ -13,6 +13,9 @@ export class Activity extends Model<Activity> {
   @ForeignKey(() => Card)
   @Column
   cardId: number
+
+  // @BelongsTo(() => Card)
+  // card: Card
 
   @ForeignKey(() => Student)
   @Column

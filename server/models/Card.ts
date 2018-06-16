@@ -38,14 +38,6 @@ export class Card extends Model<Card> {
 
   @BelongsTo(() => Unit)
   unit: Unit
-
-  @BelongsToMany(() => Student, {
-    through: {
-      model: () => Activity,
-      unique: false,
-    },
-  })
-  activityStudents: Student[]
 }
 
 export default Card

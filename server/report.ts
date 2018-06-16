@@ -10,19 +10,6 @@ const printHeading = text => {
   console.log(`\n\n${text}\n${DIVIDER}\n`)
 }
 
-const studentActivity = () => {
-  return Student.findAll({ include: [Card] }).then(students => {
-    printHeading('Student Activity')
-    students.forEach(student => {
-      student.cardActivities.forEach(card => {
-        const json = card.toJSON()
-        console.log(`- Card "${card.name}" evidence_task: "${card.evidence_task}"`)
-        console.log(`- Student ${student.displayName()} provided evidence: "${json.Activity.evidence_proof}"`)
-      })
-    })
-  })
-}
-
 const studentUnitProgressReport = (unitId, studentId) => {
   printHeading('Student Unit Progress')
   return studentUnitProgress(unitId, studentId)
@@ -169,7 +156,6 @@ const report = async () => {
   // await students('1')
   // await students('2')
   await fullAdminReport(1)
-  await studentActivity()
   await studentEnrolment()
   await courseSummary()
   await unitSummary()
