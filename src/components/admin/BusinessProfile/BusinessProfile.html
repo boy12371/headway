@@ -9,7 +9,11 @@
         <p>You have no students in this Business</p>
       </div>
       <div class="StudentList__wrap" v-show="activeBusinessProfile.students.length > 0">
-        <router-link class="non-link" v-for="(student, sIndex) in activeBusinessProfile.students" :to="{ name: 'studentProfile', params: { studentId: student.id } }">
+        <router-link class="non-link"
+          v-for="(student, sIndex) in activeBusinessProfile.students"
+          :key="'business-student-link-' + student.id"
+          :to="{ name: 'studentProfile', params: { studentId: student.id } }"
+        >
           <Card icon="student" class="StudentList__Student" :title="student.first_name + '' + student.last_name" :key="sIndex">
           <div slot="body">
             <p><small>{{ student.email }}</small></p>

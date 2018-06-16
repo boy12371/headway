@@ -52,6 +52,11 @@ export const actions = {
 
   getStudentProfile(context, id) {
 
+    if (!id) {
+      console.warn('getStudentProfile requires id. aborting')
+      return
+    }
+
     context.commit('setBreadcrumbs', [
       {
         label: 'Students',
