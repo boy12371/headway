@@ -35,6 +35,7 @@
           </div>
           <div class="Mobile__hero">
             <div class="Mobile__video" v-show="card.media">
+              <i class="fa fa-trash-alt Mobile__delete-video" @click="removeVideo"></i>
               <video controls :src="'//localhost:5000/admin/card/' + activeCard.id + '/media'"></video>
             </div>
             <vue-dropzone ref="myVueDropzone"
@@ -54,7 +55,6 @@
           </div>
           <div class="Mobile__content" v-if="card.content">
             <div v-html="card.content"></div>
-            <!-- <p v-for="p in card.content.split('\n')">{{ p }}</p> -->
           </div>
         </div>
         <div class="Mobile__footer">

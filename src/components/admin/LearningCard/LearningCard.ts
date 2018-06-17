@@ -49,6 +49,14 @@ export class LearningCard extends Vue {
     return []
   }
 
+  removeVideo() {
+    store.commit('set', {
+      key: 'removeVideoCardId',
+      value: this.$route.params.cardid
+    })
+    this.toggleModal('removeVideo')
+  }
+
   mounted() {
     unitService.get(this.route.params.unitId).then(unit => {
       const cards = unit.cards.filter(card => card.id === parseInt(this.route.params.cardId))

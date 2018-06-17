@@ -33,6 +33,7 @@ export const state = {
     removeStudent: false,
     removeUnit: false,
     removeCard: false,
+    removeVideo: false,
   },
   removeCourseId: null,
   removeUnitId: null,

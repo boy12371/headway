@@ -78,6 +78,14 @@
   }
 }
 
+.Mobile__delete-video {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 20;
+  color: #fff;
+}
+
 .dz-clickable {
   position: absolute;
   top: 0;
