@@ -34,10 +34,14 @@
             <h4 class="flat">{{ card.name }}</h4>
           </div>
           <div class="Mobile__hero">
+            <div class="Mobile__video" v-show="card.media">
+              <video controls :src="'//localhost:5000/admin/card/' + activeCard.id + '/media'"></video>
+            </div>
             <vue-dropzone ref="myVueDropzone"
               id="dropzone"
               :options="dropzoneOptions"
               :includeStyling="false"
+              v-show="!card.media"
               @vdropzone-sending="sendingEvent"
             >
             </vue-dropzone>
