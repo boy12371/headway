@@ -9,7 +9,7 @@ import Admin from './models/Admin'
 import Student from './models/Student'
 import Mentor from './models/Mentor'
 import Course from './models/Course'
-import { Business } from './models'
+import { Business, Card } from './models'
 import { Logger } from './logger'
 
 passport.use('admin-local', new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -147,7 +147,7 @@ export const checkStudentEnrolled = (req, res, next) => {
 }
 
 export const checkAdminPermission = (req, res, next) => {
-  const { courseId, businessId, studentId } = defaults(req.body, req.params)
+  const { courseId, businessId, studentId, cardId } = defaults(req.body, req.params)
   if (!req.user) {
     return res.status(401).send({ message: 'Unauthorized' })
   }
@@ -160,6 +160,16 @@ export const checkAdminPermission = (req, res, next) => {
       },
     ]
   }).then(admin => {
+    if (cardId) {
+      Card.scope('includeCourse').findById(cardId).then(card => {
+        if (card && card.unit.course.adminId === admin.id) {
+          next()
+        } else {
+          return res.status(401).send({ message: 'Unauthorized: Admin does not own Card' })
+        }
+      })
+      return
+    }
     if (courseId) {
       const courseIds = admin.courses.map(course => course.id)
       if (courseIds.indexOf(parseInt(courseId)) === -1) {

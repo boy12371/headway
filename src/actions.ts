@@ -222,6 +222,12 @@ export const actions = {
     })
   },
 
+  removeVideo(context, cardId) {
+    return axios.delete(`${BASE_URL}/admin/card/${cardId}/media`).then(res => {
+      console.log('TODO: modify card', res.data)
+    })
+  },
+
   editCard(context, { card }) {
     return axios.put(BASE_URL + '/api/card/' + card.id, card).then(res => {
       const card = res.data

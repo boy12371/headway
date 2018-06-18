@@ -52,7 +52,7 @@ export class LearningCard extends Vue {
   removeVideo() {
     store.commit('set', {
       key: 'removeVideoCardId',
-      value: this.$route.params.cardid
+      value: this.$route.params.cardId,
     })
     this.toggleModal('removeVideo')
   }

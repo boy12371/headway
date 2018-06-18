@@ -318,15 +318,34 @@ app.get('/admin/business/:businessId', checkAdminPermission, (req, res) => {
   })
 })
 
-app.get('/admin/card/:cardId/media', (req, res) => {
+app.get('/admin/card/:cardId/media', checkAdminPermission, (req, res) => {
   const { cardId } = req.params
   Card.scope('includeCourse').findById(cardId).then(card => {
-    if (card && card.unit.course.adminId === req.user.admin.id) {
-      const name = card.media
-      const Key = `${cardId}/${name}`
-      getSignedUrl(Key).then(url => {
-        res.redirect(url)
-      })
+    const Key = `${cardId}/${card.media}`
+    getSignedUrl(Key).then(url => {
+      res.redirect(url)
+    })
+  })
+})
+
+app.delete('/admin/card/:cardId/media', checkAdminPermission, (req, res) => {
+  const { cardId } = req.params
+  Card.scope('includeCourse').findById(cardId).then(card => {
+    const Key = `${cardId}/${card.media}`
+
+    Logger.debug(`S3 deleteObject ${Key} request`)
+    const params = {
+      Bucket: S3_BUCKET,
+      Key,
     }
+    s3.deleteObject(params, (err, data) => {
+      if (err) {
+        console.warn(err)
+      }
+      Logger.debug(`S3 deleteObject ${Key} success`)
+    })
+    card.media = null
+    card.save()
+    res.send('OK')
   })
 })
