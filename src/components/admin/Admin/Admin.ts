@@ -20,6 +20,7 @@ const toggleModal = k => store.commit('toggleModal', k)
 @Component({
   template: require('./Admin.html'),
   name: 'Admin',
+  directives: { focus: focus },
   components: {
     AddBusiness,
     AddCard,

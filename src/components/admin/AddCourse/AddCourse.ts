@@ -17,6 +17,7 @@ import axios from 'axios'
 
 export class AddCourse extends Vue {
   @State businesses
+  @State modals
 
   name = ''
   businessIds = []

@@ -17,6 +17,7 @@ export class AddUnit extends Vue {
   @Inject() toggleModal
 
   @State route
+  @State modals
 
   name = ''
   submitting: boolean = false
@@ -32,7 +33,7 @@ export class AddUnit extends Vue {
     }).then(d => {
       this.name = ''
       this.submitting = false
-      this.toggleModal('unit')
+      this.toggleModal('addUnit')
     })
   }
 }

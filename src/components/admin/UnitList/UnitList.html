@@ -32,7 +32,7 @@
     </div>
     <div class="UnitList__footer">
       <form @submit.prevent="submit" slot="body" class="Card UnitList__new-card" v-show="addingCard">
-        <input type="text" class="input" id="cardName" ref="cardName" @blur="blur" v-model="cardName" placeholder="Card name" autofocus autocomplete="off" required>
+        <input type="text" class="input" v-focus="addingCard" @blur="addingCard = false" id="cardName" ref="cardName" v-model="cardName" placeholder="Card name" autocomplete="off" required>
         <button class="btn btn--block">Save</button>
       </form>
       <button class="btn btn--block btn--standard Course__action" @click.stop="addCard">Add a card</button>

@@ -42,10 +42,6 @@ export class UnitList extends Vue {
 
   addCard() {
     this.cardName = ''
-    store.commit('set', {
-      key: 'addCardUnitId',
-      value: this.unitId
-    })
     this.addingCard = true
   }
 

@@ -14,6 +14,7 @@ export class AddBusiness extends Vue {
   @Inject() toggleModal
 
   @State courses
+  @State modals
 
   name: string = ''
   courseIds = []

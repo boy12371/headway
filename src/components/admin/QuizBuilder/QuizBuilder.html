@@ -7,7 +7,7 @@
     <h4 class="pressed">Question {{ qIndex + 1 }}</h4>
     <input type="text"
       class="input"
-      @focus.native="$event.target.select()"
+      :id="'question-' + qIndex"
       @change="save"
       v-model.lazy="question.question"
       placeholder="Question"
@@ -22,6 +22,7 @@
           <input type="text"
             class="input"
             v-model.lazy="answer.text"
+            :id="'answer-' + qIndex + '-' + aIndex"
             @change="save"
             placeholder="Answer"
           >

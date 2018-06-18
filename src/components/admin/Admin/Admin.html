@@ -29,13 +29,13 @@
       <div class="Browse" v-show="loaded">
         <h4 class="Admin__sidebar-title">
           Courses
-          <i class="fal fa-plus" @click="toggleModal('course')"></i>
+          <i class="fal fa-plus" @click="toggleModal('addCourse')"></i>
         </h4>
         <div v-show="!courses.length"><p class="ghosted">You have no courses</p></div>
         <CourseMenu icon="course" v-show="courses.length" @createCourse="showCourseModal = true" :items="courseMenu" collection="Units"></CourseMenu>
         <h4 class="Admin__sidebar-title">
           Businesses
-          <i class="fal fa-plus" @click="toggleModal('business')"></i>
+          <i class="fal fa-plus" @click="toggleModal('addBusiness')"></i>
         </h4>
         <div v-show="!businesses.length"><p class="ghosted">You have no businesses</p></div>
         <CourseMenu icon="business" v-show="businesses.length" @createCourse="showBusinessModal = true" :items="businessMenu" collection="Students"></CourseMenu>
@@ -45,7 +45,7 @@
       <div class="Admin__toolbar">
         <Breadcrumbs :crumbs="breadcrumbs">
         </Breadcrumbs>
-        <button class="btn" v-show="route.name === 'dashboard' || route.name === 'businessProfile'" @click="toggleModal('student')">Invite student</button>
+        <button class="btn" v-show="route.name === 'dashboard' || route.name === 'businessProfile'" @click="toggleModal('addStudent')">Invite student</button>
         <button class="btn btn--standard btn--icon" @click="removeCourse" v-show="route.name === 'course'">
           <i class="fal fa-trash-alt"></i>
         </button>
@@ -64,10 +64,10 @@
       <LearningCard v-if="route.name == 'card'" :card="activeCard"></LearningCard>
     </div>
   </div>
-  <AddCourse v-show="modals.course" @close="toggleModal('course')"></AddCourse>
-  <AddStudent v-show="modals.student" @close="toggleModal('student')"></AddStudent>
-  <AddBusiness v-show="modals.business" @close="toggleModal('business')"></AddBusiness>
-  <AddUnit v-show="modals.unit" @close="toggleModal('unit')"></AddUnit>
+  <AddCourse v-show="modals.addCourse" @close="toggleModal('addCourse')"></AddCourse>
+  <AddStudent v-show="modals.addStudent" @close="toggleModal('addStudent')"></AddStudent>
+  <AddBusiness v-show="modals.addBusiness" @close="toggleModal('addBusiness')"></AddBusiness>
+  <AddUnit v-show="modals.addUnit" @close="toggleModal('addUnit')"></AddUnit>
   <AddStudentCourse v-show="modals.addStudentCourse" @close="toggleModal('addStudentCourse')"></AddStudentCourse>
   <RemoveStudentCourse v-show="modals.removeStudentCourse" @close="toggleModal('removeStudentCourse')"></RemoveStudentCourse>
   <RemoveCourse v-show="modals.removeCourse" @close="toggleModal('removeCourse')"></RemoveCourse>

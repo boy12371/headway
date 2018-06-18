@@ -19,6 +19,7 @@ export class AddStudent extends Vue {
   @Inject() toggleModal
 
   @State businesses
+  @State modals
 
   @State activeBusinessProfile
   @Watch('activeBusinessProfile', { deep: true })

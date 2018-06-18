@@ -30,6 +30,10 @@ export class QuizBuilder extends Vue {
       ]
     }
     this.questions.push(question)
+    this.$nextTick(() => {
+      document.getElementById('question-' + (this.questions.length - 1)).focus()
+      document.getElementById('question-' + (this.questions.length - 1)).scrollIntoView(true)
+    })
   }
 
   removeQuestion(qIndex) {
@@ -43,6 +47,10 @@ export class QuizBuilder extends Vue {
       correct: false
     }
     this.questions[qIndex].answers.push(answer)
+    this.$nextTick(() => {
+      document.getElementById('answer-' + qIndex + '-' + (this.questions[qIndex].answers.length - 1)).focus()
+      document.getElementById('answer-' + qIndex + '-' + (this.questions[qIndex].answers.length - 1)).scrollIntoView(true)
+    })
   }
 
   removeAnswer(qIndex, aIndex) {
