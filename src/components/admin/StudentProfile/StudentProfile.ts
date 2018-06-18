@@ -27,6 +27,7 @@ export class StudentProfile extends Vue {
 
   @State breadcrumbs
   @State activeStudentProfile
+  @State courses
 
   @Inject() toggleModal
 
