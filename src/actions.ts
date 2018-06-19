@@ -222,9 +222,9 @@ export const actions = {
     })
   },
 
-  removeVideo(context, cardId) {
+  removeCardVideo(context, cardId) {
     return axios.delete(`${BASE_URL}/admin/card/${cardId}/media`).then(res => {
-      console.log('TODO: modify card', res.data)
+      context.commit('setActiveCardVideo', null)
     })
   },
 

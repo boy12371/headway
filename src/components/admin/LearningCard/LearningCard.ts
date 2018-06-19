@@ -1,4 +1,4 @@
-import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch, Inject } from 'vue-property-decorator'
 
 import * as vue2Dropzone from 'vue2-dropzone'
 
@@ -25,12 +25,22 @@ import { BASE_URL } from '../../../constants'
 
 export class LearningCard extends Vue {
   @Inject() toggleModal
-  @Prop() card
 
   quizVisible: boolean = false
 
   @State route
   @State activeCard
+
+  $refs: {
+    video: HTMLVideoElement
+  }
+
+  @Watch('activeCard', { deep: true })
+  watchActiveCard(newVal, oldVal) {
+    if (newVal.media) {
+      this.$refs.video.setAttribute('src', BASE_URL + '/admin/card/' + this.activeCard.id + '/media')
+    }
+  }
 
   dropzoneOptions = {
     url: BASE_URL + '/admin/upload',
@@ -39,12 +49,16 @@ export class LearningCard extends Vue {
   }
 
   sendingEvent(file, xhr, formData) {
-    formData.append('cardId', this.card.id)
+    formData.append('cardId', this.activeCard.id)
+  }
+
+  success(file) {
+    store.commit('setActiveCardVideo', file.name)
   }
 
   get quiz() {
-    if (this.card.quiz) {
-      return JSON.parse(this.card.quiz)
+    if (this.activeCard.quiz) {
+      return JSON.parse(this.activeCard.quiz)
     }
     return []
   }
@@ -85,10 +99,10 @@ export class LearningCard extends Vue {
 
   save() {
     store.dispatch('updateActiveCard', {
-      id: this.card.id,
-      name: this.card.name,
-      evidence_task: this.card.evidence_task,
-      content: this.card.content,
+      id: this.activeCard.id,
+      name: this.activeCard.name,
+      evidence_task: this.activeCard.evidence_task,
+      content: this.activeCard.content,
     })
   }
 }

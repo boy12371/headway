@@ -23,7 +23,7 @@ export class RemoveVideo extends Vue {
       return
     }
     this.submitting = true
-    store.dispatch('removeVideo', this.removeVideoCardId)
+    store.dispatch('removeCardVideo', this.removeVideoCardId)
     .then(() => {
       this.submitting = false
       this.toggleModal('removeVideo')

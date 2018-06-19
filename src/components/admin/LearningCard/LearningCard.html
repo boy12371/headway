@@ -2,20 +2,17 @@
   <div class="LearningCard__form">
     <form>
       <div class="Card">
-
         <div class="form__group">
-          <label class="label" for="card-name">Name</label>
-          <input class="input" type="text" id="card-name" @change="save" v-model="card.name" />
+          <label class="label" for="activeCard-name">Name</label>
+          <input class="input" type="text" id="activeCard-name" @change="save" v-model="activeCard.name" />
         </div>
-
         <div class="form__group">
-          <label class="label" for="card-content">Content</label>
-          <wysiwyg v-model.lazy="card.content" @change="save" />
+          <label class="label" for="activeCard-content">Content</label>
+          <wysiwyg v-model.lazy="activeCard.content" @change="save" />
         </div>
-
         <div class="form__group">
-          <label class="label" for="card-task">Practical Task</label>
-          <textarea class="input" id="card-task" v-model.lazy="card.evidence_task" @change="save"></textarea>
+          <label class="label" for="activeCard-task">Practical Task</label>
+          <textarea class="input" id="activeCard-task" v-model.lazy="activeCard.evidence_task" @change="save"></textarea>
         </div>
       </div>
       <h3>Quiz</h3>
@@ -31,19 +28,20 @@
       <div class="screen">
         <div class="Mobile__screen">
           <div class="Mobile__header">
-            <h4 class="flat">{{ card.name }}</h4>
+            <h4 class="flat">{{ activeCard.name }}</h4>
           </div>
           <div class="Mobile__hero">
-            <div class="Mobile__video" v-show="card.media">
+            <div class="Mobile__video" v-show="activeCard.media">
               <i class="fa fa-trash-alt Mobile__delete-video" @click="removeVideo"></i>
-              <video controls :src="'//localhost:5000/admin/card/' + activeCard.id + '/media'"></video>
+              <video controls ref="video"></video>
             </div>
             <vue-dropzone ref="myVueDropzone"
               id="dropzone"
               :options="dropzoneOptions"
               :includeStyling="false"
-              v-show="!card.media"
+              v-show="!activeCard.media"
               @vdropzone-sending="sendingEvent"
+              @vdropzone-success="success"
             >
             </vue-dropzone>
             <!--
@@ -53,8 +51,8 @@
             </form>
             -->
           </div>
-          <div class="Mobile__content" v-if="card.content">
-            <div v-html="card.content"></div>
+          <div class="Mobile__content" v-if="activeCard.content">
+            <div v-html="activeCard.content"></div>
           </div>
         </div>
         <div class="Mobile__footer">
@@ -62,7 +60,7 @@
           <div class="btn btn--standard">View task</div>
         </div>
         <div class="Mobile__task">
-          {{ card.evidence_task }}
+          {{ activeCard.evidence_task }}
         </div>
         <div :class="{ 'Mobile__quiz': true, 'Mobile__quiz--visible' : quizVisible }">
           <Quiz @finish="quizVisible = false" :questions="quiz"></Quiz>

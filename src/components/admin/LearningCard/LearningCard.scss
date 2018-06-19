@@ -84,6 +84,14 @@
   right: 1rem;
   z-index: 20;
   color: #fff;
+  cursor: pointer;
+  transition: all 200ms ease;
+  opacity: 0.75;
+}
+
+.Mobile__delete-video:hover {
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 .dz-clickable {

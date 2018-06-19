@@ -19,6 +19,9 @@ export const mutations = {
   setActiveCard(state, card) {
     state.activeCard = card
   },
+  setActiveCardVideo(state, file) {
+    state.activeCard.media = file
+  },
   setActiveStudentCourse(state, course) {
     state.activeStudentCourse = course
   },
