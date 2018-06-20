@@ -8,7 +8,7 @@ export const getters = {
     const courses = state.courses.filter(course => course.id === id)
     return courses.pop()
   },
-  allStudents(state) {
+  registeredStudents(state) {
     let map = {}
 
     if (state.businesses) {
@@ -17,10 +17,29 @@ export const getters = {
           return
         }
         business.students.forEach(student => {
-          map[student.email] = student
+          if (student.first_name) {
+            map[student.email] = student
+          }
         })
       })
       return values(map)
     }
-  }
+  },
+  pendingStudents(state) {
+    let map = {}
+
+    if (state.businesses) {
+      state.businesses.forEach(business => {
+        if (!business.students) {
+          return
+        }
+        business.students.forEach(student => {
+          if (!student.first_name) {
+            map[student.email] = student
+          }
+        })
+      })
+      return values(map)
+    }
+  },
 }

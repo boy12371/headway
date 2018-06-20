@@ -12,27 +12,47 @@
       </div>
     </div>
   </div>
-  <div v-show="!allStudents.length">
-    <p>You haven't added any students yet.</p>
-  </div>
-  <div class="StudentList__wrap" v-show="allStudents.length">
-    <router-link class="non-link" v-for="(student, i) in allStudents" :key="i" :to="{ name: 'studentProfile', params: { studentId: student.id } }">
-      <Card icon="student" class="StudentList__Student" :title="student.first_name + ' ' + student.last_name">
-        <div slot="body">
-          <p>
-            <small>{{ student.email }}</small>
-          </p>
-          <div v-for="(course, cIndex) in student.courses">
-            <label class="label flat flex flex--spaced">
-              <span>{{ course.name }}</span>
-            </label>
-            <ProgressBar class="flat" :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
-            <p class="StudentList__elapsed">
-              <small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small>
-            </p>
-          </div>
+  <div class="flex">
+    <div class="flex__full">
+      <div class="" v-show="!registeredStudents.length">
+        <div class="text-centered" style="margin: 200px 0 ">
+          <h2>No students have accepted</h2>
+          <p>Once your invited students sign up they will appear here.</p>
         </div>
-      </Card>
-    </router-link>
+      </div>
+      <div class="StudentList__wrap" v-show="registeredStudents.length">
+        <router-link class="non-link" v-for="(student, i) in registeredStudents" :key="i" :to="{ name: 'studentProfile', params: { studentId: student.id } }">
+          <Card icon="student" class="StudentList__Student" :title="student.first_name + ' ' + student.last_name">
+            <div slot="body">
+              <p>
+                <small>{{ student.email }}</small>
+              </p>
+              <div v-for="(course, cIndex) in student.courses">
+                <label class="label flat flex flex--spaced">
+                  <span>{{ course.name }}</span>
+                </label>
+                <ProgressBar class="flat" :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
+                <p class="StudentList__elapsed">
+                  <small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small>
+                </p>
+              </div>
+            </div>
+          </Card>
+        </router-link>
+      </div>
+    </div>
+    <div class="StudentList__pending" v-show="pendingStudents">
+      <h4>Pending invitations</h4>
+      <router-link class="non-link flex flex--aligned Pending" v-for="student in pendingStudents" :to="{ name: 'studentProfile', params: { studentId: student.id } }">
+        <div class="Pending__avatar">
+          <i class="icon student"></i>
+          <i class="fal fa-search"></i>
+        </div>
+        <div class="Pending__content">
+          <p class="flat Pending__title">{{ student.email }}</p>
+          <small>Invited {{ student.BusinessStudent.createdAt | moment("from" , true) }} ago</small>
+        </div>
+      </router-link>
+    </div>
   </div>
 </div>

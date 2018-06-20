@@ -2,7 +2,8 @@
   <div class="StudentProfile" v-show="loaded">
     <div>
       <div class="StudentProfile__header">
-        <h1 class="flat">{{ activeStudentProfile.first_name }} {{ activeStudentProfile.last_name }}</h1>
+        <h1 class="flat" v-show="activeStudentProfile.name">{{ activeStudentProfile.first_name }} {{ activeStudentProfile.last_name }}</h1>
+        <h1 class="flat" v-show="!activeStudentProfile.name">{{ activeStudentProfile.email }}</h1>
         <p v-show="activeStudentProfile.lastLoggedIn">Logged in {{ activeStudentProfile.lastLoggedIn | moment("from", true) }} ago</p>
         <p v-show="!activeStudentProfile.lastLoggedIn">Has not logged in yet</p>
       </div>
@@ -40,7 +41,8 @@
       </div>
 
       <div class="StudentProfile__group">
-        <h4>{{ activeStudentProfile.first_name }} works with</h4>
+        <h4 v-show="activeStudentProfile.first_name">{{ activeStudentProfile.first_name }} works with</h4>
+        <h4 v-show="!activeStudentProfile.first_name">Student works with</h4>
         <router-link v-for="(business, i) in activeStudentProfile.businesses" class="Card CourseCard" :key="i" :to="{ name: 'businessProfile', params: { businessId : business.id }}">
           <div class="CourseCard__wrap CourseCard__wrap--flat">
             <p class="flat"><strong>{{ business.name }}</strong></p>

@@ -29,7 +29,8 @@ const crumbs = () => [
 
 export class StudentList extends Vue {
 
-  @Getter allStudents
+  @Getter registeredStudents
+  @Getter pendingStudents
   @State studentListFilter
   @State route
 

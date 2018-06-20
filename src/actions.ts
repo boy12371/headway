@@ -72,16 +72,29 @@ export const actions = {
     return Promise.all([getStudentProfile, getStudentActivity]).then(([student, activity]) => {
       student.activity = activity
       context.commit('setActiveStudentProfile', student)
-      context.commit('setBreadcrumbs', [
-        {
-          label: 'Students',
-          link: { name: 'dashboard' }
-        },
-        {
-          label: student.first_name + ' ' + student.last_name,
-          link: { name: 'studentProfile', params: { studentId: student.id } }
-        }
-      ])
+      if (!student.first_name) {
+        context.commit('setBreadcrumbs', [
+          {
+            label: 'Students',
+            link: { name: 'dashboard' }
+          },
+          {
+            label: student.email,
+            link: { name: 'studentProfile', params: { studentId: student.id } }
+          }
+        ])
+      } else {
+        context.commit('setBreadcrumbs', [
+          {
+            label: 'Students',
+            link: { name: 'dashboard' }
+          },
+          {
+            label: student.first_name + ' ' + student.last_name,
+            link: { name: 'studentProfile', params: { studentId: student.id } }
+          }
+        ])
+      }
     })
   },
 

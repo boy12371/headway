@@ -32,7 +32,7 @@ export class AddBusiness extends Vue {
       this.submitting = false
       this.name = ''
       this.courseIds = []
-      this.toggleModal('business')
+      this.toggleModal('addBusiness')
     })
   }
 }

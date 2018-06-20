@@ -54,7 +54,8 @@ export class Admin extends Vue {
   @Provide() toggleModal = toggleModal
 
   @Getter currentCourse
-  @Getter allStudents
+  @Getter registeredStudents
+  @Getter pendingStudents
 
   @State courses
   @State businesses
@@ -92,7 +93,7 @@ export class Admin extends Vue {
   }
 
   get totalStudents() {
-    return this.allStudents.length
+    return this.registeredStudents.length + this.pendingStudents.length
   }
 
   get courseMenu() {
