@@ -276,6 +276,11 @@ strong {
   }
 }
 
+.input[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
 div.input {
   line-height: 2.25rem;
 }

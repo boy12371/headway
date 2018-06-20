@@ -14,10 +14,10 @@
   </div>
   <div class="flex">
     <div class="flex__full">
-      <div class="" v-show="!registeredStudents.length">
+      <div v-show="!registeredStudents.length">
         <div class="text-centered" style="margin: 200px 0 ">
-          <h2>No students have accepted</h2>
-          <p>Once your invited students sign up they will appear here.</p>
+          <h2>No registered students</h2>
+          <p>Once your invited students complete the registration process, they will appear here.</p>
         </div>
       </div>
       <div class="StudentList__wrap" v-show="registeredStudents.length">
@@ -41,7 +41,7 @@
         </router-link>
       </div>
     </div>
-    <div class="StudentList__pending" v-show="pendingStudents">
+    <div class="StudentList__pending" v-show="pendingStudents.length">
       <h4>Pending invitations</h4>
       <router-link class="non-link flex flex--aligned Pending" v-for="student in pendingStudents" :to="{ name: 'studentProfile', params: { studentId: student.id } }">
         <div class="Pending__avatar">

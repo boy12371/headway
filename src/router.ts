@@ -6,6 +6,7 @@ const loginComponent = () => import('./components/shared/Login').then(({ Login }
 const landingComponent = () => import('./components/landing').then(({ LandingComponent }) => LandingComponent)
 const adminComponent = () => import('./components/admin/Admin').then(({ Admin }) => Admin)
 const studentAppComponent = () => import('./components/student/Student').then(({ Student }) => Student)
+const studentOnboard = () => import('./components/student/StudentOnboard').then(({ StudentOnboard }) => StudentOnboard)
 const styleguideComponent = () => import('./components/shared/styleguide').then(({ StyleguideComponent }) => StyleguideComponent)
 
 Vue.use(VueRouter)
@@ -55,6 +56,11 @@ export const createRoutes: () => RouteConfig[] = () => [
     path: '/app',
     name: 'studentHome',
     component: studentAppComponent
+  },
+  {
+    path: '/student/invite/:token',
+    name: 'studentInvite',
+    component: studentOnboard
   },
   {
     path: '/app/:courseId',

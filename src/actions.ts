@@ -45,6 +45,13 @@ export const actions = {
     }
   },
 
+  editStudentDetails(context, payload) {
+    const token = context.state.route.params.token
+    return axios.put(BASE_URL + '/student/details', payload, { headers: {'Authorization': 'bearer ' + token} }).then(res => {
+      const card = res.data
+    })
+  },
+
   submitStudentCard(context, completed) {
     const cardId = context.state.route.params.cardId
     return axios.post(`${BASE_URL}/student/card/${cardId}/submit`, { completed })

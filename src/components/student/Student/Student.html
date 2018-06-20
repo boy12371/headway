@@ -1,12 +1,9 @@
 <div class="Student">
-  <StudentOnboard v-show="!student.first_name"></StudentOnboard>
-  <div v-show="student.first_name">
-    <StudentHeader></StudentHeader>
-    <div class="Student__main">
-        <StudentHome v-if="appView == 'studentHome'"></StudentHome>
-        <StudentCourse v-if="appView == 'studentCourse'"></StudentCourse>
-        <StudentCard v-if="appView == 'studentCard'"></StudentCard>
-    </div>
+  <StudentHeader></StudentHeader>
+  <div class="Student__main">
+      <StudentHome v-if="appView == 'studentHome'"></StudentHome>
+      <StudentCourse v-if="appView == 'studentCourse'"></StudentCourse>
+      <StudentCard v-if="appView == 'studentCard'"></StudentCard>
   </div>
   <i class="fa fa-window-restore Switch" @click="switchApp"></i>
 </div>

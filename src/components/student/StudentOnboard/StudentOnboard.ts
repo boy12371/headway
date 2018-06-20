@@ -12,8 +12,8 @@ import axios from 'axios'
 })
 
 export class StudentOnboard extends Vue {
-  @State student
-
+  first_name = ''
+  last_name = ''
   password = ''
   submitting: boolean = false
 
@@ -22,13 +22,16 @@ export class StudentOnboard extends Vue {
       return
     }
     this.submitting = true
-    store.dispatch('createCourse', {
-      first_name: this.student.first_name,
-      last_name: this.student.first_name,
-    }).then(() => {
-      this.$router.push({
-        path: '/s/' + this.student.id,
-      })
+    store.dispatch('editStudentDetails', {
+      first_name: this.first_name,
+      last_name: this.last_name,
+      password: this.password,
+    }).then(student => {
+      if (student) {
+        this.$router.push({
+          name: 'studentHome',
+        })
+      }
     })
   }
 }
