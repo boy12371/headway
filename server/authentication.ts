@@ -41,7 +41,7 @@ passport.use('student-local', new LocalStrategy({ usernameField: 'email' }, (ema
   })
 }))
 
-passport.use(new JwtStrategy({
+passport.use('jwt', new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET,
   issuer: JWT_ISSUER,
@@ -100,6 +100,10 @@ export const authAdmin = passport.authenticate('admin-local', {
 })
 
 export const authStudent = passport.authenticate('student-local', {
+  failureRedirect: '/login/student'
+})
+
+export const authStudentInvite = passport.authenticate('jwt', {
   failureRedirect: '/login/student'
 })
 

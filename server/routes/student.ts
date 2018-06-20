@@ -1,7 +1,7 @@
 import app from '../app'
 import * as bcrypt from 'bcrypt'
 
-import { checkStudentLogin, authStudent, checkStudentEnrolled, mockStudentLogin } from '../authentication'
+import { checkStudentLogin, authStudent, checkStudentEnrolled, mockStudentLogin, authStudentInvite } from '../authentication'
 
 import { Course, Student, Card, Unit, Business, Activity } from '../models'
 import { getStudentActivitiesByUnit, studentUnitProgress, incrementCompletedUnits } from '../actions'
@@ -24,7 +24,7 @@ app.get('/student', (req, res) => {
   }).then(student => res.send(student))
 })
 
-app.put('/student/details', (req, res) => {
+app.put('/update-student-details', authStudentInvite, (req, res) => {
   Student.findById(req.user.student.id).then(student => {
     const { first_name, last_name, password } = req.body
     student.first_name = first_name
