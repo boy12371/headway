@@ -21,13 +21,19 @@ const main = async () => {
     // TODO: once admin registration exists, this can be removed
     const salt = bcrypt.genSaltSync(SALT_ROUNDS)
     const password = bcrypt.hashSync('password', salt)
+    const name = 'EZ Training'
     Admin.create({
       id: 1,
-      name: 'EZ Training',
+      name,
       email: 'root',
       password,
       salt,
-    }).then(done)
+    }).then(admin => {
+      Business.create({
+        name,
+        adminId: admin.id
+      }).then(done)
+    })
     return
   }
   console.log('Loading sample data')
