@@ -12,7 +12,7 @@
         <p class="pressed small" v-for="activity in activeStudentProfile.activity">
         <i class="fal fa-clock Activity__icon"></i>
           {{ activeStudentProfile.first_name }}
-          {{ activity.evidence_proof }}
+          {{ activity.text }}
           {{ activity.completed ? '(completed)' : '(attempted)' }}
           {{ activity.updatedAt | moment("from", true) }} ago
           <!-- <router-link :to="{name: 'card', params: { cardId: activity.cardId } }" v-if="activity.cardId">Card: #{{ activity.cardId }}</router-link> -->

@@ -55,9 +55,9 @@ const main = async () => {
   await CourseStudent.create({ courseId: 1, studentId: 2, assigned: Date.now() })
   await CourseStudent.create({ courseId: 1, studentId: 3, assigned: Date.now() })
   await CourseStudent.create({ courseId: 2, studentId: 1, assigned: Date.now() })
-  await Activity.create({ studentId: 1, cardId: 1, evidence_proof: 'I mowed my leg', completed: false })
-  await Activity.create({ studentId: 1, cardId: 1, evidence_proof: 'I mowed a lawn', completed: true })
-  await Activity.create({ studentId: 1, evidence_proof: 'I started a course' })
+  await Activity.create({ studentId: 1, cardId: 1, text: 'I mowed my leg', completed: false })
+  await Activity.create({ studentId: 1, cardId: 1, text: 'I mowed a lawn', completed: true })
+  await Activity.create({ studentId: 1, text: 'I started a course' })
   done()
 }
 

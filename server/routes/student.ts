@@ -47,7 +47,7 @@ app.get('/student/activity', (req, res) => {
 app.post('/student/card/:cardId/submit', (req, res) => {
   const studentId = req.user.student.id
   const { cardId } = req.params
-  const { completed, evidence_proof } = req.body
+  const { completed, text } = req.body
   Card.scope('includeCourse').findById(cardId).then(card => {
     if (!card) {
       return res.status(404)
@@ -56,7 +56,7 @@ app.post('/student/card/:cardId/submit', (req, res) => {
       studentId,
       cardId,
       completed,
-      evidence_proof,
+      text,
     }).then(activity => {
       studentUnitProgress(card.unit.id, card.id).then(progress => {
         if (progress.unitCompleted) {

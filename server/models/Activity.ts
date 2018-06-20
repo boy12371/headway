@@ -7,7 +7,7 @@ export class Activity extends Model<Activity> {
   @Column({ primaryKey: true, autoIncrement: true })
   id: number
 
-  @Column evidence_proof: string // File
+  @Column text: string
   @Column completed: boolean
 
   @ForeignKey(() => Card)
