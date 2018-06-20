@@ -193,19 +193,8 @@ app.get('/admin/student/:studentId', checkAdminPermission, (req, res) => {
     include: [
       { model: Course, where: { adminId }, required: false },
       { model: Business, where: { adminId } },
-      // {
-      //   model: Card,
-      //   include: [{
-      //     model: Unit,
-      //     include: [{
-      //       model: Course,
-      //       where: { adminId }
-      //     }]
-      //   }]
-      // }
     ]
   }).then(student => {
-    // TODO: also get Activity where course.adminId === adminId
     res.send(student)
   })
 })
