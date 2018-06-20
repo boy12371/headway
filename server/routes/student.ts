@@ -58,7 +58,8 @@ app.post('/student/card/:cardId/submit', (req, res) => {
       completed,
       text,
     }).then(activity => {
-      studentUnitProgress(card.unit.id, card.id).then(progress => {
+      studentUnitProgress(card.unit.id, studentId).then(progress => {
+        // console.log(progress)
         if (progress.unitCompleted) {
           // TODO: do not allow double submit
           incrementCompletedUnits(card.unit.course.id, studentId).then(result => {
