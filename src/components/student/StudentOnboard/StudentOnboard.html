@@ -1,21 +1,23 @@
 <div class="StudentOnboard">
   <h1 class="StudentOnboard__title">Welcome to Headway</h1>
   <p>Please complete the sign up process to begin your training.</p>
-  <form slot="body" @submit.prevent="submit">
-    <div class="form__group">
-      <label class="label" for="student-first_name">First name</label>
-      <input type="text" class="input" id="student-first_name" v-model="student.first_name">
-    </div>
-    <div class="form__group">
-      <label class="label" for="student-first_name">Last name</label>
-      <input type="text" class="input" id="student-last_name" v-model="student.last_name">
-    </div>
-    <div class="form__group">
-      <label class="label" for="student-first_name">Password</label>
-      <input type="password" class="input" id="student-password">
-    </div>
-    <div class="form__footer">
-      <button class="btn btn--block" :disabled="submitting">Send Invite</button>
-    </div>
-  </form>
+  <div class="Card">
+    <form slot="body" @submit.prevent="submit">
+      <div class="form__group">
+        <label class="label" for="student-first_name">First name</label>
+        <input type="text" class="input" id="student-first_name" v-model="student.first_name">
+      </div>
+      <div class="form__group">
+        <label class="label" for="student-first_name">Last name</label>
+        <input type="text" class="input" id="student-last_name" v-model="student.last_name">
+      </div>
+      <div class="form__group">
+        <label class="label" for="student-first_name">Password</label>
+        <input type="password" class="input" id="student-password">
+      </div>
+      <div class="form__footer">
+        <button class="btn btn--block" :disabled="submitting">Send Invite</button>
+      </div>
+    </form>
+  </div>
 </div>
