@@ -1,6 +1,10 @@
 <div class="StudentHome">
   <div class="container">
-    <router-link v-for="course in student.courses" :key="course.id" :to="{ name: 'studentCourse', params: { courseId: course.id }}">
+    <div v-show="student.courses && !student.courses.length" class="text-centered" style="margin: 100px 20px">
+      <h3 class="flat">You have no courses</h3>
+      <p>Your courses will appear here once your trainer assigns them.</p>
+    </div>
+    <router-link v-for="course in student.courses" :key="course.id" :to="{ name: 'studentCourse', params: { courseId: course.id }}" v-show="student.courses && student.courses.length">
       <Card :icon="'course'" :title="course.name">
         <div slot="body">
           <ProgressBar class="flat" :completed="course.CourseStudent.completedUnits || 0" :total="11" collection="Units"></ProgressBar>

@@ -17,8 +17,4 @@ import './StudentHome.scss'
 
 export class StudentHome extends Vue {
   @State student
-
-  mounted() {
-    store.dispatch('getStudent')
-  }
 }

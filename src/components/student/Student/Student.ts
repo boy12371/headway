@@ -1,7 +1,7 @@
 import { Component, Prop, Watch, Vue, Provide } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
-import { StudentHeader, StudentHome, StudentCourse, StudentCard } from '../../'
+import { StudentOnboard, StudentHeader, StudentHome, StudentCourse, StudentCard } from '../../'
 
 import './Student.scss'
 
@@ -13,6 +13,7 @@ const toggleModal = k => store.commit('toggleModal', k)
   template: require('./Student.html'),
   name: 'Student',
   components: {
+    StudentOnboard,
     StudentHeader,
     StudentHome,
     StudentCourse,
@@ -22,6 +23,7 @@ const toggleModal = k => store.commit('toggleModal', k)
 
 export class Student extends Vue {
 
+  @State student
   @State courses
   @State appView
 
@@ -33,7 +35,8 @@ export class Student extends Vue {
   }
 
   updateRoute(route) {
-    store.dispatch('setAppView', route.name )
+    store.dispatch('getStudent')
+    store.dispatch('setAppView', route.name)
   }
 
   switchApp() {

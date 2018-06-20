@@ -1,9 +1,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { State, Getter, Mutation } from 'vuex-class'
 
-import { CourseService } from '../../../services'
-const courseService = new CourseService()
-
 import './AddCourse.scss'
 import store from '../../../store'
 import axios from 'axios'
