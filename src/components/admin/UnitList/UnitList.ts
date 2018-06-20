@@ -43,6 +43,10 @@ export class UnitList extends Vue {
   addCard() {
     this.cardName = ''
     this.addingCard = true
+    store.commit('set', {
+      key: 'addCardUnitId',
+      value: this.unitId,
+    })
   }
 
   toggleMenu() {
