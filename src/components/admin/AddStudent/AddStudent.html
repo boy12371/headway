@@ -3,16 +3,8 @@
     <Card slot="body" title="Add student">
       <form slot="body" @submit.prevent="submit">
         <div class="form__group">
-          <label class="label" for="first-name">First name</label>
-          <input type="text" class="input" id="first-name" v-model="firstName" v-focus="modals.addStudent">
-        </div>
-        <div class="form__group">
-          <label class="label" for="last-name">Last name</label>
-          <input type="text" class="input" id="last-name" v-model="lastName">
-        </div>
-        <div class="form__group">
           <label class="label" for="student-email">Email</label>
-          <input type="email" class="input" id="student-email" v-model="email">
+          <input type="email" class="input" id="student-email" v-model="email" v-focus="modals.addStudent">
         </div>
         <div class="form__group">
           <label class="label">Add to Business (optional)</label>

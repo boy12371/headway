@@ -33,7 +33,7 @@
               <ProgressBar class="CourseCard__progress" collection="units" :complete="course.CourseStudent.completedUnits" :total="11"></ProgressBar>
             </div>
           </div>
-          <button class="btn btn--small btn--text" @click="toggleModal('addStudentCourse')" v-show="activeStudentProfile.courses.length < courses.length">
+          <button class="btn btn--small btn--text" @click="toggleModal('addStudentCourse')" v-show="activeStudentProfile.courses && activeStudentProfile.courses.length < courses.length">
             <i class="fal fa-plus"></i> Assign a course
           </button>
         </div>

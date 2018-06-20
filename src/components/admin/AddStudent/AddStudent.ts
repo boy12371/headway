@@ -51,7 +51,7 @@ export class AddStudent extends Vue {
       this.email = ''
       this.businessIds = []
       this.submitting = false
-      this.toggleModal('student')
+      this.toggleModal('addStudent')
     })
   }
 }

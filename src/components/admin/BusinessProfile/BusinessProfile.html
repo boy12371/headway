@@ -31,7 +31,8 @@
     </div>
     <div class="BusinessProfile__group">
       <h4>Default courses</h4>
-      <div>
+      <p v-show="!activeBusinessProfile.courses">No default courses</p>
+      <div v-show="activeBusinessProfile.courses">
         <div v-for="course in activeBusinessProfile.courses" class="Card CourseCard">
           <div class="CourseCard__wrap">
             <i class="fal fa-trash-alt CourseCard__action" @click="confirmRemoveCourse(course.id)"></i>
