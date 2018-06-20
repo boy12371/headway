@@ -17,3 +17,5 @@ export const AWS_CONFIG = {
 export const S3_BUCKET = 'headway'
 
 export const UPLOAD_DIRECTORY = './uploads'
+
+export const JWT_ISSUER = 'headway.herokuapp.com'

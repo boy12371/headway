@@ -1,12 +1,15 @@
 import * as passwordGenerator from 'generate-password'
 import * as bcrypt from 'bcrypt'
+import * as jwt from 'jsonwebtoken'
 import Admin from './models/Admin'
 import Student from './models/Student'
 import Mentor from './models/Mentor'
 import { Business, BusinessCourse, BusinessStudent, Activity, Unit, Card, CourseStudent, Course } from './models'
 import { Logger } from './logger'
 import { UnitProgress } from './interfaces'
-import { PASSWORD_OPTS, SALT_ROUNDS } from './constants'
+import { PASSWORD_OPTS, SALT_ROUNDS, JWT_ISSUER } from './constants'
+import mailer from './mailer'
+import mail from './mail'
 
 export const createAdmin = (data) => {
   const { email, name } = data
@@ -106,11 +109,27 @@ export const addStudentToBusiness = (student: Student, businessId: number) => {
 }
 
 export const inviteStudent = async (payload, businessIds: number[]) => {
-  const { email, first_name, last_name } = payload
+  const { email } = payload
   return Student.findOne({ where: { email }, include: [Business] }).then(student => {
     if (!student) {
       const password: string = passwordGenerator.generate(PASSWORD_OPTS)
-      return createStudent({ email, first_name, last_name, password }).then(student => {
+      return createStudent({ email, password }).then(student => {
+        const token = jwt.sign({
+          sub: student.id,
+          iss: JWT_ISSUER,
+          aud: 'invite',
+        }, process.env.JWT_SECRET)
+        mailer.messages().send({
+          to: student.email,
+          from: mail.FROM,
+          subject: mail.invite.subject,
+          text: mail.invite.text({token}),
+          html: mail.invite.html({token}),
+        }, (error, body) => {
+          if (error) {
+            console.warn(error)
+          }
+        })
         return addStudentToBusinesses(student, businessIds)
       })
     } else {

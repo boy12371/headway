@@ -1,8 +1,9 @@
 import { defaults } from 'lodash'
+const JwtStrategy = require('passport-jwt').Strategy,
+  ExtractJwt = require('passport-jwt').ExtractJwt
 
 import * as bcrypt from 'bcrypt'
 import * as passport from 'passport'
-import { Model } from 'sequelize-typescript'
 const LocalStrategy = require('passport-local').Strategy
 
 import Admin from './models/Admin'
@@ -10,7 +11,7 @@ import Student from './models/Student'
 import Mentor from './models/Mentor'
 import Course from './models/Course'
 import { Business, Card } from './models'
-import { Logger } from './logger'
+import { JWT_ISSUER } from './constants'
 
 passport.use('admin-local', new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
   return Admin.findOne({ where: { email } }).then(admin => {
@@ -37,6 +38,21 @@ passport.use('student-local', new LocalStrategy({ usernameField: 'email' }, (ema
     student.lastLoggedIn = new Date()
     student.save()
     return done(null, student.toJSON())
+  })
+}))
+
+passport.use(new JwtStrategy({
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.JWT_SECRET,
+  issuer: JWT_ISSUER,
+  audience: 'invite',
+}, (jwt_payload, done) => {
+  Student.findById(jwt_payload.sub).then(user => {
+    if (user) {
+      return done(null, user)
+    } else {
+      return done(null, false)
+    }
   })
 }))
 
