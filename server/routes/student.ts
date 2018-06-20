@@ -1,4 +1,5 @@
 import app from '../app'
+import * as bcrypt from 'bcrypt'
 
 import { checkStudentLogin, authStudent, checkStudentEnrolled, mockStudentLogin } from '../authentication'
 
@@ -25,9 +26,12 @@ app.get('/student', (req, res) => {
 
 app.put('/student/details', (req, res) => {
   Student.scope('public').findById(req.user.student.id).then(student => {
-    const { first_name, last_name } = req.body
+    const { first_name, last_name, password } = req.body
     student.first_name = first_name
     student.last_name = last_name
+    if (password) {
+      student.password = bcrypt.hashSync(password, student.salt)
+    }
     student.save().then(d => res.send(student))
   })
 })
