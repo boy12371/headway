@@ -23,6 +23,15 @@ app.get('/student', (req, res) => {
   }).then(student => res.send(student))
 })
 
+app.put('/student/details', (req, res) => {
+  Student.scope('public').findById(req.user.student.id).then(student => {
+    const { first_name, last_name } = req.body
+    student.first_name = first_name
+    student.last_name = last_name
+    student.save().then(d => res.send(student))
+  })
+})
+
 app.get('/student/course/:courseId', checkStudentEnrolled, (req, res) => {
   Course.findById(req.params.courseId, {
     include: [
