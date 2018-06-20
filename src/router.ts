@@ -58,7 +58,7 @@ export const createRoutes: () => RouteConfig[] = () => [
     component: studentAppComponent
   },
   {
-    path: '/student/invite/:token',
+    path: '/invite/:token',
     name: 'studentInvite',
     component: studentOnboard
   },
