@@ -139,11 +139,11 @@ app.post('/admin/upload', (req, res) => {
             return res.status(500).send(err)
           } else {
             Logger.debug(`Successfully uploaded file to ${S3_BUCKET}/${Key}`)
+            res.send('Upload Successful')
           }
         })
         card.media = file.name
         card.save()
-        res.send('Upload Successful') // WARNING: S3 upload not necessarily complete
       })
     }
     else {
