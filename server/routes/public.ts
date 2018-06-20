@@ -49,7 +49,12 @@ app.post('/register', (req, res) => {
         console.warn(error)
       }
     })
-    res.send(admin)
+    Business.create({
+      adminId: admin.id,
+      name: admin.name,
+    }).then(business => {
+      res.send(admin)
+    })
   })
 })
 
