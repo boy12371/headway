@@ -98,14 +98,15 @@ app.post('/student/card/:cardId/submit', (req, res) => {
     else {
       // Log user attempted card but failed
       Activity.create({
-          studentId,
-          cardId,
-          completed,
-          text,
+        studentId,
+        cardId,
+        completed,
+        text,
       }).then(activity => {
         res.send('OK')
       })
     }
+  })
 })
 
 app.get('/student/:courseId/:unitId/:cardId/media', checkStudentEnrolled, (req, res) => {
