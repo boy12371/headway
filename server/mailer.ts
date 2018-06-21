@@ -1,4 +1,4 @@
-import mailgun from 'mailgun-js'
+import * as mailgun from 'mailgun-js'
 
 const fauxMailer = {
     messages: () => ({
@@ -11,8 +11,8 @@ const fauxMailer = {
 
 const { MAILGUN_API_KEY, MAILGUN_DOMAIN } = process.env
 const mailer = MAILGUN_API_KEY ? mailgun({
-    apiKey: process.env.MAILGUN_API_KEY,
-    domain: process.env.MAILGUN_DOMAIN,
+    apiKey: MAILGUN_API_KEY,
+    domain: MAILGUN_DOMAIN,
 }) : fauxMailer
 
 export default mailer
