@@ -1,0 +1,18 @@
+  <router-link class="non-link" :to="{ name: 'studentProfile', params: { studentId: studentId } }">
+    <Card icon="student" class="StudentList__Student" :title="firstName + ' ' + lastName">
+      <div slot="body">
+        <p>
+          <small>{{ email }}</small>
+        </p>
+        <div v-for="(course, cIndex) in courses">
+          <label class="label flat flex flex--spaced">
+            <span>{{ course.name }}</span>
+          </label>
+          <ProgressBar class="flat" :completed="sIndex + 3" :total="12"></ProgressBar>
+          <p class="StudentList__elapsed">
+            <small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small>
+          </p>
+        </div>
+      </div>
+    </Card>
+  </router-link>

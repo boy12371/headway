@@ -9,30 +9,20 @@
         <p>You have no students in this Business</p>
       </div>
       <div class="StudentList__wrap" v-show="activeBusinessProfile.students.length > 0">
-        <router-link class="non-link"
+        <StudentCard
           v-for="(student, sIndex) in activeBusinessProfile.students"
-          :key="'business-student-link-' + student.id"
-          :to="{ name: 'studentProfile', params: { studentId: student.id } }"
-        >
-          <Card icon="student" class="StudentList__Student" :title="student.first_name + '' + student.last_name" :key="sIndex">
-          <div slot="body">
-            <p><small>{{ student.email }}</small></p>
-            <div v-for="(course, cIndex) in student.courses">
-              <label class="label flat flex flex--spaced">
-                <span>{{ course.name }}</span>
-              </label>
-              <ProgressBar class="flat" :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
-              <p class="StudentList__elapsed"><small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small></p>
-            </div>
-          </div>
-          </Card>
-        </router-link>
+          :first-name="student.first_name"
+          :last-name="student.last_name"
+          :email="student.email"
+          :courses="student.courses"
+          :student-id="student.id">
+        </StudentCard>
       </div>
     </div>
     <div class="BusinessProfile__group">
       <h4>Default courses</h4>
-      <p v-show="!activeBusinessProfile.courses">No default courses</p>
-      <div v-show="activeBusinessProfile.courses">
+      <p v-show="activeBusinessProfile.courses && !activeBusinessProfile.courses.length">No default courses</p>
+      <div v-show="activeBusinessProfile.courses && activeBusinessProfile.courses.length">
         <div v-for="course in activeBusinessProfile.courses" class="Card CourseCard">
           <div class="CourseCard__wrap">
             <i class="fal fa-trash-alt CourseCard__action" @click="confirmRemoveCourse(course.id)"></i>

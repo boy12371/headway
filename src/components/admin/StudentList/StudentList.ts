@@ -4,11 +4,9 @@ import { State, Getter, Mutation } from 'vuex-class'
 import { StudentService } from '../../../services'
 const studentService = new StudentService()
 
-import { ProgressBar } from '../../shared/ProgressBar'
-import { Breadcrumbs } from '../Breadcrumbs'
+import { StudentCard } from '../StudentCard'
 
 import './StudentList.scss'
-import '../Filters/Filters.scss'
 import store from '../../../store'
 
 const crumbs = () => [
@@ -22,8 +20,7 @@ const crumbs = () => [
   template: require('./StudentList.html'),
   name: 'StudentList',
   components: {
-    ProgressBar,
-    Breadcrumbs,
+    StudentCard,
   }
 })
 

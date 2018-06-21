@@ -2,8 +2,8 @@
   <div class="StudentProfile" v-show="loaded">
     <div>
       <div class="StudentProfile__header">
-        <h1 class="flat" v-show="activeStudentProfile.name">{{ activeStudentProfile.first_name }} {{ activeStudentProfile.last_name }}</h1>
-        <h1 class="flat" v-show="!activeStudentProfile.name">{{ activeStudentProfile.email }}</h1>
+        <h1 class="flat" v-show="activeStudentProfile.first_name">{{ activeStudentProfile.first_name }} {{ activeStudentProfile.last_name }}</h1>
+        <h1 class="flat" v-show="!activeStudentProfile.first_name">{{ activeStudentProfile.email }}</h1>
         <p v-show="activeStudentProfile.lastLoggedIn">Logged in {{ activeStudentProfile.lastLoggedIn | moment("from", true) }} ago</p>
         <p v-show="!activeStudentProfile.lastLoggedIn">Has not logged in yet</p>
       </div>
@@ -17,21 +17,23 @@
           {{ activity.updatedAt | moment("from", true) }} ago
           <!-- <router-link :to="{name: 'card', params: { cardId: activity.cardId } }" v-if="activity.cardId">Card: #{{ activity.cardId }}</router-link> -->
         </p>
-        <p class="small" v-if="activeStudentProfile.businesses"><i class="fal fa-clock Activity__icon"></i> {{ activeStudentProfile.first_name }} was invited {{ activeStudentProfile.businesses[0].createdAt | moment("from", true) }} ago</p>
+        <p class="small" v-if="activeStudentProfile.businesses && activeStudentProfile.first_name"><i class="fal fa-clock Activity__icon"></i> {{ activeStudentProfile.first_name }} was invited {{ activeStudentProfile.businesses[0].createdAt | moment("from", true) }} ago</p>
+        <p class="small" v-if="activeStudentProfile.businesses && !activeStudentProfile.first_name"><i class="fal fa-clock Activity__icon"></i> {{ activeStudentProfile.email }} was invited {{ activeStudentProfile.businesses[0].createdAt | moment("from", true) }} ago</p>
       </div>
     </div>
     <div>
       <div class="StudentProfile__group">
         <h4>Assigned Courses</h4>
         <div>
-          <div v-for="course in activeStudentProfile.courses" class="Card CourseCard">
+          <p v-show="activeStudentProfile.courses && !activeStudentProfile.courses.length">No courses</p>
+          <div v-for="course in activeStudentProfile.courses" v-show="activeStudentProfile.courses && activeStudentProfile.courses.length"class="Card CourseCard">
             <div class="CourseCard__wrap">
               <i class="fal fa-trash-alt CourseCard__action" @click="confirmRemoveCourse(course.id)"></i>
               <router-link :to="{ name: 'course', params: { courseId : course.id }}" class="CourseCard__link">
                 <p class="flat"><strong>{{ course.name }}</strong></p>
-                <small>Begun <strong>Introduction</strong> 6 days ago</small>
+                <small>Assigned {{ course.CourseStudent.createdAt | moment("from", true) }} ago</small>
               </router-link>
-              <ProgressBar class="CourseCard__progress" collection="units" :complete="course.CourseStudent.completedUnits" :total="11"></ProgressBar>
+              <ProgressBar class="CourseCard__progress" collection="units" :completed="course.CourseStudent.completedUnits" :total="11"></ProgressBar>
             </div>
           </div>
           <button class="btn btn--small btn--text" @click="toggleModal('addStudentCourse')" v-show="activeStudentProfile.courses && activeStudentProfile.courses.length < courses.length">
@@ -44,9 +46,12 @@
         <h4 v-show="activeStudentProfile.first_name">{{ activeStudentProfile.first_name }} works with</h4>
         <h4 v-show="!activeStudentProfile.first_name">Student works with</h4>
         <router-link v-for="(business, i) in activeStudentProfile.businesses" class="Card CourseCard" :key="i" :to="{ name: 'businessProfile', params: { businessId : business.id }}">
-          <div class="CourseCard__wrap CourseCard__wrap--flat">
-            <p class="flat"><strong>{{ business.name }}</strong></p>
-            <small>Subscribed {{ business.createdAt | moment("from", true) }} ago</small>
+          <div class="CourseCard__wrap CourseCard__wrap--flat flex flex--aligned">
+            <i class="icon icon--large business" style="margin-right: 1rem"></i>
+            <div class="tight">
+              <p class="flat"><strong>{{ business.name }}</strong></p>
+              <small>Subscribed {{ business.createdAt | moment("from", true) }} ago</small>
+            </div>
           </div>
           <div class="CourseCard__actions">
             <button @click="removeStudentFromBusiness(business.id)">
@@ -54,7 +59,7 @@
             </button>
           </div>
         </router-link>
-        <button class="btn btn--small btn--text" @click="toggleModal('student')">
+        <button class="btn btn--small btn--text" @click="toggleModal('student')" hidden>
           <i class="fal fa-plus"></i> Invite to business
         </button>
       </div>

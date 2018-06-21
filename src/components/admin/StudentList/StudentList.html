@@ -16,29 +16,19 @@
     <div class="flex__full">
       <div v-show="!registeredStudents.length">
         <div class="text-centered" style="margin: 200px 0 ">
-          <h2>No registered students</h2>
+          <h2 class="flat">No registered students</h2>
           <p>Once your invited students complete the registration process, they will appear here.</p>
         </div>
       </div>
       <div class="StudentList__wrap" v-show="registeredStudents.length">
-        <router-link class="non-link" v-for="(student, i) in registeredStudents" :key="i" :to="{ name: 'studentProfile', params: { studentId: student.id } }">
-          <Card icon="student" class="StudentList__Student" :title="student.first_name + ' ' + student.last_name">
-            <div slot="body">
-              <p>
-                <small>{{ student.email }}</small>
-              </p>
-              <div v-for="(course, cIndex) in student.courses">
-                <label class="label flat flex flex--spaced">
-                  <span>{{ course.name }}</span>
-                </label>
-                <ProgressBar class="flat" :key="cIndex" :completed="sIndex + 4" :total="12"></ProgressBar>
-                <p class="StudentList__elapsed">
-                  <small class="ghosted">{{ course.CourseStudent.assigned | moment("from", true) }} spent</small>
-                </p>
-              </div>
-            </div>
-          </Card>
-        </router-link>
+        <StudentCard
+          v-for="(student, i ) in registeredStudents"
+          :first-name="student.first_name"
+          :last-name="student.last_name"
+          :email="student.email"
+          :courses="student.courses"
+          :student-id="student.id">
+        </StudentCard>
       </div>
     </div>
     <div class="StudentList__pending" v-show="pendingStudents.length">

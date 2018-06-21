@@ -21,4 +21,10 @@ export class StudentHeader extends Vue {
     return this.activeStudentCourse.name
   }
 
+  get initials() {
+    if (this.student.first_name) {
+      return this.student.first_name.charAt(0) + this.student.last_name.charAt(0)
+    }
+  }
+
 }

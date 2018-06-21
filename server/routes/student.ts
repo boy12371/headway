@@ -25,7 +25,7 @@ app.get('/student', (req, res) => {
 })
 
 app.put('/update-student-details', authStudentInvite, (req, res) => {
-  Student.findById(req.user.student.id).then(student => {
+  Student.findById(req.user.id).then(student => {
     const { first_name, last_name, password } = req.body
     student.first_name = first_name
     student.last_name = last_name

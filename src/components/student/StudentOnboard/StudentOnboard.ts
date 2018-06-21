@@ -28,11 +28,9 @@ export class StudentOnboard extends Vue {
       last_name: this.last_name,
       password: this.password,
     }).then(student => {
-      if (student) {
-        this.$router.push({
-          name: 'studentHome',
-        })
-      }
+      this.$router.push({
+        name: 'studentHome',
+      })
     })
   }
 }

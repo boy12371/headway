@@ -4,8 +4,9 @@ import { State, Getter, Mutation } from 'vuex-class'
 import { ProgressBar } from '../../shared/ProgressBar'
 import { Breadcrumbs } from '../Breadcrumbs'
 
+import { StudentCard } from '../StudentCard'
+
 import './BusinessProfile.scss'
-import '../Filters/Filters.scss'
 import store from '../../../store'
 
 const crumbs = () => [
@@ -19,8 +20,7 @@ const crumbs = () => [
   template: require('./BusinessProfile.html'),
   name: 'BusinessProfile',
   components: {
-    ProgressBar,
-    Breadcrumbs,
+    StudentCard,
   }
 })
 export class BusinessProfile extends Vue {

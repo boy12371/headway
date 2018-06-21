@@ -101,13 +101,6 @@
     grid-gap: 1rem;
   }
 
-  .StudentList .Card {
-    cursor: pointer;
-    &:hover {
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-  }
-
 }
 
 @media(min-width: 1024px) {
