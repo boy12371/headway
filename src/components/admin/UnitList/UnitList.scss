@@ -29,7 +29,7 @@
 .UnitList__dots {
   width: 2rem;
   height: 2rem;
-  line-height: 2rem;
+  line-height: 2rem !important;
   text-align: center;
   border-radius: $radius;
   cursor: pointer;
