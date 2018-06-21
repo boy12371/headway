@@ -63,7 +63,7 @@
           {{ activeCard.evidence_task }}
         </div>
         <div :class="{ 'Mobile__quiz': true, 'Mobile__quiz--visible' : quizVisible }">
-          <Quiz @finish="quizVisible = false" :questions="quiz"></Quiz>
+          <Quiz @finish="quizVisible = false" :preview="true" :questions="quiz"></Quiz>
         </div>
       </div>
     </div>

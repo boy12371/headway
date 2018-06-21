@@ -12,6 +12,7 @@ import './Quiz.scss'
 
 export class Quiz extends Vue {
   @Prop() questions: any[]
+  @Prop() preview: boolean
 
   currentQuestion = 1
 
@@ -29,7 +30,9 @@ export class Quiz extends Vue {
         this.currentQuestion = 1
         this.clicked = null
         this.$emit('finish')
-        store.dispatch('submitStudentCard', this.passed)
+        if (!this.preview) {
+          store.dispatch('submitStudentCard', this.passed)
+        }
       } else {
         this.currentQuestion++
         this.clicked = null
