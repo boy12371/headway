@@ -1,7 +1,10 @@
 <div class="StudentOnboard">
   <div class="text-centered">
-    <h1 class="StudentOnboard__title flat">Welcome to Headway</h1>
-    <p>Complete the sign up process below.</p>
+    <h2 class="StudentOnboard__title flat">You're invited to Headway</h2>
+    <div class="form__group StudentOnboard__account">
+      <p class="small pressed">After signing up you can login to <a href="#">headway.com</a> using the following email and password</p>
+      <div class="input StudentOnboard__email">jsncbt@gmail.com</div>
+    </div>
   </div>
   <div class="Card">
     <form slot="body" @submit.prevent="submit">
@@ -14,15 +17,15 @@
         <input type="text" class="input" id="student-last_name" refs="lastName" v-model="last_name">
       </div>
       <div class="form__group">
-        <label class="label" for="student-email">Email</label>
-        <input type="text" class="input" id="student-email" disabled value="jsncbt@gmail.com">
-      </div>
-      <div class="form__group">
-        <label class="label" for="student-first_name">Password</label>
+        <label class="label" for="student-password">Password</label>
         <input type="password" class="input" id="student-password" v-model="password">
       </div>
+      <div class="form__group">
+        <label class="label" for="student-password-confirm">Confirm password</label>
+        <input type="password" class="input" id="student-password-confirm" v-model="passwordConfirm">
+      </div>
       <div class="form__footer">
-        <button class="btn btn--block" :disabled="submitting">Send Invite</button>
+        <button class="btn btn--block" :disabled="submitting">Join Headway</button>
       </div>
     </form>
   </div>

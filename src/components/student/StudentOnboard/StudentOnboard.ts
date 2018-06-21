@@ -15,6 +15,7 @@ export class StudentOnboard extends Vue {
   first_name = ''
   last_name = ''
   password = ''
+  passwordConfirm = ''
   submitting: boolean = false
 
   submit() {

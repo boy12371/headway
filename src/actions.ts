@@ -46,8 +46,8 @@ export const actions = {
   },
 
   editStudentDetails(context, payload) {
-    const token = context.state.route.params.token
-    return axios.put(BASE_URL + '/student/details', payload, { headers: {'Authorization': 'bearer ' + token} }).then(res => {
+    const token = context.state.route.query.token
+    return axios.put(BASE_URL + '/update-student-details', payload, { headers: {'Authorization': 'bearer ' + token} }).then(res => {
       const card = res.data
     })
   },

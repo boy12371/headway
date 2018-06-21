@@ -27,7 +27,7 @@ app.get('/logout', (req, res) => {
 
 
 app.post('/login/admin', authAdmin, (req, res) => {
-  res.send(req.user)
+  res.redirect('/dashboard')
 })
 
 app.post('/register', (req, res) => {
