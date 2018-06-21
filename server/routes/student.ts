@@ -123,6 +123,9 @@ app.get('/student/card/:cardId/media', (req, res) => {
         return
       }
       const name = card.media
+      if (!name) {
+        return res.redirect('/img/no-media.png')
+      }
       const Key = `${cardId}/${name}`
       getSignedUrl(Key).then(url => {
         // res.send(`<img src="${url}">`)

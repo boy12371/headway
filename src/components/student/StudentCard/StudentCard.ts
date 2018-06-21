@@ -26,6 +26,9 @@ export class StudentCard extends Vue {
   }
 
   get media() {
+    if (!this.activeStudentCard.id) {
+      return null
+    }
     return `${BASE_URL}/student/card/${this.activeStudentCard.id}/media`
   }
 
