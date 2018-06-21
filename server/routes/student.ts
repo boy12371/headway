@@ -65,25 +65,47 @@ app.post('/student/card/:cardId/submit', (req, res) => {
     if (!card) {
       return res.status(404)
     }
-    Activity.create({
-      studentId,
-      cardId,
-      completed,
-      text,
-    }).then(activity => {
-      studentUnitProgress(card.unit.id, studentId).then(progress => {
-        // console.log(progress)
-        if (progress.unitCompleted) {
-          // TODO: do not allow double submit
-          incrementCompletedUnits(card.unit.course.id, studentId).then(result => {
-            res.send('Unit completed')
-          })
+    if (completed) {
+      Activity.find({
+        where: {
+          studentId,
+          cardId,
+          completed,
+        }
+      }).then(activity => {
+        if (activity) {
+          res.send('Card already completed')
         } else {
-          res.send(progress.completedLength + ' / ' + progress.numberOfCards + ' cards completed')
+          Activity.create({
+            studentId,
+            cardId,
+            completed,
+            text,
+          }).then(activity => {
+            studentUnitProgress(card.unit.id, studentId).then(progress => {
+              if (progress.unitCompleted) {
+                incrementCompletedUnits(card.unit.course.id, studentId).then(result => {
+                  res.send('Unit completed')
+                })
+              } else {
+                res.send('OK')
+              }
+            })
+          })
         }
       })
-    })
-  })
+    }
+    else {
+      // Log user attempted card but failed
+      Activity.create({
+          studentId,
+          cardId,
+          completed,
+          text,
+      }).then(activity => {
+        res.send('OK')
+      })
+    }
 })
 
 app.get('/student/:courseId/:unitId/:cardId/media', checkStudentEnrolled, (req, res) => {
@@ -91,7 +113,7 @@ app.get('/student/:courseId/:unitId/:cardId/media', checkStudentEnrolled, (req, 
 
   Promise.all([
     Card.scope('includeCourse').findById(cardId),
-    Student.scope('public').findById(req.user.student.id, {include: [Course]}),
+    Student.scope('public').findById(req.user.student.id, { include: [Course] }),
   ])
     .then(([card, student]) => {
       const courseIds = student.courses.map(course => course.id)
