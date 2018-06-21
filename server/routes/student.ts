@@ -109,7 +109,7 @@ app.post('/student/card/:cardId/submit', (req, res) => {
   })
 })
 
-app.get('/student/:courseId/:unitId/:cardId/media', checkStudentEnrolled, (req, res) => {
+app.get('/student/card/:cardId/media', (req, res) => {
   const { cardId } = req.params
 
   Promise.all([
