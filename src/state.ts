@@ -9,7 +9,8 @@ export const state = {
   sidebarOpen: false,
   notification: {
     type: '',
-    message: ''
+    title: '',
+    text: '',
   },
   activeUnit: {},
   activeCard: {},

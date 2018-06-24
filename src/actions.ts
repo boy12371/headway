@@ -131,10 +131,13 @@ export const actions = {
 
   inviteStudent(context, payload) {
     return axios.post(BASE_URL + '/admin/student', payload).then(res => {
-      const student = res.data
-      // context.commit('addOrUpdateStudent', student)
+      const email = res.data
+      context.commit('setNotification', {
+        type: 'success',
+        title: 'Student invited',
+        text: 'A welcome email has been sent to ' + email + '.'
+      })
       context.dispatch('getAdmin')
-      return student
     })
   },
 
@@ -201,7 +204,7 @@ export const actions = {
     return axios.delete(BASE_URL + '/api/course/' + id).then(res => {
       context.commit('removeCourse', id)
       context.commit('setNotification', {
-        message: 'Course Removed'
+        title: 'Course Removed'
       })
     })
   },
@@ -210,7 +213,7 @@ export const actions = {
     return axios.delete(BASE_URL + '/admin/student/' + id).then(res => {
       context.dispatch('getAdmin')
       context.commit('setNotification', {
-        message: 'Student Removed'
+        title: 'Student Removed'
       })
     })
   },
@@ -266,7 +269,7 @@ export const actions = {
       const card = res.data
       context.commit('setNotification', {
         type: 'success',
-        message: 'Card saved'
+        title: 'Card saved'
       })
     })
   },
@@ -278,7 +281,7 @@ export const actions = {
       const card = res.data
       context.commit('setNotification', {
         type: 'success',
-        message: 'Quiz updated'
+        title: 'Quiz updated'
       })
     })
   },

@@ -28,14 +28,14 @@
 
 .StudentList__pending {
   width: 17.5rem;
-  padding-left: 2rem;
+  padding-left: 1rem;
   height: calc(100vh - 6.25rem);
   border-left: 1px solid #ddd;
 }
 
 .Pending {
   margin: 0 -0.875rem;
-  margin-left: -2rem;
+  margin-left: -1rem;
   padding: 0.875rem;
   cursor: pointer;
   background: none;
@@ -45,6 +45,7 @@
 
 .Pending__title {
   transition: color 200ms ease;
+  font-size: 0.875rem;
 }
 
 .Pending:hover {

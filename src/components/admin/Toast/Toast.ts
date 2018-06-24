@@ -31,4 +31,8 @@ export class Toast extends Vue {
       }, 5000)
     }
   }
+
+  hide() {
+    this.visible = false
+  }
 }

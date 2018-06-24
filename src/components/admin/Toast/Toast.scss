@@ -2,25 +2,44 @@
 
 .Toast {
   position: fixed;
-  bottom: 1rem;
-  left: 100%;
+  bottom: 100%;
+  left: 50%;
+  margin-left: calc(-18.75rem / 2);
   padding: 1rem;
   transition: transform 375ms ease;
   background: #fff;
   box-shadow: $boxShadowFloat;
-  width: 15em;
+  width: 18.75rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  z-index: 999;
 }
 
 .Toast i {
   margin-right: 0.5rem;
 }
 
-.Toast--success {
+.Toast--success .Toast__icon,
+.Toast--success .Toast__title {
   color: $green;
 }
 
 .Toast--visible {
-  transform: translateX(calc(-100% - 1rem));
+  transform: translateY(calc(100% + 1rem));
+}
+
+.Toast__close {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  color: $color;
+  cursor: pointer;
+  border-radius: $radius;
+  transition: background 200ms ease;
+  &:hover {
+    background: rgba(0,0,0,0.1);
+  }
 }

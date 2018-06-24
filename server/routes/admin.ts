@@ -166,7 +166,7 @@ app.post('/admin/student', (req, res) => {
       }
     }
     inviteStudent({ email, first_name, last_name }, businessIds).then(invitation => {
-      res.send({ message: 'Invite Sent' })
+      res.send(email)
     }).catch(err => {
       Logger.warn(err)
       res.status(500).send({ message: 'Could not invite Student' })

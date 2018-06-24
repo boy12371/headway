@@ -1,4 +1,8 @@
 <div :class="toastClasses()">
-  <i class="fa fa-exclamation-circle"></i>
-  {{ notification.message }}
+  <i class="fal fa-times Toast__close" @click="hide"></i>
+  <h4>
+    <i class="fa fa-exclamation-circle Toast__icon"></i>
+    {{ notification.title }}
+  </h4>
+  <p class="flat" v-if="notification.text">{{ notification.text}}</p>
 </div>
