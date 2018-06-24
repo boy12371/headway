@@ -199,3 +199,17 @@
   }
 
 }
+
+.empty-content {
+  // As big as screen minus toolbar and padding
+  height: calc(100vh - 6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  > div {
+    // Bring content back up half of the 
+    transform: translateY(-2.5rem)
+  }
+}

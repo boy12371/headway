@@ -15,9 +15,11 @@
   <div class="flex">
     <div class="flex__full">
       <div v-show="!registeredStudents.length">
-        <div class="text-centered" style="margin: 200px 0 ">
-          <h2 class="flat">No registered students</h2>
-          <p>Once your invited students complete the registration process, they will appear here.</p>
+        <div class="empty-content">
+          <div>
+            <h2 class="flat">No registered students</h2>
+            <p>Once your invited students complete the registration process, they will appear here.</p>
+          </div>
         </div>
       </div>
       <div class="StudentList__wrap" v-show="registeredStudents.length">
