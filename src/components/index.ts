@@ -5,6 +5,7 @@ export * from './shared/Card'
 
 export * from './admin/Admin'
 
+export * from './admin/AdminOnboard'
 export * from './admin/AddBusiness'
 export * from './admin/AddCourse'
 export * from './admin/AddUnit'

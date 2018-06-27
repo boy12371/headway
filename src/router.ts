@@ -6,6 +6,7 @@ const loginComponent = () => import('./components/shared/Login').then(({ Login }
 const landingComponent = () => import('./components/landing').then(({ LandingComponent }) => LandingComponent)
 const adminComponent = () => import('./components/admin/Admin').then(({ Admin }) => Admin)
 const studentAppComponent = () => import('./components/student/Student').then(({ Student }) => Student)
+const adminOnboard = () => import('./components/admin/AdminOnboard').then(({ AdminOnboard }) => AdminOnboard)
 const studentOnboard = () => import('./components/student/StudentOnboard').then(({ StudentOnboard }) => StudentOnboard)
 const styleguideComponent = () => import('./components/shared/styleguide').then(({ StyleguideComponent }) => StyleguideComponent)
 
@@ -61,6 +62,11 @@ export const createRoutes: () => RouteConfig[] = () => [
     path: '/invite',
     name: 'studentInvite',
     component: studentOnboard
+  },
+  {
+    path: '/confirm',
+    name: 'adminConfirm',
+    component: adminOnboard
   },
   {
     path: '/app/:courseId',
