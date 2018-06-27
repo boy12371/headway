@@ -7,7 +7,7 @@
     <router-link v-for="course in student.courses" :key="course.id" :to="{ name: 'studentCourse', params: { courseId: course.id }}" v-show="student.courses && student.courses.length">
       <Card :icon="'course'" :title="course.name">
         <div slot="body">
-          <ProgressBar class="flat" :completed="course.CourseStudent.completedUnits || 0" :total="11" collection="Units"></ProgressBar>
+          <ProgressBar class="flat" :completed="course.CourseStudent.completedUnits || 0" :total="course.units.length" collection="Units"></ProgressBar>
         </div>
       </Card>
     </router-link>
