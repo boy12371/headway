@@ -4,7 +4,8 @@ import * as express from 'express'
 import * as exphbs from 'express-handlebars'
 import * as passport from 'passport'
 import * as epilogue from 'epilogue'
-import * as moment from 'moment'
+import * as bodyParser from 'body-parser'
+import { SESSION_CONFIG } from './constants'
 
 // Init Express Server
 const app = express()
@@ -18,11 +19,10 @@ app.engine('handlebars', hbs.engine)
 
 // Middleware
 import { cors } from './middleware'
-import * as bodyParser from 'body-parser'
 import { checkAdminLogin, checkStudentLogin } from './authentication'
 const staticRoute = express.static(path.resolve('./dist'))
 
-app.use(require('express-session')({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }))
+app.use(require('express-session')(SESSION_CONFIG))
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(require('express-fileupload')())
