@@ -49,10 +49,7 @@ export class Login extends Vue {
   mounted() {
     // Bad code only written to help Marc with logging in
     if (this.route.params.role === 'admin') {
-      this.email = 's'
-      this.password = 'p'
-    } else if (this.route.params.role === 'student') {
-      this.email = 'me@simonlang.org'
+      this.email = 'root'
       this.password = 'password'
     }
   }
