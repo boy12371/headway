@@ -50,7 +50,6 @@ app.use('/s/:userType', staticRoute)
 app.use('/b/:userType', checkAdminLogin)
 app.use('/b/:userType', staticRoute)
 
-app.use(express.static(path.resolve('./src/static')))
 epilogue.initialize({ app, sequelize: connection })
 
 export default app
