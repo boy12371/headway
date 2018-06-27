@@ -13,10 +13,10 @@ import store from '../../../store'
 export class AddStudentBusiness extends Vue {
   @Inject() toggleModal
 
-  @State courses
+  @State businesses
   @State activeStudentProfile
 
-  courseIds = []
+  businessIds = []
 
   submitting: boolean = false
 
@@ -27,9 +27,9 @@ export class AddStudentBusiness extends Vue {
     this.submitting = true
     store.dispatch('addStudentBusiness', {
       studentId: this.activeStudentProfile.id,
-      courseIds: this.courseIds,
+      businessIds: this.businessIds,
     }).then(course => {
-      this.courseIds = []
+      this.businessIds = []
       this.submitting = false
       this.toggleModal('addStudentBusiness')
     })

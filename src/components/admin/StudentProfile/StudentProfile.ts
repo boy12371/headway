@@ -55,4 +55,9 @@ export class StudentProfile extends Vue {
     store.dispatch('removeStudentFromBusiness', { studentId, businessId })
   }
 
+  confirmRemoveBusiness(businessId) {
+    store.commit('setDeleteStudentBusinessId', businessId)
+    this.toggleModal('removeStudentBusiness')
+  }
+
 }

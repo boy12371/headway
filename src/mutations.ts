@@ -31,6 +31,9 @@ export const mutations = {
   setDeleteStudentCourseId(state, id) {
     state.deleteStudentCourseId = id
   },
+  setDeleteStudentBusinessId(state, id) {
+    state.deleteStudentBusinessId = id
+  },
   setActiveStudentProfile(state, profile) {
     state.activeStudentProfile = profile
   },

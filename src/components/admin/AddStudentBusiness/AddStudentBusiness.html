@@ -1,9 +1,9 @@
 <transition name="Modal">
   <Modal @close="$emit('close')">
-    <Card slot="body" title="Your Courses">
+    <Card slot="body" title="Add to Business">
       <form @submit.prevent="submit" slot="body">
         <div class="form__group">
-          <label class="checkbox" :for="'student-business-item-' + index" v-for="(business, index) in businesses">
+          <label class="checkbox" :for="'student-business-item-' + index" v-for="(business, index) in businesses" v-if="index > 0">
             <input type="checkbox" :id="'student-business-item-' + index" :value="business.id" v-model="businessIds">
             {{ business.name }}
           </label>

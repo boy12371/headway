@@ -1,5 +1,5 @@
 <div>
-  <div class="StudentProfile" v-show="loaded">
+  <div class="StudentProfile" v-show="loaded" v-if="activeStudentProfile">
     <div>
       <div class="StudentProfile__header">
         <h1 class="flat" v-show="activeStudentProfile.first_name">{{ activeStudentProfile.first_name }} {{ activeStudentProfile.last_name }}</h1>
@@ -45,7 +45,7 @@
       <div class="StudentProfile__group">
         <h4 v-show="activeStudentProfile.first_name">{{ activeStudentProfile.first_name }} works with</h4>
         <h4 v-show="!activeStudentProfile.first_name">Student works with</h4>
-        <div v-if="activeStudentProfile && activeStudentProfile.businesses.length === 1">
+        <div v-if="activeStudentProfile.businesses && activeStudentProfile.businesses.length === 1">
           No businesses
         </div>
         <router-link v-for="(business, i) in activeStudentProfile.businesses"
@@ -54,7 +54,7 @@
           :key="i"
           :to="{ name: 'businessProfile', params: { businessId : business.id }}"
         >
-          <i class="fal fa-trash-alt CourseCard__action" @click="confirmRemoveCourse(course.id)"></i>
+          <i class="fal fa-trash-alt CourseCard__action" @click="confirmRemoveBusiness(business.id)"></i>
           <div class="CourseCard__wrap CourseCard__wrap--flat flex flex--aligned">
             <i class="icon icon--large business" style="margin-right: 1rem"></i>
             <div class="tight">
@@ -69,7 +69,7 @@
           </div>
         </router-link>
         <button class="btn btn--small btn--text" @click="toggleModal('addStudentBusiness')">
-          <i class="fal fa-plus"></i> Invite to business
+          <i class="fal fa-plus"></i> Add to Business
         </button>
       </div>
     </div>

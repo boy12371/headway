@@ -258,18 +258,18 @@ app.post('/admin/student-business', checkAdminPermission, (req, res) => {
   const { studentId, businessIds = [] } = req.body
   Admin.findById(req.user.admin.id, { include: [Business] }).then(admin => {
     const adminBusinessIds = admin.businesses.map(business => business.id)
-    const promises = businessIds.map(courseId => {
-      if (adminBusinessIds.indexOf(parseInt(courseId)) === -1) {
+    const promises = businessIds.map(businessId => {
+      if (adminBusinessIds.indexOf(parseInt(businessId)) === -1) {
         return res.status(401).send({ message: 'Unauthorized: Admin does not own Business' })
       }
       return BusinessStudent.findOrCreate({
         where: {
           studentId,
-          courseId,
+          businessId,
         }
       })
     })
-    Promise.all(promises).then(studentCourses => {
+    Promise.all(promises).then(studentBusinesses => {
       res.send('OK')
     })
   })

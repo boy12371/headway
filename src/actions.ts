@@ -155,8 +155,15 @@ export const actions = {
     })
   },
 
+  addStudentBusiness(context, payload) {
+    return axios.post(BASE_URL + '/admin/student-business', payload).then(res => {
+      context.dispatch('getStudentProfile', payload.studentId)
+      return res.data
+    })
+  },
+
   removeStudentFromBusiness(context, payload) {
-    return axios.delete(BASE_URL + '/admin/student-business', payload).then(res => {
+    return axios.delete(BASE_URL + '/admin/student-business', { data: payload }).then(res => {
       context.dispatch('getStudentProfile', payload.studentId)
       return res.data
     })
