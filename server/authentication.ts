@@ -155,14 +155,14 @@ export const mockStudentLogin = (req, res, next) => {
 
 export const checkStudentLogin = (req, res, next) => {
   if (!req.isAuthenticated || !req.isAuthenticated() || !req.user.student) {
-    return res.redirect('/login/student')
+    return res.redirect('/l/student')
   }
   next()
 }
 
 export const checkMentorLogin = (req, res, next) => {
   if (!req.isAuthenticated || !req.isAuthenticated() || !req.user.mentor) {
-    return res.redirect('/login/mentor')
+    return res.redirect('/l/mentor')
   }
   next()
 }

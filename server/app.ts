@@ -19,18 +19,29 @@ app.engine('handlebars', hbs.engine)
 // Middleware
 import { cors } from './middleware'
 import * as bodyParser from 'body-parser'
-import { checkAdminLogin } from './authentication'
+import { checkAdminLogin, checkStudentLogin } from './authentication'
 const staticRoute = express.static(path.resolve('./dist'))
 
 app.use(cors)
 app.use('/', staticRoute)
-app.use('/app', staticRoute)
 app.use('/invite*', staticRoute)
 app.use('/confirm*', staticRoute)
+app.use('/l/:userType', staticRoute)
+
+// Student
+app.use('/app', checkStudentLogin)
+app.use('/app', staticRoute)
+
+// Admin
 app.use('/dashboard', checkAdminLogin)
 app.use('/dashboard', staticRoute)
-app.use('/l/:userType', staticRoute)
-app.use('/c/*', staticRoute)
+app.use('/c/:userType', checkAdminLogin)
+app.use('/c/:userType', staticRoute)
+app.use('/s/:userType', checkAdminLogin)
+app.use('/s/:userType', staticRoute)
+app.use('/b/:userType', checkAdminLogin)
+app.use('/b/:userType', staticRoute)
+
 app.use(express.static(path.resolve('./src/static')))
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ extended: true }))
