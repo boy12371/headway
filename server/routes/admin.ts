@@ -254,6 +254,27 @@ app.delete('/admin/student-course', checkAdminPermission, (req, res) => {
   })
 })
 
+app.post('/admin/student-business', checkAdminPermission, (req, res) => {
+  const { studentId, businessIds = [] } = req.body
+  Admin.findById(req.user.admin.id, { include: [Business] }).then(admin => {
+    const adminBusinessIds = admin.businesses.map(business => business.id)
+    const promises = businessIds.map(courseId => {
+      if (adminBusinessIds.indexOf(parseInt(courseId)) === -1) {
+        return res.status(401).send({ message: 'Unauthorized: Admin does not own Business' })
+      }
+      return BusinessStudent.findOrCreate({
+        where: {
+          studentId,
+          courseId,
+        }
+      })
+    })
+    Promise.all(promises).then(studentCourses => {
+      res.send('OK')
+    })
+  })
+})
+
 app.delete('/admin/student-business', checkAdminPermission, (req, res) => {
   const { studentId, businessId } = req.body
   Business.findById(businessId, { include: [Course] }).then(business => {
