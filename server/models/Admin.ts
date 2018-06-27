@@ -9,6 +9,8 @@ const includes = (models, id) => models.map(d => d.id).indexOf(id) >= 0
 @Table({ timestamps: true })
 export class Admin extends Model<Admin> {
   @Column name: string
+  @Column first_name: string
+  @Column last_name: string
   @Unique @Column email: string
   @Column password: string
   @Column salt: string

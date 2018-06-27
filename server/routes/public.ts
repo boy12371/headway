@@ -35,6 +35,8 @@ app.post('/register', (req, res) => {
   const password: string = passwordGenerator.generate(PASSWORD_OPTS)
   const data = {
     name: req.body.name,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
     email: req.body.email,
     password,
   }
@@ -42,13 +44,18 @@ app.post('/register', (req, res) => {
     const token = jwt.sign({
       sub: admin.id,
       name: admin.name,
+      firstName: req.body.first_name,
       email: admin.email,
       iss: JWT_ISSUER,
       userType: 'admin',
       aud: 'invite',
     }, process.env.JWT_SECRET)
 
-    const mailData = { token, name: data.name }
+    const mailData = {
+      token,
+      name: data.name,
+      first_name: req.body.first_name,
+    }
     mailer.messages().send({
       to: admin.email,
       from: mail.FROM,
