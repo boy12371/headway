@@ -5,7 +5,7 @@ const readFile = name => fs.readFileSync(`${__dirname}/views/mail/${name}`, 'utf
 const getTemplate = name => handlebars.compile(readFile(name))
 
 const mail = {
-  FROM: 'Headway <noreply@headway>',
+  FROM: 'Headway <noreply@headway.herokuapp.com>',
   welcome: {
     subject: name => `Headway registration`,
     text: getTemplate('welcome.txt'),
