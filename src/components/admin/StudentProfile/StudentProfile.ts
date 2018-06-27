@@ -8,13 +8,6 @@ import './StudentProfile.scss'
 import '../Filters/Filters.scss'
 import store from '../../../store'
 
-const crumbs = () => [
-  {
-    label: 'Your students',
-    link: '/dashboard'
-  }
-]
-
 @Component({
   template: require('./StudentProfile.html'),
   name: 'StudentProfile',
