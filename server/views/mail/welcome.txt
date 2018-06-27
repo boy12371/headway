@@ -1,9 +1,6 @@
 Welcome {{name}},
 
-https://headway.herokuapp.com/app
-
-Your email is {{email}}
-Your password is {{password}}
+https://headway.herokuapp.com/confirm?token={{token}}
 
 Regards,
 Headway

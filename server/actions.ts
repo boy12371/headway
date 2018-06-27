@@ -118,6 +118,7 @@ export const inviteStudent = async (payload, businessIds: number[]) => {
           sub: student.id,
           email: student.email,
           iss: JWT_ISSUER,
+          userType: 'student',
           aud: 'invite',
         }, process.env.JWT_SECRET)
         mailer.messages().send({

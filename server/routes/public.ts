@@ -1,10 +1,12 @@
+import * as bcrypt from 'bcrypt'
+import * as jwt from 'jsonwebtoken'
 import * as passwordGenerator from 'generate-password'
 
 import app from '../app'
 import resetDatabase from '../reset-database'
 import { createAdmin } from '../actions'
-import { PASSWORD_OPTS } from '../constants'
-import { authAdmin, authStudent } from '../authentication'
+import { PASSWORD_OPTS, SALT_ROUNDS, JWT_ISSUER } from '../constants'
+import { authAdmin, authStudent, authAdminInvite } from '../authentication'
 import mailer from '../mailer'
 import mail from '../mail'
 
@@ -37,12 +39,22 @@ app.post('/register', (req, res) => {
     password,
   }
   createAdmin(data).then(admin => {
+    const token = jwt.sign({
+      sub: admin.id,
+      name: admin.name,
+      email: admin.email,
+      iss: JWT_ISSUER,
+      userType: 'admin',
+      aud: 'invite',
+    }, process.env.JWT_SECRET)
+
+    const mailData = { token, name: data.name }
     mailer.messages().send({
       to: admin.email,
       from: mail.FROM,
       subject: mail.welcome.subject(admin.name),
-      text: mail.welcome.text(data),
-      html: mail.welcome.html(data),
+      text: mail.welcome.text(mailData),
+      html: mail.welcome.html(mailData),
     }, (error, body) => {
       if (error) {
         console.warn(error)
@@ -54,6 +66,18 @@ app.post('/register', (req, res) => {
     }).then(business => {
       res.send(admin)
     })
+  })
+})
+
+app.put('/update-admin-details', authAdminInvite, (req, res) => {
+  const { id } = req.user
+  // console.log('/update-admin-details', req.user)
+  Admin.findById(id).then(admin => {
+    const salt = bcrypt.genSaltSync(SALT_ROUNDS)
+    admin.salt = salt
+    admin.password = bcrypt.hashSync(req.body.password, salt)
+    admin.save()
+    res.send(admin)
   })
 })
 

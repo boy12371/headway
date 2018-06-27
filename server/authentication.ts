@@ -47,13 +47,24 @@ passport.use('jwt', new JwtStrategy({
   issuer: JWT_ISSUER,
   audience: 'invite',
 }, (jwt_payload, done) => {
-  Student.findById(jwt_payload.sub).then(user => {
-    if (user) {
-      return done(null, user)
-    } else {
-      return done(null, false)
-    }
-  })
+  const { sub, userType } = jwt_payload
+  if (userType === 'admin') {
+    Admin.findById(sub).then(admin => {
+      if (admin) {
+        return done(null, admin)
+      } else {
+        return done(null, false)
+      }
+    })
+  } else {
+    Student.findById(sub).then(student => {
+      if (student) {
+        return done(null, student)
+      } else {
+        return done(null, false)
+      }
+    })
+  }
 }))
 
 passport.use('mentor-local', new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -105,6 +116,10 @@ export const authStudent = passport.authenticate('student-local', {
 
 export const authStudentInvite = passport.authenticate('jwt', {
   failureRedirect: '/login/student'
+})
+
+export const authAdminInvite = passport.authenticate('jwt', {
+  failureRedirect: '/login/admin'
 })
 
 export const authMentor = passport.authenticate('mentor-local', {
