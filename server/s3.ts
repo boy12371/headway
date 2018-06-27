@@ -22,6 +22,8 @@ export const getSignedUrl = (filename) => {
   })
 }
 
-s3.listBuckets((err, data) => {
-  console.log(err || data)
-})
+const listBuckets = () => {
+  s3.listBuckets((err, data) => {
+    console.log(err || data)
+  })
+}
