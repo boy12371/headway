@@ -19,7 +19,10 @@ app.get('/student', (req, res) => {
   Student.scope('public').findById(req.user.student.id, {
     include: [
       Business,
-      Course,
+      {
+        model: Course,
+        include: [Unit]
+      }
     ]
   }).then(student => res.send(student))
 })
