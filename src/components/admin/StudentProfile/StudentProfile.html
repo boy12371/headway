@@ -45,7 +45,7 @@
       <div class="StudentProfile__group">
         <h4 v-show="activeStudentProfile.first_name">{{ activeStudentProfile.first_name }} works with</h4>
         <h4 v-show="!activeStudentProfile.first_name">Student works with</h4>
-        <div v-if="activeStudentProfile.businesses.length === 1">
+        <div v-if="activeStudentProfile && activeStudentProfile.businesses.length === 1">
           No businesses
         </div>
         <router-link v-for="(business, i) in activeStudentProfile.businesses"

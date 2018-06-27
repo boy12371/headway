@@ -16,14 +16,14 @@
       <div class="container hero__container">
         <header class="header">
           <img src="images/logo-full-green-white@2x.png" alt="Headway" class="logo">
-          <a href="#" class="header__btn" id="login">
-            Login
-            <div class="popup" hidden id="login-box">
-              <input class="input form__input" type="text" placeholder="Email address">
-              <input class="input form__input" type="password" placeholder="Password">
-              <button class="btn btn--block">Login</button>
-            </div>
-          </a>
+          <div class="flex">
+            <a href="/dashboard" class="header__btn" id="login">
+              Login as Admin
+            </a>
+            <a href="/app" class="header__btn" id="login" style="margin-left: 12px">
+              Login as Student
+            </a>
+          </div>
         </header>
         <div class="hero__content">
           <h1>The smarter way to deliver your training</h1>
@@ -214,14 +214,6 @@
               triangle.classList.add("triangle--occupational");
             }
           });
-        });
-        loginLink.addEventListener("click", function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          loginBox.hidden = false;
-        });
-        document.querySelector("body").addEventListener("click", function(e) {
-          loginBox.hidden = true;
         });
       });
     </script>

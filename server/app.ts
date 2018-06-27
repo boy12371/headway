@@ -30,7 +30,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(cors)
 
-app.use('/', staticRoute)
+app.use('/', express.static(path.resolve('./landing')))
 app.use('/invite*', staticRoute)
 app.use('/confirm*', staticRoute)
 app.use('/l/:userType', staticRoute)
