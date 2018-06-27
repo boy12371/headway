@@ -47,4 +47,6 @@ webpackConfig.devServer = {
   open: true
 }
 
+webpackConfig.output.publicPath = '/'
+
 module.exports = webpackConfig

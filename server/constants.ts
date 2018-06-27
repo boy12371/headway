@@ -19,3 +19,9 @@ export const S3_BUCKET = 'headway'
 export const UPLOAD_DIRECTORY = './uploads'
 
 export const JWT_ISSUER = 'headway.herokuapp.com'
+
+export const SESSION_CONFIG = {
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+}
