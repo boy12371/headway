@@ -22,7 +22,14 @@ import * as bodyParser from 'body-parser'
 import { checkAdminLogin, checkStudentLogin } from './authentication'
 const staticRoute = express.static(path.resolve('./dist'))
 
+app.use(require('express-session')({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }))
+app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(require('express-fileupload')())
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(cors)
+
 app.use('/', staticRoute)
 app.use('/invite*', staticRoute)
 app.use('/confirm*', staticRoute)
@@ -43,12 +50,6 @@ app.use('/b/:userType', checkAdminLogin)
 app.use('/b/:userType', staticRoute)
 
 app.use(express.static(path.resolve('./src/static')))
-app.use(bodyParser.json({ limit: '50mb' }))
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(require('express-session')({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }))
-app.use(require('express-fileupload')())
-app.use(passport.initialize())
-app.use(passport.session())
 epilogue.initialize({ app, sequelize: connection })
 
 export default app
