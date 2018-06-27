@@ -1,1 +1,1 @@
-https://headway.herokuapp.com/app/invite?token={{token}}
+https://headway.herokuapp.com/invite?token={{token}}
