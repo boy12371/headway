@@ -26,7 +26,7 @@ app.get('/logout', (req, res) => {
 })
 
 app.post('/login/admin', authAdmin, (req, res) => {
-  res.send(req.user.admin)
+  res.send(req.user)
 })
 
 app.post('/register', (req, res) => {
@@ -58,5 +58,5 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/login/student', authStudent, (req, res) => {
-  res.send(req.user.student)
+  res.send(req.user)
 })
