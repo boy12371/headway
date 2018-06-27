@@ -4,10 +4,12 @@ import './QuizBuilder.scss'
 import { Answer, Question } from '../../../interfaces'
 import store from '../../../store'
 
+import { reject } from 'lodash'
+
 @Component({
   template: require('./QuizBuilder.html'),
   name: 'QuizBuilder',
-  components: { }
+  components: {}
 })
 export class QuizBuilder extends Vue {
   @Prop() data: any[]
@@ -37,7 +39,7 @@ export class QuizBuilder extends Vue {
   }
 
   removeQuestion(qIndex) {
-    // ...
+    this.questions = this.questions.filter((question, i) => i !== qIndex)
   }
 
   addAnswer(qIndex) {
@@ -54,7 +56,7 @@ export class QuizBuilder extends Vue {
   }
 
   removeAnswer(qIndex, aIndex) {
-    // ....
+    this.questions[qIndex].answers = this.questions[qIndex].answers.filter((answer, i) => i !== aIndex)
   }
 
   save() {

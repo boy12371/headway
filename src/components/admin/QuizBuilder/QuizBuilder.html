@@ -30,9 +30,11 @@
             <input type="checkbox" class="toggle-check-input" v-model="answer.correct" @change="save" />
             <span class="toggle-check-text"></span>
           </label>
+          <a hidden @click.prevent="removeAnswer(qIndex, aIndex)">Remove Answer</a>
         </div>
         <div class="input QuizBuilder__add-answer" @click="addAnswer(qIndex)">Add another answer</div>
       </div>
+      <a hidden @click.prevent="removeQuestion(qIndex)">Remove Question</a>
     </div>
   </div>
   <span class="btn btn--standard Quiz__add-question" @click="addQuestion">Add question</span>
