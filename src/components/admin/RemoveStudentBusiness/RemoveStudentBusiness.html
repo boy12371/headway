@@ -1,0 +1,15 @@
+<transition name="Modal">
+  <Modal wide @close="$emit('close')">
+    <Card slot="body" title="Are you sure you want to remove course?">
+      <form @submit.prevent="submit" slot="body">
+        <div class="form__group">
+          <p><strong>You will no longer see {{ activeStudentProfile.first_name }} {{ activeStudentProfile.last_name }} under this business. The student will still maintain all course progress.</strong></p>
+        </div>
+        <div class="form__footer form__footer--end">
+          <span class="btn btn--standard" @click="$emit('close')">Cancel</span>
+          <button class="btn btn--danger" :disabled="submitting">Remove</button>
+        </div>
+      </form>
+    </Card>
+  </Modal>
+</transition>

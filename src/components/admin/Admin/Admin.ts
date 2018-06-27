@@ -6,14 +6,13 @@ const courseService = new CourseService()
 const businessService = new BusinessService()
 const studentService = new StudentService()
 
-import { AddStudent, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, Toast, BusinessProfile, LearningCard, Course, Businesses, CourseMenu, RemoveStudentCourse, AddCourse, RemoveCard, RemoveVideo, RemoveStudent, RemoveCourse, RemoveUnit } from '../../'
+import { AddStudent, AddStudentBusiness, AddStudentCourse, AddUnit, AddCard, AddBusiness, Breadcrumbs, StudentList, StudentProfile, Toast, BusinessProfile, LearningCard, Course, Businesses, CourseMenu, RemoveStudentCourse, RemoveStudentBusiness, AddCourse, RemoveCard, RemoveVideo, RemoveStudent, RemoveCourse, RemoveUnit } from '../../'
 
 import { Login } from '../../shared/Login'
 
 import './Admin.scss'
 import store from '../../../store'
 import axios from 'axios'
-import { AddStudentCourse } from '../AddStudentCourse'
 
 const toggleModal = k => store.commit('toggleModal', k)
 
