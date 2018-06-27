@@ -6,7 +6,7 @@
           <label class="label" for="business-name">Business Name</label>
           <input type="text" class="input" id="business-name" v-model="name" v-focus="modals.addBusiness" autocomplete="off" required>
         </div>
-        <div class="form__group">
+        <div class="form__group" v-show="courses.length">
           <label class="label">Default Courses</label>
           <label class="checkbox" :for="'business-course-item-' + index" v-for="(course, index) in courses">
             <input type="checkbox" :id="'business-course-item-' + index" :value="course.id" v-model="courseIds">
