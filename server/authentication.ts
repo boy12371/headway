@@ -107,28 +107,28 @@ passport.deserializeUser((key, done) => {
 
 export const authAdmin = passport.authenticate('admin-local', {
   // successReturnToOrRedirect: true,
-  failureRedirect: '/login/admin'
+  failureRedirect: '/l/admin'
 })
 
 export const authStudent = passport.authenticate('student-local', {
-  failureRedirect: '/login/student'
+  failureRedirect: '/l/student'
 })
 
 export const authStudentInvite = passport.authenticate('jwt', {
-  failureRedirect: '/login/student'
+  failureRedirect: '/l/student'
 })
 
 export const authAdminInvite = passport.authenticate('jwt', {
-  failureRedirect: '/login/admin'
+  failureRedirect: '/l/admin'
 })
 
 export const authMentor = passport.authenticate('mentor-local', {
-  failureRedirect: '/login/mentor'
+  failureRedirect: '/l/mentor'
 })
 
 export const checkAdminLogin = (req, res, next) => {
   if (!req.isAuthenticated || !req.isAuthenticated() || !req.user.admin) {
-    return res.redirect('/login/admin')
+    return res.redirect('/l/admin')
   }
   next()
 }

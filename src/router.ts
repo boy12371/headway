@@ -18,7 +18,7 @@ export const createRoutes: () => RouteConfig[] = () => [
     component: landingComponent
   },
   {
-    path: '/login/:role',
+    path: '/l/:role',
     name: 'login',
     component: loginComponent
   },
