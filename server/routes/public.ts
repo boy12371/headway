@@ -25,9 +25,8 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-
 app.post('/login/admin', authAdmin, (req, res) => {
-  res.redirect('/dashboard')
+  res.send(req.user.admin)
 })
 
 app.post('/register', (req, res) => {
@@ -59,5 +58,5 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/login/student', authStudent, (req, res) => {
-  res.redirect('/student')
+  res.send(req.user.student)
 })
