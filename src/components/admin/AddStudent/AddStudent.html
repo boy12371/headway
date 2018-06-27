@@ -6,9 +6,10 @@
           <label class="label" for="student-email">Email</label>
           <input type="email" placeholder="john@smith.com" class="input" id="student-email" v-model="email" v-focus="modals.addStudent">
         </div>
-        <div class="form__group">
+        <div class="form__group" v-if="businesses.length > 1">
           <label class="label">Add to Business (optional)</label>
-          <label class="checkbox" :for="'student-item-' + index" v-for="(business, index) in businesses">
+          <!-- WARNING: always hide first business -->
+          <label class="checkbox" :for="'student-item-' + index" v-for="(business, index) in businesses" v-if="index > 0">
             <input type="checkbox" :id="'student-item-' + index" :value="business.id" v-model="businessIds">
             {{ business.name }}
           </label>

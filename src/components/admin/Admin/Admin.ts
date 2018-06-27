@@ -112,7 +112,8 @@ export class Admin extends Vue {
 
   get businessMenu() {
     if (this.businesses) {
-      const menu = this.businesses.map((business, index) => {
+      // WARNING: always omit first business
+      const menu = this.businesses.slice(1).map((business, index) => {
         const data = {
           text: business.name,
           link: '/b/' + business.id,

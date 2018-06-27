@@ -45,7 +45,15 @@
       <div class="StudentProfile__group">
         <h4 v-show="activeStudentProfile.first_name">{{ activeStudentProfile.first_name }} works with</h4>
         <h4 v-show="!activeStudentProfile.first_name">Student works with</h4>
-        <router-link v-for="(business, i) in activeStudentProfile.businesses" class="Card CourseCard" :key="i" :to="{ name: 'businessProfile', params: { businessId : business.id }}">
+        <div v-if="activeStudentProfile.businesses.length === 1">
+          No businesses
+        </div>
+        <router-link v-for="(business, i) in activeStudentProfile.businesses"
+          v-if="i > 0"
+          class="Card CourseCard"
+          :key="i"
+          :to="{ name: 'businessProfile', params: { businessId : business.id }}"
+        >
           <div class="CourseCard__wrap CourseCard__wrap--flat flex flex--aligned">
             <i class="icon icon--large business" style="margin-right: 1rem"></i>
             <div class="tight">

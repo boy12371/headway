@@ -37,8 +37,8 @@
           Businesses
           <i class="fal fa-plus" @click="toggleModal('addBusiness')"></i>
         </h4>
-        <div v-show="!businesses.length"><p class="ghosted">You have no businesses</p></div>
-        <CourseMenu icon="business" v-show="businesses.length" @createCourse="showBusinessModal = true" :items="businessMenu" collection="Students"></CourseMenu>
+        <div v-show="businesses.length === 1"><p class="ghosted">You have no businesses</p></div>
+        <CourseMenu icon="business" v-show="businesses.length > 1" @createCourse="showBusinessModal = true" :items="businessMenu" collection="Students"></CourseMenu>
       </div>
     </div>
     <div class="Admin__main">

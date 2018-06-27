@@ -44,7 +44,10 @@ export class AddStudent extends Vue {
       first_name: this.firstName,
       last_name: this.lastName,
       email: this.email,
-      businessIds: this.businessIds,
+      businessIds: [
+        this.businesses[0].id,
+        ...this.businessIds,
+      ]
     }).then(course => {
       this.firstName = ''
       this.lastName = ''
