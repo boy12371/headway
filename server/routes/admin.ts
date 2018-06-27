@@ -278,12 +278,8 @@ app.post('/admin/student-business', checkAdminPermission, (req, res) => {
 app.delete('/admin/student-business', checkAdminPermission, (req, res) => {
   const { studentId, businessId } = req.body
   Business.findById(businessId, { include: [Course] }).then(business => {
-    // Automatically remove Student from every Course this Business owns
-    const promises = business.courses.map(course => CourseStudent.destroy({ where: { studentId, courseId: course.id, } }))
-    Promise.all(promises).then(() => {
-      BusinessStudent.destroy({ where: { studentId, businessId, } }).then(result => {
-        res.send('OK')
-      })
+    BusinessStudent.destroy({ where: { studentId, businessId, } }).then(result => {
+      res.send('OK')
     })
   })
 })
