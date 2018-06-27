@@ -116,6 +116,7 @@ export const inviteStudent = async (payload, businessIds: number[]) => {
       return createStudent({ email, password }).then(student => {
         const token = jwt.sign({
           sub: student.id,
+          email: student.email,
           iss: JWT_ISSUER,
           aud: 'invite',
         }, process.env.JWT_SECRET)

@@ -5,6 +5,8 @@ import './StudentOnboard.scss'
 import store from '../../../store'
 import axios from 'axios'
 
+import * as jwt_decode from 'jwt-decode'
+
 @Component({
   template: require('./StudentOnboard.html'),
   name: 'StudentOnboard',
@@ -12,11 +14,20 @@ import axios from 'axios'
 })
 
 export class StudentOnboard extends Vue {
+  @State route
+
   first_name = ''
   last_name = ''
+  email = ''
   password = ''
   passwordConfirm = ''
   submitting: boolean = false
+
+  mounted() {
+    const token = this.route.query.token
+    const user = jwt_decode(token)
+    this.email = user.email
+  }
 
   submit() {
     if (this.submitting) {
