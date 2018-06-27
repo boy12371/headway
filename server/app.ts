@@ -31,7 +31,6 @@ app.use(passport.session())
 app.use(cors)
 
 app.use('/landing', express.static(path.resolve('./landing')))
-app.use('/', staticRoute)
 app.use('/invite*', staticRoute)
 app.use('/confirm*', staticRoute)
 app.use('/l/:userType', staticRoute)
@@ -49,6 +48,12 @@ app.use('/s/:userType', checkAdminLogin)
 app.use('/s/:userType', staticRoute)
 app.use('/b/:userType', checkAdminLogin)
 app.use('/b/:userType', staticRoute)
+
+app.get('/', (req, res) => {
+  res.render('index')
+})
+
+app.use('/static', staticRoute)
 
 epilogue.initialize({ app, sequelize: connection })
 
